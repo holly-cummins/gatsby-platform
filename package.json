@@ -1,7 +1,7 @@
 {
   "name": "gatsby-starter-hero-blog",
   "version": "2.0.0",
-  "author": "Greg Lobinski <greglobinski@gmail.com>",
+  "author": "Holly Cummins (using a starter from Greg Lobinski <greglobinski@gmail.com>)",
   "license": "MIT",
   "dependencies": {
     "antd": "^3.7.0",
