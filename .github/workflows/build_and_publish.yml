@@ -22,6 +22,6 @@ jobs:
           ALGOLIA_SEARCH_ONLY_API_KEY: ${{ secrets.ALGOLIA_SEARCH_ONLY_API_KEY }}
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
-      - run: npm test:int
+      - run: npm run test:int
         env:
           CI: true
