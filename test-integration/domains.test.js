@@ -2,7 +2,7 @@ jest.setTimeout(15 * 1000);
 
 validateMediumRedirect = async () => {
   expect(page.url()).toMatch("https://holly-k-cummins.medium.com/");
-  expect(page.waitForXPath('//*[contains(text(), "Holly K Cummins")]')).resolves.toBeTruthy();
+  await expect(page.waitForXPath('//*[contains(text(), "Holly K Cummins")]')).resolves.toBeTruthy();
 };
 
 describe("http", () => {
