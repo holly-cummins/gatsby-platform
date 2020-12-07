@@ -58,27 +58,3 @@ describe("hollycummins.fun", () => {
     });
   });
 });
-
-describe("hollycummins.dev", () => {
-  const domain = "hollycummins.dev";
-  describe("http", () => {
-    describe("apex", () => {
-      beforeAll(async () => {
-        await page.goto("http://" + domain);
-      });
-
-      it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
-      });
-    });
-    describe("www", () => {
-      beforeAll(async () => {
-        await page.goto("http://www." + domain);
-      });
-
-      it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
-      });
-    });
-  });
-});
