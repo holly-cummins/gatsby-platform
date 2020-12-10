@@ -6,6 +6,16 @@ on:
       source
 
 jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - run: npm run test
+        env:
+          CI: true
   build:
     runs-on: ubuntu-latest
     steps:
