@@ -15,6 +15,5 @@ module.exports = {
     __PATH_PREFIX__: ``
   },
   testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/loadershim.js`],
-  preset: "jest-puppeteer"
+  setupFiles: [`<rootDir>/loadershim.js`]
 };
