@@ -35,7 +35,8 @@ size:
   radius:
     default: 10px
     small: 5px
-# COLOR
+# COLOR 
+# see https://www.color-hex.com/color/2f4eae for guidance
 color:
   # color options
   neutral:
@@ -54,14 +55,14 @@ color:
       k: '#2b2826'
     black: &color-black '#000000'
   brand:
-    primary: &color-brand-primary '#709425'
-    primaryActive: '#709425'
-    light: '#709425'
-    lightActive: '#709425'
-    dark: '#709425'
-    darkActive: '#709425'
+    primary: &color-brand-primary '#2f4eae'
+    primaryActive: '#2f4eae'
+    light: '#5876d2'
+    lightActive: '#5876d2'
+    dark: '#2f4eae'
+    darkActive: '#2f4eae'
   special:
-    attention: &color-special-attention orange
+    attention: &color-special-attention '#2f8eae'
 # FONT
 font:
   # font options
