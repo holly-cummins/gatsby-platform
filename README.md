@@ -60,15 +60,9 @@ npm install --global gatsby-cli
 
 More information on [GatsbyJS.org](https://www.gatsbyjs.org/tutorial/part-one)
 
-## Getting started
+## Development
 
-Install the starter using Gatsby Cli `gatsby new` command.
-
-```text
-gatsby new [NEW_SITE_DIRECTORY_FOR_YOUR_BLOG] https://github.com/greglobinski/gatsby-starter-hero-blog.git
-```
-
-Go into the newly created directory and run
+For local development
 
 ```text
 gatsby develop
@@ -81,6 +75,19 @@ gatsby build
 ```
 
 to create static site ready to host (/public).
+
+To run unit tests, use
+
+```text
+npm run test
+```
+
+Integration tests need the site to have been built first (and `develop` will un-build it)
+
+```text
+gatsby build
+npm run test:int
+```
 
 ##### External services
 
