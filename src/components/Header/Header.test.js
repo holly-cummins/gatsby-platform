@@ -10,12 +10,12 @@ describe("Header", () => {
 
     const tree = render(
       <Header
-        siteTitle={title}
+        siteTitle="site title"
         theme={themeObjectFromYaml}
-        pages={[{ node: { frontmatter: { menuTitle: "", title: "" }, fields: { slug: "" } } }]}
+        pages={[{ node: { frontmatter: { menuTitle: "", title: title }, fields: { slug: "" } } }]}
         path="/"
       />
     );
-    expect(screen.findByText(title)).toBeTruthy();
+    expect(screen.getByText(title)).toBeTruthy();
   });
 });

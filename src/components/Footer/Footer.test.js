@@ -8,12 +8,12 @@ import themeObjectFromYaml from "../../theme/theme.yaml";
 describe("Footer", () => {
   it("renders something with a footers role", () => {
     render(<Footer html="" theme={themeObjectFromYaml} />);
-    expect(screen.findByRole("contentinfo")).toBeTruthy();
+    expect(screen.getByRole("contentinfo")).toBeTruthy();
   });
 
   it("renders the html argument", () => {
     const text = "this is the displayed text";
     render(<Footer html={`<h2>${text}</h2>`} theme={themeObjectFromYaml} />);
-    expect(screen.findByText(text)).toBeTruthy();
+    expect(screen.getByText(text)).toBeTruthy();
   });
 });
