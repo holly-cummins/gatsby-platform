@@ -9,6 +9,14 @@ describe("hollycummins.com", () => {
     await page.goto(siteRoot);
   });
   it("should have Hollys name on it somewhere", async () => {
-    await expect(page.waitForXPath('//*[contains(text(), "Holly Cummins")]')).resolves.toBeTruthy();
+    await expect(page.waitForXPath('//*[text()="Holly Cummins"]')).resolves.toBeTruthy();
+  });
+
+  it("should have a Search option", async () => {
+    await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
+  });
+
+  it("should have a Contact option", async () => {
+    await expect(page.waitForXPath('//*[text()="Contact"]')).resolves.toBeTruthy();
   });
 });
