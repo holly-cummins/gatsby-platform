@@ -8,15 +8,45 @@ describe("hollycummins.com", () => {
   beforeAll(async () => {
     await page.goto(siteRoot);
   });
+
   it("should have Hollys name on it somewhere", async () => {
     await expect(page.waitForXPath('//*[text()="Holly Cummins"]')).resolves.toBeTruthy();
   });
+  describe("header navigation bar", () => {
+    it("should have a Search option", async () => {
+      await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
+    });
 
-  it("should have a Search option", async () => {
-    await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
+    it("should have a Contact option", async () => {
+      await expect(page.waitForXPath('//*[text()="Contact"]')).resolves.toBeTruthy();
+    });
   });
 
-  it("should have a Contact option", async () => {
-    await expect(page.waitForXPath('//*[text()="Contact"]')).resolves.toBeTruthy();
+  describe("hero mechanism", () => {
+    it("should have button to click", async () => {
+      await expect(page.waitForXPath('//*[contains(@aria-label,"scroll")]')).resolves.toBeTruthy();
+    });
+
+    it("should scroll down when the button is clicked", async () => {
+      // Brittle test, looking for an article we know is at the top
+      const selector = '//*[text()="I like nonsense, it wakes up the brain cells"]';
+
+      const tile = await page.waitForXPath(selector);
+      // Sense check - make sure the thing is there but not visible (we have to use the viewport, not the css visibility)
+      await expect(tile.isIntersectingViewport()).resolves.toBeFalsy();
+
+      const scrollButton = await page.waitForXPath('//*[contains(@aria-label,"scroll")]');
+      await expect(scrollButton.isIntersectingViewport()).resolves.toBeTruthy();
+
+      // Click, which should scroll
+      await scrollButton.evaluate(scrollButton => scrollButton.click());
+      // Nasty hack; wait for some scrolling to happen
+      await page.waitFor(1000);
+      // Now the button should be out of view
+      await expect(scrollButton.isIntersectingViewport()).resolves.toBeFalsy();
+
+      // Now we we should be able to see the tile
+      await expect(tile.isIntersectingViewport()).resolves.toBeTruthy();
+    });
   });
 });
