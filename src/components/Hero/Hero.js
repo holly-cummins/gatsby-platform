@@ -9,11 +9,16 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>Holly Cummins.</h1>
-        <h2>IBMer, Java Champion, occasional maker and regular speaker.</h2>
-        <button onClick={scrollToContent} aria-label="scroll">
-          <FaArrowDown />
-        </button>
+        <div className="heroBio">
+          <h1>Holly Cummins.</h1>
+          <h2>IBMer, Java Champion, occasional maker and regular speaker.</h2>
+        </div>
+        <div>
+          <button onClick={scrollToContent} aria-label="scroll">
+            <FaArrowDown />
+          </button>
+        </div>
+        <div></div>
       </section>
 
       {/* --- STYLES --- */}
@@ -25,16 +30,46 @@ const Hero = props => {
           background-size: cover;
           color: ${theme.text.color.primary.inverse};
           display: flex;
-          flex-flow: column nowrap;
-          justify-content: center;
+          justify-content: flex-start;
+          flex-direction: row;
+          flex-wrap: nowrap;
           min-height: 100vh;
           height: 100px;
           padding: ${theme.space.inset.l};
           padding-top: ${theme.header.height.homepage};
         }
 
+        .heroBio {
+          max-width: 30%;
+        }
+
         h1 {
-          text-align: center;
+          text-align: left;
+          font-size: ${theme.hero.h1.size};
+          margin: ${theme.space.stack.l};
+          color: ${theme.hero.h1.color};
+          line-height: ${theme.hero.h1.lineHeight};
+          text-remove-gap: both 0 "Open Sans";
+
+          :global(strong) {
+            position: relative;
+
+            &::after,
+            &::before {
+              content: "›";
+              color: ${theme.text.color.attention};
+              margin: 0 ${theme.space.xs} 0 0;
+              text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.k};
+            }
+            &::after {
+              content: "‹";
+              margin: 0 0 0 ${theme.space.xs};
+            }
+          }
+        }
+
+        h2 {
+          text-align: left;
           font-size: ${theme.hero.h1.size};
           margin: ${theme.space.stack.l};
           color: ${theme.hero.h1.color};

@@ -134,7 +134,7 @@ icon:
 # COMPONENT TOKENS
 hero:
   h1:
-    size: *font-size-xxl
+    size: *font-size-l
     color: *color-black
     lineHeight: *font-line-height-xs
   h2:
