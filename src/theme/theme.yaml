@@ -53,7 +53,8 @@ color:
       i: '#514f4d'
       j: &color-gray-10 '#3e3e3c'
       k: '#2b2826'
-    black: &color-black '#000000'
+    black: &color-black '#3e3e3c'
+  herocontrast: '#3e3e3c'
   brand:
     primary: &color-brand-primary '#2f4eae'
     primaryActive: '#2f4eae'
