@@ -117,19 +117,18 @@ You should take a look at this: [Gatsby on Windows](https://www.gatsbyjs.org/doc
 
 ## Authors
 
-- Greg Lobinski [@greglobinski](https://github.com/greglobinski)
+- Content: Holly Cummins
+- Original starter: Greg Lobinski [@greglobinski](https://github.com/greglobinski)
 
 See also the list of [contributors](https://github.com/greglobinski/gatsby-starter-personal-blog/graphs/contributors) who participated in this project.
 
-## Contributing
-
-- Fork the repo
-- Create your feature branch (git checkout -b feature/fooBar)
-- Commit your changes (git commit -am 'Add some fooBar')
-- Push to the branch (git push origin feature/fooBar)
-- Create a new Pull Request
-
 ## Licence
+
+###
+
+Copyright © 2020 Holly Cummins. The source code in articles is freely reusable.
+
+### Original starter:
 
 MIT License
 
