@@ -28,8 +28,8 @@ describe("hollycummins.com", () => {
     });
 
     it("should scroll down when the button is clicked", async () => {
-      // Brittle test, looking for an article we know is at the top
-      const selector = '//*[text()="I like nonsense, it wakes up the brain cells"]';
+      // Look for a list item which has a class of 'blog-item'
+      const selector = '//li[contains(@class, "blog-item")]';
 
       const tile = await page.waitForXPath(selector);
       // Sense check - make sure the thing is there but not visible (we have to use the viewport, not the css visibility)
