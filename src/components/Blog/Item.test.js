@@ -36,5 +36,6 @@ describe("Item", () => {
     expect(screen.getByText(title)).toBeTruthy();
     expect(screen.getByText(excerpt)).toBeTruthy();
     expect(screen.getByText(author)).toBeTruthy();
+    expect(screen.getByRole("link")).toBeTruthy();
   });
 });
