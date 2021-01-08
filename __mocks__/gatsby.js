@@ -2,7 +2,15 @@ const React = require("react");
 const gatsby = jest.requireActual("gatsby");
 module.exports = {
   ...gatsby,
-  graphql: jest.fn(),
+  graphql: jest.fn().mockResolvedValue({
+    data: {
+      allMarkdownRemark: {
+        edges: [
+          { node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } } }
+        ]
+      }
+    }
+  }),
   Link: jest.fn().mockImplementation(
     // these props are invalid for an `a` tag
     ({
