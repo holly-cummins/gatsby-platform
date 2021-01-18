@@ -1,10 +1,13 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import IndexPage from "./index";
+import { query } from "./index";
 
 import { ThemeContext } from "../layouts";
+import { cover } from "../../__mocks__/site.js";
 
 import themeObjectFromYaml from "../theme/theme.yaml";
+import { graphql } from "gatsby";
 
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render
 const renderWithTheme = (ui, theme) => {
@@ -30,7 +33,7 @@ describe("IndexPage", () => {
   describe("with no posts", () => {
     const data = {
       ...layoutData,
-      posts: []
+      posts: { edges: [] }
     };
     beforeEach(async () => {
       renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
@@ -38,6 +41,58 @@ describe("IndexPage", () => {
 
     it("renders the scroll button", async () => {
       expect(screen.getByLabelText("scroll")).toBeTruthy();
+    });
+  });
+
+  describe("with some posts", () => {
+    const title1 = "the first title";
+    const title2 = "the second title";
+
+    const post1 = {
+      node: {
+        fields: {
+          slug: "/slug1/"
+        },
+        frontmatter: {
+          title: title1,
+          cover
+        }
+      }
+    };
+    const post2 = {
+      node: {
+        fields: {
+          slug: "/slug2/"
+        },
+        frontmatter: {
+          title: title2,
+          cover
+        }
+      }
+    };
+    const data = {
+      ...layoutData,
+      posts: { edges: [post1, post2] }
+    };
+
+    beforeEach(async () => {
+      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+    });
+
+    it("renders the scroll button", async () => {
+      expect(screen.getByLabelText("scroll")).toBeTruthy();
+    });
+
+    it("renders a list of entries", async () => {
+      expect(screen.getByRole("list")).toBeTruthy();
+    });
+
+    // More detailed testing of Item content can be in the Item test, we just want something
+    it("renders the first post title", async () => {
+      expect(screen.getByText(title1)).toBeTruthy();
+    });
+    it("renders the second post title", async () => {
+      expect(screen.getByText(title2)).toBeTruthy();
     });
   });
 });
