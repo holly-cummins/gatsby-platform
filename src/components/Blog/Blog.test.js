@@ -1,10 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { v4 as uuid } from "uuid";
 
 import Blog from ".";
 
 import themeObjectFromYaml from "../../theme/theme.yaml";
-import { v4 as uuid } from "uuid";
+import { cover } from "../../../__mocks__/site.js";
 
 const makeNode = () => {
   const title = "Test Item";
@@ -17,19 +18,7 @@ const makeNode = () => {
         title,
         category: "dull-stuff",
         author: "tdd-er",
-        cover: {
-          children: [
-            {
-              fluid: {
-                base64: "data:image/png;base64,iV==",
-                aspectRatio: 1,
-                src: "/static/somewhere.png",
-                srcSet: "/static/somewhere.png 75w",
-                sizes: "(max-width: 300px) 100vw, 300px"
-              }
-            }
-          ]
-        }
+        cover
       }
     }
   };

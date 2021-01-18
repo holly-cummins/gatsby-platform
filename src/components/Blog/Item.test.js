@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Item from "./Item";
 
 import themeObjectFromYaml from "../../theme/theme.yaml";
+import { cover } from "../../../__mocks__/site.js";
 
 describe("Item", () => {
   it("renders the title", () => {
@@ -16,19 +17,7 @@ describe("Item", () => {
         title,
         category: "dull-stuff",
         author: "tdd-er",
-        cover: {
-          children: [
-            {
-              fluid: {
-                base64: "data:image/png;base64,iV==",
-                aspectRatio: 1,
-                src: "/static/somewhere.png",
-                srcSet: "/static/somewhere.png 75w",
-                sizes: "(max-width: 300px) 100vw, 300px"
-              }
-            }
-          ]
-        }
+        cover
       }
     };
 
