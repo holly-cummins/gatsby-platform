@@ -11,27 +11,33 @@ const renderWithTheme = (ui, theme) => {
   return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
 };
 
-describe("IndexPage", () => {
-  const data = {
-    posts: [],
-    bgDesktop: {
-      resize: { src: "desktop" }
-    },
-    bgTablet: {
-      resize: { src: "tablet" }
-    },
-    bgMobile: {
-      resize: { src: "mobile" }
-    },
-    site: {
-      siteMetadata: { facebook: {} }
-    }
-  };
-  beforeEach(async () => {
-    renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
-  });
+const layoutData = {
+  bgDesktop: {
+    resize: { src: "desktop" }
+  },
+  bgTablet: {
+    resize: { src: "tablet" }
+  },
+  bgMobile: {
+    resize: { src: "mobile" }
+  },
+  site: {
+    siteMetadata: { facebook: {} }
+  }
+};
 
-  it("renders the scroll button", async () => {
-    expect(screen.getByLabelText("scroll")).toBeTruthy();
+describe("IndexPage", () => {
+  describe("with no posts", () => {
+    const data = {
+      ...layoutData,
+      posts: []
+    };
+    beforeEach(async () => {
+      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+    });
+
+    it("renders the scroll button", async () => {
+      expect(screen.getByLabelText("scroll")).toBeTruthy();
+    });
   });
 });
