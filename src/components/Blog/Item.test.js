@@ -9,39 +9,78 @@ describe("Item", () => {
   const title = "Some Test Item";
   const excerpt = "this is a lovely test…";
   const author = "tdd-er";
-  const slug = "sluggy";
 
-  beforeEach(() => {
-    const post = {
-      excerpt,
-      fields: { slug, prefix: "2020-01-06" },
-      frontmatter: {
-        title,
-        category: "dull-stuff",
-        author: "tdd-er",
-        cover
-      }
-    };
+  describe("for an internal post", () => {
+    const slug = "sluggy";
 
-    const tree = render(<Item key="some-key" theme={themeObjectFromYaml} post={post} />);
+    beforeEach(() => {
+      const post = {
+        excerpt,
+        fields: { slug, prefix: "2020-01-06" },
+        frontmatter: {
+          title,
+          category: "dull-stuff",
+          author: "tdd-er",
+          cover
+        }
+      };
+
+      const tree = render(<Item key="some-key" theme={themeObjectFromYaml} post={post} />);
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    it("renders the excerpt", () => {
+      expect(screen.getByText(excerpt)).toBeTruthy();
+    });
+
+    it("renders the author", () => {
+      expect(screen.getByText(author)).toBeTruthy();
+    });
+
+    it("renders the correct link", () => {
+      const link = screen.getByRole("link");
+      expect(link).toBeTruthy();
+      // Hardcoding the host is a bit risky but this should always be true in  test environment
+      expect(link.href).toBe("http://localhost/" + slug);
+    });
   });
+  describe("for an external publication", () => {
+    const url = "http://somewhere.else";
 
-  it("renders the title", () => {
-    expect(screen.getByText(title)).toBeTruthy();
-  });
+    beforeEach(() => {
+      const post = {
+        excerpt,
+        fields: { url, prefix: "2020-01-06" },
+        frontmatter: {
+          title,
+          category: "dull-stuff",
+          author: "tdd-er",
+          cover
+        }
+      };
 
-  it("renders the excerpt", () => {
-    expect(screen.getByText(excerpt)).toBeTruthy();
-  });
+      const tree = render(<Item key="some-key" theme={themeObjectFromYaml} post={post} />);
+    });
 
-  it("renders the author", () => {
-    expect(screen.getByText(author)).toBeTruthy();
-  });
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
 
-  it("renders the correct link", () => {
-    const link = screen.getByRole("link");
-    expect(link).toBeTruthy();
-    // Hardcoding the host is a bit risk but this should always be true in  test environment
-    expect(link.href).toBe("http://localhost/" + slug);
+    it("renders the excerpt", () => {
+      expect(screen.getByText(excerpt)).toBeTruthy();
+    });
+
+    it("renders the author", () => {
+      expect(screen.getByText(author)).toBeTruthy();
+    });
+
+    it("renders the correct link", () => {
+      const link = screen.getByRole("link");
+      expect(link).toBeTruthy();
+      expect(link.href).toBe(url + "/");
+    });
   });
 });
