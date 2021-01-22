@@ -235,20 +235,20 @@ const Item = props => {
     `}</style>
   );
 
-  const fullLink = slug ? (
-    <React.Fragment>
-      <li className="blog-item">
-        <Link to={slug} key={slug} className="link">
-          {linkContent}
-        </Link>
-      </li>
-    </React.Fragment>
-  ) : (
+  const fullLink = url ? (
     <React.Fragment>
       <li className="blog-item">
         <a href={url} className="link">
           {linkContent}
         </a>
+      </li>
+    </React.Fragment>
+  ) : (
+    <React.Fragment>
+      <li className="blog-item">
+        <Link to={slug} key={slug} className="link">
+          {linkContent}
+        </Link>
       </li>
     </React.Fragment>
   );
