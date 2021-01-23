@@ -16,7 +16,7 @@ class IndexPage extends React.Component {
   render() {
     const {
       data: {
-        posts: { edges: posts = [] },
+        entries: { edges: entries = [] },
         bgDesktop: {
           resize: { src: desktop }
         },
@@ -49,7 +49,7 @@ class IndexPage extends React.Component {
         <hr ref={this.separator} />
 
         <ThemeContext.Consumer>
-          {theme => <Blog posts={posts} theme={theme} />}
+          {theme => <Blog posts={entries} theme={theme} />}
         </ThemeContext.Consumer>
 
         <Seo facebook={facebook} />
@@ -74,8 +74,8 @@ export default IndexPage;
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
-    posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
+    entries: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "//(posts|publications)/[0-9]+.*--/" } }
       sort: { fields: [fields___prefix], order: DESC }
     ) {
       edges {
@@ -87,6 +87,7 @@ export const query = graphql`
           }
           frontmatter {
             title
+            url
             category
             author
             cover {

@@ -28,10 +28,10 @@ const layoutData = {
 };
 
 describe("IndexPage", () => {
-  describe("with no posts", () => {
+  describe("with no posts or publications", () => {
     const data = {
       ...layoutData,
-      posts: { edges: [] }
+      entries: { edges: [] }
     };
     beforeEach(async () => {
       renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
@@ -70,7 +70,7 @@ describe("IndexPage", () => {
     };
     const data = {
       ...layoutData,
-      posts: { edges: [post1, post2] }
+      entries: { edges: [post1, post2] }
     };
 
     beforeEach(async () => {
@@ -90,6 +90,53 @@ describe("IndexPage", () => {
       expect(screen.getByText(title1)).toBeTruthy();
     });
     it("renders the second post title", async () => {
+      expect(screen.getByText(title2)).toBeTruthy();
+    });
+  });
+  describe("with some publications", () => {
+    const title1 = "the first publication";
+    const title2 = "the second publication";
+
+    const pub1 = {
+      node: {
+        fields: {
+          url: "http://somewhere"
+        },
+        frontmatter: {
+          title: title1,
+          cover
+        }
+      }
+    };
+    const pub2 = {
+      node: {
+        fields: {
+          url: "http://somewhere.else"
+        },
+        frontmatter: {
+          title: title2,
+          cover
+        }
+      }
+    };
+    const data = {
+      ...layoutData,
+      entries: { edges: [pub1, pub2] }
+    };
+
+    beforeEach(async () => {
+      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+    });
+
+    it("renders a list of entries", async () => {
+      expect(screen.getByRole("list")).toBeTruthy();
+    });
+
+    // More detailed testing of Item content can be in the Item test, we just want something
+    it("renders the first publication title", async () => {
+      expect(screen.getByText(title1)).toBeTruthy();
+    });
+    it("renders the second publication title", async () => {
       expect(screen.getByText(title2)).toBeTruthy();
     });
   });

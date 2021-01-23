@@ -31,6 +31,17 @@ gatsby build
 npm run test:int
 ```
 
+### What are all the things?
+
+- xxTemplate: used in generation to make components
+- Page: A page with content (headline and body text)
+- Article: Wrapped around pages, posts, and categories. Mysterious.
+- Blog: The component on the front page with the unordered list and all the Items.
+- Item: An entry on the front page.
+- Post: A blog entry hosted on this site.
+- Publication: A blog entry hosted elsewhere.
+- Slug: The unique part of a page URL.
+
 ##### External services
 
 The starter uses external services for some functions: comments, searching, analytics. To use them you have to secure some access data. All services are free to use or have generous free tiers big enough for a personal blog.

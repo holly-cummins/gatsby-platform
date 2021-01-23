@@ -69,6 +69,31 @@ describe("the main gatsby thing", () => {
     expect(calls[1][0].component).toContain("PostTemplate.js");
   });
 
+  it("does not makes pages for publications (but does make a category)", async () => {
+    const url = "http://myfamous.story";
+    const node = {
+      node: {
+        frontmatter: { category: "pub-stuff", url },
+        fields: { source: "publications" }
+      }
+    };
+    const edges = [node, node];
+
+    const graphql = jest.fn().mockResolvedValue({
+      data: {
+        allMarkdownRemark: { edges }
+      }
+    });
+    const actions = { createPage: jest.fn() };
+    await gn.createPages({ graphql, actions });
+    // One call for the category, then a second for the post
+    const calls = actions.createPage.mock.calls;
+    // No posts for the nodes but one for the category
+    expect(calls.length).toBe(1);
+    // The first argument to the second call ...
+    expect(calls[0][0].path).toEqual("/category/pub-stuff/");
+  });
+
   it("makes pages for pages", async () => {
     const slug = "slug-path";
 
