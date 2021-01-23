@@ -12,9 +12,10 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: { slug, prefix, url },
+      fields: { slug, prefix },
       frontmatter: {
         title,
+        url,
         category,
         author,
         cover: {

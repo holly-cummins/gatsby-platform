@@ -53,8 +53,9 @@ describe("Item", () => {
     beforeEach(() => {
       const post = {
         excerpt,
-        fields: { url, prefix: "2020-01-06" },
+        fields: { slug: "should-not-use", prefix: "2020-01-06" },
         frontmatter: {
+          url,
           title,
           category: "dull-stuff",
           author: "tdd-er",
