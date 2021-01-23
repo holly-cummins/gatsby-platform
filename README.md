@@ -39,8 +39,12 @@ npm run test:int
 - Blog: The component on the front page with the unordered list and all the Items.
 - Item: An entry on the front page.
 - Post: A blog entry hosted on this site.
-- Publication: A blog entry hosted elsewhere.
+- Publication: A blog entry hosted elsewhere. Include a sentence or two in the markdown for the excerpt.
 - Slug: The unique part of a page URL.
+
+### Debugging
+
+http://localhost:8000/___graphql is useful for inspecting graphql results.
 
 ##### External services
 
