@@ -9,13 +9,14 @@ module.exports = function(chunksTotal, { node }) {
 
   const contentChunks = chunkString(noEmojiContent, 5000);
   const record = { title, slug, content };
-  const recordChunks = contentChunks.reduce((recordChunksTotal, contentChunksItem, idx) => {
-    return [
-      ...recordChunksTotal,
-      { ...record, ...{ content: contentChunksItem }, objectID: `${slug}${idx}` }
-    ];
-  }, []);
-
+  const recordChunks = contentChunks
+    ? contentChunks.reduce((recordChunksTotal, contentChunksItem, idx) => {
+        return [
+          ...recordChunksTotal,
+          { ...record, ...{ content: contentChunksItem }, objectID: `${slug}${idx}` }
+        ];
+      }, [])
+    : "";
   return [...chunksTotal, ...recordChunks];
 };
 
