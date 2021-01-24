@@ -26,11 +26,22 @@ const createMarkdown = async () => {
   const cover = path.basename(url.parse(imageUrl).pathname);
   const slug = path.basename(url.parse(targetUrl).pathname);
 
-  const ogDate = metadata["og:article:published_time"];
-  const date = ogDate ? ogDate : "unknown";
+  // Look for something that looks like a date;
+  // it varies from site to site and many don't have it at all
+  let date = "unknown";
+  const fields = Object.keys(metadata);
+  const dateFields = fields.filter(name => name.includes("time") || name.includes("date"));
+  const dateField = dateFields.find(field => metadata[field] && metadata[field].length > 0);
+  if (dateField) {
+    date = new Date(Date.parse(metadata[dateField])).toISOString().slice(0, 10);
+  }
 
   const ogAuthor = metadata.author;
-  const author = ogAuthor ? ogAuthor : "holly cummins";
+  // If the name is a variation of my name, just use my name
+  let author = ogAuthor ? ogAuthor : "holly cummins";
+  if (author.toLowerCase() === "holly k cummins") {
+    author = "holly cummins";
+  }
 
   const dir = `./content/publications/${date}--${slug}`;
 
