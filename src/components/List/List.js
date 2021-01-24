@@ -11,14 +11,20 @@ const List = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title },
+              frontmatter: { title, url },
               fields: { slug }
             }
           } = edge;
 
           return (
             <li key={slug}>
-              <Link to={slug}>{title}</Link>
+              {url ? (
+                <a href={url} className="link">
+                  {title}
+                </a>
+              ) : (
+                <Link to={slug}>{title}</Link>
+              )}
             </li>
           );
         })}

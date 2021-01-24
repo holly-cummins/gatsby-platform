@@ -30,11 +30,8 @@ const CategoryTemplate = props => {
                 {category}
               </Headline>
               <p className="meta">
-                There {totalCount > 1 ? "are" : "is"} <strong>{totalCount}</strong> post{totalCount >
-                1
-                  ? "s"
-                  : ""}{" "}
-                in the category.
+                There {totalCount > 1 ? "are" : "is"} <strong>{totalCount}</strong> post
+                {totalCount > 1 ? "s" : ""} in the category.
               </p>
               <List edges={edges} theme={theme} />
             </header>
@@ -71,6 +68,7 @@ export const categoryQuery = graphql`
           excerpt
           timeToRead
           frontmatter {
+            url
             title
             category
           }

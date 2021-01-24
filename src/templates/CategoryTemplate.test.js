@@ -13,11 +13,15 @@ const renderWithTheme = ui => {
 };
 
 describe("CategoryTemplate", () => {
-  it("renders the title", () => {
+  describe("for an internal post", () => {
     const title = "some post";
     const totalCount = 42;
+    const slug = "sluggaroo";
     const node = {
-      node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } }
+      node: {
+        frontmatter: { category: "test-stuff", title },
+        fields: { source: "some-source", slug }
+      }
     };
     const edges = [node];
     const facebook = { appId: "remove-soon" };
@@ -27,8 +31,19 @@ describe("CategoryTemplate", () => {
         siteMetadata: { facebook }
       }
     };
+    beforeEach(() => {
+      const tree = renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);
+    });
 
-    const tree = renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);
-    expect(screen.getByText(totalCount)).toBeTruthy();
+    it("renders the title", () => {
+      expect(screen.getByText(totalCount)).toBeTruthy();
+    });
+
+    it("renders the correct link", () => {
+      const link = screen.getByRole("link");
+      expect(link).toBeTruthy();
+      // Hardcoding the host is a bit risky but this should always be true in  test environment
+      expect(link.href).toBe("http://localhost/" + slug);
+    });
   });
 });
