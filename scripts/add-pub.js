@@ -54,6 +54,9 @@ category: untagged
 ${metadata.description}`;
 
   fs.writeFileSync(fileName, str, "utf8");
+
+  // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
+  fs.writeFileSync(`${dir}/.gitignore`, cover, "utf8");
 };
 
 return createMarkdown();

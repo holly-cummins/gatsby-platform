@@ -34,7 +34,7 @@ npm run test:int
 ### Adding content
 
 Blog posts live in `content/posts`.
-To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name.
+To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name. Once you've created the markdown, run `./scripts/preprocess-publications.js` to download cover images for local development.
 
 ### What are all the things?
 
