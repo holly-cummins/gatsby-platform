@@ -8,21 +8,12 @@ const url = require("url");
 
 const targetUrl = process.argv[2];
 
-const download = async (url, fileName) => {
-  return new Promise((resolve, reject) => {
-    request.head(url, (err, res, body) => {
-      request(url)
-        .pipe(fs.createWriteStream(fileName))
-        .on("close", resolve);
-    });
-  });
-};
-
 const createMarkdown = async () => {
   const metadata = await urlMetadata(targetUrl);
 
   const title = metadata.title;
   const imageUrl = metadata["og:image"];
+  // The cover image gets downloaded in preprocessing, so that we don't need to source control external content
   const cover = path.basename(url.parse(imageUrl).pathname);
   const slug = path.basename(url.parse(targetUrl).pathname);
 
@@ -54,18 +45,15 @@ const createMarkdown = async () => {
   let str = `---
 title: "${title}"
 url: ${targetUrl}
-author: ${author}
+imageUrl: ${imageUrl}
 cover: ${cover}
+author: ${author}
 category: untagged
 ---
 
 ${metadata.description}`;
 
   fs.writeFileSync(fileName, str, "utf8");
-
-  const imagePath = `${dir}/${cover}`;
-
-  await download(imageUrl, imagePath);
 };
 
 return createMarkdown();
