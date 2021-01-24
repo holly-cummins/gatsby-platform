@@ -31,6 +31,11 @@ gatsby build
 npm run test:int
 ```
 
+### Adding content
+
+Blog posts live in `content/posts`.
+To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name.
+
 ### What are all the things?
 
 - xxTemplate: used in generation to make components
@@ -40,7 +45,7 @@ npm run test:int
 - Item: An entry on the front page.
 - Post: A blog entry hosted on this site.
 - Publication: A blog entry hosted elsewhere. Include a sentence or two in the markdown for the excerpt.
-- Slug: The unique part of a page URL.
+- Slug: The unique part of a page URL. The important feature is that it contains the title of the article, which helps with SEO.
 
 ### Debugging
 
