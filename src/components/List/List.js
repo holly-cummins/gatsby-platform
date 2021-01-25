@@ -17,7 +17,7 @@ const List = props => {
           } = edge;
 
           return (
-            <li key={slug}>
+            <li key={slug} className="post-list">
               {url ? (
                 <a href={url} className="link">
                   {title}
