@@ -49,9 +49,10 @@ exports.createPages = ({ graphql, actions }) => {
     if (activeEnv != "test") {
       console.log(`Using environment config: '${activeEnv}'`);
     }
-    let filters = `filter: { fields: { slug: { ne: null } } }`;
-    if (activeEnv == "production")
-      filters = `filter: { fields: { slug: { ne: null } , prefix: { ne: null } } }`;
+    let filters = `filter: { fields: { slug: { ne: "" } } }`;
+    if (activeEnv == "production") {
+      filters = `filter: { fields: { slug: { ne: "" } , prefix: { ne: "" } } }`;
+    }
 
     resolve(
       graphql(
