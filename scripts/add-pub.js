@@ -49,6 +49,7 @@ imageUrl: ${imageUrl}
 cover: ${cover}
 author: ${author}
 category: untagged
+type: article
 ---
 
 ${metadata.description}`;
