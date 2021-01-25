@@ -13,8 +13,14 @@ const createMarkdown = async () => {
 
   const title = metadata.title;
   const imageUrl = metadata["og:image"];
+  let cover = "";
+
   // The cover image gets downloaded in preprocessing, so that we don't need to source control external content
-  const cover = path.basename(url.parse(imageUrl).pathname);
+  if (imageUrl) {
+    cover = path.basename(url.parse(imageUrl).pathname);
+  } else {
+    console.warn("WARNING: No picture provided. Add one manually.");
+  }
   const slug = path.basename(url.parse(targetUrl).pathname);
 
   // Look for something that looks like a date;
