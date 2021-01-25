@@ -34,7 +34,7 @@ describe("hollycummins.com", () => {
 
     it("should list at least one item", async () => {
       const numberOfPosts = (await page.$$("li.post-list")).length;
-      expect(numberOfPosts).toBeGreaterThan(0);
+      expect(numberOfPosts).toBeGreaterThan(2);
     });
   });
 
