@@ -12,6 +12,7 @@ describe("hollycummins.com", () => {
   it("should have Hollys name on it somewhere", async () => {
     await expect(page.waitForXPath('//*[text()="Holly Cummins"]')).resolves.toBeTruthy();
   });
+
   describe("header navigation bar", () => {
     it("should have a Search option", async () => {
       await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
