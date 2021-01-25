@@ -8,19 +8,21 @@ const url = require("url");
 
 const targetUrl = process.argv[2];
 
+const download = async (url, fileName) => {
+  return new Promise(resolve => {
+    request.head(url, (err, res, body) => {
+      request(url)
+        .pipe(fs.createWriteStream(fileName))
+        .on("close", resolve);
+    });
+  });
+};
+
 const createMarkdown = async () => {
   const metadata = await urlMetadata(targetUrl);
 
   const title = metadata.title;
-  const imageUrl = metadata["og:image"];
-  let cover = "";
 
-  // The cover image gets downloaded in preprocessing, so that we don't need to source control external content
-  if (imageUrl) {
-    cover = path.basename(url.parse(imageUrl).pathname);
-  } else {
-    console.warn("WARNING: No picture provided. Add one manually.");
-  }
   const slug = path.basename(url.parse(targetUrl).pathname);
 
   // Look for something that looks like a date;
@@ -46,6 +48,23 @@ const createMarkdown = async () => {
     fs.mkdirSync(dir);
   }
 
+  const imageUrl = metadata["og:image"];
+  let cover = "";
+
+  // The cover image gets downloaded in preprocessing, so that we don't need to source control external content
+  if (imageUrl) {
+    cover = path.basename(url.parse(imageUrl).pathname);
+
+    // console.log("downloading", imageUrl, "to ", `${dir}/${cover}`);
+    // Download the ignored image to save a pre-processing step locally
+    download(imageUrl, `${dir}/${cover}`);
+
+    // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
+    fs.writeFileSync(`${dir}/.gitignore`, cover, "utf8");
+  } else {
+    console.warn("WARNING: No picture provided. Add one manually.");
+  }
+
   const fileName = `${dir}/index.md`;
 
   let str = `---
@@ -61,9 +80,6 @@ type: article
 ${metadata.description}`;
 
   fs.writeFileSync(fileName, str, "utf8");
-
-  // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
-  fs.writeFileSync(`${dir}/.gitignore`, cover, "utf8");
 };
 
 return createMarkdown();
