@@ -1,8 +1,7 @@
 jest.setTimeout(15 * 1000);
 
-const validateMediumRedirect = async () => {
-  expect(page.url()).toMatch("https://holly-k-cummins.medium.com/");
-  await expect(page.waitForXPath('//*[contains(text(), "Holly K Cummins")]')).resolves.toBeTruthy();
+const validateHollyHomepage = async response => {
+  await expect(page.waitForXPath('//*[contains(text(), "IBMer")]')).resolves.toBeTruthy();
 };
 
 const validateNoRedirect = async name => {
@@ -18,7 +17,7 @@ describe("hollycummins.com", () => {
       });
 
       it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
+        await validateHollyHomepage();
       });
     });
 
@@ -28,7 +27,11 @@ describe("hollycummins.com", () => {
       });
 
       it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
+        await validateHollyHomepage();
+      });
+
+      it("should not redirect to a different domain ", async () => {
+        await validateNoRedirect(domain);
       });
     });
   });
@@ -43,7 +46,11 @@ describe("hollycummins.fun", () => {
       });
 
       it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
+        await validateHollyHomepage();
+      });
+
+      it("should redirect to hollycummins.com", async () => {
+        expect(page.url()).toMatch("http://hollycummins.com/");
       });
     });
 
@@ -53,7 +60,7 @@ describe("hollycummins.fun", () => {
       });
 
       it('should be Hollys page"', async () => {
-        await validateMediumRedirect();
+        await validateHollyHomepage();
       });
     });
   });
