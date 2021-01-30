@@ -3,9 +3,9 @@ import React from "react";
 import { graphql } from "gatsby";
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
-import Contact from "../components/Contact";
 import Headline from "../components/Article/Headline";
 import Seo from "../components/Seo";
+import config from "../../content/meta/config";
 
 const ContactPage = props => {
   const {
@@ -16,6 +16,13 @@ const ContactPage = props => {
     }
   } = props;
 
+  const platforms = config.authorSocialLinks;
+  const platformLinks = platforms.map(platform => (
+    <li key={platform.name}>
+      <a href={platform.url}>{platform.display}</a>
+    </li>
+  ));
+
   return (
     <React.Fragment>
       <ThemeContext.Consumer>
@@ -24,7 +31,8 @@ const ContactPage = props => {
             <header>
               <Headline title="Contact" theme={theme} />
             </header>
-            <Contact theme={theme} />
+            <p>You can message me on social media.</p>
+            <ul>{platformLinks}</ul>
           </Article>
         )}
       </ThemeContext.Consumer>
