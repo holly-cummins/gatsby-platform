@@ -62,6 +62,7 @@ describe("CategoryPage", () => {
     const pub2 = {
       node: {
         fields: {
+          slug: "pub2",
           url: "http://somewhere.else"
         },
         frontmatter: {
