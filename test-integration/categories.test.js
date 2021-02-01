@@ -11,11 +11,11 @@ describe("hollycummins.com", () => {
     });
 
     it("should be possible from the front page", async () => {
-      await expect(page.waitForXPath('//*[text()="Categories"]')).resolves.toBeTruthy();
+      await expect(page.waitForXPath('//*[text()="Topics"]')).resolves.toBeTruthy();
     });
 
     it("should bring up a categories page", async () => {
-      const link = await page.waitForXPath('//a[text()="Categories"]');
+      const link = await page.waitForXPath('//a[text()="Topics"]');
       link.evaluate(link => link.click());
 
       // Now it should be the categories page
