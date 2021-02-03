@@ -22,6 +22,7 @@ describe("Item", () => {
         frontmatter: {
           title,
           category: "dull-stuff",
+          type: "blog",
           author: "tdd-er",
           cover
         }
@@ -53,6 +54,10 @@ describe("Item", () => {
       const element = screen.getByText(title);
       // This is a bit brittle, but we sometimes lose the styled-jsx styles on the item, and react testing library doesn't make it easy to test for a jsx-* class name
       expect(element).toHaveStyle(`font-size: ${theme.blog.h1.size}`);
+    });
+
+    it("renders the type", () => {
+      expect(screen.getByText("blog")).toBeTruthy();
     });
   });
 

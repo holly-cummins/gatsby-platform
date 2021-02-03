@@ -17,6 +17,7 @@ const Item = props => {
         title,
         url,
         category,
+        type,
         author,
         cover: {
           children: [{ fluid }]
@@ -34,6 +35,11 @@ const Item = props => {
         {title} <FaArrowRight className="arrow" />
       </h1>
       <p className="meta">
+        {type && (
+          <span>
+            <FaTag size={18} /> {type}
+          </span>
+        )}
         <span>
           <FaCalendar size={18} /> {prefix}
         </span>
