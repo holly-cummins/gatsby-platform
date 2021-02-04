@@ -16,7 +16,7 @@ import React from "react";
 
 const typeIcons = {
   blog: <RequestQuote />,
-  presentation: <PresentationFile />,
+  talk: <PresentationFile />,
   media: <UserSpeaker />,
   book: <Notebook />,
   podcast: <Microphone />,
