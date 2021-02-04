@@ -2,10 +2,26 @@ import { FaArrowRight as ArrowRight } from "react-icons/fa/";
 import { Calendar20 as Calendar } from "@carbon/icons-react";
 import { Tag20 as Tag } from "@carbon/icons-react";
 import { User20 as User } from "@carbon/icons-react";
+import { PresentationFile20 as PresentationFile } from "@carbon/icons-react";
+import { UserSpeaker20 as UserSpeaker } from "@carbon/icons-react";
+import { Notebook20 as Notebook } from "@carbon/icons-react";
+import { RequestQuote20 as RequestQuote } from "@carbon/icons-react";
+import { Microphone20 as Microphone } from "@carbon/icons-react";
+import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
+
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
+
+const typeIcons = {
+  blog: <RequestQuote />,
+  presentation: <PresentationFile />,
+  media: <UserSpeaker />,
+  book: <Notebook />,
+  podcast: <Microphone />,
+  webinar: <EventsAlt />
+};
 
 const Item = props => {
   const {
@@ -37,7 +53,7 @@ const Item = props => {
       <p className="meta">
         {type && (
           <span>
-            <Tag /> {type}
+            {typeIcons[type]} {type}
           </span>
         )}
         <span>
