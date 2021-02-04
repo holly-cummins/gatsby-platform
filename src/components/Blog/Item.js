@@ -1,7 +1,7 @@
-import { FaArrowRight } from "react-icons/fa/";
-import { FaCalendar } from "react-icons/fa/";
-import { FaTag } from "react-icons/fa/";
-import { FaUser } from "react-icons/fa/";
+import { FaArrowRight as ArrowRight } from "react-icons/fa/";
+import { Calendar20 as Calendar } from "@carbon/icons-react";
+import { Tag20 as Tag } from "@carbon/icons-react";
+import { User20 as User } from "@carbon/icons-react";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
@@ -32,23 +32,23 @@ const Item = props => {
         <Img fluid={fluid} />
       </div>
       <h1>
-        {title} <FaArrowRight className="arrow" />
+        {title} <ArrowRight className="arrow" />
       </h1>
       <p className="meta">
         {type && (
           <span>
-            <FaTag size={18} /> {type}
+            <Tag /> {type}
           </span>
         )}
         <span>
-          <FaCalendar size={18} /> {prefix}
+          <Calendar /> {prefix}
         </span>
         <span>
-          <FaUser size={18} /> {author}
+          <User /> {author}
         </span>
         {category && (
           <span>
-            <FaTag size={18} /> {category}
+            <Tag /> {category}
           </span>
         )}
       </p>

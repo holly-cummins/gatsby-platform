@@ -1,4 +1,4 @@
-import { FaTag } from "react-icons/fa/";
+import { Tag20 as Tag } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
@@ -52,7 +52,7 @@ const CategoryPage = props => {
             {categoryList.map(item => (
               <section key={item[0]}>
                 <h2>
-                  <FaTag /> {item[0]}
+                  <Tag /> {item[0]}
                 </h2>
                 <List edges={item[1]} theme={theme} />
               </section>
