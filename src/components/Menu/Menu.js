@@ -9,6 +9,7 @@ import { Tag20 as Tag } from "@carbon/icons-react";
 
 import Item from "./Item";
 import Expand from "./Expand";
+import { icon } from "../../utils/type";
 
 class Menu extends React.Component {
   constructor(props) {
@@ -24,6 +25,10 @@ class Menu extends React.Component {
 
     this.items = [
       { to: "/", label: "Home", icon: Home },
+      { to: "/type/blog", label: "Blogs", icon: icon("blog") },
+      { to: "/type/media", label: "Media", icon: icon("media") },
+      { to: "/type/podcast", label: "Podcasts", icon: icon("podcast") },
+      { to: "/type/book", label: "Books", icon: icon("book") },
       { to: "/category/", label: "Topics", icon: Tag },
       { to: "/search/", label: "Search", icon: Search },
       ...pages,
