@@ -19,7 +19,9 @@ describe("hollycummins.com", () => {
       link.evaluate(link => link.click());
 
       // Now it should be the categories page
-      await expect(page.waitForXPath('//*[text()="What's Holly Thinking About?"]')).resolves.toBeTruthy();
+      await expect(
+        page.waitForXPath('//*[text()="What\'s Holly Thinking About?"]')
+      ).resolves.toBeTruthy();
     });
   });
 
@@ -29,7 +31,9 @@ describe("hollycummins.com", () => {
     });
 
     it("should be a categories page", async () => {
-      await expect(page.waitForXPath('//*[text()="What's Holly Thinking About?"]')).resolves.toBeTruthy();
+      await expect(
+        page.waitForXPath('//*[text()="What\'s Holly Thinking About?"]')
+      ).resolves.toBeTruthy();
     });
 
     it("should list at least one item", async () => {
