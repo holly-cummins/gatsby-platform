@@ -38,7 +38,7 @@ describe("CategoryPage", () => {
     });
 
     it("renders the title", async () => {
-      expect(screen.getByText("Posts by topic")).toBeTruthy();
+      expect(screen.getByText("What's Holly Thinking About?")).toBeTruthy();
     });
   });
 
