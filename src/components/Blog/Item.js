@@ -29,6 +29,7 @@ const Item = props => {
     }
   } = props;
 
+  const Icon = icon(type);
   const linkContent = (
     <>
       <div className="gatsby-image-outer-wrapper">
@@ -40,7 +41,7 @@ const Item = props => {
       <p className="meta">
         {type && (
           <span>
-            {icon(type)} {type}
+            {Icon && <Icon />} {type}
           </span>
         )}
         <span>

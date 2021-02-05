@@ -19,6 +19,8 @@ const TypeTemplate = props => {
     }
   } = props;
 
+  const Icon = icon(type);
+
   return (
     <React.Fragment>
       <ThemeContext.Consumer>
@@ -26,7 +28,7 @@ const TypeTemplate = props => {
           <Article theme={theme}>
             <header>
               <Headline theme={theme}>
-                {icon(type)}
+                {Icon && <Icon />}
                 {plural(type)}
               </Headline>
               <List edges={edges} theme={theme} />

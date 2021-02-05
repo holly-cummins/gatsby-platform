@@ -7,12 +7,12 @@ import { Microphone20 as Microphone } from "@carbon/icons-react";
 import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
 
 const typeIcons = {
-  blog: <RequestQuote />,
-  talk: <PresentationFile />,
-  media: <UserSpeaker />,
-  book: <Notebook />,
-  podcast: <Microphone />,
-  webinar: <EventsAlt />
+  blog: RequestQuote,
+  talk: PresentationFile,
+  media: UserSpeaker,
+  book: Notebook,
+  podcast: Microphone,
+  webinar: EventsAlt
 };
 
 export function plural(type) {

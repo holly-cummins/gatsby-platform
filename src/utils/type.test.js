@@ -13,6 +13,6 @@ describe("the type descriptions", () => {
 
   it("returns a good podcast icon", async () => {
     // This is an ugly internal coupling, but it allows us to test the linking
-    expect(icon("podcast").type.render.name).toBe("Microphone20");
+    expect(icon("podcast").render.name).toBe("Microphone20");
   });
 });
