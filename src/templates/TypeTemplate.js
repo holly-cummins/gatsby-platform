@@ -1,4 +1,3 @@
-import { FaTag } from "react-icons/fa/";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
