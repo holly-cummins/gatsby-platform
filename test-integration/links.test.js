@@ -1,4 +1,4 @@
-jest.setTimeout(15 * 1000);
+jest.setTimeout(45 * 1000);
 
 const { SiteChecker } = require("broken-link-checker");
 
