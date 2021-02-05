@@ -6,7 +6,7 @@ import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import List from "../components/List";
-import { plural } from "../utils/type";
+import { plural, icon } from "../utils/type";
 
 const TypeTemplate = props => {
   const {
@@ -25,7 +25,10 @@ const TypeTemplate = props => {
         {theme => (
           <Article theme={theme}>
             <header>
-              <Headline theme={theme}>{plural(type)}</Headline>
+              <Headline theme={theme}>
+                {icon(type)}
+                {plural(type)}
+              </Headline>
               <List edges={edges} theme={theme} />
             </header>
           </Article>

@@ -15,6 +15,8 @@ const Headline = props => {
           margin: ${theme.space.stack.l};
           animation-name: headlineEntry;
           animation-duration: ${theme.time.duration.long};
+          display: flex;
+          align-items: center; /* align vertical */
 
           :global(span) {
             font-weight: ${theme.font.weight.standard};
@@ -25,8 +27,10 @@ const Headline = props => {
           }
 
           :global(svg) {
-            height: 0.75em;
+            height: ${theme.font.size.s};
+            width: ${theme.font.size.s};
             fill: ${theme.color.brand.primary};
+            margin: ${theme.space.m};
           }
         }
 
