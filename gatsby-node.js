@@ -42,6 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
     const postTemplate = path.resolve("./src/templates/PostTemplate.js");
     const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
+    const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
 
     // Do not create draft post files in production.
     let activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || "development";
@@ -76,6 +77,7 @@ exports.createPages = ({ graphql, actions }) => {
                   frontmatter {
                     title
                     category
+                    type
                   }
                 }
               }
@@ -112,6 +114,32 @@ exports.createPages = ({ graphql, actions }) => {
             component: categoryTemplate,
             context: {
               category
+            }
+          });
+        });
+
+        // Create type list
+        const typeSet = new Set();
+        items.forEach(edge => {
+          const {
+            node: {
+              frontmatter: { type }
+            }
+          } = edge;
+
+          if (type && type !== null) {
+            typeSet.add(type);
+          }
+        });
+
+        // Create type pages
+        const typeList = Array.from(typeSet);
+        typeList.forEach(type => {
+          createPage({
+            path: `/type/${_.kebabCase(type)}/`,
+            component: typeTemplate,
+            context: {
+              type
             }
           });
         });

@@ -1,7 +1,7 @@
 import gn from "./gatsby-node";
 
 describe("the main gatsby thing", () => {
-  it("makes pages for each category", async () => {
+  it("aggregates categories which are the same", async () => {
     const node = {
       node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } }
     };
@@ -22,7 +22,7 @@ describe("the main gatsby thing", () => {
     expect(calls[0][0].component).toContain("CategoryTemplate.js");
   });
 
-  it("aggregates categories which are the same", async () => {
+  it("makes pages for each category", async () => {
     const node = {
       node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } }
     };
@@ -38,7 +38,48 @@ describe("the main gatsby thing", () => {
     });
     const actions = { createPage: jest.fn() };
     await gn.createPages({ graphql, actions });
-    // The categories are all the same so should be consolidated
+    // The categories are all different so should not be consolidated
+    expect(actions.createPage.mock.calls.length).toBe(2);
+  });
+
+  it("aggregates types which are the same", async () => {
+    const node = {
+      node: { frontmatter: { type: "interview" }, fields: { source: "some-source" } }
+    };
+    const graphql = jest.fn().mockResolvedValue({
+      data: {
+        allMarkdownRemark: {
+          edges: [node, node, node]
+        }
+      }
+    });
+    const actions = { createPage: jest.fn() };
+    await gn.createPages({ graphql, actions });
+    // The types are all the same so should be consolidated
+    const calls = actions.createPage.mock.calls;
+
+    expect(calls.length).toBe(1);
+
+    expect(calls[0][0].component).toContain("TypeTemplate.js");
+  });
+
+  it("makes pages for each type", async () => {
+    const node = {
+      node: { frontmatter: { type: "interpretive dance" }, fields: { source: "some-source" } }
+    };
+    const otherNode = {
+      node: { frontmatter: { type: "tv show" }, fields: { source: "some-source" } }
+    };
+    const graphql = jest.fn().mockResolvedValue({
+      data: {
+        allMarkdownRemark: {
+          edges: [node, otherNode, node]
+        }
+      }
+    });
+    const actions = { createPage: jest.fn() };
+    await gn.createPages({ graphql, actions });
+    // The types are all different so should be distinct calls
     expect(actions.createPage.mock.calls.length).toBe(2);
   });
 
