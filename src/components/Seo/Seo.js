@@ -40,8 +40,15 @@ const Seo = props => {
       <meta property="og:type" content="website" />
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content={config.siteUrl + config.pathPrefix + image} />
       <meta
-        name="twitter:creator"
+        name="twitter:site:id"
+        content={config.authorTwitterAccount ? config.authorTwitterAccount : ""}
+      />
+      <meta property="twitter:description" content={description} />
+      <meta
+        name="twitter:creator:id"
         content={config.authorTwitterAccount ? config.authorTwitterAccount : ""}
       />
     </Helmet>

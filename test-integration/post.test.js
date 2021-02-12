@@ -8,6 +8,8 @@ const slug = "microphone-face-off/";
 const siteRoot = `http://localhost:${port}/${slug}`;
 const liveUrl = "http://hollycummins.com";
 
+titleMatcher = /The great microphone face-off/;
+
 describe("a post", () => {
   describe("page contents", () => {
     beforeAll(async () => {
@@ -16,7 +18,7 @@ describe("a post", () => {
 
     it("should have the title on it somewhere", async () => {
       // Shame we have to hardcode this, but ...
-      await expect(page).toMatch("The great microphone face-off");
+      await expect(page).toMatch(titleMatcher);
     });
   });
 
@@ -25,6 +27,15 @@ describe("a post", () => {
     beforeAll(async () => {
       metadata = await urlMetadata(siteRoot);
     });
+
+    it("should have an opengraph title", async () => {
+      const title = metadata["og:title"];
+
+      expect(title).toBeTruthy();
+      // Handle internal and external images, of png or jpg
+      expect(title).toMatch(titleMatcher);
+    });
+
     it("should have an opengraph image", async () => {
       const imageUrl = metadata["og:image"];
 
@@ -34,6 +45,37 @@ describe("a post", () => {
     });
 
     it("should have an opengraph description specific to the article", async () => {
+      const description = metadata["og:description"];
+
+      expect(description).toBeTruthy();
+      // Unfortunate hardcoding, but ...
+      expect(description).toMatch(/The past year saw an unprecedented flourishing/);
+    });
+
+    it("should have correct opengraph url", async () => {
+      const url = metadata["og:url"];
+
+      expect(url).toBeTruthy();
+      expect(url).toBe(`${liveUrl}/${slug}`);
+    });
+
+    it("should have a twitter title", async () => {
+      const title = metadata["twitter:title"];
+
+      expect(title).toBeTruthy();
+      // Handle internal and external images, of png or jpg
+      expect(title).toMatch(titleMatcher);
+    });
+
+    it("should have a fully qualified twitter image", async () => {
+      const imageUrl = metadata["twitter:image"];
+
+      expect(imageUrl).toBeTruthy();
+      // Handle internal and external images, of png or jpg
+      expect(imageUrl).toMatch(/https?:\/\/.*\/.*(png|jpg)/);
+    });
+
+    it("should have a twitter description specific to the article", async () => {
       const description = metadata["og:description"];
 
       expect(description).toBeTruthy();
