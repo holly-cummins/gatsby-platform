@@ -18,8 +18,11 @@ describe("site links", () => {
             "Not actually Mozilla/5.0 (X11; Linux i686; rv:84.0) Gecko/20100101 Firefox/84.0", // Twitter is fussy about the user agent and will not serve to bots
           excludedKeywords: [
             "https://twitter.com/holly_cummins",
-            "https://www.linkedin.com/in/holly-k-cummins/"
+            "https://www.linkedin.com/in/holly-k-cummins/",
+            "https://www.manning.com/books/enterprise-osgi-in-action",
+            "https://www.klarkteknik.com/product.html?modelCode=P0DPA"
           ] // We know these links are good and we want to not hit the rate limiters since they appear everywhere
+          // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
         },
         {
           error: error => {
