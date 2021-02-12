@@ -9,6 +9,17 @@ const siteRoot = `http://localhost:${port}/${slug}`;
 const liveUrl = "http://hollycummins.com";
 
 describe("a post", () => {
+  describe("page contents", () => {
+    beforeAll(async () => {
+      await page.goto(siteRoot);
+    });
+
+    it("should have the title on it somewhere", async () => {
+      // Shame we have to hardcode this, but ...
+      await expect(page).toMatch("The great microphone face-off");
+    });
+  });
+
   describe("header metadata", () => {
     let metadata;
     beforeAll(async () => {

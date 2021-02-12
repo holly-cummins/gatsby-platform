@@ -1,4 +1,5 @@
 module.exports = {
   preset: "jest-puppeteer",
-  testPathIgnorePatterns: [".cache"]
+  testPathIgnorePatterns: [".cache"],
+  setupFilesAfterEnv: ["expect-puppeteer"]
 };
