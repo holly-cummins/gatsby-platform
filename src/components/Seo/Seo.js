@@ -5,9 +5,16 @@ import config from "../../../content/meta/config";
 
 const Seo = props => {
   const { data } = props;
+
+  // The cover path usually is buried in a childImageSharp structure, but don't assume it always will be
+  let postCover;
+  if ((((data || {}).frontmatter || {}).cover || {}).childImageSharp) {
+    postCover = (data.frontmatter.cover.childImageSharp.resize || {}).src;
+  } else {
+    postCover = ((data || {}).frontmatter || {}).cover;
+  }
   const postTitle = ((data || {}).frontmatter || {}).title;
-  const postDescription = ((data || {}).frontmatter || {}).description;
-  const postCover = ((data || {}).frontmatter || {}).cover;
+  const postDescription = (data || {}).excerpt || ((data || {}).frontmatter || {}).description;
   const postSlug = ((data || {}).fields || {}).slug;
 
   const title = postTitle ? `${postTitle} - ${config.shortSiteTitle}` : config.siteTitle;

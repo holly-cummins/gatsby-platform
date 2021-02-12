@@ -63,8 +63,12 @@ describe("Seo component", () => {
     const postImage = `${siteUrl}/slug.png`;
 
     const data = {
-      frontmatter: { title: postTitle, description: postDescription, cover: postImage },
-      fields: { slug }
+      frontmatter: {
+        title: postTitle,
+        cover: { childImageSharp: { resize: { src: postImage } } }
+      },
+      fields: { slug },
+      excerpt: postDescription
     };
 
     render(<Seo data={data} />);
