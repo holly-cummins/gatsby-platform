@@ -5,6 +5,7 @@ import { Notebook20 as Notebook } from "@carbon/icons-react";
 import { RequestQuote20 as RequestQuote } from "@carbon/icons-react";
 import { Microphone20 as Microphone } from "@carbon/icons-react";
 import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
+import { LicenseGlobal20 as LicenseGlobal } from "@carbon/icons-react";
 
 const typeIcons = {
   blog: RequestQuote,
@@ -26,5 +27,6 @@ export function plural(type) {
 }
 
 export function icon(type) {
-  return typeIcons[type];
+  const icon = typeIcons[type] ? typeIcons[type] : LicenseGlobal;
+  return icon;
 }
