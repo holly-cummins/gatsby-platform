@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-const List = props => {
+const LogoList = props => {
   const { edges, theme } = props;
 
   return (
     <React.Fragment>
-      <ul data-testid="post-list-wrapper">
+      <ul data-testid="logo-list-wrapper">
         {edges.map(edge => {
           const {
             node: {
@@ -47,9 +47,9 @@ const List = props => {
   );
 };
 
-List.propTypes = {
+LogoList.propTypes = {
   edges: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default List;
+export default LogoList;

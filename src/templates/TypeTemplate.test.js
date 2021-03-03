@@ -13,25 +13,26 @@ const renderWithTheme = ui => {
 };
 
 describe("TypeTemplate", () => {
-  describe("for an internal post", () => {
-    const title = "some post";
+  const title = "some post";
+  const totalCount = 42;
+  const slug = "sluggaroo";
+  const node = {
+    node: {
+      frontmatter: { type: "dance-off", title },
+      fields: { source: "some-source", slug }
+    }
+  };
+  const edges = [node];
+  const facebook = { appId: "remove-soon" };
+  const data = {
+    allMarkdownRemark: { totalCount, edges },
+    site: {
+      siteMetadata: { facebook }
+    }
+  };
+  describe("for a collection of podcasts", () => {
     const type = "podcast";
-    const totalCount = 42;
-    const slug = "sluggaroo";
-    const node = {
-      node: {
-        frontmatter: { type: "dance-off", title },
-        fields: { source: "some-source", slug }
-      }
-    };
-    const edges = [node];
-    const facebook = { appId: "remove-soon" };
-    const data = {
-      allMarkdownRemark: { totalCount, edges },
-      site: {
-        siteMetadata: { facebook }
-      }
-    };
+
     beforeEach(() => {
       const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
     });
@@ -51,6 +52,24 @@ describe("TypeTemplate", () => {
       expect(link).toBeTruthy();
       // Hardcoding the host is a bit risky but this should always be true in  test environment
       expect(link.href).toBe("http://localhost/" + slug);
+    });
+
+    it("renders a list", () => {
+      // Coupling to the internals of List, but we need some way to make sure the right one is included
+      expect(screen.getByTestId("post-list-wrapper")).toBeTruthy();
+    });
+  });
+
+  describe("for a collection of external media", () => {
+    const type = "media";
+
+    beforeEach(() => {
+      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+    });
+
+    it("renders a list with icons", () => {
+      // Coupling to the internals of List, but we need some way to make sure the right one is included
+      expect(screen.getByTestId("logo-list-wrapper")).toBeTruthy();
     });
   });
 });

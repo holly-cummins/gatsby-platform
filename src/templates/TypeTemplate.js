@@ -5,7 +5,8 @@ import Seo from "../components/Seo";
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
-import List from "../components/List";
+import List from "../components/List/List";
+import LogoList from "../components/List/LogoList";
 import { plural, icon } from "../utils/type";
 
 const TypeTemplate = props => {
@@ -31,7 +32,11 @@ const TypeTemplate = props => {
                 {Icon && <Icon data-testid={type + "-icon"} />}
                 {plural(type)}
               </Headline>
-              <List edges={edges} theme={theme} />
+              {type == "media" ? (
+                <LogoList edges={edges} theme={theme} />
+              ) : (
+                <List edges={edges} theme={theme} />
+              )}
             </header>
           </Article>
         )}
