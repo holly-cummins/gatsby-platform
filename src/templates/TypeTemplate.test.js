@@ -15,6 +15,7 @@ const renderWithTheme = ui => {
 describe("TypeTemplate", () => {
   describe("for an internal post", () => {
     const title = "some post";
+    const type = "podcast";
     const totalCount = 42;
     const slug = "sluggaroo";
     const node = {
@@ -32,11 +33,17 @@ describe("TypeTemplate", () => {
       }
     };
     beforeEach(() => {
-      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{}} />);
+      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {
       expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    it("renders the icon", () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      const testId = type + "-icon";
+      expect(screen.getByTestId(testId)).toBeTruthy();
     });
 
     it("renders the correct link", () => {

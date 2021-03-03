@@ -28,7 +28,7 @@ const TypeTemplate = props => {
           <Article theme={theme}>
             <header>
               <Headline theme={theme}>
-                {Icon && <Icon />}
+                {Icon && <Icon data-testid={type + "-icon"} />}
                 {plural(type)}
               </Headline>
               <List edges={edges} theme={theme} />
