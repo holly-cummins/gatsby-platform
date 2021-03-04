@@ -36,7 +36,7 @@ describe("LogoList", () => {
   describe("for an external post", () => {
     const title = "another post";
     const slug = "unused";
-    const url = "http://elsewhere.com";
+    const url = "http://forbes.com/something/something.html";
     const node = {
       node: {
         frontmatter: { category: "test-stuff", title, url },
@@ -56,7 +56,11 @@ describe("LogoList", () => {
     it("renders the correct link", () => {
       const link = screen.getByRole("link");
       expect(link).toBeTruthy();
-      expect(link.href).toBe(url + "/");
+      expect(link.href).toBe(url);
+    });
+
+    it("includes a logo", () => {
+      const logo = screen.getByAltText("generic logo");
     });
   });
 });

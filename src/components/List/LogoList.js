@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import Logo from "../Logo/Logo.js";
 
 const LogoList = props => {
   const { edges, theme } = props;
@@ -17,14 +18,17 @@ const LogoList = props => {
           } = edge;
 
           return (
-            <li key={slug} className="post-list">
-              {url ? (
-                <a href={url} className="link">
-                  {title}
-                </a>
-              ) : (
-                <Link to={slug}>{title}</Link>
-              )}
+            <li key={slug} className="logo-list">
+              <Logo site={url} theme={theme} />
+              <div>
+                {url ? (
+                  <a href={url} className="link">
+                    {title}
+                  </a>
+                ) : (
+                  <Link to={slug}>{title}</Link>
+                )}
+              </div>
             </li>
           );
         })}
@@ -35,12 +39,13 @@ const LogoList = props => {
         ul {
           margin: ${theme.space.stack.m};
           padding: ${theme.space.m};
-          list-style: circle;
+          list-style: none;
         }
         li {
-          padding: ${theme.space.xs} 0;
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
+          display: flex;
+          align-items: center;
         }
       `}</style>
     </React.Fragment>
