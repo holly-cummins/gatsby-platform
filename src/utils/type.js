@@ -1,4 +1,3 @@
-import React from "react";
 import { PresentationFile20 as PresentationFile } from "@carbon/icons-react";
 import { UserSpeaker20 as UserSpeaker } from "@carbon/icons-react";
 import { Notebook20 as Notebook } from "@carbon/icons-react";
