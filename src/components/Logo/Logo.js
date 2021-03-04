@@ -1,9 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
 
 const Logo = props => {
-  // TODO check if we need the theme
   const { site, theme } = props;
 
   return (
