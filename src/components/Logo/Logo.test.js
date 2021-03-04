@@ -9,6 +9,20 @@ const defaultLogo = "/logos/generic.png";
 const defaultLogoAltText = "generic logo";
 
 describe("Logo", () => {
+  describe("for an known source", () => {
+    const url = "http://forbes.com/site/something";
+
+    beforeEach(() => {
+      render(<Logo site={url} theme={theme} />);
+    });
+
+    it("renders the default image", () => {
+      const image = screen.getByAltText("forbes logo");
+      expect(image).toBeTruthy();
+      expect(image.getAttribute("src")).toEqual("/logos/forbes.png");
+    });
+  });
+
   describe("for an unknown source", () => {
     const url = "http://elsewhere.com";
 

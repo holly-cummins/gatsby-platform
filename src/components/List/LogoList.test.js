@@ -60,7 +60,7 @@ describe("LogoList", () => {
     });
 
     it("includes a logo", () => {
-      const logo = screen.getByAltText("generic logo");
+      const logo = screen.getByAltText("forbes logo");
     });
   });
 });
