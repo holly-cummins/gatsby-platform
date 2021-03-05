@@ -9,17 +9,31 @@ const defaultLogo = "/logos/generic.png";
 const defaultLogoAltText = "generic logo";
 
 describe("Logo", () => {
-  describe("for an known source", () => {
+  describe("for a known source", () => {
     const url = "http://forbes.com/site/something";
 
     beforeEach(() => {
       render(<Logo site={url} theme={theme} />);
     });
 
-    it("renders the default image", () => {
+    it("renders the appropriate logo", () => {
       const image = screen.getByAltText("forbes logo");
       expect(image).toBeTruthy();
       expect(image.getAttribute("src")).toEqual("/logos/forbes.png");
+    });
+  });
+
+  describe("for a known source with a .io extension", () => {
+    const url = "https://thenewstack.io/want-to-save-the-world-start-by-cutting-your-cloud-costs/";
+
+    beforeEach(() => {
+      render(<Logo site={url} theme={theme} />);
+    });
+
+    it("renders the appropriate logo", () => {
+      const image = screen.getByAltText("thenewstack logo");
+      expect(image).toBeTruthy();
+      expect(image.getAttribute("src")).toEqual("/logos/thenewstack.png");
     });
   });
 
