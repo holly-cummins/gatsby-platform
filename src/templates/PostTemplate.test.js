@@ -22,12 +22,8 @@ describe("PostTemplate", () => {
       fields: { prefix: "prefixeroo", slug },
       html: "post-content"
     };
-    const facebook = { appId: "remove-soon" };
     const data = {
       post,
-      site: {
-        siteMetadata: { facebook }
-      },
       authornote: { html: authorNote }
     };
 

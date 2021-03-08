@@ -22,12 +22,8 @@ describe("PageTemplate", () => {
       fields: { source: "pages", slug },
       html
     };
-    const facebook = { to: "remove-soon" };
     const data = {
-      page,
-      site: {
-        siteMetadata: { facebook }
-      }
+      page
     };
 
     const tree = renderWithTheme(<PageTemplate data={data} />);

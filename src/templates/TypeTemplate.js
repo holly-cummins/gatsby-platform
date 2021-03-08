@@ -13,10 +13,7 @@ const TypeTemplate = props => {
   const {
     pageContext: { type },
     data: {
-      allMarkdownRemark: { totalCount, edges },
-      site: {
-        siteMetadata: { facebook }
-      }
+      allMarkdownRemark: { totalCount, edges }
     }
   } = props;
 
@@ -42,7 +39,7 @@ const TypeTemplate = props => {
         )}
       </ThemeContext.Consumer>
 
-      <Seo facebook={facebook} />
+      <Seo />
     </React.Fragment>
   );
 };
@@ -75,13 +72,6 @@ export const typeQuery = graphql`
             title
             type
           }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        facebook {
-          appId
         }
       }
     }

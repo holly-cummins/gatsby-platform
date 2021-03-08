@@ -23,12 +23,8 @@ describe("TypeTemplate", () => {
     }
   };
   const edges = [node];
-  const facebook = { appId: "remove-soon" };
   const data = {
-    allMarkdownRemark: { totalCount, edges },
-    site: {
-      siteMetadata: { facebook }
-    }
+    allMarkdownRemark: { totalCount, edges }
   };
   describe("for a collection of podcasts", () => {
     const type = "podcast";

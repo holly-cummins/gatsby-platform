@@ -24,12 +24,8 @@ describe("CategoryTemplate", () => {
       }
     };
     const edges = [node];
-    const facebook = { appId: "remove-soon" };
     const data = {
-      allMarkdownRemark: { totalCount, edges },
-      site: {
-        siteMetadata: { facebook }
-      }
+      allMarkdownRemark: { totalCount, edges }
     };
     beforeEach(() => {
       const tree = renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);

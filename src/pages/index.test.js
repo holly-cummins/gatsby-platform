@@ -21,9 +21,6 @@ const layoutData = {
   },
   bgMobile: {
     resize: { src: "mobile" }
-  },
-  site: {
-    siteMetadata: { facebook: {} }
   }
 };
 

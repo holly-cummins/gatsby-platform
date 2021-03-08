@@ -1,6 +1,4 @@
-import PropTypes from "prop-types";
 import React from "react";
-import { graphql } from "gatsby";
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
@@ -14,14 +12,6 @@ import GitHubIcon from "!svg-react-loader!../images/svg-icons/github.svg";
 const icons = { linkedin: <LinkedInIcon />, twitter: <TwitterIcon />, github: <GitHubIcon /> };
 
 const ContactPage = props => {
-  const {
-    data: {
-      site: {
-        siteMetadata: { facebook }
-      }
-    }
-  } = props;
-
   const platforms = config.authorSocialLinks;
 
   return (
@@ -73,26 +63,9 @@ const ContactPage = props => {
         )}
       </ThemeContext.Consumer>
 
-      <Seo facebook={facebook} />
+      <Seo />
     </React.Fragment>
   );
 };
 
-ContactPage.propTypes = {
-  data: PropTypes.object.isRequired
-};
-
 export default ContactPage;
-
-//eslint-disable-next-line no-undef
-export const query = graphql`
-  query ContactQuery {
-    site {
-      siteMetadata {
-        facebook {
-          appId
-        }
-      }
-    }
-  }
-`;

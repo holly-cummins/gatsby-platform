@@ -21,21 +21,12 @@ const layoutData = {
   },
   bgMobile: {
     resize: { src: "mobile" }
-  },
-  site: {
-    siteMetadata: { facebook: {} }
   }
 };
 
 describe("ContactPage", () => {
   beforeEach(async () => {
-    const data = {
-      site: {
-        siteMetadata: { facebook: "ignore" }
-      }
-    };
-
-    renderWithTheme(<ContactPage data={data} />, themeObjectFromYaml);
+    renderWithTheme(<ContactPage />, themeObjectFromYaml);
   });
   it("renders without error and includes some social links", async () => {
     expect(screen.getByText("@holly_cummins")).toBeTruthy();
