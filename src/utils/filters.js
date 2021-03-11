@@ -1,4 +1,4 @@
-export function draftsFilter(otherFilter) {
+exports.draftsFilter = otherFilter => {
   // Do not create draft post files in production.
   let activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || "development";
   // Be less chatty when testing
@@ -21,4 +21,4 @@ export function draftsFilter(otherFilter) {
     .replace(/,/g, ", ");
   // Someday, I'll fix that, and because I did TDD, it will be easy. I promise.
   return `filter: ${filterString}`;
-}
+};
