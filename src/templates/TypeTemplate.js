@@ -29,7 +29,7 @@ const TypeTemplate = props => {
                 {Icon && <Icon data-testid={type + "-icon"} />}
                 {plural(type)}
               </Headline>
-              {type == "media" ? (
+              {type == "media" || type == "book" ? (
                 <LogoList edges={edges} theme={theme} />
               ) : (
                 <List edges={edges} theme={theme} />
