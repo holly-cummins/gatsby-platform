@@ -51,13 +51,19 @@ TypeTemplate.propTypes = {
 
 export default TypeTemplate;
 
+// It'd be nice to use our filters utility, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
+// ... so just default to not showing draft content in type pages
+
 // eslint-disable-next-line no-undef
 export const typeQuery = graphql`
   query PostsByType($type: String) {
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [fields___prefix], order: DESC }
-      filter: { frontmatter: { type: { eq: $type } } }
+      filter: {
+        fields: { slug: { ne: "" }, prefix: { ne: "" } }
+        frontmatter: { type: { eq: $type } }
+      }
     ) {
       totalCount
       edges {

@@ -5,6 +5,7 @@ const path = require("path");
 const Promise = require("bluebird");
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { draftsFilter } = require("./src/utils/filters");
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -44,17 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
     const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
 
-    // Do not create draft post files in production.
-    let activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || "development";
-    // Be less chatty when testing
-    if (activeEnv != "test") {
-      console.log(`Using environment config: '${activeEnv}'`);
-    }
-    let filters = `filter: { fields: { slug: { ne: "" } } }`;
-    if (activeEnv == "production") {
-      filters = `filter: { fields: { slug: { ne: "" } , prefix: { ne: "" } } }`;
-    }
-
+    const filters = draftsFilter();
     resolve(
       graphql(
         `

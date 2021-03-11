@@ -48,13 +48,19 @@ CategoryTemplate.propTypes = {
 
 export default CategoryTemplate;
 
+// It'd be nice to use our filters utility, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
+// ... so just default to not showing draft content in type pages
+
 // eslint-disable-next-line no-undef
 export const categoryQuery = graphql`
   query PostsByCategory($category: String) {
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [fields___prefix], order: DESC }
-      filter: { frontmatter: { category: { eq: $category } } }
+      filter: {
+        fields: { slug: { ne: "" }, prefix: { ne: "" } }
+        frontmatter: { category: { eq: $category } }
+      }
     ) {
       totalCount
       edges {
