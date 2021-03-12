@@ -28,7 +28,7 @@ const ContactPage = props => {
             <header>
               <Headline title="Contact" theme={theme} />
             </header>
-            <p>You can message me on social media.</p>
+            <p>You can find me on several social platforms. Please feel free to reach out.</p>
             <ul>
               {platforms.map(platform => (
                 <li key={platform.name}>
