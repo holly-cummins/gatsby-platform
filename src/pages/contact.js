@@ -8,8 +8,14 @@ import config from "../../content/meta/config";
 import LinkedInIcon from "!svg-react-loader!../images/svg-icons/linkedin.svg";
 import TwitterIcon from "!svg-react-loader!../images/svg-icons/twitter.svg";
 import GitHubIcon from "!svg-react-loader!../images/svg-icons/github.svg";
+import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg"; // This is a slighty old logo, but has the advantage of being recognisable (for now) and SVG
 
-const icons = { linkedin: <LinkedInIcon />, twitter: <TwitterIcon />, github: <GitHubIcon /> };
+const icons = {
+  linkedin: <LinkedInIcon />,
+  twitter: <TwitterIcon />,
+  github: <GitHubIcon />,
+  medium: <MediumIcon />
+};
 
 const ContactPage = props => {
   const platforms = config.authorSocialLinks;
