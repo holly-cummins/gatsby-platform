@@ -1,6 +1,6 @@
 # Holly's blog
 
-This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlog starter](<(https://gatsby-starter-hero-blog.greglobinski.com/)>). <br /><br />
+This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlog starter](https://gatsby-starter-hero-blog.greglobinski.com/).
 
 ## Initial setup
 
