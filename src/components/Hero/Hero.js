@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { FaArrowDown } from "react-icons/fa/";
+import config from "../../../content/meta/config";
 
 const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;
@@ -10,8 +11,8 @@ const Hero = props => {
     <React.Fragment>
       <section className="hero">
         <div className="heroBio">
-          <h1>Holly Cummins.</h1>
-          <h2>IBMer, Java Champion, occasional maker and regular speaker.</h2>
+          <h1>{config.siteTitle}</h1>
+          <h2>{config.siteDescription}</h2>
         </div>
         <div>
           <button onClick={scrollToContent} aria-label="scroll">
