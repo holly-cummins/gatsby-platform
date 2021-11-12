@@ -44,7 +44,7 @@ const CategoryPage = props => {
         {theme => (
           <Article theme={theme}>
             <header>
-              <Headline title="What's Holly Thinking About?" theme={theme} />
+              <Headline title="What's Ducky Thinking About?" theme={theme} />
             </header>
             {categoryList.map(item => (
               <section key={item[0]}>

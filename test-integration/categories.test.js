@@ -4,7 +4,7 @@ const { port } = require("../jest-puppeteer.config").server;
 
 const siteRoot = `http://localhost:${port}`;
 
-describe("hollycummins.com", () => {
+describe("main site", () => {
   describe("navigating to the categories", () => {
     beforeAll(async () => {
       await page.goto(siteRoot);
@@ -20,7 +20,7 @@ describe("hollycummins.com", () => {
 
       // Now it should be the categories page
       await expect(
-        page.waitForXPath('//*[text()="What\'s Holly Thinking About?"]')
+        page.waitForXPath('//*[text()="What\'s Ducky Thinking About?"]')
       ).resolves.toBeTruthy();
     });
   });
@@ -32,7 +32,7 @@ describe("hollycummins.com", () => {
 
     it("should be a categories page", async () => {
       await expect(
-        page.waitForXPath('//*[text()="What\'s Holly Thinking About?"]')
+        page.waitForXPath('//*[text()="What\'s Ducky Thinking About?"]')
       ).resolves.toBeTruthy();
     });
 

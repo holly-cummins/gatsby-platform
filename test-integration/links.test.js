@@ -17,8 +17,8 @@ describe("site links", () => {
           userAgent:
             "Not actually Mozilla/5.0 (X11; Linux i686; rv:84.0) Gecko/20100101 Firefox/84.0", // Twitter is fussy about the user agent and will not serve to bots
           excludedKeywords: [
-            "https://twitter.com/holly_cummins",
-            "https://www.linkedin.com/in/holly-k-cummins/",
+            "https://twitter.com/ducky_devine",
+            "https://www.linkedin.com/in/ducky-k-devine/",
             "https://www.manning.com/books/enterprise-osgi-in-action",
             "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
             "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html",

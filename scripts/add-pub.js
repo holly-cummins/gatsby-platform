@@ -37,9 +37,9 @@ const createMarkdown = async () => {
 
   const ogAuthor = metadata.author;
   // If the name is a variation of my name, just use my name
-  let author = ogAuthor ? ogAuthor : "holly cummins";
-  if (author.toLowerCase() === "holly k cummins") {
-    author = "holly cummins";
+  let author = ogAuthor ? ogAuthor : "ducky devine";
+  if (author.toLowerCase() === "ducky devine") {
+    author = "ducky devine";
   }
 
   const dir = `./content/publications/${date}--${slug}`;

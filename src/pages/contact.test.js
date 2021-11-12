@@ -29,7 +29,7 @@ describe("ContactPage", () => {
     renderWithTheme(<ContactPage />, themeObjectFromYaml);
   });
   it("renders without error and includes some social links", async () => {
-    expect(screen.getByText("@holly_cummins")).toBeTruthy();
+    expect(screen.getByText("@ducky_devine")).toBeTruthy();
   });
 
   it("includes multiple social links", async () => {

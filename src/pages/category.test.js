@@ -35,7 +35,7 @@ describe("CategoryPage", () => {
     });
 
     it("renders the title", async () => {
-      expect(screen.getByText("What's Holly Thinking About?")).toBeTruthy();
+      expect(screen.getByText("What's Ducky Thinking About?")).toBeTruthy();
     });
   });
 

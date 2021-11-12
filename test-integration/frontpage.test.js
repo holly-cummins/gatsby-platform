@@ -4,13 +4,13 @@ const { port } = require("../jest-puppeteer.config").server;
 
 const siteRoot = `http://localhost:${port}`;
 
-describe("hollycummins.com", () => {
+describe("main site", () => {
   beforeAll(async () => {
     await page.goto(siteRoot);
   });
 
-  it("should have Hollys name on it somewhere", async () => {
-    await expect(page.waitForXPath('//*[text()="Holly Cummins"]')).resolves.toBeTruthy();
+  it("should have Duckys name on it somewhere", async () => {
+    await expect(page.waitForXPath('//*[text()="Ducky Devine"]')).resolves.toBeTruthy();
   });
 
   describe("header navigation bar", () => {
