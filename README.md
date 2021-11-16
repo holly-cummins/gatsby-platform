@@ -10,6 +10,7 @@ This codebase [needs to run](https://github.com/greglobinski/gatsby-starter-hero
 nvm use 12
 npm install -g gatsby-cli@2
 npm install
+./scripts/preprocess-publications.js
 ```
 
 ## Development
@@ -61,9 +62,15 @@ To change the favicon, after replacing the files in `src/images/app-icons` you n
 - Publication: A blog entry hosted elsewhere. Include a sentence or two in the markdown for the excerpt.
 - Slug: The unique part of a page URL. The important feature is that it contains the title of the article, which helps with SEO.
 
-### Debugging
+### Debugging and trouble shooting
 
 http://localhost:8000/___graphql is useful for inspecting graphql results.
+
+#### Missing cover children
+
+If you get `Multiple unhandled runtime errors found in your files. See the list below to fix them:`, run ./scripts/preprocess-publications.js`
+
+![Multiple unhandled runtime errors found in your files. See the list below to fix them](docs/missing-cover-children.png)
 
 ##### External services
 
