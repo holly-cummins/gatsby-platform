@@ -19,6 +19,10 @@ describe("site links", () => {
           excludedKeywords: [
             "https://twitter.com/ducky_devine",
             "https://www.linkedin.com/in/ducky-k-devine/",
+            "https://www.linkedin.com/in/holly-k-cummins/",
+            "https://www.manning.com/books/d-is-for-duck", // known 404, DO NOT SEARCH AND REPLACE
+            "https://github.com/ducky-devine/", // known 404, DO NOT SEARCH AND REPLACE
+            "https://ducky-devine.medium.com", // known 404, DO NOT SEARCH AND REPLACE
             "https://www.manning.com/books/enterprise-osgi-in-action",
             "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
             "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html",
@@ -26,6 +30,8 @@ describe("site links", () => {
             "https://www.uk.mercer.com/our-thinking/the-gender-pay-gap-in-uk-tech-sector.html"
           ] // We know these links are good and we want to not hit the rate limiters since they appear everywhere
           // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
+          // NOTE: The Manning, Medium, and gitgub D is For Duck is fictitious by design, so exclude them
+          // DO NOT search and replace these with your own name
           // The element14 link causes a hang
         },
         {
