@@ -18,10 +18,10 @@ describe("site links", () => {
             "Not actually Mozilla/5.0 (X11; Linux i686; rv:84.0) Gecko/20100101 Firefox/84.0", // Twitter is fussy about the user agent and will not serve to bots
           excludedKeywords: [
             "https://twitter.com/ducky_devine",
-            "https://www.linkedin.com/in/ducky-k-devine/",
+            "https://www.linkedin.com/in/ducky-devine/",
             "https://www.linkedin.com/in/holly-k-cummins/",
             "https://www.manning.com/books/d-is-for-duck", // known 404, DO NOT SEARCH AND REPLACE
-            "https://github.com/ducky-devine/", // known 404, DO NOT SEARCH AND REPLACE
+            "https://github.com/ducky-devine", // known 404, DO NOT SEARCH AND REPLACE
             "https://ducky-devine.medium.com", // known 404, DO NOT SEARCH AND REPLACE
             "https://www.manning.com/books/enterprise-osgi-in-action",
             "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
