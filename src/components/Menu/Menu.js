@@ -189,7 +189,7 @@ class Menu extends React.Component {
             justify-content: center;
             list-style: none;
             margin: 0;
-            padding: 0; /* 0 ${theme.space.s}; */
+            padding: 0;
             position: relative;
             width: 100%;
           }
@@ -246,7 +246,6 @@ class Menu extends React.Component {
               padding: ${theme.space.m};
               border-radius: ${theme.size.radius.small};
               border-top-right-radius: 0;
-
 
               &:after {
                 content: "";

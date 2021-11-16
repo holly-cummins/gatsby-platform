@@ -4,10 +4,10 @@ This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlo
 
 ## Initial setup
 
-This codebase [needs to run](https://github.com/greglobinski/gatsby-starter-hero-blog/issues/67) with Node v10, and a back-level gatsby cli. Other versions of node can cause a hang on `Building development bundle`.
+This codebase [needs to run](https://github.com/greglobinski/gatsby-starter-hero-blog/issues/67) with Node v12, and a back-level gatsby cli.
 
 ```
-nvm use 10
+nvm use 12
 npm install -g gatsby-cli@2
 npm install
 ```
