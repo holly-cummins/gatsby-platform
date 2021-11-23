@@ -79,7 +79,7 @@ I'm using Apple Reminders as my work tracking system, but I should probably swit
 
 ## Ok but can I re-use it?
 
-The [platform code](https://github.com/holly-cummins/gatsby-platform/) for this blog shares the [MIT license](https://github.com/holly-cummins/holly-cummins.github.io/blob/platform-source/LICENSE) of the source starter. If you use my fork I'd love to know about it.
+The [platform code](https://github.com/holly-cummins/gatsby-platform/) for this blog shares the [MIT license](https://github.com/holly-cummins/holly-cummins.github.io/blob/platform-source/LICENSE) of the source starter. If you use my fork I'd love to know about it. You can see what the starter looks like without my content at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).
 
 Most of the personalisation is in the `content` folder, but there are a few bits and pieces elsewhere, like `avatar.jpg` and `src/images/jpg`.
 
