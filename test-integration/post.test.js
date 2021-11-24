@@ -4,11 +4,12 @@ const urlMetadata = require("url-metadata");
 const { port } = require("../jest-puppeteer.config").server;
 
 // We don't have a good dynamic way of getting a post, so hardcode for now
-const slug = "microphone-face-off/";
+const slug = "tech-stack/";
 const siteRoot = `http://localhost:${port}/${slug}`;
-const liveUrl = "http://hollycummins.com";
+// This will be different for each site but we probably do not want to be too liberal with the regex, so - with regret - hardcode
+const liveUrl = "http://duckydevine.com";
 
-titleMatcher = /The great microphone face-off/;
+titleMatcher = /How this site is built/;
 
 describe("a post", () => {
   describe("page contents", () => {
@@ -49,7 +50,7 @@ describe("a post", () => {
 
       expect(description).toBeTruthy();
       // Unfortunate hardcoding, but ...
-      expect(description).toMatch(/The past year saw an unprecedented flourishing/);
+      expect(description).toMatch(/write.*Blogger/);
     });
 
     it("should have correct opengraph url", async () => {
@@ -80,7 +81,7 @@ describe("a post", () => {
 
       expect(description).toBeTruthy();
       // Unfortunate hardcoding, but ...
-      expect(description).toMatch(/The past year saw an unprecedented flourishing/);
+      expect(description).toMatch(/write.*Blogger/);
     });
 
     it("should have correct opengraph url", async () => {
