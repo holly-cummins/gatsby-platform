@@ -73,6 +73,8 @@ If you get `Multiple unhandled runtime errors found in your files. See the list 
 
 ![Multiple unhandled runtime errors found in your files. See the list below to fix them](docs/missing-cover-children.png)
 
+The same issue can also cause `WebpackError: TypeError: Cannot read property 'children' of null` on `gatsby build`.
+
 ##### External services
 
 The starter uses external services for some functions: comments, searching, analytics. To use them you have to secure some access data. All services are free to use or have generous free tiers big enough for a personal blog.
