@@ -20,7 +20,7 @@ describe("main site", () => {
 
       // Now it should be the categories page
       await expect(
-        page.waitForXPath('//*[text()="What\'s Ducky Thinking About?"]')
+        page.waitForXPath('//h1[contains(text(), "Thinking About?")]')
       ).resolves.toBeTruthy();
     });
   });
@@ -32,7 +32,7 @@ describe("main site", () => {
 
     it("should be a categories page", async () => {
       await expect(
-        page.waitForXPath('//*[text()="What\'s Ducky Thinking About?"]')
+        page.waitForXPath('//h1[contains(text(), "Thinking About?")]')
       ).resolves.toBeTruthy();
     });
 
