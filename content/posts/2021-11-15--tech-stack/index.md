@@ -56,6 +56,8 @@ people asked. And, you know, I worked hard on it and wanted to share.
 
 ## Ok but what is the stack?
 
+The source code for this platform lives at https://github.com/holly-cummins/gatsby-platform.
+
 This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on Greg Lobinski's [HeroBlog starter](https://gatsby-starter-hero-blog.greglobinski.com/). I've extended it to make it easy to embed external content and to add
 different forms of content. There are Google Analytics and Algolia search integrations. The [README](https://github.com/holly-cummins/holly-cummins.github.io/tree/platform-source/README.md) has getting started instructions and more technical details.
 
@@ -79,7 +81,7 @@ I'm using Apple Reminders as my work tracking system, but I should probably swit
 
 ## Ok but can I re-use it?
 
-The [platform code](https://github.com/holly-cummins/gatsby-platform/) for this blog shares the [MIT license](https://github.com/holly-cummins/holly-cummins.github.io/blob/platform-source/LICENSE) of the source starter. If you use my fork I'd love to know about it. You can see what the starter looks like without my content at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).
+The [platform code](https://github.com/holly-cummins/gatsby-platform/) for this blog shares the [MIT license](https://github.com/holly-cummins/holly-cummins.github.io/blob/platform-source/LICENSE) of the source [starter]((https://gatsby-starter-hero-blog.greglobinski.com/)). If you use my fork I'd love to know about it. You can see what the starter looks like without my content at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).
 
 Most of the personalisation is in the `content` folder, but there are a few bits and pieces elsewhere, like `avatar.jpg` and `src/images/jpg`.
 
