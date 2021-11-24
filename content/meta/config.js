@@ -1,7 +1,8 @@
 module.exports = {
   siteTitle: "Ducky Devine", // <title>
   shortSiteTitle: "Ducky Devine", // <title> ending for posts and pages
-  siteDescription: "There's not really any content here but the template code is nice.",
+  siteDescription:
+    "This is a demo site, so there's not really any content here but the template code is nice.",
   siteUrl: "http://duckydevine.com",
   pathPrefix: "",
   siteImage: "preview.png",
