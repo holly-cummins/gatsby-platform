@@ -81,8 +81,16 @@ describe("CategoryPage", () => {
     it("renders the category name", async () => {
       expect(screen.getByText(category)).toBeTruthy();
     });
+
     it("renders a list of posts", async () => {
       expect(screen.getByRole("list")).toBeTruthy();
+    });
+
+    it("includes a link to just that category", async () => {
+      const link = screen.getByRole("link", { name: category });
+
+      // Note replacement of space with a dash
+      expect(link).toHaveAttribute("href", "/category/sock-stories");
     });
 
     // More detailed testing of Item content can be in the Item test, we just want something

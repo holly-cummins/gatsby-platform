@@ -8,6 +8,8 @@ import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import Seo from "../components/Seo";
 
+const _ = require("lodash");
+
 const CategoryPage = props => {
   const {
     data: {
@@ -49,7 +51,10 @@ const CategoryPage = props => {
             {categoryList.map(item => (
               <section key={item[0]}>
                 <h2>
-                  <Tag /> {item[0]}
+                  <a href={`/category/${_.kebabCase(item[0])}`}>
+                    <Tag />
+                    {item[0]}
+                  </a>
                 </h2>
                 <List edges={item[1]} theme={theme} />
               </section>
