@@ -100,7 +100,7 @@ Item.propTypes = {
   item: PropTypes.object,
   hidden: PropTypes.bool,
   onClick: PropTypes.func,
-  icon: PropTypes.func,
+  icon: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 
