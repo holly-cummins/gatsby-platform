@@ -1,6 +1,6 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { plural, icon } from "./type";
+import { render, screen, prettyDOM } from "@testing-library/react";
+import { plural, icon, Icon } from "./type";
 
 describe("the type descriptions", () => {
   describe("pluralisation", () => {
@@ -12,16 +12,67 @@ describe("the type descriptions", () => {
       expect(plural("media")).toBe("media");
     });
   });
-  describe("icons", () => {
+
+  describe("icon function", () => {
     it("handles a good podcast icon", async () => {
-      // This is an ugly internal coupling, but it allows us to test the linking
-      expect(icon("podcast").render.name).toBe("Microphone20");
+      const type = "podcast";
+      const Component = icon(type);
+      const rendered = render(<Component />);
+      expect(rendered.container.querySelector("svg")).toBeTruthy();
+      expect(rendered.container.querySelector("path")).toBeTruthy();
+      // It would be nice to be more specific about the image contents but it's hard to do that without just copy pasting paths
     });
 
     it("returns a reasonable icon for an unknown type", async () => {
-      // This is an ugly internal coupling, even uglier since we may change our mind about what we use for unknown,
-      // but it allows us to test the linking
-      expect(icon("iced bun").render.name).toBe("LicenseGlobal20");
+      const type = "iced bun";
+      const Component = icon(type);
+      const rendered = render(<Component />);
+      expect(rendered.container.querySelector("svg")).toBeTruthy();
+      expect(rendered.container.querySelector("path")).toBeTruthy();
+      // It would be nice to be more specific about the image contents but it's hard to do that without just copy pasting paths
+    });
+
+    it("adds a title for accessibility", async () => {
+      const type = "book";
+      const Component = icon(type);
+      const rendered = render(<Component />);
+      expect(rendered.getByTitle(type + " icon")).toBeTruthy();
+    });
+
+    it("adds a correctly vague accessibility title when the image is not found", async () => {
+      const type = "pie";
+      const Component = icon(type);
+      const rendered = render(<Component />);
+      expect(rendered.getByTitle("unknown icon")).toBeTruthy();
+    });
+  });
+
+  describe("icon component", () => {
+    it("handles a good podcast icon", async () => {
+      const type = "podcast";
+
+      const { container } = render(<Icon type={type} />);
+      expect(container.querySelector("svg")).toBeTruthy();
+      expect(container.querySelector("path")).toBeTruthy();
+    });
+
+    it("returns a reasonable icon for an unknown type", async () => {
+      const type = "iced bun";
+      const { container } = render(<Icon type={type} />);
+      expect(container.querySelector("svg")).toBeTruthy();
+      expect(container.querySelector("path")).toBeTruthy();
+    });
+
+    it("adds a title for accessibility", async () => {
+      const type = "book";
+      render(<Icon type={type} />);
+      expect(screen.getByTitle(type + " icon")).toBeTruthy();
+    });
+
+    it("adds a correctly vague accessibility title when the image is not found", async () => {
+      const type = "houseplants";
+      render(<Icon type={type} />);
+      expect(screen.getByTitle("unknown icon")).toBeTruthy();
     });
   });
 });

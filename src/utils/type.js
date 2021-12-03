@@ -5,6 +5,7 @@ import { RequestQuote20 as RequestQuote } from "@carbon/icons-react";
 import { Microphone20 as Microphone } from "@carbon/icons-react";
 import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
 import { LicenseGlobal20 as LicenseGlobal } from "@carbon/icons-react";
+import React from "react";
 
 const typeIcons = {
   blog: RequestQuote,
@@ -26,6 +27,19 @@ export function plural(type) {
 }
 
 export function icon(type) {
-  const icon = typeIcons[type] ? typeIcons[type] : LicenseGlobal;
-  return icon;
+  return class extends React.Component {
+    render() {
+      return <Icon type={type} />;
+    }
+  };
+}
+
+// Set type as an attribute/property to get the right icon type
+export class Icon extends React.Component {
+  render() {
+    const type = this.props.type;
+    const title = typeIcons[type] ? `${type} icon` : "unknown icon";
+    const Icon = typeIcons[type] ? typeIcons[type] : LicenseGlobal;
+    return <Icon {...this.props} title={title} />;
+  }
 }

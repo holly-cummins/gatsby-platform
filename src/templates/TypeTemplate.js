@@ -26,7 +26,7 @@ const TypeTemplate = props => {
           <Article theme={theme}>
             <header>
               <Headline theme={theme}>
-                {Icon && <Icon data-testid={type + "-icon"} />}
+                {Icon && <Icon />}
                 {plural(type)}
               </Headline>
               {type == "media" || type == "book" ? (

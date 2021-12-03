@@ -39,8 +39,8 @@ describe("TypeTemplate", () => {
 
     it("renders the icon", () => {
       // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
-      const testId = type + "-icon";
-      expect(screen.getByTestId(testId)).toBeTruthy();
+      const title = type + " icon";
+      expect(screen.getByTitle(title)).toBeTruthy();
     });
 
     it("renders the correct link", () => {
