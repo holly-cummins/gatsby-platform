@@ -99,14 +99,14 @@ class Layout extends React.Component {
             }
             footnote: markdownRemark(fileAbsolutePath: { regex: "/footnote/" }) {
               id
-              html
+              htmlAst
             }
           }
         `}
         render={data => {
           const { children } = this.props;
           const {
-            footnote: { html: footnoteHTML },
+            footnote: { htmlAst: footnoteHTMLAst, html: footnoteHTML },
             pages: { edges: pages }
           } = data;
 
@@ -121,7 +121,11 @@ class Layout extends React.Component {
                       theme={this.state.theme}
                     />
                     <main>{children}</main>
-                    <Footer html={footnoteHTML} theme={this.state.theme} />
+                    <Footer
+                      html={footnoteHTML}
+                      htmlAst={footnoteHTMLAst}
+                      theme={this.state.theme}
+                    />
 
                     {/* --- STYLES --- */}
                     <style jsx>{`
@@ -214,6 +218,7 @@ export const postQuery = graphql`
     footnote: markdownRemark(fileAbsolutePath: { regex: "/footnote/" }) {
       id
       html
+      htmlAst
     }
   }
 `;

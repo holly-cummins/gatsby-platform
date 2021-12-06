@@ -1,12 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+// At some point we may want to switch to mdx instead of rehype but it's a much more invasive change
+import rehypeReact from "rehype-react";
+import { Rss16 } from "@carbon/icons-react";
+
+// Extend the carbon react icon to add accessibility labels and make it not
+// hidden to screenreaders (the carbon default)
+class Rss extends React.Component {
+  render() {
+    return <Rss16 title="rss" aria-label="rss" />;
+  }
+}
 
 const Footer = props => {
-  const { html, theme } = props;
+  const { htmlAst, theme } = props;
+
+  const renderAst = new rehypeReact({
+    createElement: React.createElement,
+    components: { rss: Rss }
+  }).Compiler;
 
   return (
     <React.Fragment>
-      <footer className="footer" dangerouslySetInnerHTML={{ __html: html }} />
+      <footer className="footer">{renderAst(htmlAst)}</footer>
 
       {/* --- STYLES --- */}
       <style jsx>{`
@@ -51,7 +67,7 @@ const Footer = props => {
 };
 
 Footer.propTypes = {
-  html: PropTypes.string,
+  htmlAst: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 
