@@ -136,7 +136,14 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // Create posts
-        const posts = items.filter(item => item.node.fields.source === "posts");
+        const posts = items.filter(
+          item =>
+            item.node.fields.source === "posts" &&
+            item.node.fields.prefix &&
+            item.node.fields.prefix != "" &&
+            item.node.fields.prefix != "draft"
+        );
+        // TODO this is a hack to not show drafts in prev and next
         posts.forEach(({ node }, index) => {
           const slug = node.fields.slug;
           const next = index === 0 ? undefined : posts[index - 1].node;
