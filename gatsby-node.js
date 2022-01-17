@@ -5,7 +5,7 @@ const path = require("path");
 const Promise = require("bluebird");
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
-const { draftsFilter } = require("./src/utils/filters");
+const { generateFilter } = require("./src/utils/filters");
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -45,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
     const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
 
-    const filters = draftsFilter();
+    const filters = generateFilter();
     resolve(
       graphql(
         `
