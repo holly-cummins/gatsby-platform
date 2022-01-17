@@ -89,7 +89,7 @@ describe("the main gatsby thing", () => {
     const node = {
       node: {
         frontmatter: { category: "test-stuff" },
-        fields: { source: "posts", slug }
+        fields: { source: "posts", slug, prefix: "a-proper-date" }
       }
     };
     const edges = [node, node];
@@ -105,6 +105,46 @@ describe("the main gatsby thing", () => {
     const calls = actions.createPage.mock.calls;
     // One post for each node plus one for the category
     expect(calls.length).toBe(edges.length + 1);
+    // The first argument to the second call ...
+    expect(calls[1][0].path).toEqual(slug);
+    expect(calls[1][0].component).toContain("PostTemplate.js");
+  });
+
+  it("does not make pages for draft posts", async () => {
+    const slug = "slug-path";
+
+    // No prefix for the draft
+    const draft1 = {
+      node: {
+        frontmatter: { category: "test-stuff" },
+        fields: { source: "posts", slug: "some-path" }
+      }
+    };
+    const draft2 = {
+      node: {
+        frontmatter: { category: "test-stuff" },
+        fields: { source: "posts", slug: "some-path", prefix: "draft" }
+      }
+    };
+    const final = {
+      node: {
+        frontmatter: { category: "test-stuff" },
+        fields: { source: "posts", slug, prefix: "a-proper-date" }
+      }
+    };
+    const edges = [final, draft1, draft2, final];
+
+    const graphql = jest.fn().mockResolvedValue({
+      data: {
+        allMarkdownRemark: { edges }
+      }
+    });
+    const actions = { createPage: jest.fn() };
+    await gn.createPages({ graphql, actions });
+    // One call for the category, then a second for the post
+    const calls = actions.createPage.mock.calls;
+    // One post for each non-draft node plus one for the category
+    expect(calls.length).toBe(edges.length - 2 + 1);
     // The first argument to the second call ...
     expect(calls[1][0].path).toEqual(slug);
     expect(calls[1][0].component).toContain("PostTemplate.js");
