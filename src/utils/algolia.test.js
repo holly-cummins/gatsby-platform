@@ -50,7 +50,6 @@ describe("the algolia indexing", () => {
     it("handles empty content gracefully", async () => {
       const chunked = algolia([], { node });
       expect(chunked).toBeTruthy();
-      console.log(chunked);
     });
   });
 });
