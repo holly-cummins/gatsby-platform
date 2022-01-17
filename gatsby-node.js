@@ -49,11 +49,9 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(
         `
-          {
+          query Posts($filters: MarkdownRemarkFilterInput) {
             allMarkdownRemark(
-              ` +
-          filters +
-          `
+              filter: $filters
               sort: { fields: [fields___prefix], order: DESC }
               limit: 1000
             ) {
@@ -74,7 +72,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        `
+        `,
+        { filters }
       ).then(result => {
         if (result.errors) {
           console.log(result.errors);

@@ -10,16 +10,6 @@ exports.draftsFilter = otherFilter => {
     draftsFilters = { fields: { slug: { ne: "" }, prefix: { ne: "draft" } } };
   }
   const filters = { ...draftsFilters, ...otherFilter };
-  // We're trying to convert the object into something that looks like code, which is surprisingly tricky ...
-  /// ... especially with the constraint we want it to look like the code we already have, for ease of testing
-  const filterString = JSON.stringify(filters)
-    .replace(/\"(\$?[a-z][a-z]*)\":/g, "$1: ") // assume all lower case
-    .replace(/\"\$([a-z][a-z]*)\"/g, "$$$1") // handle variables starting with a dollar sign, which should not be quoted
-    .replace(/:{/g, ": {")
-    .replace(/{/g, "{ ")
-    .replace(/}/g, " }")
-    .replace(/,/g, ", ");
-  // Someday, I'll fix that, and because I did TDD, it will be easy. I promise.
 
-  return `filter: ${filterString}`;
+  return filters;
 };
