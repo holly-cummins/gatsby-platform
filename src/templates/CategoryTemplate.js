@@ -58,7 +58,7 @@ export const categoryQuery = graphql`
       limit: 1000
       sort: { fields: [fields___prefix], order: DESC }
       filter: {
-        fields: { slug: { ne: "" }, prefix: { ne: "" } }
+        fields: { slug: { ne: "" }, prefix: { ne: "draft" } }
         frontmatter: { category: { eq: $category } }
       }
     ) {

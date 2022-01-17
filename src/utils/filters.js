@@ -7,7 +7,7 @@ exports.draftsFilter = otherFilter => {
   }
   let draftsFilters = { fields: { slug: { ne: "" } } };
   if (activeEnv == "production") {
-    draftsFilters = { fields: { slug: { ne: "" }, prefix: { ne: "" } } };
+    draftsFilters = { fields: { slug: { ne: "" }, prefix: { ne: "draft" } } };
   }
   const filters = { ...draftsFilters, ...otherFilter };
   // We're trying to convert the object into something that looks like code, which is surprisingly tricky ...
@@ -20,5 +20,6 @@ exports.draftsFilter = otherFilter => {
     .replace(/}/g, " }")
     .replace(/,/g, ", ");
   // Someday, I'll fix that, and because I did TDD, it will be easy. I promise.
+
   return `filter: ${filterString}`;
 };

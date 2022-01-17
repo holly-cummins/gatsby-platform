@@ -68,6 +68,7 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
+// The number element in the regex in this query filters for drafts
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {

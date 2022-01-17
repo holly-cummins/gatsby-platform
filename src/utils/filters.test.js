@@ -26,12 +26,14 @@ describe("the graphql filters", () => {
       process.env = OLD_ENV; // Restore old environment
     });
     it("gives a basic filter if there are no other filters", async () => {
-      expect(draftsFilter()).toBe('filter: { fields: { slug: { ne: "" }, prefix: { ne: "" } } }');
+      expect(draftsFilter()).toBe(
+        'filter: { fields: { slug: { ne: "" }, prefix: { ne: "draft" } } }'
+      );
     });
 
     it("combines the filters if a filter is passed in", async () => {
       expect(draftsFilter({ frontmatter: { type: { eq: "$type" } } })).toBe(
-        'filter: { fields: { slug: { ne: "" }, prefix: { ne: "" } }, frontmatter: { type: { eq: $type } } }'
+        'filter: { fields: { slug: { ne: "" }, prefix: { ne: "draft" } }, frontmatter: { type: { eq: $type } } }'
       );
     });
   });
