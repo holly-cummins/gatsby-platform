@@ -1,5 +1,17 @@
 import { generateFilter, filterOutDrafts } from "./filters";
 
+const OLD_ENV = process.env;
+
+const setToProd = () => {
+  jest.resetModules(); // Most important - it clears the cache
+  process.env = { ...OLD_ENV }; // Make a copy
+  process.env.ACTIVE_ENV = "production";
+};
+
+const restoreOldEnvironment = () => {
+  process.env = OLD_ENV; // Restore old environment
+};
+
 describe("the graphql filter generation", () => {
   describe("in non-production environments", () => {
     it("gives a basic filter if there are no other filters", async () => {
@@ -22,16 +34,12 @@ describe("the graphql filter generation", () => {
   });
 
   describe("in production environments", () => {
-    const OLD_ENV = process.env;
-
     beforeEach(() => {
-      jest.resetModules(); // Most important - it clears the cache
-      process.env = { ...OLD_ENV }; // Make a copy
-      process.env.ACTIVE_ENV = "production";
+      setToProd();
     });
 
     afterAll(() => {
-      process.env = OLD_ENV; // Restore old environment
+      restoreOldEnvironment();
     });
 
     it("gives a basic filter if there are no other filters", async () => {
@@ -79,16 +87,12 @@ describe("the node filtering", () => {
   });
 
   describe("in production environments", () => {
-    const OLD_ENV = process.env;
-
     beforeEach(() => {
-      jest.resetModules(); // Most important - it clears the cache
-      process.env = { ...OLD_ENV }; // Make a copy
-      process.env.ACTIVE_ENV = "production";
+      setToProd();
     });
 
     afterAll(() => {
-      process.env = OLD_ENV; // Restore old environment
+      restoreOldEnvironment();
     });
 
     it("handles empty lists", async () => {
