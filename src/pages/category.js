@@ -2,20 +2,23 @@ import { Tag20 as Tag } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
+const _ = require("lodash");
+
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article/";
 import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import Seo from "../components/Seo";
-
-const _ = require("lodash");
+import { filterOutDrafts } from "../utils/filters";
 
 const CategoryPage = props => {
   const {
     data: {
-      posts: { edges: posts }
+      posts: { edges: edges }
     }
   } = props;
+
+  const posts = filterOutDrafts(edges);
 
   // Create category list
   const categories = {};
@@ -84,11 +87,14 @@ CategoryPage.propTypes = {
 
 export default CategoryPage;
 
+// It'd be nice to embed a filter, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
+// ... so filter the list in code after the query
+
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query PostsQuery {
     posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//(posts|publications)/[0-9]+.*--/" } }
+      filter: { fileAbsolutePath: { regex: "//(posts|publications)/.*--/" } }
       sort: { fields: [fields___prefix], order: DESC }
     ) {
       edges {

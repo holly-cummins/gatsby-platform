@@ -6,6 +6,7 @@ import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
 
 import theme from "../theme/theme.yaml";
+import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render
 const renderWithTheme = (ui, theme) => {
@@ -42,7 +43,7 @@ describe("CategoryPage", () => {
   describe("with some posts and publications", () => {
     const category = "sock stories";
     const title1 = "the first title";
-    const title2 = "the second title";
+    const draftTitle = "the second title";
 
     const post1 = {
       node: {
@@ -56,14 +57,15 @@ describe("CategoryPage", () => {
         }
       }
     };
-    const pub2 = {
+    const draftPub = {
       node: {
         fields: {
           slug: "pub2",
-          url: "http://somewhere.else"
+          url: "http://somewhere.else",
+          prefix: "draft"
         },
         frontmatter: {
-          title: title2,
+          title: draftTitle,
           cover,
           category
         }
@@ -71,7 +73,7 @@ describe("CategoryPage", () => {
     };
     const data = {
       ...layoutData,
-      posts: { edges: [post1, pub2] }
+      posts: { edges: [post1, draftPub] }
     };
 
     beforeEach(async () => {
@@ -97,8 +99,27 @@ describe("CategoryPage", () => {
     it("renders the first post title", async () => {
       expect(screen.getByText(title1)).toBeTruthy();
     });
-    it("renders the second post title", async () => {
-      expect(screen.getByText(title2)).toBeTruthy();
+
+    it("renders the draft post title", async () => {
+      expect(screen.getByText(draftTitle)).toBeTruthy();
+    });
+
+    describe("in production", () => {
+      beforeAll(() => {
+        setToProd();
+      });
+
+      afterAll(() => {
+        restoreOldEnvironment();
+      });
+
+      it("renders the first post title", async () => {
+        expect(screen.getByText(title1)).toBeTruthy();
+      });
+
+      it("filters out drafts", async () => {
+        expect(screen.queryByText(draftTitle)).toBeFalsy();
+      });
     });
   });
 });
