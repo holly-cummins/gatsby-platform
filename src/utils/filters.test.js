@@ -108,3 +108,5 @@ describe("the node filtering", () => {
     });
   });
 });
+
+module.exports = { setToProd, restoreOldEnvironment };

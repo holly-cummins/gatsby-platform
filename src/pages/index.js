@@ -6,6 +6,8 @@ import Blog from "../components/Blog";
 import Hero from "../components/Hero";
 import Seo from "../components/Seo";
 
+import { filterOutDrafts } from "../utils/filters";
+
 class IndexPage extends React.Component {
   separator = React.createRef();
 
@@ -29,6 +31,8 @@ class IndexPage extends React.Component {
       }
     } = this.props;
 
+    const filteredEntries = filterOutDrafts(entries);
+
     const backgrounds = {
       desktop,
       tablet,
@@ -46,7 +50,7 @@ class IndexPage extends React.Component {
         <hr ref={this.separator} />
 
         <ThemeContext.Consumer>
-          {theme => <Blog posts={entries} theme={theme} />}
+          {theme => <Blog posts={filteredEntries} theme={theme} />}
         </ThemeContext.Consumer>
 
         <Seo />
@@ -68,12 +72,11 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
-// The number element in the regex in this query filters for drafts
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
     entries: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//(posts|publications)/[0-9]+.*--/" } }
+      filter: { fileAbsolutePath: { regex: "//(posts|publications)/.*--/" } }
       sort: { fields: [fields___prefix], order: DESC }
     ) {
       edges {

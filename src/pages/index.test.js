@@ -6,6 +6,7 @@ import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
 
 import themeObjectFromYaml from "../theme/theme.yaml";
+import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render
 const renderWithTheme = (ui, theme) => {
@@ -42,6 +43,7 @@ describe("IndexPage", () => {
   describe("with some posts", () => {
     const title1 = "the first title";
     const title2 = "the second title";
+    const draftTitle = "the title of an incomplete article";
 
     const post1 = {
       node: {
@@ -65,9 +67,22 @@ describe("IndexPage", () => {
         }
       }
     };
+
+    const draft = {
+      node: {
+        fields: {
+          slug: "/slug3/",
+          prefix: "draft"
+        },
+        frontmatter: {
+          title: draftTitle,
+          cover
+        }
+      }
+    };
     const data = {
       ...layoutData,
-      entries: { edges: [post1, post2] }
+      entries: { edges: [post1, post2, draft] }
     };
 
     beforeEach(async () => {
@@ -86,8 +101,35 @@ describe("IndexPage", () => {
     it("renders the first post title", async () => {
       expect(screen.getByText(title1)).toBeTruthy();
     });
+
     it("renders the second post title", async () => {
       expect(screen.getByText(title2)).toBeTruthy();
+    });
+
+    it("includes all drafts", async () => {
+      expect(screen.getByText(draftTitle)).toBeTruthy();
+    });
+
+    describe("in production", () => {
+      beforeAll(() => {
+        setToProd();
+      });
+
+      afterAll(() => {
+        restoreOldEnvironment();
+      });
+
+      it("renders the first post title", async () => {
+        expect(screen.getByText(title1)).toBeTruthy();
+      });
+
+      it("renders the second post title", async () => {
+        expect(screen.getByText(title2)).toBeTruthy();
+      });
+
+      it("filters out drafts", async () => {
+        expect(screen.queryByText(draftTitle)).toBeFalsy();
+      });
     });
   });
   describe("with some publications", () => {
