@@ -8,6 +8,7 @@ import Headline from "../components/Article/Headline";
 import List from "../components/List/List";
 import LogoList from "../components/List/LogoList";
 import { plural, icon } from "../utils/type";
+import { filterOutDrafts } from "../utils/filters";
 
 const TypeTemplate = props => {
   const {
@@ -16,6 +17,8 @@ const TypeTemplate = props => {
       allMarkdownRemark: { totalCount, edges }
     }
   } = props;
+
+  const filteredEntries = filterOutDrafts(edges);
 
   const Icon = icon(type);
 
@@ -30,9 +33,9 @@ const TypeTemplate = props => {
                 {plural(type)}
               </Headline>
               {type == "media" || type == "book" ? (
-                <LogoList edges={edges} theme={theme} />
+                <LogoList edges={filteredEntries} theme={theme} />
               ) : (
-                <List edges={edges} theme={theme} />
+                <List edges={filteredEntries} theme={theme} />
               )}
             </header>
           </Article>
@@ -51,8 +54,8 @@ TypeTemplate.propTypes = {
 
 export default TypeTemplate;
 
-// It'd be nice to use our filters utility, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
-// ... so just default to not showing draft content in type pages
+// It'd be nice to embed a filter, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
+// ... so filter the list in code after the query
 
 // eslint-disable-next-line no-undef
 export const typeQuery = graphql`
@@ -60,16 +63,14 @@ export const typeQuery = graphql`
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [fields___prefix], order: DESC }
-      filter: {
-        fields: { slug: { ne: "" }, prefix: { ne: "draft" } }
-        frontmatter: { type: { eq: $type } }
-      }
+      filter: { fields: { slug: { ne: "" } }, frontmatter: { type: { eq: $type } } }
     ) {
       totalCount
       edges {
         node {
           fields {
             slug
+            prefix
           }
           excerpt
           timeToRead
