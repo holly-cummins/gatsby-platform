@@ -69,7 +69,7 @@ describe("the node filtering", () => {
   const unconventionalDraftPrefix = {
     node: {
       frontmatter: { category: "test-stuff" },
-      fields: { source: "posts", slug: "still-not-yet", prefix: "unready" }
+      fields: { source: "posts", slug: "still-not-yet", prefix: "unready2" }
     }
   };
 
@@ -94,7 +94,14 @@ describe("the node filtering", () => {
     }
   };
 
-  const edges = [dated, draft, anotherDated, draft, noprefix, unconventionalDraftPrefix];
+  const page = {
+    node: {
+      frontmatter: { category: "site-furniture" },
+      fields: { source: "pages", slug: "about", prefix: "1" }
+    }
+  };
+
+  const edges = [dated, draft, anotherDated, draft, noprefix, page, unconventionalDraftPrefix];
 
   describe("in non-production environments", () => {
     it("leaves everything", async () => {
@@ -103,6 +110,11 @@ describe("the node filtering", () => {
 
     it("handles empty lists", async () => {
       expect(filterOutDrafts([])).toEqual([]);
+    });
+
+    it("leaves in drafts", async () => {
+      expect(filterOutDrafts(edges)).toContain(draft);
+      expect(filterOutDrafts(edges)).toContain(unconventionalDraftPrefix);
     });
   });
 
@@ -123,8 +135,22 @@ describe("the node filtering", () => {
       expect(filterOutDrafts([{}])).toEqual([{}]);
     });
 
+    it("leaves page furniture even if it does not have a date", async () => {
+      expect(filterOutDrafts(edges)).toContain(page);
+    });
+
+    it("leaves posts with dates", async () => {
+      expect(filterOutDrafts(edges)).toContain(dated);
+      expect(filterOutDrafts(edges)).toContain(anotherDated);
+    });
+
     it("strips out drafts", async () => {
-      expect(filterOutDrafts(edges)).toEqual([dated, anotherDated]);
+      expect(filterOutDrafts(edges)).not.toContain(draft);
+      expect(filterOutDrafts(edges)).not.toContain(unconventionalDraftPrefix);
+    });
+
+    it("strips out content with no prefix", async () => {
+      expect(filterOutDrafts(edges)).not.toContain(noprefix);
     });
   });
 });

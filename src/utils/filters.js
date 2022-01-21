@@ -1,4 +1,5 @@
-const DATE_REGEX = /\d{4}-\d{2}-\d{2}/;
+// Matches dates or single digit numbers (for src/pages which are site furniture)
+const DATE_REGEX = /^\d$|\d{4}-\d{2}-\d{2}/;
 // Export for ease of testing
 exports.DATE_REGEX = DATE_REGEX;
 
