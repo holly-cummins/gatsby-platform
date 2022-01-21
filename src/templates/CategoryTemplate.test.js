@@ -22,7 +22,7 @@ describe("CategoryTemplate", () => {
     const node = {
       node: {
         frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug }
+        fields: { source: "some-source", slug, prefix: "2021-12-17" }
       }
     };
 

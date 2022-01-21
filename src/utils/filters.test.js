@@ -86,7 +86,15 @@ describe("the node filtering", () => {
       fields: { source: "posts", slug: "done-now", prefix: "2022-01-17" }
     }
   };
-  const edges = [dated, draft, draft, noprefix, unconventionalDraftPrefix];
+
+  const anotherDated = {
+    node: {
+      frontmatter: { category: "cat-stuff" },
+      fields: { source: "posts", slug: "perfect", prefix: "1978-10-04" }
+    }
+  };
+
+  const edges = [dated, draft, anotherDated, draft, noprefix, unconventionalDraftPrefix];
 
   describe("in non-production environments", () => {
     it("leaves everything", async () => {
@@ -116,7 +124,7 @@ describe("the node filtering", () => {
     });
 
     it("strips out drafts", async () => {
-      expect(filterOutDrafts(edges)).toEqual([dated, noprefix]);
+      expect(filterOutDrafts(edges)).toEqual([dated, anotherDated]);
     });
   });
 });

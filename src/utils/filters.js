@@ -1,4 +1,4 @@
-const DATE_REGEX = /(\d{4}-\d{2}-\d{2})|^$/;
+const DATE_REGEX = /(\d{4}-\d{2}-\d{2})/;
 // Export for ease of testing
 exports.DATE_REGEX = DATE_REGEX;
 
@@ -34,8 +34,8 @@ exports.generateFilter = otherFilter => {
 exports.filterOutDrafts = edges => {
   if (isProd()) {
     edges = edges.filter(edge => {
-      if (edge.node && edge.node.fields && edge.node.fields.prefix) {
-        // If there is a prefix, it should match a date
+      if (edge.node && edge.node.fields) {
+        // The prefix should exist and match a date in prod
         return DATE_REGEX.test(edge.node.fields.prefix);
       } else {
         // If there is no prefix at all, let it through (because otherwise tests get bogged down in boilerplate)

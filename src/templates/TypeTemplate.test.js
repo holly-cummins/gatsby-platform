@@ -22,7 +22,7 @@ describe("TypeTemplate", () => {
   const node = {
     node: {
       frontmatter: { type: "dance-off", title },
-      fields: { source: "some-source", slug }
+      fields: { source: "some-source", slug, prefix: "2019-05-25" }
     }
   };
 

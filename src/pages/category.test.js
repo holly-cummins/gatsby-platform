@@ -48,7 +48,8 @@ describe("CategoryPage", () => {
     const post1 = {
       node: {
         fields: {
-          slug: "/slug1/"
+          slug: "/slug1/",
+          prefix: "2020-10-10"
         },
         frontmatter: {
           title: title1,

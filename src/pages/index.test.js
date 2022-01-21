@@ -48,7 +48,8 @@ describe("IndexPage", () => {
     const post1 = {
       node: {
         fields: {
-          slug: "/slug1/"
+          slug: "/slug1/",
+          prefix: "2021-12-17"
         },
         frontmatter: {
           title: title1,
@@ -59,7 +60,8 @@ describe("IndexPage", () => {
     const post2 = {
       node: {
         fields: {
-          slug: "/slug2/"
+          slug: "/slug2/",
+          prefix: "2022-04-07"
         },
         frontmatter: {
           title: title2,
