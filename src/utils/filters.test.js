@@ -1,4 +1,4 @@
-import { generateFilter, filterOutDrafts } from "./filters";
+import { generateFilter, filterOutDrafts, DATE_REGEX } from "./filters";
 
 const OLD_ENV = process.env;
 
@@ -42,13 +42,16 @@ describe("the graphql filter generation", () => {
       restoreOldEnvironment();
     });
 
+    // These tests are a bit 'writing the implementation down twice' but it's not worth the effort to get to a higher level of validation
     it("gives a basic filter if there are no other filters", async () => {
-      expect(generateFilter()).toEqual({ fields: { slug: { ne: "" }, prefix: { ne: "draft" } } });
+      expect(generateFilter()).toEqual({
+        fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } }
+      });
     });
 
     it("combines the filters if a filter is passed in", async () => {
       expect(generateFilter({ frontmatter: { type: { eq: "cats" } } })).toEqual({
-        fields: { slug: { ne: "" }, prefix: { ne: "draft" } },
+        fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } },
         frontmatter: { type: { eq: "cats" } }
       });
     });
@@ -62,10 +65,19 @@ describe("the node filtering", () => {
       fields: { source: "posts", slug: "not-yet", prefix: "draft" }
     }
   };
-  const undated = {
+
+  const unconventionalDraftPrefix = {
+    node: {
+      frontmatter: { category: "test-stuff" },
+      fields: { source: "posts", slug: "still-not-yet", prefix: "unready" }
+    }
+  };
+
+  // This should perhaps count as a draft but requiring a prefix would add a lot of bulk to the tests, so do not bother
+  const noprefix = {
     node: {
       frontmatter: { category: "final-stuff" },
-      fields: { source: "posts", slug: "done-now" }
+      fields: { source: "posts", slug: "no-prefix" }
     }
   };
   const dated = {
@@ -74,7 +86,7 @@ describe("the node filtering", () => {
       fields: { source: "posts", slug: "done-now", prefix: "2022-01-17" }
     }
   };
-  const edges = [dated, draft, draft, undated];
+  const edges = [dated, draft, draft, noprefix, unconventionalDraftPrefix];
 
   describe("in non-production environments", () => {
     it("leaves everything", async () => {
@@ -104,7 +116,7 @@ describe("the node filtering", () => {
     });
 
     it("strips out drafts", async () => {
-      expect(filterOutDrafts(edges)).toEqual([dated, undated]);
+      expect(filterOutDrafts(edges)).toEqual([dated, noprefix]);
     });
   });
 });

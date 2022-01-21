@@ -48,7 +48,7 @@ npm run test:int
 Blog posts live in `content/posts`.
 To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name. Once you've created the markdown, run `./scripts/preprocess-publications.js` to download cover images for local development.
 
-To move something from draft to published, add a date prefix to the directory name.
+To move something from draft to published, add a `yyyy-mm-dd` date prefix to the directory name.
 
 To change the favicon, after replacing the files in `src/images/app-icons` you need to run npm run `generate-app-icons` and then copy the `static/icons/favicon-16x16.png` to `static/favicon.ico`.
 

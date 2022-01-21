@@ -1,3 +1,7 @@
+const DATE_REGEX = /(\d{4}-\d{2}-\d{2})|^$/;
+// Export for ease of testing
+exports.DATE_REGEX = DATE_REGEX;
+
 // Do not create draft post files in production.
 // This is dynamic rather than a constant for ease of testing
 // See https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/ for details of the GATSBY_ variables
@@ -20,7 +24,7 @@ exports.generateFilter = otherFilter => {
   let draftsFilters = { fields: { slug: { ne: "" } } };
 
   if (isProd()) {
-    draftsFilters = { fields: { slug: { ne: "" }, prefix: { ne: "draft" } } };
+    draftsFilters = { fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } } };
   }
   const filters = { ...draftsFilters, ...otherFilter };
 
@@ -29,9 +33,15 @@ exports.generateFilter = otherFilter => {
 
 exports.filterOutDrafts = edges => {
   if (isProd()) {
-    edges = edges.filter(edge =>
-      edge.node && edge.node.fields ? edge.node.fields.prefix != "draft" : true
-    );
+    edges = edges.filter(edge => {
+      if (edge.node && edge.node.fields && edge.node.fields.prefix) {
+        // If there is a prefix, it should match a date
+        return DATE_REGEX.test(edge.node.fields.prefix);
+      } else {
+        // If there is no prefix at all, let it through (because otherwise tests get bogged down in boilerplate)
+        return true;
+      }
+    });
   }
   return edges;
 };
