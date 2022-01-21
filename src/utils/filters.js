@@ -1,4 +1,4 @@
-const DATE_REGEX = /(\d{4}-\d{2}-\d{2})/;
+const DATE_REGEX = /\d{4}-\d{2}-\d{2}/;
 // Export for ease of testing
 exports.DATE_REGEX = DATE_REGEX;
 
