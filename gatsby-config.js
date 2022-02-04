@@ -46,11 +46,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-gtag`,
+      resolve: "microanalytics",
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
-        head: true,
-        anonymize: true
+        id: process.env.MICROANALYTICS_ID
       }
     },
     `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files
