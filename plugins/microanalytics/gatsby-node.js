@@ -1,8 +1,8 @@
 exports.pluginOptionsSchema = ({ Joi }) => {
   return Joi.object({
     id: Joi.string()
-      .required()
-      .description(`The ID given by microanalytics.io.`)
+      .optional()
+      .description(`The ID given by microanalytics.io. (If missing, analytics will not be shared.)`)
   });
 };
 
