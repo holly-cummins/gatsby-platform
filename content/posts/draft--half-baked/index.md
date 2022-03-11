@@ -2,7 +2,7 @@
 title: Half-baked ramblings
 category: "cats"
 cover: hairball.png
-author: holly cummins
+author: ducky devine
 type: blog
 ---
 
