@@ -190,3 +190,21 @@ exports.onCreateWebpackConfig = ({ stage, actions }, options) => {
       });
   }
 };
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+  type MarkdownRemark implements Node {
+    frontmatter: Frontmatter
+  }
+  type OEmbed implements Node {
+    url: String!
+    title: String
+    html: String
+  }
+  type Frontmatter {
+    video: OEmbed
+  }
+  `;
+  createTypes(typeDefs);
+};

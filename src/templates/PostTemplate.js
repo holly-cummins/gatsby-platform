@@ -6,6 +6,7 @@ require("prismjs/themes/prism-okaidia.css");
 import Seo from "../components/Seo";
 import Article from "../components/Article";
 import Post from "../components/Post";
+import Talk from "../components/Talk";
 import { ThemeContext } from "../layouts";
 
 const PostTemplate = props => {
@@ -22,7 +23,11 @@ const PostTemplate = props => {
       <ThemeContext.Consumer>
         {theme => (
           <Article theme={theme}>
-            <Post post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
+            {post.frontmatter.type == "talk" ? (
+              <Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
+            ) : (
+              <Post post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
+            )}
           </Article>
         )}
       </ThemeContext.Consumer>
@@ -54,6 +59,12 @@ export const postQuery = graphql`
         title
         author
         category
+        type
+        event
+        video {
+          title
+          html
+        }
         cover {
           childImageSharp {
             resize(width: 300) {

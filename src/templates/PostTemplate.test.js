@@ -13,21 +13,63 @@ const renderWithTheme = ui => {
 };
 
 describe("PostTemplate", () => {
-  it("renders the title", () => {
+  describe("for a generic post", () => {
     const authorNote = "author-note";
     const slug = "sluggeroo";
     const title = "some post";
+    const body = "post-content";
     const post = {
       frontmatter: { category: "test-stuff", title, author: "bob" },
       fields: { prefix: "prefixeroo", slug },
-      html: "post-content"
+      html: `<p>${body}</p>`
     };
     const data = {
       post,
       authornote: { html: authorNote }
     };
 
-    const tree = renderWithTheme(<PostTemplate data={data} pageContext={{}} />);
-    expect(screen.getByText(title)).toBeTruthy();
+    // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
+    beforeEach(() => {
+      const tree = renderWithTheme(<PostTemplate data={data} pageContext={{}} />);
+    });
+
+    it("renders the post body", () => {
+      expect(screen.getByText(body)).toBeTruthy();
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+  });
+
+  describe("for a talk", () => {
+    const authorNote = "author-note";
+    const slug = "sluggeroo";
+    const title = "an amazing presentation";
+    const type = "talk";
+    const event = "brilliant conference";
+    const post = {
+      frontmatter: { category: "test-stuff", title, type, event, author: "bob" },
+      fields: { prefix: "prefixeroo", slug }
+      // No html field for a talk
+    };
+    const data = {
+      post,
+      authornote: { html: authorNote }
+    };
+
+    // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
+    beforeEach(() => {
+      const tree = renderWithTheme(<PostTemplate data={data} pageContext={{}} />);
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    // We test this mostly to make sure the right component was rendered
+    it("renders the event name", () => {
+      expect(screen.getByText(event)).toBeTruthy();
+    });
   });
 });
