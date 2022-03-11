@@ -7,6 +7,7 @@ import Headline from "../Article/Headline";
 import Meta from "../Post/Meta";
 import Author from "../Post/Author";
 import NextPrev from "../Post/NextPrev";
+import Video from "./Video";
 
 const Share = asyncComponent(() =>
   import("../Post/Share")
@@ -29,24 +30,14 @@ const Talk = props => {
     theme
   } = props;
 
-  const videoComponent = () => {
-    if (video && video.html) {
-      return (
-        <React.Fragment>
-          {video.title}
-          <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
-        </React.Fragment>
-      );
-    }
-  };
-
   return (
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
         <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
       </header>
-      {videoComponent()}
+
+      <Video video={video} theme={theme} />
 
       <footer>
         <Share post={post} theme={theme} />
