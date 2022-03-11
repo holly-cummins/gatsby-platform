@@ -5,15 +5,23 @@ import { Link } from "gatsby";
 import { Calendar20 as Calendar } from "@carbon/icons-react";
 import { Tag20 as Tag } from "@carbon/icons-react";
 import { User20 as User } from "@carbon/icons-react";
+import { PresentationFile20 as Talk } from "@carbon/icons-react";
 
 const Meta = props => {
-  const { prefix, author: authorName, category, theme } = props;
+  const { prefix, author: authorName, category, event, theme } = props;
 
   return (
     <p className="meta">
       <span>
         <Calendar /> {prefix}
       </span>
+      {event ? (
+        <span>
+          <Talk /> {event}
+        </span>
+      ) : (
+        <span></span>
+      )}
       <span>
         <User /> {authorName}
       </span>
@@ -57,7 +65,8 @@ const Meta = props => {
 Meta.propTypes = {
   prefix: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  category: PropTypes.string,
+  event: PropTypes.string,
+  category: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired
 };
 

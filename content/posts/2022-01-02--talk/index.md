@@ -4,7 +4,7 @@ category: "cats"
 cover: hairball.png
 author: ducky devine
 type: talk
-event: DuckCon 2021
+event: DuckCon
 video:
   url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
 ---

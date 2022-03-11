@@ -44,9 +44,8 @@ const Talk = props => {
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} author={author} category={category} theme={theme} />
+        <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
       </header>
-      <p>{event}</p>
       {videoComponent()}
 
       <footer>
