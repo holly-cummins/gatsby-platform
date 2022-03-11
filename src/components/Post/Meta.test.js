@@ -33,7 +33,9 @@ describe("Meta", () => {
     const event = "DuckCon";
 
     beforeEach(() => {
-      render(<Meta prefix={prefix} author={author} category={category} theme={theme} />);
+      render(
+        <Meta prefix={prefix} author={author} category={category} event={event} theme={theme} />
+      );
     });
     it("renders the author", () => {
       expect(screen.getByText(author)).toBeTruthy();
