@@ -7,6 +7,8 @@ type: talk
 event: DuckCon
 video:
   url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
+slides:
+  url: https://speakerdeck.com/tanoku/ruby-is-unlike-a-banana
 ---
 
-In this talk, Ducky quacks, waddles, amd
+In this talk, Ducky quacks, waddles, and generally looks foolish.
