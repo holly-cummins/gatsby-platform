@@ -198,12 +198,13 @@ exports.createSchemaCustomization = ({ actions }) => {
     frontmatter: Frontmatter
   }
   type OEmbed implements Node {
-    url: String!
-    title: String
-    html: String
+    url: String
+    title: String!
+    html: String!
   }
   type Frontmatter {
     video: OEmbed
+    slides: OEmbed
   }
   `;
   createTypes(typeDefs);

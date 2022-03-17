@@ -29,8 +29,8 @@ jest.spyOn(parser, "extract");
 const { mutateSource } = require("./index");
 
 describe("the preprocessor", () => {
-  const videoTitle = oembedResponse.title;
-  const videoHtml = oembedResponse.html;
+  const oembedTitle = oembedResponse.title;
+  const oembedHtml = oembedResponse.html;
 
   beforeAll(async () => {
     beforeAll(async () => {
@@ -70,7 +70,7 @@ describe("the preprocessor", () => {
     });
   });
 
-  describe("for a page with oembed links", () => {
+  describe("for a page with video oembed links", () => {
     const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
     const originalTitle = "D is For Duck";
 
@@ -101,28 +101,67 @@ describe("the preprocessor", () => {
     });
 
     it("extracts oembed metadata", async () => {
-      expect(frontmatter.video.title).toEqual(videoTitle);
+      expect(frontmatter.video.title).toEqual(oembedTitle);
     });
 
     it("extracts oembed link", async () => {
-      expect(frontmatter.video.html).toEqual(videoHtml);
+      expect(frontmatter.video.html).toEqual(oembedHtml);
     });
 
     it("does not override the document title", async () => {
       expect(frontmatter.title).toEqual(originalTitle);
     });
+
+    describe("for a page with no title", () => {
+      const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
+
+      const frontmatter = {
+        url: "https://www.manning.com/books/d-is-for-duck",
+        cover: "d-is-for-duck-abc-1923.png",
+        author: "ducky devine",
+        category: "quacking",
+        type: "book",
+        video: { url }
+      };
+
+      const page = {
+        markdownNode: { frontmatter }
+      };
+
+      beforeAll(async () => {
+        await mutateSource(page);
+      });
+
+      afterAll(() => {
+        jest.clearAllMocks();
+      });
+
+      it("extracts oembed metadata", async () => {
+        expect(frontmatter.video.title).toEqual(oembedTitle);
+      });
+
+      it("extracts oembed link", async () => {
+        expect(frontmatter.video.html).toEqual(oembedHtml);
+      });
+
+      it("sets a document title", async () => {
+        expect(frontmatter.title).toEqual(oembedTitle);
+      });
+    });
   });
 
-  describe("for a page with no title", () => {
-    const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
+  describe("for a page with slide oembed links", () => {
+    const url = "https://speakerdeck.com/tanoku/ruby-is-unlike-a-banana";
+    const originalTitle = "D is For Duck";
 
     const frontmatter = {
+      title: originalTitle,
       url: "https://www.manning.com/books/d-is-for-duck",
       cover: "d-is-for-duck-abc-1923.png",
       author: "ducky devine",
       category: "quacking",
       type: "book",
-      video: { url }
+      slides: { url }
     };
 
     const page = {
@@ -142,15 +181,15 @@ describe("the preprocessor", () => {
     });
 
     it("extracts oembed metadata", async () => {
-      expect(frontmatter.video.title).toEqual(videoTitle);
+      expect(frontmatter.slides.title).toEqual(oembedTitle);
     });
 
     it("extracts oembed link", async () => {
-      expect(frontmatter.video.html).toEqual(videoHtml);
+      expect(frontmatter.slides.html).toEqual(oembedHtml);
     });
 
-    it("sets a document title", async () => {
-      expect(frontmatter.title).toEqual(videoTitle);
+    it("does not override the document title", async () => {
+      expect(frontmatter.title).toEqual(originalTitle);
     });
   });
 });

@@ -65,6 +65,10 @@ export const postQuery = graphql`
           title
           html
         }
+        slides {
+          title
+          html
+        }
         cover {
           childImageSharp {
             resize(width: 300) {

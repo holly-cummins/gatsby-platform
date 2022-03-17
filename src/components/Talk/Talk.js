@@ -7,6 +7,7 @@ import Headline from "../Article/Headline";
 import Meta from "../Post/Meta";
 import Author from "../Post/Author";
 import NextPrev from "../Post/NextPrev";
+import Slides from "./Slides";
 import Video from "./Video";
 
 const Share = asyncComponent(() =>
@@ -22,7 +23,7 @@ const Talk = props => {
     post,
     post: {
       fields: { prefix },
-      frontmatter: { title, author, category, event, video }
+      frontmatter: { title, author, category, event, video, slides }
     },
     authornote,
     next: nextPost,
@@ -37,6 +38,7 @@ const Talk = props => {
         <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
       </header>
 
+      <Slides slides={slides} theme={theme} />
       <Video video={video} theme={theme} />
 
       <footer>
