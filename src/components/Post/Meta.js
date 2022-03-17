@@ -20,7 +20,7 @@ const Meta = props => {
           <Talk /> {event}
         </span>
       ) : (
-        <span></span>
+        <></>
       )}
       <span>
         <User /> {authorName}
