@@ -8,7 +8,7 @@ event: DuckCon
 video:
   url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
 slides:
-  url: https://speakerdeck.com/tanoku/ruby-is-unlike-a-banana
+  url: https://noti.st/holly-cummins/UYicEx
 ---
 
 In this talk, Ducky quacks, waddles, and generally looks foolish.

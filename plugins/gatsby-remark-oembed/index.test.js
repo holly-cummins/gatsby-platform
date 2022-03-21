@@ -22,15 +22,39 @@ jest.mock("oembed-parser", () => ({
     return new Promise(resolve => {
       resolve(oembedResponse);
     });
-  }
+  },
+  setProviderList: () => {}
 }));
 jest.spyOn(parser, "extract");
+jest.spyOn(parser, "setProviderList");
 
 const { mutateSource } = require("./index");
 
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
   const oembedHtml = oembedResponse.html;
+
+  it("adds notist to the list of providers", async () => {
+    expect(parser.setProviderList.mock.calls.length).toBe(1);
+    const newProviderList = parser.setProviderList.mock.calls[0][0];
+    // We should tell the parser about notist
+    expect(newProviderList).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          provider_name: "notist"
+        })
+      ])
+    );
+
+    // The parser should still know about youtube
+    expect(newProviderList).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          provider_name: "YouTube"
+        })
+      ])
+    );
+  });
 
   describe("for a page with no oembed links", () => {
     const frontmatter = {
