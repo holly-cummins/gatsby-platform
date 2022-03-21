@@ -7,7 +7,7 @@ import theme from "../../theme/theme.yaml";
 describe("Slides", () => {
   describe("with populated content", () => {
     const title = "content";
-    const slides = { html: <p>hi</p>, title };
+    const slides = { html: "<p>hi</p>", title };
 
     beforeEach(() => {
       render(<Slides slides={slides} theme={theme} />);

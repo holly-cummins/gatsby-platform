@@ -7,7 +7,7 @@ import theme from "../../theme/theme.yaml";
 describe("Video", () => {
   describe("with populated content", () => {
     const title = "content";
-    const video = { html: <p>hi</p>, title };
+    const video = { html: "<p>hi</p>", title };
 
     beforeEach(() => {
       render(<Video video={video} theme={theme} />);
