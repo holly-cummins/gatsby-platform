@@ -8,7 +8,6 @@ const Meta = props => {
   if (video && video.html) {
     return (
       <React.Fragment>
-        {video.title}
         <EmbedContainer markup={video.html}>
           <h2>{video.title}</h2>
           <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
