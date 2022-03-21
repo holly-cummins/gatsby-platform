@@ -32,12 +32,6 @@ describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
   const oembedHtml = oembedResponse.html;
 
-  beforeAll(async () => {
-    beforeAll(async () => {
-      await mutateSource(page);
-    });
-  });
-
   describe("for a page with no oembed links", () => {
     const frontmatter = {
       title: "D is For Duck",
