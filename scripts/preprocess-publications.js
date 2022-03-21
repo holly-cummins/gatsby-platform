@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const urlMetadata = require("url-metadata");
 const request = require("request");
 const path = require("path");
-const url = require("url");
 const metadataParser = require("markdown-yaml-metadata-parser");
 
 const dir = "./content/publications";
-const moveTo = "/tmp/moveto";
 
 // Make an async function that gets executed immediately
 const processDirectory = async () => {
