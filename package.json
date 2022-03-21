@@ -59,6 +59,7 @@
     "react-instantsearch": "^5.2.2",
     "react-md-spinner": "^0.3.0",
     "react-obfuscate": "^2.1.4",
+    "react-oembed-container": "^1.0.1",
     "react-share": "^2.2.0",
     "react-visibility-sensor": "^4.1.0",
     "rehype-react": "^7.0.3",

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import EmbedContainer from "react-oembed-container";
 
 const Meta = props => {
   const { video, theme } = props;
@@ -8,7 +9,10 @@ const Meta = props => {
     return (
       <React.Fragment>
         {video.title}
-        <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
+        <EmbedContainer markup={video.html}>
+          <h2>{video.title}</h2>
+          <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
+        </EmbedContainer>
 
         {/* --- STYLES --- */}
         <style jsx>{`

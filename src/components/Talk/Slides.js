@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import EmbedContainer from "react-oembed-container";
 
 const Meta = props => {
   const { slides, theme } = props;
@@ -7,8 +8,10 @@ const Meta = props => {
   if (slides && slides.html) {
     return (
       <React.Fragment>
-        {slides.title}
-        <div className="slides" dangerouslySetInnerHTML={{ __html: slides.html }} />
+        <EmbedContainer markup={slides.html}>
+          <h2>{slides.title}</h2>
+          <div className="slides" dangerouslySetInnerHTML={{ __html: slides.html }} />
+        </EmbedContainer>
 
         {/* --- STYLES --- */}
         <style jsx>{`
