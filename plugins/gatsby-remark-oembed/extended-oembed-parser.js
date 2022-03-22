@@ -21,6 +21,6 @@ try {
   console.error("Could not adjust oembed providers: ", error);
 }
 
-exports.extract = url => {
-  return extract(url);
+exports.extract = (url, params) => {
+  return extract(url, params);
 };

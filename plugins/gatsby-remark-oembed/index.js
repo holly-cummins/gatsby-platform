@@ -5,12 +5,12 @@ const request = require("request");
 
 const { extract } = require("./extended-oembed-parser");
 
-exports.mutateSource = async ({ markdownNode }) => {
+exports.mutateSource = async ({ markdownNode }, options) => {
   const { frontmatter } = markdownNode;
   const markdownFile = markdownNode.fileAbsolutePath;
 
   if (frontmatter.slides) {
-    await enrich(frontmatter.slides, markdownFile);
+    await enrich(frontmatter.slides, markdownFile, options.maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.slides.title;
@@ -24,7 +24,7 @@ exports.mutateSource = async ({ markdownNode }) => {
   }
 
   if (frontmatter.video) {
-    await enrich(frontmatter.video, markdownFile);
+    await enrich(frontmatter.video, markdownFile, options.maxWidth);
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.video.title;
@@ -35,10 +35,13 @@ exports.mutateSource = async ({ markdownNode }) => {
   }
 };
 
-const enrich = async (oembedObject, post) => {
+const enrich = async (oembedObject, post, maxwidth) => {
   const url = oembedObject.url;
+  // Allow the height to be as big as the width and let youtube shrink it down;
+  // Otherwise we get a small default so don't get the width
+  const params = { maxwidth, maxheight: maxwidth };
 
-  const oembedData = await extract(url);
+  const oembedData = await extract(url, params);
   if (oembedData) {
     const imageUrl = oembedData.thumbnail_url;
     const remotePath = nodeUrl.parse(imageUrl).pathname;

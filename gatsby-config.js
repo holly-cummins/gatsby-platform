@@ -124,7 +124,12 @@ module.exports = {
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-oembed`,
+          {
+            resolve: `gatsby-remark-oembed`,
+            options: {
+              maxWidth: 800
+            }
+          },
           `gatsby-remark-smartypants`,
           {
             resolve: "gatsby-remark-emojis",
