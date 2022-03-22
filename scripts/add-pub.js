@@ -18,6 +18,23 @@ const download = async (url, fileName) => {
   });
 };
 
+const extractDate = async metadata => {
+  let date = "unknown";
+
+  // Look for something that looks like a date;
+  // it varies from site to site and many don't have it at all
+  const fields = Object.keys(metadata);
+  const dateFields = fields.filter(name => name.includes("time") || name.includes("date"));
+  const dateField = dateFields.find(field => metadata[field] && metadata[field].length > 0);
+  if (dateField) {
+    date = new Date(Date.parse(metadata[dateField])).toISOString().slice(0, 10);
+  } else {
+    // Sometimes there's a date in the json for linking data
+    date = extractDate(metadata.jsonld);
+  }
+  return date;
+};
+
 const createMarkdown = async () => {
   const metadata = await urlMetadata(targetUrl);
 
@@ -27,13 +44,7 @@ const createMarkdown = async () => {
 
   // Look for something that looks like a date;
   // it varies from site to site and many don't have it at all
-  let date = "unknown";
-  const fields = Object.keys(metadata);
-  const dateFields = fields.filter(name => name.includes("time") || name.includes("date"));
-  const dateField = dateFields.find(field => metadata[field] && metadata[field].length > 0);
-  if (dateField) {
-    date = new Date(Date.parse(metadata[dateField])).toISOString().slice(0, 10);
-  }
+  const date = await extractDate(metadata);
 
   const ogAuthor = metadata.author;
   // If the name is a variation of my name, just use my name
