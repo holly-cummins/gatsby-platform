@@ -44,17 +44,20 @@ const enrich = async (oembedObject, post, maxwidth) => {
   const oembedData = await extract(url, params);
   if (oembedData) {
     const imageUrl = oembedData.thumbnail_url;
-    const remotePath = nodeUrl.parse(imageUrl).pathname;
-    const thumbnail = path.parse(remotePath).base;
+    if (imageUrl) {
+      const remotePath = nodeUrl.parse(imageUrl).pathname;
+      const thumbnail = path.parse(remotePath).base;
 
-    // No need to wait for the download
-    downloadThumbnail(imageUrl, post);
+      // No need to wait for the download
+      downloadThumbnail(imageUrl, post);
+
+      oembedObject.thumbnail = thumbnail;
+    }
 
     Object.assign(oembedObject, {
       link: url,
       title: oembedData.title,
-      html: oembedData.html,
-      thumbnail
+      html: oembedData.html
     });
   }
 };
