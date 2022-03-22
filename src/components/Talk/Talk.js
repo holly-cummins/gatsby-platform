@@ -4,6 +4,7 @@ import "prismjs/themes/prism-okaidia.css";
 
 import asyncComponent from "../AsyncComponent";
 import Headline from "../Article/Headline";
+import Bodytext from "../Article/Bodytext";
 import Meta from "../Post/Meta";
 import Author from "../Post/Author";
 import NextPrev from "../Post/NextPrev";
@@ -22,6 +23,7 @@ const Talk = props => {
   const {
     post,
     post: {
+      html,
       fields: { prefix },
       frontmatter: { title, author, category, event, video, slides }
     },
@@ -37,6 +39,7 @@ const Talk = props => {
         <Headline title={title} theme={theme} />
         <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
       </header>
+      <Bodytext html={html} theme={theme} />
 
       <Slides slides={slides} theme={theme} />
       <Video video={video} theme={theme} />
