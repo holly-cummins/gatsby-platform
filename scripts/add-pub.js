@@ -82,4 +82,4 @@ ${metadata.description}`;
   fs.writeFileSync(fileName, str, "utf8");
 };
 
-return createMarkdown();
+createMarkdown();
