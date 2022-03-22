@@ -8,6 +8,7 @@ const Meta = props => {
   if (slides && slides.html) {
     return (
       <React.Fragment>
+        <div className="separator"></div>
         <EmbedContainer markup={slides.html}>
           <h2>{slides.title}</h2>
           <div className="slides" dangerouslySetInnerHTML={{ __html: slides.html }} />
@@ -18,7 +19,15 @@ const Meta = props => {
           :global(iframe) {
             border-radius: ${theme.size.radius.default};
           }
-
+          .separator {
+            border-top: 1px solid ${theme.line.color};
+            content: "";
+            transition: all ${theme.time.duration.default};
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: ${theme.space.default};
+          }
           .slides {
             display: flex;
             flex-flow: row wrap;

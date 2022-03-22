@@ -8,6 +8,7 @@ const Meta = props => {
   if (video && video.html) {
     return (
       <React.Fragment>
+        <div className="separator"></div>
         <EmbedContainer markup={video.html}>
           <h2>{video.title}</h2>
           <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
@@ -17,6 +18,16 @@ const Meta = props => {
         <style jsx>{`
           :global(iframe) {
             border-radius: ${theme.size.radius.default};
+          }
+
+          .separator {
+            border-top: 1px solid ${theme.line.color};
+            content: "";
+            transition: all ${theme.time.duration.default};
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: ${theme.space.default};
           }
 
           .video {

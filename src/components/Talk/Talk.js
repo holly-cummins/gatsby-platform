@@ -40,30 +40,13 @@ const Talk = props => {
         <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
       </header>
       <Bodytext html={html} theme={theme} />
-      <div className="separator"></div>
       <Slides slides={slides} theme={theme} />
-      <div className="separator"></div>
-
       <Video video={video} theme={theme} />
       <footer>
         <Share post={post} theme={theme} />
         <Author note={authornote} theme={theme} />
         <NextPrev next={nextPost} prev={prevPost} theme={theme} />
       </footer>
-
-      {/* --- STYLES --- */}
-
-      <style jsx>{`
-        .separator {
-          border-top: 1px solid ${theme.line.color};
-          content: "";
-          transition: all ${theme.time.duration.default};
-          width: 50%;
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: ${theme.space.default};
-        }
-      `}</style>
     </React.Fragment>
   );
 };
