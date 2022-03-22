@@ -15,6 +15,10 @@ const Meta = props => {
 
         {/* --- STYLES --- */}
         <style jsx>{`
+          :global(iframe) {
+            border-radius: ${theme.size.radius.default};
+          }
+
           .slides {
             display: flex;
             flex-flow: row wrap;
