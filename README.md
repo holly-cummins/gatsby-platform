@@ -46,7 +46,9 @@ npm run test:int
 ### Adding content
 
 Blog posts live in `content/posts`.
-To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name. Once you've created the markdown, run `./scripts/preprocess-publications.js` to download cover images for local development.
+To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name. Once you've created the markdown, run `./scripts/preprocess-publications.js` to download cover images for local development. To add an external talk, use `./scripts/add-talk.js [slides] [video]` and then fix up the generated content in `content/posts`. Some content will be filled in from the oembed data by a plugin.
+
+If downloading a fresh copy of the source, run `./scripts/preprocess-publications.js` to download gitignored cover images for local development.
 
 To move something from draft to published, add a `yyyy-mm-dd` date prefix to the directory name.
 
