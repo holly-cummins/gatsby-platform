@@ -13,14 +13,17 @@ const List = props => {
           const {
             node: {
               frontmatter: { title, url, type },
-              fields: { slug }
+              fields: { slug, prefix }
             }
           } = edge;
 
           const Icon = icon(type);
+          // Styling the icon is hard without grabbing other svg on the page, so chear wrap it in a container
+
           return (
             <li key={slug} className="post-list">
-              {Icon && <Icon />}
+              <div className="type">{Icon && <Icon />}</div>
+              <div className="date">{prefix}</div>
               {url ? (
                 <a href={url} className="link">
                   {title}
@@ -44,12 +47,20 @@ const List = props => {
           padding: ${theme.space.xs} 0;
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
+          display: flex;
         }
-        :global(svg) {
+        .date {
+          color: ${theme.color.brand.light};
+          padding-right: 10px;
+        }
+        .type {
           position: relative;
           top: 4px;
           left: -10px;
-          fill: ${theme.text.color.primary};
+          position: relative;
+          top: 4px;
+          left: -10px;
+          color: ${theme.text.color.primary};
           stroke-width: 40;
           animation-duration: ${theme.time.duration.long};
           animation-name: buttonIconMove;
