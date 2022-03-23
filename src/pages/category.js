@@ -108,6 +108,7 @@ export const query = graphql`
             title
             category
             author
+            type
             url
             cover {
               children {
