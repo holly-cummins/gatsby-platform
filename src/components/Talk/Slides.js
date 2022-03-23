@@ -29,18 +29,7 @@ const Meta = props => {
             margin-bottom: ${theme.space.default};
           }
           .slides {
-            display: flex;
-            flex-flow: row wrap;
-            font-size: 0.8em;
             margin: ${theme.space.m} 0;
-            background: transparent;
-
-            span {
-              align-items: center;
-              display: flex;
-              text-transform: uppercase;
-              margin: ${theme.space.xs} ${theme.space.s} ${theme.space.xs} 0;
-            }
           }
           @from-width tablet {
             .meta {
