@@ -18,6 +18,7 @@ const Meta = props => {
         <style jsx>{`
           :global(iframe) {
             border-radius: ${theme.size.radius.default};
+            width: 100%;
           }
           .separator {
             border-top: 1px solid ${theme.line.color};
