@@ -8,9 +8,10 @@ const { extract } = require("./extended-oembed-parser");
 exports.mutateSource = async ({ markdownNode }, options) => {
   const { frontmatter } = markdownNode;
   const markdownFile = markdownNode.fileAbsolutePath;
+  const maxWidth = options ? options.maxWidth : 700;
 
   if (frontmatter.slides) {
-    await enrich(frontmatter.slides, markdownFile, options.maxWidth);
+    await enrich(frontmatter.slides, markdownFile, maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.slides.title;
@@ -24,7 +25,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   }
 
   if (frontmatter.video) {
-    await enrich(frontmatter.video, markdownFile, options.maxWidth);
+    await enrich(frontmatter.video, markdownFile, maxWidth);
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.video.title;
@@ -39,6 +40,7 @@ const enrich = async (oembedObject, post, maxwidth) => {
   const url = oembedObject.url;
   // Allow the height to be as big as the width and let youtube shrink it down;
   // Otherwise we get a small default so don't get the width
+  // (This assumes things are landscape, but that is reasonable)
   const params = { maxwidth, maxheight: maxwidth };
 
   const oembedData = await extract(url, params);
