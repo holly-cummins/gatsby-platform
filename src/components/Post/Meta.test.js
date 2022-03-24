@@ -34,7 +34,7 @@ describe("Meta", () => {
     const event = "DuckCon";
 
     beforeEach(() => {
-      beforeEach(
+      render(
         <Meta prefix={prefix} author={author} category={category} event={event} theme={theme} />
       );
     });
