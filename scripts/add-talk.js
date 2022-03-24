@@ -38,16 +38,19 @@ const updateGitignore = async (oembedUrl, dir) => {
 const extractDate = async metadata => {
   let date = UNKNOWN;
 
-  // Look for something that looks like a date;
-  // it varies from site to site and many don't have it at all
-  const fields = Object.keys(metadata);
-  const dateFields = fields.filter(name => name.includes("time") || name.includes("date"));
-  const dateField = dateFields.find(field => metadata[field] && metadata[field].length > 0);
-  if (dateField) {
-    date = new Date(Date.parse(metadata[dateField])).toISOString().slice(0, 10);
-  } else {
-    // Sometimes there's a date in the json for linking data
-    date = extractDate(metadata.jsonld);
+  if (metadata) {
+    const fields = Object.keys(metadata);
+
+    // Look for something that looks like a date;
+    // it varies from site to site and many don't have it at all
+    const dateFields = fields.filter(name => name.includes("time") || name.includes("date"));
+    const dateField = dateFields.find(field => metadata[field] && metadata[field].length > 0);
+    if (dateField) {
+      date = new Date(Date.parse(metadata[dateField])).toISOString().slice(0, 10);
+    } else {
+      // Sometimes there's a date in the json for linking data
+      date = extractDate(metadata.jsonld);
+    }
   }
   return date;
 };
