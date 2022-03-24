@@ -70,6 +70,9 @@ const CategoryPage = props => {
               h2 :global(svg) {
                 height: 0.8em;
                 fill: ${theme.color.brand.primary};
+                position: relative;
+                top: 3px;
+                margin-right: 10px;
               }
             `}</style>
           </Article>
