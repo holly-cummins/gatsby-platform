@@ -1,14 +1,14 @@
 import { PresentationFile20 as PresentationFile } from "@carbon/icons-react";
 import { UserSpeaker20 as UserSpeaker } from "@carbon/icons-react";
 import { Notebook20 as Notebook } from "@carbon/icons-react";
-import { RequestQuote20 as RequestQuote } from "@carbon/icons-react";
+import { Document20 as Document } from "@carbon/icons-react";
 import { Microphone20 as Microphone } from "@carbon/icons-react";
 import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
 import { LicenseGlobal20 as LicenseGlobal } from "@carbon/icons-react";
 import React from "react";
 
 const typeIcons = {
-  blog: RequestQuote,
+  blog: Document,
   talk: PresentationFile,
   media: UserSpeaker,
   book: Notebook,
