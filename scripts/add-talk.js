@@ -110,6 +110,7 @@ cover: ${cover}
 author: ${author}
 category: untagged
 type: talk
+event: somewhere
 slides: 
   url: ${slidesUrl}
 `;
