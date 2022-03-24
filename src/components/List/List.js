@@ -18,7 +18,7 @@ const List = props => {
           } = edge;
 
           const Icon = icon(type);
-          // Styling the icon is hard without grabbing other svg on the page, so chear wrap it in a container
+          // Styling the icon is hard without grabbing other svg on the page, so cheat and wrap it in a container
 
           return (
             <li key={slug} className="post-list">
