@@ -5,6 +5,7 @@ cover: placeholder.png
 author: ducky devine
 type: talk
 event: DuckCon
+keynote: false
 slides:
   url: https://noti.st/holly-cummins/UYicEx
 video:
