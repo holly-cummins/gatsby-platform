@@ -61,6 +61,7 @@ export const postQuery = graphql`
         category
         type
         event
+        keynote
         video {
           title
           html

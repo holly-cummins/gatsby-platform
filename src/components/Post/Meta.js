@@ -6,9 +6,10 @@ import { Calendar20 as Calendar } from "@carbon/icons-react";
 import { Tag20 as Tag } from "@carbon/icons-react";
 import { User20 as User } from "@carbon/icons-react";
 import { PresentationFile20 as Talk } from "@carbon/icons-react";
+import { Badge20 as Star } from "@carbon/icons-react";
 
 const Meta = props => {
-  const { prefix, author: authorName, category, event, theme } = props;
+  const { prefix, author: authorName, category, event, keynote, theme } = props;
 
   return (
     <p className="meta">
@@ -18,6 +19,13 @@ const Meta = props => {
       {event ? (
         <span>
           <Talk /> {event}
+        </span>
+      ) : (
+        <></>
+      )}
+      {keynote ? (
+        <span>
+          <Star /> keynote
         </span>
       ) : (
         <></>

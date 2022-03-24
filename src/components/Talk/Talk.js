@@ -25,7 +25,7 @@ const Talk = props => {
     post: {
       html,
       fields: { prefix },
-      frontmatter: { title, author, category, event, video, slides }
+      frontmatter: { title, author, category, event, keynote, video, slides }
     },
     authornote,
     next: nextPost,
@@ -37,7 +37,14 @@ const Talk = props => {
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} event={event} author={author} category={category} theme={theme} />
+        <Meta
+          prefix={prefix}
+          event={event}
+          author={author}
+          category={category}
+          keynote={keynote}
+          theme={theme}
+        />
       </header>
       <Bodytext html={html} theme={theme} />
       <Slides slides={slides} theme={theme} />

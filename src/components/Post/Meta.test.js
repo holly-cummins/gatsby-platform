@@ -13,6 +13,7 @@ describe("Meta", () => {
     beforeEach(() => {
       render(<Meta prefix={prefix} author={author} category={category} theme={theme} />);
     });
+
     it("renders the author", () => {
       expect(screen.getByText(author)).toBeTruthy();
     });
@@ -33,7 +34,7 @@ describe("Meta", () => {
     const event = "DuckCon";
 
     beforeEach(() => {
-      render(
+      beforeEach(
         <Meta prefix={prefix} author={author} category={category} event={event} theme={theme} />
       );
     });
@@ -51,6 +52,49 @@ describe("Meta", () => {
 
     it("renders the event", () => {
       expect(screen.getByText(event)).toBeTruthy();
+    });
+
+    it("does not say anything about keynotes", () => {
+      expect(screen.queryByText("keynote")).toBeNull();
+    });
+  });
+
+  describe("with a keynote talk", () => {
+    const category = "things";
+    const prefix = "2021-03-22";
+    const author = "snacky malone";
+    const event = "DuckCon";
+
+    beforeEach(() => {
+      render(
+        <Meta
+          prefix={prefix}
+          author={author}
+          category={category}
+          event={event}
+          keynote="true"
+          theme={theme}
+        />
+      );
+    });
+    it("renders the author", () => {
+      expect(screen.getByText(author)).toBeTruthy();
+    });
+
+    it("renders the date", () => {
+      expect(screen.getByText(prefix)).toBeTruthy();
+    });
+
+    it("renders the category", () => {
+      expect(screen.getByText(category)).toBeTruthy();
+    });
+
+    it("renders the event", () => {
+      expect(screen.getByText(event)).toBeTruthy();
+    });
+
+    it("lists that this is a keynote", () => {
+      expect(screen.queryByText("keynote")).toBeTruthy();
     });
   });
 });
