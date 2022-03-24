@@ -18,11 +18,10 @@ const List = props => {
           } = edge;
 
           const Icon = icon(type);
-          // Styling the icon is hard without grabbing other svg on the page, so cheat and wrap it in a container
 
           return (
             <li key={slug} className="post-list">
-              <div className="type">{Icon && <Icon />}</div>
+              {Icon && <Icon />}
               <div className="date">{prefix}</div>
               {url ? (
                 <a href={url} className="link">
@@ -53,10 +52,7 @@ const List = props => {
           color: ${theme.color.brand.light};
           padding-right: 10px;
         }
-        .type {
-          position: relative;
-          top: 4px;
-          left: -10px;
+        li :global(svg) {
           position: relative;
           top: 4px;
           left: -10px;
