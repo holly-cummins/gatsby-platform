@@ -3,7 +3,7 @@ const nodeUrl = require("url");
 const fs = require("fs");
 const request = require("request");
 
-const { extract } = require("./extended-oembed-parser");
+const { extract, hasProvider } = require("./extended-oembed-parser");
 
 exports.mutateSource = async ({ markdownNode }, options) => {
   const { frontmatter } = markdownNode;
@@ -27,6 +27,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   if (frontmatter.video) {
     await enrich(frontmatter.video, markdownFile, maxWidth);
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
+
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.video.title;
     }
@@ -43,23 +44,36 @@ const enrich = async (oembedObject, post, maxwidth) => {
   // (This assumes things are landscape, but that is reasonable)
   const params = { maxwidth, maxheight: maxwidth };
 
-  const oembedData = await extract(url, params);
-  if (oembedData) {
-    const imageUrl = oembedData.thumbnail_url;
-    if (imageUrl) {
-      const remotePath = nodeUrl.parse(imageUrl).pathname;
-      const thumbnail = path.parse(remotePath).base;
+  const shouldExtract = await hasProvider(url, params);
+  if (shouldExtract) {
+    const oembedData = await extract(url, params);
+    if (oembedData) {
+      const imageUrl = oembedData.thumbnail_url;
+      if (imageUrl) {
+        const remotePath = nodeUrl.parse(imageUrl).pathname;
+        const thumbnail = path.parse(remotePath).base;
 
-      // No need to wait for the download
-      downloadThumbnail(imageUrl, post);
+        // No need to wait for the download
+        downloadThumbnail(imageUrl, post);
 
-      oembedObject.thumbnail = thumbnail;
+        oembedObject.thumbnail = thumbnail;
+      }
+
+      Object.assign(oembedObject, {
+        link: url,
+        title: oembedData.title,
+        html: oembedData.html
+      });
+    } else {
+      // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
+      console.error(`Got no oembed data for `, url);
     }
-
+  } else {
+    // Schema validation gets upset if we don't do this
     Object.assign(oembedObject, {
       link: url,
-      title: oembedData.title,
-      html: oembedData.html
+      title: "External content",
+      html: `<p>See the full content <a href=${url}>here.</a></p>`
     });
   }
 };

@@ -1,4 +1,4 @@
-const { extract, setProviderList } = require("oembed-parser");
+const { extract, hasProvider, setProviderList } = require("oembed-parser");
 
 // Add notist in as a provider since it's not in the list on oembed.com
 // Ideally we would pull this dynamically in a build, but it doesn't change often
@@ -23,4 +23,8 @@ try {
 
 exports.extract = (url, params) => {
   return extract(url, params);
+};
+
+exports.hasProvider = (url, params) => {
+  return hasProvider(url, params);
 };
