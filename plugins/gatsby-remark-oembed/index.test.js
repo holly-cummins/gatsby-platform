@@ -22,11 +22,16 @@ jest.mock("./extended-oembed-parser", () => ({
     return new Promise(resolve => {
       resolve(oembedResponse);
     });
+  },
+  hasProvider: () => {
+    return new Promise(resolve => {
+      resolve(oembedResponse);
+    });
   }
 }));
 jest.spyOn(parser, "extract");
 
-const { mutateSource } = require("./index");
+const {mutateSource} = require("./index");
 
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
@@ -43,7 +48,7 @@ describe("the preprocessor", () => {
     };
 
     const page = {
-      markdownNode: { frontmatter }
+      markdownNode: {frontmatter}
     };
 
     beforeAll(async () => {
@@ -75,11 +80,11 @@ describe("the preprocessor", () => {
       author: "ducky devine",
       category: "quacking",
       type: "book",
-      video: { url }
+      video: {url}
     };
 
     const page = {
-      markdownNode: { frontmatter }
+      markdownNode: {frontmatter}
     };
 
     beforeAll(async () => {
@@ -115,11 +120,11 @@ describe("the preprocessor", () => {
         author: "ducky devine",
         category: "quacking",
         type: "book",
-        video: { url }
+        video: {url}
       };
 
       const page = {
-        markdownNode: { frontmatter }
+        markdownNode: {frontmatter}
       };
 
       beforeAll(async () => {
@@ -155,11 +160,11 @@ describe("the preprocessor", () => {
       author: "ducky devine",
       category: "quacking",
       type: "book",
-      slides: { url }
+      slides: {url}
     };
 
     const page = {
-      markdownNode: { frontmatter }
+      markdownNode: {frontmatter}
     };
 
     beforeAll(async () => {
