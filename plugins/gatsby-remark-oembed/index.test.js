@@ -1,3 +1,4 @@
+const os = require("os");
 const parser = require("./extended-oembed-parser");
 
 const oembedResponse = {
@@ -48,7 +49,10 @@ describe("the preprocessor", () => {
     };
 
     const page = {
-      markdownNode: {frontmatter}
+      markdownNode: {
+        frontmatter,
+        fileAbsolutePath: os.tmpdir()
+      }
     };
 
     beforeAll(async () => {
@@ -84,7 +88,10 @@ describe("the preprocessor", () => {
     };
 
     const page = {
-      markdownNode: {frontmatter}
+      markdownNode: {
+        frontmatter,
+        fileAbsolutePath: os.tmpdir()
+      }
     };
 
     beforeAll(async () => {
@@ -124,7 +131,10 @@ describe("the preprocessor", () => {
       };
 
       const page = {
-        markdownNode: {frontmatter}
+        markdownNode: {
+          frontmatter,
+          fileAbsolutePath: os.tmpdir()
+        }
       };
 
       beforeAll(async () => {
