@@ -1,6 +1,7 @@
 const os = require("os");
 const path = require("path");
 const parser = require("./extended-oembed-parser");
+const fs = require("fs-extra");
 
 const oembedResponse = {
   title: "How to while away hours on the internet",
@@ -33,6 +34,7 @@ const { mutateSource } = require("./index");
 
 const postPath = path.join(os.tmpdir(), "somepost");
 const fileAbsolutePath = path.join(postPath, "index.md");
+fs.ensureDirSync(postPath);
 
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
