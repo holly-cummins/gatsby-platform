@@ -79,9 +79,12 @@ const enrich = async (oembedObject, post, maxwidth) => {
 };
 
 const downloadThumbnail = async (imageUrl, file) => {
+  console.log("Downloading thumbnail, base file is", file);
+
   const remotePath = nodeUrl.parse(imageUrl).pathname;
   const fileName = path.parse(remotePath).base;
   const dir = path.parse(file).dir;
+  console.log("Will download to", dir);
   const imagePath = path.join(dir, fileName);
   if (!fs.existsSync(imagePath)) {
     console.log("Downloading", imageUrl);

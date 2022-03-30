@@ -13,7 +13,7 @@ const oembedResponse = {
   provider_url: "https://www.youtube.com/",
   thumbnail_height: 360,
   thumbnail_width: 480,
-  thumbnail_url: "https://i.ytimg.com/vi/8jPQjjsBbIc/hqdefault.jpg",
+  thumbnail_url: "https://i.ytimg.com/vi/8jPQjjsBbIc/thumbnail.jpg",
   html:
     "\u003ciframe width=\u0022200\u0022 height=\u0022113\u0022 src=\u0022https://www.youtube.com/embed/8jPQjjsBbIc?feature=oembed\u0022 frameborder=\u00220\u0022 allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\u0022 allowfullscreen\u003e\u003c/iframe\u003e"
 };
