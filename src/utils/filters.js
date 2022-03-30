@@ -13,8 +13,8 @@ const isProd = () => {
     process.env.ACTIVE_ENV ||
     process.env.NODE_ENV ||
     "development";
-  // Be less chatty when testing
-  if (activeEnv != "test") {
+  // Be less chatty when testing (we can't use the env for this because a test may change it)
+  if (!process.env.SUPPRESS_ENV_OUTPUT) {
     console.log(`Using environment config: '${activeEnv}'`);
   }
   const isProd = activeEnv == "production";
