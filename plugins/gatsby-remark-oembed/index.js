@@ -44,7 +44,7 @@ const enrich = async (oembedObject, post, maxwidth) => {
   // (This assumes things are landscape, but that is reasonable)
   const params = { maxwidth, maxheight: maxwidth };
 
-  const shouldExtract = await hasProvider(url, params);
+  const shouldExtract = hasProvider(url, params);
   if (shouldExtract) {
     const oembedData = await extract(url, params);
     if (oembedData) {

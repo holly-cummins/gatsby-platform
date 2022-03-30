@@ -24,11 +24,7 @@ jest.mock("./extended-oembed-parser", () => ({
       resolve(oembedResponse);
     });
   },
-  hasProvider: () => {
-    return new Promise(resolve => {
-      resolve(oembedResponse);
-    });
-  }
+  hasProvider: () => true
 }));
 jest.spyOn(parser, "extract");
 
