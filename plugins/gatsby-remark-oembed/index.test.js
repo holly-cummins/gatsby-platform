@@ -32,7 +32,7 @@ jest.mock("./extended-oembed-parser", () => ({
 }));
 jest.spyOn(parser, "extract");
 
-const {mutateSource} = require("./index");
+const { mutateSource } = require("./index");
 
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
@@ -84,7 +84,7 @@ describe("the preprocessor", () => {
       author: "ducky devine",
       category: "quacking",
       type: "book",
-      video: {url}
+      video: { url }
     };
 
     const page = {
@@ -127,7 +127,7 @@ describe("the preprocessor", () => {
         author: "ducky devine",
         category: "quacking",
         type: "book",
-        video: {url}
+        video: { url }
       };
 
       const page = {
@@ -170,11 +170,14 @@ describe("the preprocessor", () => {
       author: "ducky devine",
       category: "quacking",
       type: "book",
-      slides: {url}
+      slides: { url }
     };
 
     const page = {
-      markdownNode: {frontmatter}
+      markdownNode: {
+        frontmatter,
+        fileAbsolutePath: os.tmpdir()
+      }
     };
 
     beforeAll(async () => {
