@@ -48,9 +48,6 @@ const PostShare = props => {
             }}
           >
             <LinkedinIcon round size={iconSize} />
-            <LinkedinShareCount url={url}>
-              {count => <div className="share-count">{filter(count)}</div>}
-            </LinkedinShareCount>
           </LinkedinShareButton>
         </div>
       </div>
@@ -84,6 +81,7 @@ const PostShare = props => {
             flex-direction: row;
             margin: ${theme.space.inset.l};
           }
+
           .label {
             margin: ${theme.space.inline.m};
           }
