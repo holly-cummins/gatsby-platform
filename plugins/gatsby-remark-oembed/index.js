@@ -84,12 +84,8 @@ const downloadThumbnail = async (imageUrl, file) => {
   const dir = path.parse(file).dir;
   const imagePath = path.join(dir, fileName);
   if (!fs.existsSync(imagePath)) {
-    if (imageUrl) {
-      console.log("Downloading", imageUrl);
-      download(imageUrl, imagePath);
-    } else {
-      console.error("ERROR: Cover image does not exist and imageUrl is not set for", post);
-    }
+    console.log("Downloading", imageUrl);
+    download(imageUrl, imagePath);
   } else {
     console.log(fileName, "already exists, skipping.");
   }
