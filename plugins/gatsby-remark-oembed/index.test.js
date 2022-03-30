@@ -113,45 +113,45 @@ describe("the preprocessor", () => {
     it("does not override the document title", async () => {
       expect(frontmatter.title).toEqual(originalTitle);
     });
+  });
 
-    describe("for a page with no title", () => {
-      const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
+  describe("for a page with no title", () => {
+    const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
 
-      const frontmatter = {
-        url: "https://www.manning.com/books/d-is-for-duck",
-        cover: "d-is-for-duck-abc-1923.png",
-        author: "ducky devine",
-        category: "quacking",
-        type: "book",
-        video: { url }
-      };
+    const frontmatter = {
+      url: "https://www.manning.com/books/d-is-for-duck",
+      cover: "d-is-for-duck-abc-1923.png",
+      author: "ducky devine",
+      category: "quacking",
+      type: "book",
+      video: { url }
+    };
 
-      const page = {
-        markdownNode: {
-          frontmatter,
-          fileAbsolutePath: os.tmpdir()
-        }
-      };
+    const page = {
+      markdownNode: {
+        frontmatter,
+        fileAbsolutePath: os.tmpdir()
+      }
+    };
 
-      beforeAll(async () => {
-        await mutateSource(page);
-      });
+    beforeAll(async () => {
+      await mutateSource(page);
+    });
 
-      afterAll(() => {
-        jest.clearAllMocks();
-      });
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
 
-      it("extracts oembed metadata", async () => {
-        expect(frontmatter.video.title).toEqual(oembedTitle);
-      });
+    it("extracts oembed metadata", async () => {
+      expect(frontmatter.video.title).toEqual(oembedTitle);
+    });
 
-      it("extracts oembed link", async () => {
-        expect(frontmatter.video.html).toEqual(oembedHtml);
-      });
+    it("extracts oembed link", async () => {
+      expect(frontmatter.video.html).toEqual(oembedHtml);
+    });
 
-      it("sets a document title", async () => {
-        expect(frontmatter.title).toEqual(oembedTitle);
-      });
+    it("sets a document title", async () => {
+      expect(frontmatter.title).toEqual(oembedTitle);
     });
   });
 
