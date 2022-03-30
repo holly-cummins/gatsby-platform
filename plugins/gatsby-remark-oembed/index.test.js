@@ -34,7 +34,6 @@ const { mutateSource } = require("./index");
 
 const postPath = path.join(os.tmpdir(), "somepost");
 const fileAbsolutePath = path.join(postPath, "index.md");
-fs.ensureDirSync(postPath);
 
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
@@ -58,6 +57,7 @@ describe("the preprocessor", () => {
     };
 
     beforeAll(async () => {
+      await fs.ensureDir(postPath);
       await mutateSource(page);
     });
 
@@ -97,6 +97,7 @@ describe("the preprocessor", () => {
     };
 
     beforeAll(async () => {
+      await fs.ensureDir(postPath);
       await mutateSource(page);
     });
 
@@ -141,6 +142,7 @@ describe("the preprocessor", () => {
     };
 
     beforeAll(async () => {
+      await fs.ensureDir(postPath);
       await mutateSource(page);
     });
 
@@ -183,6 +185,7 @@ describe("the preprocessor", () => {
     };
 
     beforeAll(async () => {
+      await fs.ensureDir(postPath);
       await mutateSource(page);
     });
 
