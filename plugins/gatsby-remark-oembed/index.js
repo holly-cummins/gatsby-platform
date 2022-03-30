@@ -19,7 +19,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
 
     // It doesn't seem to work to totally skip the cover, so we put a placeholder
     // in the physical file and then overwrite it here
-    if (!frontmatter.cover || frontmatter.cover == "placeholder.png") {
+    if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
       frontmatter.cover = frontmatter.slides.thumbnail;
     }
   }
@@ -31,7 +31,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.video.title;
     }
-    if (!frontmatter.cover || frontmatter.cover == "placeholder.png") {
+    if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
       frontmatter.cover = frontmatter.video.thumbnail;
     }
   }
