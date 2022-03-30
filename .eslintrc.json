@@ -5,7 +5,8 @@
     "prettier",
     "prettier/react",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2016,
