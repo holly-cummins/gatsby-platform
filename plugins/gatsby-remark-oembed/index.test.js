@@ -1,4 +1,5 @@
 const os = require("os");
+const path = require("path");
 const parser = require("./extended-oembed-parser");
 
 const oembedResponse = {
@@ -30,6 +31,9 @@ jest.spyOn(parser, "extract");
 
 const { mutateSource } = require("./index");
 
+const postPath = path.join(os.tmpdir(), "somepost");
+const fileAbsolutePath = path.join(postPath, "index.md");
+
 describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
   const oembedHtml = oembedResponse.html;
@@ -47,7 +51,7 @@ describe("the preprocessor", () => {
     const page = {
       markdownNode: {
         frontmatter,
-        fileAbsolutePath: os.tmpdir()
+        fileAbsolutePath
       }
     };
 
@@ -86,7 +90,7 @@ describe("the preprocessor", () => {
     const page = {
       markdownNode: {
         frontmatter,
-        fileAbsolutePath: os.tmpdir()
+        fileAbsolutePath
       }
     };
 
@@ -130,7 +134,7 @@ describe("the preprocessor", () => {
     const page = {
       markdownNode: {
         frontmatter,
-        fileAbsolutePath: os.tmpdir()
+        fileAbsolutePath
       }
     };
 
@@ -172,7 +176,7 @@ describe("the preprocessor", () => {
     const page = {
       markdownNode: {
         frontmatter,
-        fileAbsolutePath: os.tmpdir()
+        fileAbsolutePath
       }
     };
 
