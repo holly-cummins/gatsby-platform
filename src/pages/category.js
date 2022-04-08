@@ -97,7 +97,7 @@ export default CategoryPage;
 export const query = graphql`
   query PostsQuery {
     posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//(posts|publications)/.*--/" } }
+      filter: { fileAbsolutePath: { regex: "//(posts|publications|talks)/.*--/" } }
       sort: { fields: [fields___prefix], order: DESC }
     ) {
       edges {

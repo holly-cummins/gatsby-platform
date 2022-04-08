@@ -8,7 +8,7 @@ const url = require("url");
 
 const { extract } = require("../plugins/gatsby-remark-oembed/extended-oembed-parser");
 
-const baseDir = "./content/posts";
+const baseDir = "./content/talks";
 const UNKNOWN = "unknown";
 
 const slidesUrl = process.argv[2];
@@ -114,12 +114,12 @@ author: ${author}
 category: untagged
 type: talk
 event: somewhere
-slides: 
+slides:
   url: ${slidesUrl}
 `;
 
   if (videoUrl) {
-    str += `video: 
+    str += `video:
   url: ${videoUrl}
 `;
   }
