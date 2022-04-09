@@ -5,6 +5,7 @@ const urlMetadata = require("url-metadata");
 const request = require("request");
 const path = require("path");
 const url = require("url");
+import config from "../content/meta/config";
 
 const { extract } = require("../plugins/gatsby-remark-oembed/extended-oembed-parser");
 
@@ -72,10 +73,11 @@ const createMarkdown = async () => {
   }
 
   const ogAuthor = metadata.author;
+  const myName = config.authorName.toLowerCase();
   // If the name is a variation of my name, just use my name
-  let author = ogAuthor ? ogAuthor : "ducky devine";
-  if (author.toLowerCase() === "ducky devine") {
-    author = "ducky devine";
+  let author = ogAuthor ? ogAuthor : myName;
+  if (author.toLowerCase() === myName) {
+    author = myName;
   }
 
   const dir = path.join(baseDir, `/${date}--${slug}`);

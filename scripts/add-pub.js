@@ -5,6 +5,7 @@ const urlMetadata = require("url-metadata");
 const request = require("request");
 const path = require("path");
 const url = require("url");
+import config from "../content/meta/config";
 
 const targetUrl = process.argv[2];
 
@@ -47,10 +48,11 @@ const createMarkdown = async () => {
   const date = await extractDate(metadata);
 
   const ogAuthor = metadata.author;
+  const myName = config.authorName.toLowerCase();
   // If the name is a variation of my name, just use my name
-  let author = ogAuthor ? ogAuthor : "ducky devine";
-  if (author.toLowerCase() === "ducky devine") {
-    author = "ducky devine";
+  let author = ogAuthor ? ogAuthor : myName;
+  if (author.toLowerCase() === myName) {
+    author = myName;
   }
 
   const dir = `./content/publications/${date}--${slug}`;
