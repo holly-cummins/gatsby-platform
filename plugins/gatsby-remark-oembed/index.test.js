@@ -77,14 +77,14 @@ describe("the preprocessor", () => {
 
   describe("for a page with video oembed links", () => {
     const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
-    const originalTitle = "D is For Duck";
+    const originalTitle = "Q is For Croak";
 
     const frontmatter = {
       title: originalTitle,
-      url: "https://www.manning.com/books/d-is-for-duck",
-      cover: "d-is-for-duck-abc-1923.png",
-      author: "ducky devine",
-      category: "quacking",
+      url: "https://www.manning.com/books/q-is-for-croak",
+      cover: "q-is-for-croak-abc-1923.png",
+      author: "lucia laryngitis",
+      category: "croaking",
       type: "book",
       video: { url }
     };
@@ -126,10 +126,10 @@ describe("the preprocessor", () => {
     const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
 
     const frontmatter = {
-      url: "https://www.manning.com/books/d-is-for-duck",
-      cover: "d-is-for-duck-abc-1923.png",
-      author: "ducky devine",
-      category: "quacking",
+      url: "https://www.manning.com/books/q-is-for-croak",
+      cover: "q-is-for-croak-abc-1923.png",
+      author: "lucia laryngitis",
+      category: "croaking",
       type: "book",
       video: { url }
     };
@@ -169,10 +169,10 @@ describe("the preprocessor", () => {
 
     const frontmatter = {
       title: originalTitle,
-      url: "https://www.manning.com/books/d-is-for-duck",
-      cover: "d-is-for-duck-abc-1923.png",
-      author: "ducky devine",
-      category: "quacking",
+      url: "https://www.manning.com/books/q-is-for-croak",
+      cover: "q-is-for-croak-abc-1923.png",
+      author: "lucia laryngitis",
+      category: "croaking",
       type: "book",
       slides: { url }
     };
