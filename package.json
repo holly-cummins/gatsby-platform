@@ -1,9 +1,12 @@
 {
   "name": "ducky-devine-gatsby-starter",
   "version": "2.0.0",
-  "author": "Holly Cummins (using a starter from Greg Lobinski <greglobinski@gmail.com>)",
+  "author": "Holly Cummins <greglobinski@gmail.com> (using a starter from Greg Lobinski <greglobinski@gmail.com>)",
   "license": "MIT",
-  "repository": "https://github.com/holly-cummins/gatsby-platform/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holly-cummins/gatsby-platform.git"
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -132,5 +135,14 @@
   "engines": {
     "node": ">=0.10.0 <0.11",
     "npm": ">=6.0.0"
+  },
+  "description": "This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlog starter](https://gatsby-starter-hero-blog.greglobinski.com/). This code is still a starter, intended to be populated with content. You can see the skeleton code running at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).",
+  "bugs": {
+    "url": "https://github.com/holly-cummins/gatsby-platform/issues"
+  },
+  "homepage": "https://github.com/holly-cummins/gatsby-platform#readme",
+  "main": "gatsby-browser.js",
+  "directories": {
+    "doc": "docs"
   }
 }
