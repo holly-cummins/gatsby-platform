@@ -4,6 +4,7 @@ import ContactPage from "./contact";
 
 import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
+import config from "../../content/meta/config";
 
 import themeObjectFromYaml from "../theme/theme.yaml";
 
@@ -29,7 +30,7 @@ describe("ContactPage", () => {
     renderWithTheme(<ContactPage />, themeObjectFromYaml);
   });
   it("renders without error and includes some social links", async () => {
-    expect(screen.getByText("@ducky_devine")).toBeTruthy();
+    expect(screen.getByText("@" + config.authorTwitterAccount)).toBeTruthy();
   });
 
   it("includes multiple social links", async () => {

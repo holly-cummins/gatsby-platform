@@ -2,12 +2,11 @@ jest.setTimeout(15 * 1000);
 const urlMetadata = require("url-metadata");
 
 const { port } = require("../jest-puppeteer.config").server;
+import { liveUrl } from "../../content/meta/config";
 
 // We don't have a good dynamic way of getting a post, so hardcode for now
 const slug = "tech-stack/";
 const siteRoot = `http://localhost:${port}/${slug}`;
-// This will be different for each site but we probably do not want to be too liberal with the regex, so - with regret - hardcode
-const liveUrl = "http://duckydevine.com";
 
 titleMatcher = /How this site is built/;
 
