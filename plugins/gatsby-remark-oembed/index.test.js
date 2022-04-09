@@ -40,12 +40,14 @@ describe("the preprocessor", () => {
   const oembedHtml = oembedResponse.html;
 
   describe("for a page with no oembed links", () => {
+    const originalTitle = "Q is For Croak";
+
     const frontmatter = {
-      title: "D is For Duck",
-      url: "https://www.manning.com/books/d-is-for-duck",
-      cover: "d-is-for-duck-abc-1923.png",
-      author: "ducky devine",
-      category: "quacking",
+      title: originalTitle,
+      url: "https://www.manning.com/books/q-is-for-croak",
+      cover: "q-is-for-croak-abc-1923.png",
+      author: "lucia laryngitis",
+      category: "croaking",
       type: "book"
     };
 
