@@ -2,13 +2,14 @@ jest.setTimeout(15 * 1000);
 const urlMetadata = require("url-metadata");
 
 const { port } = require("../jest-puppeteer.config").server;
-import { liveUrl } from "../../content/meta/config";
+const { siteUrl } = require("../content/meta/config");
 
 // We don't have a good dynamic way of getting a post, so hardcode for now
 const slug = "tech-stack/";
 const siteRoot = `http://localhost:${port}/${slug}`;
+const liveUrl = siteUrl;
 
-titleMatcher = /How this site is built/;
+const titleMatcher = /How this site is built/;
 
 describe("a post", () => {
   describe("page contents", () => {
