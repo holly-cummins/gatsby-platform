@@ -20,6 +20,42 @@ const TypeTemplate = props => {
 
   const filteredEntries = filterOutDrafts(edges);
 
+  // Create year list
+  const years = {};
+  filteredEntries.forEach(edge => {
+    const {
+      node: {
+        fields: { prefix }
+      }
+    } = edge;
+
+    let year;
+    year = new Date(prefix).getFullYear();
+
+    if (!year) {
+      year = "unpublished";
+    }
+
+    if (year && year != null) {
+      if (!years[year]) {
+        years[year] = [];
+      }
+      years[year].push(edge);
+    }
+  });
+
+  let yearList = Object.entries(years);
+  // Make sure we are sorted within each year as well
+  yearList = yearList.map(entry => [
+    entry[0],
+    entry[1]
+      .sort((a, b) => new Date(a.node.fields.prefix) - new Date(b.node.fields.prefix))
+      .reverse()
+  ]);
+
+  // ... and sort by year
+  yearList.sort().reverse();
+
   const Icon = icon(type);
 
   return (
@@ -32,11 +68,14 @@ const TypeTemplate = props => {
                 {Icon && <Icon />}
                 {plural(type)}
               </Headline>
-              {type == "media" || type == "book" ? (
-                <LogoList edges={filteredEntries} theme={theme} />
-              ) : (
-                <List edges={filteredEntries} theme={theme} />
-              )}
+              {yearList.length > 1
+                ? yearList.map(item => (
+                    <section key={item[0]}>
+                      <h2>{item[0]}</h2>
+                      {listEntry(item[1], type, theme, item[0])}
+                    </section>
+                  ))
+                : yearList.map(item => listEntry(item[1], type, theme, item[0]))}
             </header>
           </Article>
         )}
@@ -45,6 +84,14 @@ const TypeTemplate = props => {
       <Seo />
     </React.Fragment>
   );
+};
+
+const listEntry = (item, type, theme, year) => {
+  if (type == "media" || type == "book") {
+    return <LogoList edges={item} theme={theme} key={year} />;
+  } else {
+    return <List edges={item} theme={theme} key={year} />;
+  }
 };
 
 TypeTemplate.propTypes = {

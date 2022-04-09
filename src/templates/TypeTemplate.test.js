@@ -32,12 +32,117 @@ describe("TypeTemplate", () => {
       fields: { source: "another-source", slug: "half-baked-slug", prefix: "draft" }
     }
   };
-  const edges = [draftNode, node];
-  const data = {
-    allMarkdownRemark: { totalCount, edges }
+
+  const post1 = {
+    node: {
+      fields: {
+        slug: "/slug1/",
+        prefix: "2020-10-10"
+      },
+      frontmatter: {
+        title: "title1"
+      }
+    }
   };
-  describe("for a collection of podcasts", () => {
+  const post2 = {
+    node: {
+      fields: {
+        slug: "pub2",
+        prefix: "2003-03-06"
+      },
+      frontmatter: {
+        title: "another title"
+      }
+    }
+  };
+  const post3 = {
+    node: {
+      fields: {
+        slug: "pub",
+        prefix: "2011-06-08"
+      },
+      frontmatter: {
+        title: "a june title"
+      }
+    }
+  };
+
+  const post4 = {
+    node: {
+      fields: {
+        slug: "pub4",
+        prefix: "2011-10-07"
+      },
+      frontmatter: {
+        title: "a october title"
+      }
+    }
+  };
+  const post5 = {
+    node: {
+      fields: {
+        slug: "pub2",
+        prefix: "2011-03-07"
+      },
+      frontmatter: {
+        title: "a march title"
+      }
+    }
+  };
+
+  describe("for a collection with no elements", () => {
     const type = "podcast";
+    const edges = [];
+    const data = {
+      allMarkdownRemark: { totalCount, edges }
+    };
+
+    beforeEach(() => {
+      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+    });
+
+    it("does not render any years", async () => {
+      expect(screen.queryByText(2020)).toBeFalsy();
+      expect(screen.queryByText(2019)).toBeFalsy();
+      expect(screen.queryByText(2011)).toBeFalsy();
+      expect(screen.queryByText(2003)).toBeFalsy();
+    });
+  });
+
+  describe("for a collection with one matching element", () => {
+    const type = "podcast";
+    const edges = [node];
+    const data = {
+      allMarkdownRemark: { totalCount, edges }
+    };
+
+    beforeEach(() => {
+      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    it("renders a list", () => {
+      // Coupling to the internals of List, but we need some way to make sure the right one is included
+      expect(screen.getByTestId("post-list-wrapper")).toBeTruthy();
+    });
+
+    it("does not render any years", async () => {
+      expect(screen.queryByText(2020)).toBeFalsy();
+      expect(screen.queryByText(2019)).toBeFalsy();
+      expect(screen.queryByText(2011)).toBeFalsy();
+      expect(screen.queryByText(2003)).toBeFalsy();
+    });
+  });
+
+  describe("for a collection with multiple elements", () => {
+    const type = "podcast";
+    const edges = [draftNode, node, post1, post2, post3, post4, post5];
+    const data = {
+      allMarkdownRemark: { totalCount, edges }
+    };
 
     beforeEach(() => {
       const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
@@ -51,9 +156,26 @@ describe("TypeTemplate", () => {
       expect(screen.getByText(draftTitle)).toBeTruthy();
     });
 
-    it("renders a list", () => {
+    it("renders several lists", () => {
       // Coupling to the internals of List, but we need some way to make sure the right one is included
-      expect(screen.getByTestId("post-list-wrapper")).toBeTruthy();
+      expect(screen.getAllByTestId("post-list-wrapper")).toHaveLength(5);
+    });
+
+    it("renders the years", async () => {
+      expect(screen.getByText(2020)).toBeTruthy();
+      expect(screen.getByText(2019)).toBeTruthy();
+    });
+
+    it("renders the years in the right order", async () => {
+      const expectedOrder = ["unpublished", "2020", "2019", "2011", "2003"];
+      const elements = screen.getAllByRole("heading", { level: 2 });
+      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("renders the elements within a year in the right order", async () => {
+      const expectedOrder = ["a october title", "a june title", "a march title"];
+      const elements = screen.getAllByText(/a .* title/);
+      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
     });
 
     describe("in production", () => {
@@ -70,7 +192,8 @@ describe("TypeTemplate", () => {
       });
 
       it("renders the correct link", () => {
-        const link = screen.getByRole("link");
+        const links = screen.getAllByRole("link");
+        const link = links.find(link => link.text == title);
         expect(link).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
         expect(link.href).toBe("http://localhost/" + slug);
@@ -85,19 +208,30 @@ describe("TypeTemplate", () => {
       it("filters out drafts", async () => {
         expect(screen.queryByText(draftTitle)).toBeFalsy();
       });
+
+      it("renders several lists", () => {
+        // Coupling to the internals of List, but we need some way to make sure the right one is included
+        expect(screen.getAllByTestId("post-list-wrapper")).toHaveLength(4);
+      });
+
+      it("renders the years in the right order", async () => {
+        const expectedOrder = ["2020", "2019", "2011", "2003"];
+        const elements = screen.getAllByRole("heading", { level: 2 });
+        expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      });
     });
-  });
 
-  describe("for a collection of external media", () => {
-    const type = "media";
+    describe("for a collection of external media", () => {
+      const type = "media";
 
-    beforeEach(() => {
-      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
-    });
+      beforeEach(() => {
+        const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      });
 
-    it("renders a list with icons", () => {
-      // Coupling to the internals of List, but we need some way to make sure the right one is included
-      expect(screen.getByTestId("logo-list-wrapper")).toBeTruthy();
+      it("renders lists with icons", () => {
+        // Coupling to the internals of List, but we need some way to make sure the right one is included
+        expect(screen.getAllByTestId("logo-list-wrapper")).toHaveLength(5);
+      });
     });
   });
 });
