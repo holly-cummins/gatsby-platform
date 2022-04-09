@@ -1,6 +1,7 @@
 jest.setTimeout(15 * 1000);
 
 const { port } = require("../jest-puppeteer.config").server;
+import config from "../../content/meta/config";
 
 const siteRoot = `http://localhost:${port}`;
 
@@ -9,8 +10,8 @@ describe("main site", () => {
     await page.goto(siteRoot);
   });
 
-  it("should have Duckys name on it somewhere", async () => {
-    await expect(page.waitForXPath('//*[text()="Ducky Devine"]')).resolves.toBeTruthy();
+  it("should have the author name on it somewhere", async () => {
+    await expect(page.waitForXPath(`//*[text()="${config.authorName}"]`)).resolves.toBeTruthy();
   });
 
   describe("header navigation bar", () => {
