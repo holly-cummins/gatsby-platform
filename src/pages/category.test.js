@@ -6,6 +6,7 @@ import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
 
 import theme from "../theme/theme.yaml";
+import config from "../../content/meta/config";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render
@@ -36,7 +37,7 @@ describe("CategoryPage", () => {
     });
 
     it("renders the title", async () => {
-      expect(screen.getByText("What's Ducky Thinking About?")).toBeTruthy();
+      expect(screen.getByText(`What's ${config.authorShortName} Thinking About?`)).toBeTruthy();
     });
   });
 

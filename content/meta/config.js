@@ -10,6 +10,7 @@ module.exports = {
 
   /* author */
   authorName: "Ducky Devine",
+  authorShortName: "Ducky",
   authorTwitterAccount: "ducky_devine", // TODO remove this which is only used by Seo.js and is duplication
 
   /* info */

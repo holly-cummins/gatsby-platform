@@ -10,6 +10,7 @@ import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import Seo from "../components/Seo";
 import { filterOutDrafts } from "../utils/filters";
+import config from "../../content/meta/config";
 
 const CategoryPage = props => {
   const {
@@ -49,7 +50,7 @@ const CategoryPage = props => {
         {theme => (
           <Article theme={theme}>
             <header>
-              <Headline title="What's Ducky Thinking About?" theme={theme} />
+              <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
             </header>
             {categoryList.map(item => (
               <section key={item[0]}>
