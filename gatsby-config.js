@@ -1,10 +1,6 @@
 require("dotenv").config();
-const contentDir = process.env.USE_SAMPLE_CONTENT ? "./content" : "../content";
-if (!require("fs").existsSync(contentDir)) {
-  console.error(
-    "The content directory does not exist. Do you need to set the USE_SAMPLE_CONTENT environment variable to true?"
-  );
-}
+const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+
 const config = require(`${contentDir}/meta/config`);
 const transformer = require("./src/utils/algolia");
 
