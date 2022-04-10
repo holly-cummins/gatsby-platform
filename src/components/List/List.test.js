@@ -18,7 +18,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      const tree = render(<List edges={edges} theme={theme} />);
+      render(<List edges={edges} theme={theme} />);
     });
 
     it("renders the title", () => {
@@ -52,7 +52,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      const tree = render(<List edges={edges} theme={theme} />);
+      render(<List edges={edges} theme={theme} />);
     });
 
     it("renders the title", () => {
@@ -78,7 +78,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      const tree = render(<List edges={edges} theme={theme} showIcon={false} />);
+      render(<List edges={edges} theme={theme} showIcon={false} />);
     });
 
     it("renders the title", () => {
