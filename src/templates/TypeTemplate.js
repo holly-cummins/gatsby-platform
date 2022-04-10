@@ -90,7 +90,7 @@ const listEntry = (item, type, theme, year) => {
   if (type == "media" || type == "book") {
     return <LogoList edges={item} theme={theme} key={year} />;
   } else {
-    return <List edges={item} theme={theme} key={year} />;
+    return <List edges={item} theme={theme} key={year} showIcon={false} />;
   }
 };
 

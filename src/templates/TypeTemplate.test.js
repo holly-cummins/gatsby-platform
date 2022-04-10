@@ -107,6 +107,12 @@ describe("TypeTemplate", () => {
       expect(screen.queryByText(2011)).toBeFalsy();
       expect(screen.queryByText(2003)).toBeFalsy();
     });
+
+    it("renders the icon on the title", () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      const title = type + " icon";
+      expect(screen.getByTitle(title)).toBeTruthy();
+    });
   });
 
   describe("for a collection with one matching element", () => {
@@ -178,6 +184,12 @@ describe("TypeTemplate", () => {
       expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
     });
 
+    it("does not show the type icons on the list elements", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.getAllByTitle(/.*icon/)).toHaveLength(1);
+    });
+
     describe("in production", () => {
       beforeAll(() => {
         setToProd();
@@ -197,12 +209,6 @@ describe("TypeTemplate", () => {
         expect(link).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
         expect(link.href).toBe("http://localhost/" + slug);
-      });
-
-      it("renders the icon", () => {
-        // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
-        const title = type + " icon";
-        expect(screen.getByTitle(title)).toBeTruthy();
       });
 
       it("filters out drafts", async () => {
@@ -228,7 +234,7 @@ describe("TypeTemplate", () => {
         const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
       });
 
-      it("renders lists with icons", () => {
+      it("renders lists with logos", () => {
         // Coupling to the internals of List, but we need some way to make sure the right one is included
         expect(screen.getAllByTestId("logo-list-wrapper")).toHaveLength(5);
       });

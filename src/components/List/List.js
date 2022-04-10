@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { icon } from "../../utils/type";
 
 const List = props => {
-  const { edges, theme } = props;
+  const { edges, theme, showIcon } = props;
 
   return (
     <React.Fragment>
@@ -17,7 +17,7 @@ const List = props => {
             }
           } = edge;
 
-          const Icon = icon(type);
+          const Icon = showIcon ? icon(type) : null;
 
           return (
             <li key={slug} className="post-list">
@@ -42,16 +42,19 @@ const List = props => {
           padding: ${theme.space.m};
           list-style: none;
         }
+
         li {
           padding: ${theme.space.xs} 0;
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
           display: flex;
         }
+
         .date {
           color: ${theme.color.brand.light};
           padding-right: 10px;
         }
+
         li :global(svg) {
           position: relative;
           top: 4px;
@@ -69,7 +72,12 @@ const List = props => {
 
 List.propTypes = {
   edges: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  showIcon: PropTypes.bool
+};
+
+List.defaultProps = {
+  showIcon: true
 };
 
 export default List;
