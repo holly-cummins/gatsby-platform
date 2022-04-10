@@ -5,7 +5,8 @@ const request = require("request");
 const path = require("path");
 const metadataParser = require("markdown-yaml-metadata-parser");
 
-const dir = "./content/publications";
+const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+const dir = `${contentDir}/publications`;
 
 // Make an async function that gets executed immediately
 const processDirectory = async () => {
