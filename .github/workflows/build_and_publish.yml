@@ -17,6 +17,7 @@ jobs:
       - run: npm run test
         env:
           CI: true
+          USE_SAMPLE_CONTENT: ${{ secrets.USE_SAMPLE_CONTENT }}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -31,6 +32,7 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: pages
         env:
+          USE_SAMPLE_CONTENT: ${{ secrets.USE_SAMPLE_CONTENT }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_ONLY_API_KEY: ${{ secrets.ALGOLIA_SEARCH_ONLY_API_KEY }}
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
