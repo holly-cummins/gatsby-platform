@@ -98,7 +98,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("does not render any years", async () => {
@@ -123,7 +123,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {
@@ -151,7 +151,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {
@@ -205,7 +205,7 @@ describe("TypeTemplate", () => {
 
       it("renders the correct link", () => {
         const links = screen.getAllByRole("link");
-        const link = links.find(link => link.text == title);
+        const link = links.find(link => link.text === title);
         expect(link).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
         expect(link.href).toBe("http://localhost/" + slug);
@@ -231,7 +231,7 @@ describe("TypeTemplate", () => {
       const type = "media";
 
       beforeEach(() => {
-        const tree = renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+        renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
       });
 
       it("renders lists with logos", () => {
