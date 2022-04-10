@@ -69,6 +69,24 @@ To change the favicon, after replacing the files in `src/images/app-icons` you n
 - Publication: A blog entry hosted elsewhere. Include a sentence or two in the markdown for the excerpt.
 - Slug: The unique part of a page URL. The important feature is that it contains the title of the article, which helps with SEO.
 
+### Git incantations
+
+To use this as part of a different project (so that updates can be pulled in with low merge-angst), make a new git project which contains a
+`content` folder. At the project root, run
+
+```
+git remote add platform git@github.com:holly-cummins/gatsby-platform.git
+git subtree add --prefix platform platform main
+```
+
+To update with new platform changes, run
+```
+git subtree pull --prefix platform platform main
+```
+
+The `.github/workdlows/build_and_publish.yml` will need to be manually copied to the new project root, and
+a working directory added.
+
 ### Debugging and trouble shooting
 
 http://localhost:8000/___graphql is useful for inspecting graphql results.
