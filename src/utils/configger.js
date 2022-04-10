@@ -1,6 +1,6 @@
 let config;
 try {
-  const config = require("../../../content/meta/config");
+  config = require("../../../content/meta/config");
 } catch (error) {
   config = require("../../content/meta/config");
 }
