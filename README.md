@@ -87,6 +87,12 @@ git subtree pull --prefix platform platform main
 The `.github/workdlows/build_and_publish.yml` will need to be manually copied to the new project root, and
 a working directory added.
 
+```
+defaults:
+  run:
+    working-directory: platform
+```
+
 ### Debugging and trouble shooting
 
 http://localhost:8000/___graphql is useful for inspecting graphql results.
