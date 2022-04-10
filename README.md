@@ -19,6 +19,7 @@ npm install
 For local development
 
 ```text
+export USE_SAMPLE_CONTENT=true # more on this below
 gatsby develop
 ```
 
@@ -44,6 +45,10 @@ npm run test:int
 ```
 
 ### Adding content
+
+The sample content lives in `./content`. This content location is awkward for using this repo as
+an upstream framework, so user content would normally live in `../content`, outside this hierarchy.
+To toggle between the two content locations, set the `USE_SAMPLE_CONTENT` environment variable.
 
 Blog posts live in `content/posts`.
 To add an external publication, use `./scripts/add-pub.js [url]` and then fix up the generated content in `content/publications`. You will almost certainly have to update the date in the directory name. Once you've created the markdown, run `./scripts/preprocess-publications.js` to download cover images for local development. To add an external talk, use `./scripts/add-talk.js [slides] [video]` and then fix up the generated content in `content/posts`. Some content will be filled in from the oembed data by a plugin.

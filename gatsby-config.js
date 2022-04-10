@@ -1,5 +1,11 @@
 require("dotenv").config();
-const config = require("./content/meta/config");
+const contentDir = process.env.USE_SAMPLE_CONTENT ? "./content" : "../content";
+if (!require("fs").existsSync(contentDir)) {
+  console.error(
+    "The content directory does not exist. Do you need to set the USE_SAMPLE_CONTENT environment variable to true?"
+  );
+}
+const config = require(`${contentDir}/meta/config`);
 const transformer = require("./src/utils/algolia");
 
 const query = `{
@@ -79,28 +85,28 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/posts/`,
+        path: `${__dirname}/${contentDir}/posts/`,
         name: "posts"
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/talks/`,
+        path: `${__dirname}/${contentDir}/talks/`,
         name: "talks"
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/publications/`,
+        path: `${__dirname}/${contentDir}/publications/`,
         name: "publications"
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/pages/`,
+        path: `${__dirname}/${contentDir}/pages/`,
         name: "pages"
       }
     },
@@ -108,7 +114,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `parts`,
-        path: `${__dirname}/content/parts/`
+        path: `${__dirname}/${contentDir}/parts/`
       }
     },
     {

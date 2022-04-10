@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import config from "../../../content/meta/config";
+import config from "../../utils/configger";
 import avatar from "../../images/jpg/author.jpg";
 
 const Author = props => {

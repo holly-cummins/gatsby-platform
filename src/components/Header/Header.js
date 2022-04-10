@@ -4,7 +4,7 @@ import React from "react";
 import VisibilitySensor from "react-visibility-sensor";
 
 import { ScreenWidthContext, FontLoadedContext } from "../../layouts";
-import config from "../../../content/meta/config";
+import config from "../../utils/configger";
 import Menu from "../Menu";
 
 import avatar from "../../images/jpg/author.jpg";

@@ -3,7 +3,7 @@ import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import Seo from "../components/Seo";
-import config from "../../content/meta/config";
+import config from "../utils/configger";
 
 import LinkedInIcon from "!svg-react-loader!../images/svg-icons/linkedin.svg";
 import TwitterIcon from "!svg-react-loader!../images/svg-icons/twitter.svg";

@@ -2,6 +2,7 @@ import { Tag20 as Tag } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
+
 const _ = require("lodash");
 
 import { ThemeContext } from "../layouts";
@@ -10,7 +11,7 @@ import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import Seo from "../components/Seo";
 import { filterOutDrafts } from "../utils/filters";
-import config from "../../content/meta/config";
+import config from "../utils/configger";
 
 const CategoryPage = props => {
   const {

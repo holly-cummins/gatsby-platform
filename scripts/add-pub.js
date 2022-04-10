@@ -5,7 +5,7 @@ const urlMetadata = require("url-metadata");
 const request = require("request");
 const path = require("path");
 const url = require("url");
-import config from "../content/meta/config";
+import config from "../src/utils/configger";
 
 const targetUrl = process.argv[2];
 

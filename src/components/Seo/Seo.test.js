@@ -11,7 +11,7 @@ const pathPrefix = "!";
 const authorTwitterAccount = "banana-tweets";
 const siteImage = `${siteUrl}/banana.png`;
 
-jest.mock("../../../content/meta/config", () => ({
+jest.mock("../../utils/configger", () => ({
   siteTitle,
   shortSiteTitle,
   siteDescription,

@@ -6,7 +6,7 @@ import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
 
 import theme from "../theme/theme.yaml";
-import config from "../../content/meta/config";
+import config from "../utils/configger";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render

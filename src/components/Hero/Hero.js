@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { FaArrowDown } from "react-icons/fa/";
-import config from "../../../content/meta/config";
+import config from "../../utils/configger";
 
 const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;

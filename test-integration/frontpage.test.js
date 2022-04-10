@@ -1,7 +1,7 @@
 jest.setTimeout(15 * 1000);
 
 const { port } = require("../jest-puppeteer.config").server;
-const { authorName } = require("../content/meta/config");
+const { authorName } = require("../src/utils/configger");
 
 const siteRoot = `http://localhost:${port}`;
 
