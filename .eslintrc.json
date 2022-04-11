@@ -37,6 +37,7 @@
     "import/no-extraneous-dependencies": "off",
     "no-console": "off",
     "no-multi-assign": "off",
+    "require-jsdoc": "off",
     "no-param-reassign": "warn",
     "no-plusplus": "off",
     "no-shadow": "warn",

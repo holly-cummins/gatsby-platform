@@ -4,6 +4,10 @@ import Talk from ".";
 
 import theme from "../../theme/theme.yaml";
 
+// Mock out things with static queries
+// eslint-disable-next-line react/display-name
+jest.mock("../Post/Author.js", () => () => <></>);
+
 describe("Talk", () => {
   const title = "an amazing presentation";
 

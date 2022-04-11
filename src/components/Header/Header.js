@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 import VisibilitySensor from "react-visibility-sensor";
@@ -7,9 +7,7 @@ import { ScreenWidthContext, FontLoadedContext } from "../../layouts";
 import config from "../../utils/configger";
 import Menu from "../Menu";
 
-import avatar from "../../images/jpg/author.jpg";
-
-class Header extends React.Component {
+export class PureHeader extends React.Component {
   state = {
     fixed: false
   };
@@ -30,7 +28,14 @@ class Header extends React.Component {
   };
 
   render() {
-    const { pages, path, theme } = this.props;
+    const {
+      pages,
+      path,
+      theme,
+      data: {
+        file: { publicURL: avatar }
+      }
+    } = this.props;
     const { fixed } = this.state;
 
     return (
@@ -164,6 +169,7 @@ class Header extends React.Component {
               h1 {
                 color: ${theme.color.neutral.white};
               }
+
               h2 {
                 color: ${theme.color.neutral.gray.d};
               }
@@ -205,6 +211,7 @@ class Header extends React.Component {
                 h1 {
                   color: ${theme.color.neutral.white};
                 }
+
                 h2 {
                   color: ${theme.color.neutral.gray.d};
                 }
@@ -251,10 +258,29 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
+export default function Header(props) {
+  // The image could be in ./content or ../content, so use a query
+  return (
+    <StaticQuery
+      query={graphql`
+        query HeaderAuthorQuery {
+          file(base: { eq: "author.jpg" }) {
+            publicURL
+          }
+        }
+      `}
+      render={data => <PureHeader data={data} {...props} />}
+    />
+  );
+}
+
+PureHeader.propTypes = {
   pages: PropTypes.array.isRequired,
   path: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    file: PropTypes.shape({
+      publicURL: PropTypes.string.isRequired
+    })
+  })
 };
-
-export default Header;

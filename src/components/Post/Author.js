@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import config from "../../utils/configger";
-import avatar from "../../images/jpg/author.jpg";
+import { graphql, StaticQuery } from "gatsby";
 
 const Author = props => {
-  const { note, theme } = props;
+  const {
+    note,
+    theme,
+    data: {
+      file: { publicURL: avatar }
+    }
+  } = props;
 
   return (
     <React.Fragment>
@@ -27,6 +33,7 @@ const Author = props => {
           border-top: 1px solid ${theme.line.color};
           border-bottom: 1px solid ${theme.line.color};
         }
+
         .avatar {
           float: left;
           border-radius: 65% 75%;
@@ -37,17 +44,21 @@ const Author = props => {
           overflow: hidden;
           width: 50px;
         }
+
         .avatar img {
           width: 100%;
         }
+
         .note {
           font-size: 0.9em;
           line-height: 1.6;
         }
+
         @from-width tablet {
           .author {
             display: flex;
           }
+
           .avatar {
             flex: 0 0 auto;
           }
@@ -57,9 +68,30 @@ const Author = props => {
   );
 };
 
+function QueryAuthor(props) {
+  // The image could be in ./content or ../content, so use a query
+  return (
+    <StaticQuery
+      query={graphql`
+        query AuthorQuery {
+          file(base: { eq: "author.jpg" }) {
+            publicURL
+          }
+        }
+      `}
+      render={data => <Author data={data} {...props} />}
+    />
+  );
+}
+
 Author.propTypes = {
   note: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    file: PropTypes.shape({
+      publicURL: PropTypes.string.isRequired
+    })
+  }).isRequired
 };
 
-export default Author;
+export default QueryAuthor;
