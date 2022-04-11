@@ -55,7 +55,8 @@ const createMarkdown = async () => {
     author = myName;
   }
 
-  const dir = `./content/publications/${date}--${slug}`;
+  const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+  const dir = `./${contentDir}/publications/${date}--${slug}`;
 
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);

@@ -9,7 +9,9 @@ import config from "../src/utils/configger";
 
 const { extract } = require("../plugins/gatsby-remark-oembed/extended-oembed-parser");
 
-const baseDir = "./content/talks";
+const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+const baseDir = `${contentDir}/talks`;
+
 const UNKNOWN = "unknown";
 
 const slidesUrl = process.argv[2];
