@@ -81,8 +81,12 @@ git subtree add --prefix platform platform main
 
 To update with new platform changes, run
 ```
+git fetch platform
 git subtree pull --prefix platform platform main
+git push
 ```
+
+A merge commit will be generated.
 
 The `.github/workdlows/build_and_publish.yml` will need to be manually copied to the new project root, and
 a working directory added.
