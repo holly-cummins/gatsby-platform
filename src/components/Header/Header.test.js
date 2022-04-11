@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import { render, screen } from "@testing-library/react";
-import { PureHeader as Header } from "./header";
+import { PureHeader as Header } from "./Header";
 import themeObjectFromYaml from "../../theme/theme.yaml";
 
 const graphqldata = {
