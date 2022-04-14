@@ -5,7 +5,7 @@ const urlMetadata = require("url-metadata");
 const request = require("request");
 const path = require("path");
 const url = require("url");
-import config from "../src/utils/configger";
+const config = require("../src/utils/configger");
 
 const { extract } = require("../plugins/gatsby-remark-oembed/extended-oembed-parser");
 
