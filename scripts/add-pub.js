@@ -9,10 +9,10 @@ const config = require("../src/utils/configger");
 
 const targetUrl = process.argv[2];
 
-const download = async (url, fileName) => {
+const download = async (pubUrl, fileName) => {
   return new Promise(resolve => {
-    request.head(url, (err, res, body) => {
-      request(url)
+    request.head(pubUrl, () => {
+      request(pubUrl)
         .pipe(fs.createWriteStream(fileName))
         .on("close", resolve);
     });
@@ -20,7 +20,7 @@ const download = async (url, fileName) => {
 };
 
 const extractDate = async metadata => {
-  let date = "unknown";
+  let date;
 
   // Look for something that looks like a date;
   // it varies from site to site and many don't have it at all
@@ -55,7 +55,7 @@ const createMarkdown = async () => {
     author = myName;
   }
 
-  const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+  const contentDir = fs.existsSync("../content") ? "../content" : "./content";
   const dir = `./${contentDir}/publications/${date}--${slug}`;
 
   if (!fs.existsSync(dir)) {
@@ -71,7 +71,7 @@ const createMarkdown = async () => {
 
     // console.log("downloading", imageUrl, "to ", `${dir}/${cover}`);
     // Download the ignored image to save a pre-processing step locally
-    download(imageUrl, `${dir}/${cover}`);
+    await download(imageUrl, `${dir}/${cover}`);
 
     // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
     fs.writeFileSync(`${dir}/.gitignore`, cover, "utf8");
