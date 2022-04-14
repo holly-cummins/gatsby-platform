@@ -31,11 +31,13 @@ const updateGitignore = async (oembedUrl, dir) => {
   const oembedData = await extract(oembedUrl);
 
   const imageUrl = oembedData.thumbnail_url;
-  const remotePath = url.parse(imageUrl).pathname;
-  const fileName = path.parse(remotePath).base;
+  if (imageUrl) {
+    const remotePath = url.parse(imageUrl).pathname;
+    const fileName = path.parse(remotePath).base;
 
-  // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
-  fs.writeFileSync(`${dir}/.gitignore`, fileName + "\n", { flag: "a", encoding: "utf8" });
+    // Ignore the image so we can preprocess the publication locally without making a mess of the git status.
+    fs.writeFileSync(`${dir}/.gitignore`, fileName + "\n", { flag: "a", encoding: "utf8" });
+  }
 };
 
 const extractDate = async metadata => {
@@ -67,7 +69,7 @@ const createMarkdown = async () => {
 
   let date = await extractDate(metadata);
 
-  if (!date || date == UNKNOWN) {
+  if (!date || (date == UNKNOWN && videoUrl)) {
     const videoMetadata = await urlMetadata(videoUrl);
     date = await extractDate(videoMetadata);
     console.log("Used date from video, rather than slides.");
