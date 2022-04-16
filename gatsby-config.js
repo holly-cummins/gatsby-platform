@@ -124,6 +124,12 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-oembed`,
+            options: {
+              maxWidth: 800
+            }
+          },
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,
@@ -140,12 +146,6 @@ module.exports = {
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
-          {
-            resolve: `gatsby-remark-oembed`,
-            options: {
-              maxWidth: 800
-            }
-          },
           `gatsby-remark-smartypants`,
           {
             resolve: "gatsby-remark-emojis",
