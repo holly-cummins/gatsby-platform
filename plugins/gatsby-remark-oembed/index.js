@@ -13,30 +13,33 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   const enrichPromises = [];
 
   if (frontmatter.slides) {
-    const enrichPromise = await enrich(frontmatter.slides, markdownFile, maxWidth);
-    enrichPromises.push(enrichPromise);
+    const answer = await enrich(frontmatter.slides, markdownFile, maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
-      frontmatter.title = frontmatter.slides.title;
+      frontmatter.title = answer.title;
     }
 
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = frontmatter.slides.thumbnail;
+      frontmatter.cover = answer.thumbnail;
     }
+    // Make sure to wait
+    enrichPromises.push(new Promise(resolve => resolve(answer)));
   }
 
   if (frontmatter.video) {
-    const enrichPromise = await enrich(frontmatter.video, markdownFile, maxWidth);
-    enrichPromises.push(enrichPromise);
+    const answer = await enrich(frontmatter.video, markdownFile, maxWidth);
 
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
 
     if (!frontmatter.title) {
-      frontmatter.title = frontmatter.video.title;
+      frontmatter.title = answer.title;
     }
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = frontmatter.video.thumbnail;
+      frontmatter.cover = answer.thumbnail;
     }
+
+    // Make sure to wait
+    enrichPromises.push(new Promise(resolve => resolve(answer)));
   }
 
   return Promise.all(enrichPromises);
@@ -67,10 +70,10 @@ const enrich = async (oembedObject, post, maxwidth) => {
       if (imageUrl) {
         const remotePath = nodeUrl.parse(imageUrl).pathname;
         const thumbnail = path.parse(remotePath).base;
-        oembedObject.thumbnail = thumbnail;
 
         // Wait for the download to make sure we don't end up with half-files
-        return await downloadThumbnail(imageUrl, post);
+        await downloadThumbnail(imageUrl, post);
+        oembedObject.thumbnail = thumbnail;
       }
     } else {
       // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
@@ -81,9 +84,10 @@ const enrich = async (oembedObject, post, maxwidth) => {
     Object.assign(oembedObject, {
       link: url,
       title: "External content",
-      html: `<p>See the full content <a href=${url}>here.</a></p>`
+      html: `<p>See the full content <a href="${url}">here.</a></p>`
     });
   }
+  return oembedObject;
 };
 
 const downloadThumbnail = async (imageUrl, file) => {
