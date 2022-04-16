@@ -39,7 +39,7 @@ describe("site links", () => {
             console.log("Rejecting promise in sitechecker: ", error);
             reject(error);
           },
-          link: (result, customData) => {
+          link: result => {
             if (result.broken) {
               if (
                 result.http.response &&
