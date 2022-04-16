@@ -16,11 +16,11 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     const answer = await enrich(frontmatter.slides, markdownFile, maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
-      frontmatter.title = answer.title;
+      frontmatter.title = frontmatter.slides.title;
     }
 
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = answer.thumbnail;
+      frontmatter.cover = frontmatter.slides.thumbnail;
     }
     // Make sure to wait
     enrichPromises.push(new Promise(resolve => resolve(answer)));
@@ -32,10 +32,10 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
 
     if (!frontmatter.title) {
-      frontmatter.title = answer.title;
+      frontmatter.title = frontmatter.video.title;
     }
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = answer.thumbnail;
+      frontmatter.cover = frontmatter.video.thumbnail;
     }
 
     // Make sure to wait
@@ -46,6 +46,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
 };
 
 const enrich = async (oembedObject, post, maxwidth) => {
+  const thingsWeAreWaitingFor = [];
   const url = oembedObject.url;
   // Allow the height to be as big as the width and let youtube shrink it down;
   // Otherwise we get a small default so don't get the width
@@ -55,6 +56,7 @@ const enrich = async (oembedObject, post, maxwidth) => {
   const shouldExtract = hasProvider(url, params);
   if (shouldExtract) {
     const oembedData = await extract(url, params);
+    thingsWeAreWaitingFor.push(oembedData);
     if (oembedData) {
       Object.assign(oembedObject, {
         link: url,
@@ -72,7 +74,8 @@ const enrich = async (oembedObject, post, maxwidth) => {
         const thumbnail = path.parse(remotePath).base;
 
         // Wait for the download to make sure we don't end up with half-files
-        await downloadThumbnail(imageUrl, post);
+        const download = await downloadThumbnail(imageUrl, post);
+        thingsWeAreWaitingFor.push(download);
         oembedObject.thumbnail = thumbnail;
       }
     } else {
@@ -87,7 +90,7 @@ const enrich = async (oembedObject, post, maxwidth) => {
       html: `<p>See the full content <a href="${url}">here.</a></p>`
     });
   }
-  return oembedObject;
+  return thingsWeAreWaitingFor;
 };
 
 const downloadThumbnail = async (imageUrl, file) => {
