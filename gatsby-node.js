@@ -202,7 +202,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   type OEmbed implements Node {
     url: String
     title: String
-    html: String!
+    html: String
   }
   type Frontmatter {
     video: OEmbed
