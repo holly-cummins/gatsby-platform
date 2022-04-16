@@ -16,11 +16,11 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     const answer = await enrich(frontmatter.slides, markdownFile, maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
-      frontmatter.title = frontmatter.slides.title;
+      frontmatter.title = answer.title;
     }
 
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = frontmatter.slides.thumbnail;
+      frontmatter.cover = answer.thumbnail;
     }
     // Make sure to wait
     enrichPromises.push(new Promise(resolve => resolve(answer)));
@@ -32,10 +32,10 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
 
     if (!frontmatter.title) {
-      frontmatter.title = frontmatter.video.title;
+      frontmatter.title = answer.title;
     }
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-      frontmatter.cover = frontmatter.video.thumbnail;
+      frontmatter.cover = answer.thumbnail;
     }
 
     // Make sure to wait
@@ -90,7 +90,7 @@ const enrich = async (oembedObject, post, maxwidth) => {
       html: `<p>See the full content <a href="${url}">here.</a></p>`
     });
   }
-  return thingsWeAreWaitingFor;
+  return oembedObject;
 };
 
 const downloadThumbnail = async (imageUrl, file) => {
