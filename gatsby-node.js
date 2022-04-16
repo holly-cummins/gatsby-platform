@@ -135,7 +135,9 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // Create posts
-        const posts = items.filter(item => item.node.fields.source === "posts" || item.node.fields.source === "talks");
+        const posts = items.filter(
+          item => item.node.fields.source === "posts" || item.node.fields.source === "talks"
+        );
         posts.forEach(({ node }, index) => {
           const slug = node.fields.slug;
           const next = index === 0 ? undefined : posts[index - 1].node;
@@ -199,7 +201,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   }
   type OEmbed implements Node {
     url: String
-    title: String!
+    title: String
     html: String!
   }
   type Frontmatter {

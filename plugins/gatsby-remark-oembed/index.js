@@ -10,22 +10,25 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   const markdownFile = markdownNode.fileAbsolutePath;
   const maxWidth = options ? options.maxWidth : 700;
 
+  const enrichPromises = [];
+
   if (frontmatter.slides) {
-    await enrich(frontmatter.slides, markdownFile, maxWidth);
+    const enrichPromise = await enrich(frontmatter.slides, markdownFile, maxWidth);
+    enrichPromises.push(enrichPromise);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
       frontmatter.title = frontmatter.slides.title;
     }
 
-    // It doesn't seem to work to totally skip the cover, so we put a placeholder
-    // in the physical file and then overwrite it here
     if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
       frontmatter.cover = frontmatter.slides.thumbnail;
     }
   }
 
   if (frontmatter.video) {
-    await enrich(frontmatter.video, markdownFile, maxWidth);
+    const enrichPromise = await enrich(frontmatter.video, markdownFile, maxWidth);
+    enrichPromises.push(enrichPromise);
+
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
 
     if (!frontmatter.title) {
@@ -35,6 +38,8 @@ exports.mutateSource = async ({ markdownNode }, options) => {
       frontmatter.cover = frontmatter.video.thumbnail;
     }
   }
+
+  return Promise.all(enrichPromises);
 };
 
 const enrich = async (oembedObject, post, maxwidth) => {
@@ -48,22 +53,25 @@ const enrich = async (oembedObject, post, maxwidth) => {
   if (shouldExtract) {
     const oembedData = await extract(url, params);
     if (oembedData) {
-      const imageUrl = oembedData.thumbnail_url;
-      if (imageUrl) {
-        const remotePath = nodeUrl.parse(imageUrl).pathname;
-        const thumbnail = path.parse(remotePath).base;
-
-        // No need to wait for the download
-        downloadThumbnail(imageUrl, post);
-
-        oembedObject.thumbnail = thumbnail;
-      }
-
       Object.assign(oembedObject, {
         link: url,
         title: oembedData.title,
         html: oembedData.html
       });
+      if (!oembedObject.html) {
+        console.log("Filling in html for ", url);
+        oembedObject.html = "<></>";
+      }
+
+      const imageUrl = oembedData.thumbnail_url;
+      if (imageUrl) {
+        const remotePath = nodeUrl.parse(imageUrl).pathname;
+        const thumbnail = path.parse(remotePath).base;
+        oembedObject.thumbnail = thumbnail;
+
+        // Wait for the download to make sure we don't end up with half-files
+        return await downloadThumbnail(imageUrl, post);
+      }
     } else {
       // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
       console.error(`Got no oembed data for `, url);
@@ -85,7 +93,7 @@ const downloadThumbnail = async (imageUrl, file) => {
   const imagePath = path.join(dir, fileName);
   if (!fs.existsSync(imagePath)) {
     console.log("Downloading", imageUrl);
-    download(imageUrl, imagePath);
+    return await download(imageUrl, imagePath);
   } else {
     console.log(fileName, "already exists, skipping.");
   }
