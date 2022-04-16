@@ -25,11 +25,13 @@ const CategoryPage = props => {
   // Create category list
   const categories = {};
   posts.forEach(edge => {
-    const {
+    let {
       node: {
         frontmatter: { category }
       }
     } = edge;
+
+    category = category ? category.toLowerCase() : null;
 
     if (category && category != null) {
       if (!categories[category]) {
@@ -69,6 +71,7 @@ const CategoryPage = props => {
               h2 {
                 margin: 0 0 0.5em;
               }
+
               h2 :global(svg) {
                 height: 0.8em;
                 fill: ${theme.color.brand.primary};

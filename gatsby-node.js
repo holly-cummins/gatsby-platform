@@ -1,4 +1,3 @@
-//const webpack = require("webpack");
 const _ = require("lodash");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const path = require("path");
@@ -85,11 +84,13 @@ exports.createPages = ({ graphql, actions }) => {
         // Create category list
         const categorySet = new Set();
         items.forEach(edge => {
-          const {
+          let {
             node: {
               frontmatter: { category }
             }
           } = edge;
+
+          category = category ? category.toLowerCase() : null;
 
           if (category && category !== null) {
             categorySet.add(category);
