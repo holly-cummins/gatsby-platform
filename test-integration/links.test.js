@@ -8,7 +8,7 @@ describe("site links", () => {
 
   beforeAll(async () => {
     const promise = new Promise((resolve, reject) => {
-      siteChecker = new SiteChecker(
+      const siteChecker = new SiteChecker(
         {
           excludeInternalLinks: false,
           excludeExternalLinks: false,
