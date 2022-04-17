@@ -30,8 +30,6 @@ const processDirectory = async () => {
         const source = await readFile(markdownPath);
         const frontmatter = metadataParser(source).metadata;
 
-        const enrichPromises = [];
-
         if (frontmatter.slides) {
           const thingWeAreWaitingFor = await enrich(frontmatter.slides, path.join(dir, talk));
 
@@ -46,15 +44,14 @@ const processDirectory = async () => {
           enrichPromises.push(new Promise(resolve => resolve(thingWeAreWaitingFor)));
         }
       }
-
-      return Promise.all(enrichPromises);
     } // End for...of
   } catch (e) {
     // Catch anything bad that happens
     console.error("We've thrown! Whoops!", e);
   }
+  return Promise.all(enrichPromises);
 };
-const enrich = async (oembedObject, dir) => {
+const enrich = async (oembedObject, downloadDir) => {
   const thingsWeAreWaitingFor = [];
   const url = oembedObject.url;
   const params = {};
@@ -66,11 +63,8 @@ const enrich = async (oembedObject, dir) => {
     if (oembedData) {
       const imageUrl = oembedData.thumbnail_url;
       if (imageUrl) {
-        const remotePath = nodeUrl.parse(imageUrl).pathname;
-        const thumbnail = path.parse(remotePath).base;
-
         // Wait for the download to make sure we don't end up with half-files
-        const download = await downloadThumbnail(imageUrl, dir);
+        const download = await downloadThumbnail(imageUrl, downloadDir);
         thingsWeAreWaitingFor.push(download);
       }
     } else {
@@ -81,10 +75,10 @@ const enrich = async (oembedObject, dir) => {
   return thingsWeAreWaitingFor;
 };
 
-const downloadThumbnail = async (imageUrl, dir) => {
+const downloadThumbnail = async (imageUrl, thumbnailDir) => {
   const remotePath = nodeUrl.parse(imageUrl).pathname;
   const fileName = path.parse(remotePath).base;
-  const imagePath = path.join(dir, fileName);
+  const imagePath = path.join(thumbnailDir, fileName);
   if (!fs.existsSync(imagePath)) {
     console.log("Downloading", imageUrl);
     return await download(imageUrl, imagePath);
