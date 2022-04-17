@@ -33,6 +33,34 @@ describe("TypeTemplate", () => {
     }
   };
 
+  const futureNode = {
+    node: {
+      frontmatter: { type: "bake-off", title: "a future title" },
+      fields: { source: "another-source", slug: "psychic-slug", prefix: "2056-07-02" }
+    }
+  };
+
+  const marchFutureNode = {
+    node: {
+      frontmatter: { type: "bake-off", title: "a march future" },
+      fields: { source: "another-source", slug: "march-psychic-slug", prefix: "2054-03-02" }
+    }
+  };
+
+  const octoberFutureNode = {
+    node: {
+      frontmatter: { type: "bake-off", title: "a october future" },
+      fields: { source: "another-source", slug: "oct-psychic-slug", prefix: "2058-10-02" }
+    }
+  };
+
+  const juneFutureNode = {
+    node: {
+      frontmatter: { type: "bake-off", title: "a june future" },
+      fields: { source: "another-source", slug: "psychic-june-slug", prefix: "2057-06-02" }
+    }
+  };
+
   const post1 = {
     node: {
       fields: {
@@ -145,7 +173,7 @@ describe("TypeTemplate", () => {
 
   describe("for a collection with multiple elements", () => {
     const type = "podcast";
-    const edges = [draftNode, node, post1, post2, post3, post4, post5];
+    const edges = [draftNode, futureNode, node, post1, post2, post3, post4, post5];
     const data = {
       allMarkdownRemark: { totalCount, edges }
     };
@@ -182,6 +210,18 @@ describe("TypeTemplate", () => {
       const expectedOrder = ["a october title", "a june title", "a march title"];
       const elements = screen.getAllByText(/a .* title/);
       expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("does not show list years in the future", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.queryByText(2056)).toBeFalsy();
+    });
+
+    it("does not show anything about upcoming", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.queryByText("upcoming")).toBeFalsy();
     });
 
     it("does not show the type icons on the list elements", async () => {
@@ -238,6 +278,91 @@ describe("TypeTemplate", () => {
         // Coupling to the internals of List, but we need some way to make sure the right one is included
         expect(screen.getAllByTestId("logo-list-wrapper")).toHaveLength(5);
       });
+    });
+  });
+
+  describe("for a collection with multiple elements and upcoming enabled", () => {
+    // Upcoming is enabled for talks
+    const type = "talk";
+
+    const edges = [
+      draftNode,
+      marchFutureNode,
+      futureNode,
+      octoberFutureNode,
+      juneFutureNode,
+      node,
+      post1,
+      post2,
+      post3,
+      post4,
+      post5
+    ];
+    const data = {
+      allMarkdownRemark: { totalCount, edges }
+    };
+
+    beforeEach(() => {
+      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    it("renders the draft title", async () => {
+      expect(screen.getByText(draftTitle)).toBeTruthy();
+    });
+
+    it("renders several lists", () => {
+      // Coupling to the internals of List, but we need some way to make sure the right one is included
+      expect(screen.getAllByTestId("post-list-wrapper")).toHaveLength(6);
+    });
+
+    it("renders the years", async () => {
+      expect(screen.getByText(2020)).toBeTruthy();
+      expect(screen.getByText(2019)).toBeTruthy();
+    });
+
+    it("renders the years in the right order", async () => {
+      const expectedOrder = ["upcoming", "unpublished", "2020", "2019", "2011", "2003"];
+      const elements = screen.getAllByRole("heading", { level: 2 });
+      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("renders the elements within a year in the right order", async () => {
+      const expectedOrder = ["a future title", "a october title", "a june title", "a march title"];
+      const elements = screen.getAllByText(/a .* title/);
+      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("renders the elements within the future in the right order", async () => {
+      const expectedOrder = [
+        "a october future",
+        "a june future",
+        "a future title",
+        "a march future"
+      ];
+      const elements = screen.getAllByText(/.*future.*/);
+      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("does not show list years in the future", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.queryByText(2056)).toBeFalsy();
+    });
+
+    it("has a section for upcoming", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.getByText("upcoming")).toBeTruthy();
+    });
+
+    it("does not show the type icons on the list elements", async () => {
+      // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
+      // Length should be one - one for the title, and then no others
+      expect(screen.getAllByTitle(/.*icon/)).toHaveLength(1);
     });
   });
 });

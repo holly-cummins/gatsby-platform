@@ -12,10 +12,12 @@ describe("site links", () => {
         {
           excludeInternalLinks: false,
           excludeExternalLinks: false,
+          retryHeadCodes: [404, 405],
+          maxSocketsPerHost: 1,
           filterLevel: 0,
           acceptedSchemes: ["http", "https"],
           userAgent:
-            "Not actually Mozilla/5.0 (X11; Linux i686; rv:84.0) Gecko/20100101 Firefox/84.0", // Twitter is fussy about the user agent and will not serve to bots
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0", // Twitter is fussy about the user agent and will not serve to bots
           excludedKeywords: [
             "https://twitter.com/ducky_devine",
             "https://www.linkedin.com/in/ducky-devine/",
