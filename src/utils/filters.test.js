@@ -94,6 +94,13 @@ describe("the node filtering", () => {
     }
   };
 
+  const future = {
+    node: {
+      frontmatter: { category: "final-stuff" },
+      fields: { source: "posts", slug: "done-now", prefix: "2052-01-17" }
+    }
+  };
+
   const page = {
     node: {
       frontmatter: { category: "site-furniture" },
@@ -142,6 +149,17 @@ describe("the node filtering", () => {
     it("leaves posts with dates", async () => {
       expect(filterOutDrafts(edges)).toContain(dated);
       expect(filterOutDrafts(edges)).toContain(anotherDated);
+    });
+
+    it("strips out posts in the future", async () => {
+      const edgesWithFuture = [...edges, future];
+      expect(filterOutDrafts(edgesWithFuture)).not.toContain(future);
+    });
+
+    it("leaves posts in the future if the option is set", async () => {
+      const showFuture = true;
+      const edgesWithFuture = [...edges, future];
+      expect(filterOutDrafts(edgesWithFuture, showFuture)).toContain(future);
     });
 
     it("strips out drafts", async () => {

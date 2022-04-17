@@ -18,8 +18,8 @@ const TypeTemplate = props => {
     }
   } = props;
 
-  const filteredEntries = filterOutDrafts(edges);
   const showUpcoming = type === "talk";
+  const filteredEntries = filterOutDrafts(edges, showUpcoming);
 
   // Do this filtering here so that it is dynamic, rather than being done at build-time
   const now = new Date().getTime();
@@ -35,25 +35,22 @@ const TypeTemplate = props => {
 
     const date = new Date(prefix);
 
-    const isDraft = !date.getTime();
     const isInTheFuture = date.getTime() > now;
-    if (isDraft || !isInTheFuture || showUpcoming) {
-      let year;
-      year = date.getFullYear();
+    let year;
+    year = date.getFullYear();
 
-      if (!year) {
-        year = "unpublished";
-      }
-      if (isInTheFuture) {
-        year = "upcoming";
-      }
+    if (!year) {
+      year = "unpublished";
+    }
+    if (isInTheFuture) {
+      year = "upcoming";
+    }
 
-      if (year && year != null) {
-        if (!years[year]) {
-          years[year] = [];
-        }
-        years[year].push(edge);
+    if (year && year != null) {
+      if (!years[year]) {
+        years[year] = [];
       }
+      years[year].push(edge);
     }
   });
 

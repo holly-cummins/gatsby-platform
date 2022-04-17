@@ -32,7 +32,22 @@ exports.generateFilter = otherFilter => {
   return filters;
 };
 
-exports.filterOutDrafts = edges => {
+exports.filterOutDrafts = (edges, showFuture) => {
+  if (!showFuture) {
+    // Do this filtering here so that it is dynamic, rather than being done at build-time
+    const now = new Date().getTime();
+    edges = edges.filter(edge => {
+      if (edge.node && edge.node.fields) {
+        const date = new Date(edge.node.fields.prefix);
+        const isInTheFuture = date.getTime() > now;
+        return !isInTheFuture;
+      } else {
+        // Be tolerant of incomplete data
+        return true;
+      }
+    });
+  }
+
   if (isProd()) {
     edges = edges.filter(edge => {
       if (edge.node && edge.node.fields) {
@@ -44,5 +59,6 @@ exports.filterOutDrafts = edges => {
       }
     });
   }
+
   return edges;
 };
