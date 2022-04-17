@@ -33,33 +33,17 @@ const processDirectory = async () => {
         const enrichPromises = [];
 
         if (frontmatter.slides) {
-          const answer = await enrich(frontmatter.slides, path.join(dir, talk));
-          // If the main document doesn't have a title, fill one in from the slides
-          if (!frontmatter.title) {
-            frontmatter.title = answer.title;
-          }
+          const thingWeAreWaitingFor = await enrich(frontmatter.slides, path.join(dir, talk));
 
-          if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-            frontmatter.cover = answer.thumbnail;
-          }
           // Make sure to wait
-          enrichPromises.push(new Promise(resolve => resolve(answer)));
+          enrichPromises.push(new Promise(resolve => resolve(thingWeAreWaitingFor)));
         }
 
         if (frontmatter.video) {
-          const answer = await enrich(frontmatter.video, path.join(dir, talk));
-
-          // If the main document still doesn't have a title after doing the slides, fill one in from the video
-
-          if (!frontmatter.title) {
-            frontmatter.title = answer.title;
-          }
-          if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
-            frontmatter.cover = answer.thumbnail;
-          }
+          const thingWeAreWaitingFor = await enrich(frontmatter.video, path.join(dir, talk));
 
           // Make sure to wait
-          enrichPromises.push(new Promise(resolve => resolve(answer)));
+          enrichPromises.push(new Promise(resolve => resolve(thingWeAreWaitingFor)));
         }
       }
 
@@ -80,16 +64,6 @@ const enrich = async (oembedObject, dir) => {
     const oembedData = await extract(url, params);
     thingsWeAreWaitingFor.push(oembedData);
     if (oembedData) {
-      Object.assign(oembedObject, {
-        link: url,
-        title: oembedData.title,
-        html: oembedData.html
-      });
-      if (!oembedObject.html) {
-        console.log("Filling in html for ", url);
-        oembedObject.html = "<></>";
-      }
-
       const imageUrl = oembedData.thumbnail_url;
       if (imageUrl) {
         const remotePath = nodeUrl.parse(imageUrl).pathname;
@@ -98,21 +72,13 @@ const enrich = async (oembedObject, dir) => {
         // Wait for the download to make sure we don't end up with half-files
         const download = await downloadThumbnail(imageUrl, dir);
         thingsWeAreWaitingFor.push(download);
-        oembedObject.thumbnail = thumbnail;
       }
     } else {
       // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
       console.error(`Got no oembed data for `, url);
     }
-  } else {
-    // Schema validation gets upset if we don't do this
-    Object.assign(oembedObject, {
-      link: url,
-      title: "External content",
-      html: `<p>See the full content <a href="${url}">here.</a></p>`
-    });
   }
-  return oembedObject;
+  return thingsWeAreWaitingFor;
 };
 
 const downloadThumbnail = async (imageUrl, dir) => {
