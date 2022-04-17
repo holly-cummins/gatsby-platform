@@ -26,6 +26,7 @@ jobs:
           node-version: '12'
       - run: npm install
       - run: ./scripts/preprocess-publications.js
+      - run: ./scripts/preprocess-talks.js
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
