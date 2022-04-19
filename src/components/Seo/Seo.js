@@ -15,7 +15,7 @@ const Seo = props => {
   }
   const postTitle = ((data || {}).frontmatter || {}).title;
   const postDescription = (data || {}).excerpt || ((data || {}).frontmatter || {}).description;
-  const postSlug = ((data || {}).fields || {}).slug;
+  const postSlug = ((data || {}).fields || {}).slug || "";
 
   const title = postTitle ? `${postTitle} - ${config.shortSiteTitle}` : config.siteTitle;
   const description = postDescription ? postDescription : config.siteDescription;

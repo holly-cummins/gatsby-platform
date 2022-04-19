@@ -5,7 +5,7 @@ module.exports = {
     "This is a demo site, so there's not really any content here but the template code is nice.",
   siteUrl: "http://duckydevine.com",
   pathPrefix: "",
-  siteImage: "preview.png",
+  siteImage: "/preview.png",
   siteLanguage: "en",
 
   /* author */
