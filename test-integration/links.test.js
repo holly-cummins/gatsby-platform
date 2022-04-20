@@ -10,11 +10,6 @@ describe("site links", () => {
     // create a new `LinkChecker` that we'll use to run the scan.
     const checker = new link.LinkChecker();
 
-    // Respond to the beginning of a new page being scanned
-    checker.on("pagestart", url => {
-      // console.log(`Scanning ${url}`);
-    });
-
     // After a page is scanned, check out the results!
     checker.on("link", result => {
       if (result.state === "BROKEN") {
