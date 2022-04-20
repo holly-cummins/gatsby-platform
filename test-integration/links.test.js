@@ -3,7 +3,6 @@ jest.setTimeout(180 * 1000);
 const link = require("linkinator");
 
 describe("site links", () => {
-  console.log("link is", link);
   const deadExternalLinks = [];
   const deadInternalLinks = [];
 
@@ -13,14 +12,14 @@ describe("site links", () => {
 
     // Respond to the beginning of a new page being scanned
     checker.on("pagestart", url => {
-      console.log(`Scanning ${url}`);
+      // console.log(`Scanning ${url}`);
     });
 
     // After a page is scanned, check out the results!
     checker.on("link", result => {
       if (result.state === "BROKEN") {
-        //   console.log(result);
-        const description = `${result.url} => ${result.status} (${result.failureDetails}) on ${result.parent}`;
+        const errorText = result.failureDetails[0].statusText || result.failureDetails[0].code;
+        const description = `${result.url} => ${result.status} (${errorText}) on ${result.parent}`;
         if (result.internal) {
           // TODO this will always be false as linkinator does not give us this
           if (!deadInternalLinks.includes(description)) {
@@ -56,8 +55,11 @@ describe("site links", () => {
     await checker.check({
       path: "http://localhost:9000",
       recurse: true,
-      concurrency: 1,
-      linksToSkip: excludedLinks
+      linksToSkip: excludedLinks,
+      urlRewriteSearch: /http:\/\/duckydevine.com/,
+      urlRewriteReplace: "http://localhost:9000",
+      urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"],
+      concurrency: 100
     });
   });
 
