@@ -56,6 +56,7 @@ describe("site links", () => {
     const result = await checker.check({
       path: "http://localhost:9000",
       recurse: true,
+      concurrency: 1,
       linksToSkip: excludedLinks
     });
   });
