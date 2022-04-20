@@ -18,9 +18,9 @@ describe("site links", () => {
 
     // After a page is scanned, check out the results!
     checker.on("link", result => {
-      if (result.state == "BROKEN") {
+      if (result.state === "BROKEN") {
         //   console.log(result);
-        const description = `${result.url} => ${result.status} (${result.statusText}) on ${result.parent}`;
+        const description = `${result.url} => ${result.status} (${result.failureDetails}) on ${result.parent}`;
         if (result.internal) {
           // TODO this will always be false as linkinator does not give us this
           if (!deadInternalLinks.includes(description)) {
@@ -53,7 +53,7 @@ describe("site links", () => {
     // The element14 link causes a hang
 
     // Go ahead and start the scan! As events occur, we will see them above.
-    const result = await checker.check({
+    await checker.check({
       path: "http://localhost:9000",
       recurse: true,
       concurrency: 1,
