@@ -3,7 +3,7 @@ module.exports = {
   shortSiteTitle: "Ducky Devine", // <title> ending for posts and pages
   siteDescription:
     "This is a demo site, so there's not really any content here but the template code is nice.",
-  siteUrl: "http://duckydevine.com",
+  siteUrl: "http://gatsby-platform.hollycummins.com/", // This used to be duckydevine.com, but that breaks link checkers
   pathPrefix: "",
   siteImage: "/preview.png",
   siteLanguage: "en",

@@ -58,8 +58,8 @@ describe("site links", () => {
       linksToSkip: excludedLinks,
       urlRewriteSearch: /http:\/\/duckydevine.com/,
       urlRewriteReplace: "http://localhost:9000",
-      urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"],
-      concurrency: 100
+      urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"], // Not working; see https://github.com/JustinBeckwith/linkinator/issues/390
+      concurrency: 100 // The twitter URLs seem to work better with a high concurrency, counter-intuitively
     });
   });
 
