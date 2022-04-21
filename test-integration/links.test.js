@@ -1,4 +1,4 @@
-jest.setTimeout(180 * 1000);
+jest.setTimeout(5 * 60 * 1000);
 
 const link = require("linkinator");
 
@@ -7,6 +7,8 @@ describe("site links", () => {
   const deadInternalLinks = [];
 
   beforeAll(async () => {
+    const path = "http://localhost:9000";
+
     // create a new `LinkChecker` that we'll use to run the scan.
     const checker = new link.LinkChecker();
 
@@ -15,8 +17,9 @@ describe("site links", () => {
       if (result.state === "BROKEN") {
         const errorText = result.failureDetails[0].statusText || result.failureDetails[0].code;
         const description = `${result.url} => ${result.status} (${errorText}) on ${result.parent}`;
-        if (result.internal) {
-          // TODO this will always be false as linkinator does not give us this
+        if (result.url.includes(path)) {
+          // This will still miss links where the platform uses the configured url to make it an absolute path, but hopefully we don't care
+          // too much about the categorisation as long as *a* break happens
           if (!deadInternalLinks.includes(description)) {
             deadInternalLinks.push(description);
           }
@@ -28,7 +31,7 @@ describe("site links", () => {
       }
     });
 
-    const excludedLinks = [
+    const linksToSkip = [
       "https://twitter.com/ducky_devine",
       "https://www.linkedin.com/in/ducky-devine/",
       "https://www.linkedin.com/in/holly-k-cummins/",
@@ -48,9 +51,9 @@ describe("site links", () => {
 
     // Go ahead and start the scan! As events occur, we will see them above.
     await checker.check({
-      path: "http://localhost:9000",
+      path,
       recurse: true,
-      linksToSkip: excludedLinks,
+      linksToSkip,
       urlRewriteSearch: /http:\/\/duckydevine.com/,
       urlRewriteReplace: "http://localhost:9000",
       urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"], // Not working; see https://github.com/JustinBeckwith/linkinator/issues/390
