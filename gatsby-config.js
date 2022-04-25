@@ -131,6 +131,7 @@ module.exports = {
             }
           },
           `gatsby-plugin-sharp`,
+          "gatsby-remark-date-format",
           {
             resolve: `gatsby-remark-images`,
             options: {

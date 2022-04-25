@@ -199,6 +199,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
   type MarkdownRemark implements Node {
     frontmatter: Frontmatter
+    fields: Fields
   }
   type OEmbed implements Node {
     url: String
@@ -208,6 +209,9 @@ exports.createSchemaCustomization = ({ actions }) => {
   type Frontmatter {
     video: OEmbed
     slides: OEmbed
+  }
+  type Fields {
+    shortDate: String
   }
   `;
   createTypes(typeDefs);

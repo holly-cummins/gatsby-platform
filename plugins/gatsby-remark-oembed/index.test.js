@@ -2,6 +2,7 @@ const os = require("os");
 const path = require("path");
 const parser = require("./extended-oembed-parser");
 const fs = require("fs-extra");
+const { cloneDeep } = require("lodash");
 
 const oembedResponse = {
   title: "How to while away hours on the internet",
@@ -57,6 +58,7 @@ describe("the preprocessor", () => {
         fileAbsolutePath
       }
     };
+    const original = cloneDeep(page);
 
     beforeAll(async () => {
       await fs.ensureDir(postPath);
@@ -68,7 +70,6 @@ describe("the preprocessor", () => {
     });
 
     it("changes nothing", async () => {
-      const original = Object.assign({}, page);
       expect(page).toEqual(original);
     });
 

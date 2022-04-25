@@ -19,10 +19,13 @@ describe("TypeTemplate", () => {
 
   const totalCount = 42;
   const slug = "sluggaroo";
+  const nodeDate = "2019-05-25";
+  const shortDate = "05-25";
+
   const node = {
     node: {
       frontmatter: { type: "dance-off", title },
-      fields: { source: "some-source", slug, prefix: "2019-05-25" }
+      fields: { source: "some-source", slug, prefix: nodeDate, shortDate }
     }
   };
 
@@ -169,6 +172,10 @@ describe("TypeTemplate", () => {
       expect(screen.queryByText(2011)).toBeFalsy();
       expect(screen.queryByText(2003)).toBeFalsy();
     });
+
+    it("renders the full date", async () => {
+      expect(screen.getByText(nodeDate)).toBeTruthy();
+    });
   });
 
   describe("for a collection with multiple elements", () => {
@@ -210,6 +217,14 @@ describe("TypeTemplate", () => {
       const expectedOrder = ["a october title", "a june title", "a march title"];
       const elements = screen.getAllByText(/a .* title/);
       expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+    });
+
+    it("renders the short date", async () => {
+      expect(screen.getByText(shortDate)).toBeTruthy();
+    });
+
+    it("does not render the full date", async () => {
+      expect(screen.queryByText(nodeDate)).toBeFalsy();
     });
 
     it("does not show list years in the future", async () => {

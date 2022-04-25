@@ -9,10 +9,12 @@ describe("List", () => {
   describe("for an internal post", () => {
     const title = "some post";
     const slug = "sluggaroo";
+    const shortDate = "06-09";
+    const prefix = "2020-06-09";
     const node = {
       node: {
         frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug }
+        fields: { source: "some-source", slug, prefix, shortDate }
       }
     };
     const edges = [node];
@@ -36,6 +38,33 @@ describe("List", () => {
       // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
       // Length should be one - one for the title, and then no others
       expect(screen.getByTitle(/.*icon/)).toBeTruthy();
+    });
+
+    it("renders the date, including a year", async () => {
+      expect(screen.getByText(prefix)).toBeTruthy();
+    });
+
+    describe("with short dates specified", () => {
+      const title = "some post";
+      const slug = "sluggaroo";
+      const shortDate = "05-09";
+      const prefix = "2020-05-09";
+      const node = {
+        node: {
+          frontmatter: { category: "test-stuff", title },
+          fields: { source: "some-source", slug, prefix, shortDate }
+        }
+      };
+      const edges = [node];
+
+      beforeEach(() => {
+        render(<List edges={edges} theme={theme} useShortDate={true} />);
+      });
+
+      it("renders the date, without a year", async () => {
+        expect(screen.queryByText(prefix)).toBeFalsy();
+        expect(screen.getByText(shortDate)).toBeTruthy();
+      });
     });
   });
 

@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { icon } from "../../utils/type";
 
 const List = props => {
-  const { edges, theme, showIcon } = props;
+  const { edges, theme, showIcon, useShortDate } = props;
 
   return (
     <React.Fragment>
@@ -13,16 +13,17 @@ const List = props => {
           const {
             node: {
               frontmatter: { title, url, type },
-              fields: { slug, prefix }
+              fields: { slug, prefix, shortDate }
             }
           } = edge;
 
           const Icon = showIcon ? icon(type) : null;
+          const formattedDate = useShortDate ? shortDate : prefix;
 
           return (
             <li key={slug} className="post-list">
               {Icon && <Icon />}
-              <div className="date">{prefix}</div>
+              <div className="date">{formattedDate}</div>
               {url ? (
                 <a href={url} className="link">
                   {title}
@@ -73,6 +74,7 @@ const List = props => {
 List.propTypes = {
   edges: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired,
+  useShortDate: PropTypes.bool,
   showIcon: PropTypes.bool
 };
 

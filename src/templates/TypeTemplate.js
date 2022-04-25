@@ -67,6 +67,7 @@ const TypeTemplate = props => {
   yearList.sort().reverse();
 
   const Icon = icon(type);
+  const useShortDate = yearList.length > 1;
 
   return (
     <React.Fragment>
@@ -82,7 +83,7 @@ const TypeTemplate = props => {
                 ? yearList.map(item => (
                     <section key={item[0]}>
                       <h2>{item[0]}</h2>
-                      {listEntry(item[1], type, theme, item[0])}
+                      {listEntry(item[1], type, theme, item[0], useShortDate)}
                     </section>
                   ))
                 : yearList.map(item => listEntry(item[1], type, theme, item[0]))}
@@ -96,11 +97,13 @@ const TypeTemplate = props => {
   );
 };
 
-const listEntry = (item, type, theme, year) => {
+const listEntry = (item, type, theme, year, useShortDate) => {
   if (type == "media" || type == "book") {
     return <LogoList edges={item} theme={theme} key={year} />;
   } else {
-    return <List edges={item} theme={theme} key={year} showIcon={false} />;
+    return (
+      <List edges={item} theme={theme} key={year} showIcon={false} useShortDate={useShortDate} />
+    );
   }
 };
 
@@ -128,6 +131,7 @@ export const typeQuery = graphql`
           fields {
             slug
             prefix
+            shortDate
           }
           excerpt
           timeToRead
