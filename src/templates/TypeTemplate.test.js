@@ -287,7 +287,7 @@ describe("TypeTemplate", () => {
       const mediaType = "media";
 
       beforeEach(() => {
-        renderWithTheme(<TypeTemplate data={data} pageContext={{ mediaType }} />);
+        renderWithTheme(<TypeTemplate data={data} pageContext={{ type: mediaType }} />);
       });
 
       it("renders lists with logos", () => {
