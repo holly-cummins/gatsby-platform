@@ -17,8 +17,7 @@ const isProd = () => {
   if (!process.env.SUPPRESS_ENV_OUTPUT) {
     console.log(`Using environment config: '${activeEnv}'`);
   }
-  const isProd = activeEnv == "production";
-  return isProd;
+  return activeEnv === "production";
 };
 
 exports.generateFilter = otherFilter => {
@@ -27,9 +26,7 @@ exports.generateFilter = otherFilter => {
   if (isProd()) {
     draftsFilters = { fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } } };
   }
-  const filters = { ...draftsFilters, ...otherFilter };
-
-  return filters;
+  return { ...draftsFilters, ...otherFilter };
 };
 
 exports.filterOutDrafts = (edges, showFuture) => {
