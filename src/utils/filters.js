@@ -30,32 +30,29 @@ exports.generateFilter = otherFilter => {
 };
 
 exports.filterOutDrafts = (edges, showFuture) => {
-  if (!showFuture) {
-    // Do this filtering here so that it is dynamic, rather than being done at build-time
-    const now = new Date().getTime();
-    edges = edges.filter(edge => {
-      if (edge.node && edge.node.fields) {
+  // Do this filtering here so that it is dynamic, rather than being done at build-time
+  const now = new Date().getTime();
+  return edges.filter(edge => {
+    if (edge.node && edge.node.fields) {
+      // Exclude anything that looks like a draft in production
+
+      if (isProd()) {
+        // The prefix should exist and match a date in prod
+        // We have to parse a date so we know if it is date-y but we want to use the same regex we use in the graphql filters
+        if (!DATE_REGEX.test(edge.node.fields.prefix)) {
+          return false;
+        }
+      }
+
+      if (!showFuture) {
         const date = new Date(edge.node.fields.prefix);
         const isInTheFuture = date.getTime() > now;
         return !isInTheFuture;
-      } else {
-        // Be tolerant of incomplete data
-        return true;
       }
-    });
-  }
 
-  if (isProd()) {
-    edges = edges.filter(edge => {
-      if (edge.node && edge.node.fields) {
-        // The prefix should exist and match a date in prod
-        return DATE_REGEX.test(edge.node.fields.prefix);
-      } else {
-        // If there is no prefix at all, let it through (because otherwise tests get bogged down in boilerplate)
-        return true;
-      }
-    });
-  }
-
-  return edges;
+      return true;
+    }
+    // If there is no prefix at all, let it through (because otherwise tests get bogged down in boilerplate)
+    return true;
+  });
 };
