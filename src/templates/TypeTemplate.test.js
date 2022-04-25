@@ -82,7 +82,8 @@ describe("TypeTemplate", () => {
         prefix: "2003-03-06"
       },
       frontmatter: {
-        title: "another title"
+        title: "another title",
+        event: "DuckCon"
       }
     }
   };
@@ -141,8 +142,8 @@ describe("TypeTemplate", () => {
 
     it("renders the icon on the title", () => {
       // We could try and dig into the HMTL to find the exact image source, but let's trust the icon sets the right alt text
-      const title = type + " icon";
-      expect(screen.getByTitle(title)).toBeTruthy();
+      const titleWithIcon = type + " icon";
+      expect(screen.getByTitle(titleWithIcon)).toBeTruthy();
     });
   });
 
@@ -260,10 +261,10 @@ describe("TypeTemplate", () => {
 
       it("renders the correct link", () => {
         const links = screen.getAllByRole("link");
-        const link = links.find(link => link.text === title);
-        expect(link).toBeTruthy();
+        const foundLink = links.find(link => link.text === title);
+        expect(foundLink).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
-        expect(link.href).toBe("http://localhost/" + slug);
+        expect(foundLink.href).toBe("http://localhost/" + slug);
       });
 
       it("filters out drafts", async () => {
@@ -283,10 +284,10 @@ describe("TypeTemplate", () => {
     });
 
     describe("for a collection of external media", () => {
-      const type = "media";
+      const mediaType = "media";
 
       beforeEach(() => {
-        renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+        renderWithTheme(<TypeTemplate data={data} pageContext={{ mediaType }} />);
       });
 
       it("renders lists with logos", () => {
@@ -331,7 +332,12 @@ describe("TypeTemplate", () => {
 
     it("renders several lists", () => {
       // Coupling to the internals of List, but we need some way to make sure the right one is included
-      expect(screen.getAllByTestId("post-list-wrapper")).toHaveLength(6);
+      expect(screen.getAllByTestId("event-list-wrapper")).toHaveLength(6);
+    });
+
+    it("renders lists with event names", () => {
+      // Coupling to the internals of List, but we need some way to make sure the right one is included
+      expect(screen.getByText("DuckCon")).toBeTruthy();
     });
 
     it("renders the years", async () => {

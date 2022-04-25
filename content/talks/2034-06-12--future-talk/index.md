@@ -1,10 +1,10 @@
 ---
-title: Ducky – the live show
+title: Ducky – the future
 category: "nonsense"
 cover: placeholder.png
 author: ducky devine
 type: talk
-event: DuckCon
+event: QuackCon
 keynote: true
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design

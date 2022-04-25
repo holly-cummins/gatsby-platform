@@ -7,6 +7,7 @@ import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import List from "../components/List/List";
 import LogoList from "../components/List/LogoList";
+import EventList from "../components/List/EventList";
 import { plural, icon } from "../utils/type";
 import { filterOutDrafts } from "../utils/filters";
 
@@ -14,7 +15,7 @@ const TypeTemplate = props => {
   const {
     pageContext: { type },
     data: {
-      allMarkdownRemark: { totalCount, edges }
+      allMarkdownRemark: { edges }
     }
   } = props;
 
@@ -46,7 +47,7 @@ const TypeTemplate = props => {
       year = "upcoming";
     }
 
-    if (year && year != null) {
+    if (year) {
       if (!years[year]) {
         years[year] = [];
       }
@@ -98,8 +99,10 @@ const TypeTemplate = props => {
 };
 
 const listEntry = (item, type, theme, year, useShortDate) => {
-  if (type == "media" || type == "book") {
+  if (type === "media" || type === "book") {
     return <LogoList edges={item} theme={theme} key={year} />;
+  } else if (type === "talk") {
+    return <EventList edges={item} theme={theme} key={year} />;
   } else {
     return (
       <List edges={item} theme={theme} key={year} showIcon={false} useShortDate={useShortDate} />
@@ -139,6 +142,7 @@ export const typeQuery = graphql`
             url
             title
             type
+            event
           }
         }
       }
