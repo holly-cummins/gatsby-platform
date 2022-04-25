@@ -108,11 +108,20 @@ describe("the node filtering", () => {
     }
   };
 
-  const edges = [dated, draft, anotherDated, draft, noprefix, page, unconventionalDraftPrefix];
+  const edges = [
+    dated,
+    draft,
+    anotherDated,
+    draft,
+    noprefix,
+    page,
+    unconventionalDraftPrefix,
+    future
+  ];
 
   describe("in non-production environments", () => {
-    it("leaves everything", async () => {
-      expect(filterOutDrafts(edges)).toEqual(edges);
+    it("leaves in normal content", async () => {
+      expect(filterOutDrafts(edges)).toContain(dated);
     });
 
     it("handles empty lists", async () => {
@@ -122,6 +131,14 @@ describe("the node filtering", () => {
     it("leaves in drafts", async () => {
       expect(filterOutDrafts(edges)).toContain(draft);
       expect(filterOutDrafts(edges)).toContain(unconventionalDraftPrefix);
+    });
+
+    it("filters out future content if not explicitly included", async () => {
+      expect(filterOutDrafts(edges)).not.toContain(future);
+    });
+
+    it("leaves in out future content if show future is true", async () => {
+      expect(filterOutDrafts(edges, true)).toContain(future);
     });
   });
 
