@@ -24,13 +24,15 @@ const List = props => {
             <li key={slug} className="post-list">
               {Icon && <Icon />}
               <div className="date">{formattedDate}</div>
-              {url ? (
-                <a href={url} className="link">
-                  {title}
-                </a>
-              ) : (
-                <Link to={slug}>{title}</Link>
-              )}
+              <div className="title">
+                {url ? (
+                  <a href={url} className="link">
+                    {title}
+                  </a>
+                ) : (
+                  <Link to={slug}>{title}</Link>
+                )}
+              </div>
             </li>
           );
         })}
@@ -45,15 +47,23 @@ const List = props => {
         }
 
         li {
-          padding: ${theme.space.xs} 0;
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
           display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 20px;
+          padding-bottom: 20px;
         }
 
         .date {
           color: ${theme.color.brand.light};
-          padding-right: 10px;
+          flex: ${useShortDate ? "7%" : "15%"};
+        }
+
+        .title {
+          text-align: left;
+          flex: ${useShortDate ? "93%" : "85%"};
         }
 
         li :global(svg) {
