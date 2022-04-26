@@ -2,7 +2,6 @@ const os = require("os");
 const path = require("path");
 const parser = require("./extended-oembed-parser");
 const fs = require("fs-extra");
-const { cloneDeep } = require("lodash");
 
 const oembedResponse = {
   title: "How to while away hours on the internet",
@@ -40,41 +39,78 @@ describe("the preprocessor", () => {
   const oembedTitle = oembedResponse.title;
   const oembedHtml = oembedResponse.html;
 
-  describe("for a page with no oembed links", () => {
-    const originalTitle = "Q is For Croak";
+  describe("for a page with no oembed links and no cover", () => {
+    describe("with an existing cover", () => {
+      const originalTitle = "Q is For Croak";
 
-    const frontmatter = {
-      title: originalTitle,
-      url: "https://www.manning.com/books/q-is-for-croak",
-      cover: "q-is-for-croak-abc-1923.png",
-      author: "lucia laryngitis",
-      category: "croaking",
-      type: "book"
-    };
+      const frontmatter = {
+        title: originalTitle,
+        url: "https://www.manning.com/books/q-is-for-croak",
+        cover: "q-is-for-croak-abc-1923.png",
+        author: "lucia laryngitis",
+        category: "croaking",
+        type: "book"
+      };
 
-    const page = {
-      markdownNode: {
-        frontmatter,
-        fileAbsolutePath
-      }
-    };
-    const original = cloneDeep(page);
+      const page = {
+        markdownNode: {
+          frontmatter,
+          fileAbsolutePath
+        }
+      };
 
-    beforeAll(async () => {
-      await fs.ensureDir(postPath);
-      await mutateSource(page);
+      beforeAll(async () => {
+        await fs.ensureDir(postPath);
+        await mutateSource(page);
+      });
+
+      afterAll(() => {
+        jest.clearAllMocks();
+      });
+
+      it("changes nothing", async () => {
+        expect(page).toEqual(page);
+      });
+
+      it("does not attempt to resolve oembed links", async () => {
+        expect(parser.extract).not.toHaveBeenCalled();
+      });
     });
 
-    afterAll(() => {
-      jest.clearAllMocks();
-    });
+    describe("with no cover", () => {
+      const originalTitle = "Q is For Croak";
 
-    it("changes nothing", async () => {
-      expect(page).toEqual(original);
-    });
+      const frontmatter = {
+        title: originalTitle,
+        url: "https://www.manning.com/books/q-is-for-croak",
+        author: "lucia laryngitis",
+        category: "croaking",
+        type: "book"
+      };
 
-    it("does not attempt to resolve oembed links", async () => {
-      expect(parser.extract).not.toHaveBeenCalled();
+      const page = {
+        markdownNode: {
+          frontmatter,
+          fileAbsolutePath
+        }
+      };
+
+      beforeAll(async () => {
+        await fs.ensureDir(postPath);
+        await mutateSource(page);
+      });
+
+      afterAll(() => {
+        jest.clearAllMocks();
+      });
+
+      it("adds a cover", async () => {
+        expect(page.markdownNode.frontmatter.cover).toEqual("placeholder.png");
+      });
+
+      it("does not attempt to resolve oembed links", async () => {
+        expect(parser.extract).not.toHaveBeenCalled();
+      });
     });
   });
 

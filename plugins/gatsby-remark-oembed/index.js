@@ -12,6 +12,11 @@ exports.mutateSource = async ({ markdownNode }, options) => {
 
   const enrichPromises = [];
 
+  // Make sure nothing comes through that doesn't have a cover (the preprocess script will have copied in the placeholders)
+  if (!frontmatter.cover) {
+    frontmatter.cover = "placeholder.png";
+  }
+
   if (frontmatter.slides) {
     const answer = await enrich(frontmatter.slides, markdownFile, maxWidth);
     // If the main document doesn't have a title, fill one in from the slides
@@ -19,7 +24,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
       frontmatter.title = answer.title;
     }
 
-    if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
+    if (frontmatter.cover === "placeholder.png") {
       frontmatter.cover = answer.thumbnail;
     }
     // Make sure to wait
