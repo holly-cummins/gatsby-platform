@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
 const EventList = props => {
-  const { edges, theme } = props;
+  const { edges, theme, showDate, listener } = props;
 
   return (
     <React.Fragment>
@@ -12,13 +12,15 @@ const EventList = props => {
           const {
             node: {
               frontmatter: { title, url, event },
-              fields: { slug }
+              fields: { slug, shortDate }
             }
           } = edge;
 
           return (
             <li key={slug} className="event-list">
-              <div className="event">{event}</div>
+              <div className="event" onMouseOver={listener} onMouseOut={listener}>
+                {showDate ? shortDate : event}
+              </div>
               <div className={"talkTitle"}>
                 {url ? (
                   <a href={url} className="link">
@@ -68,7 +70,9 @@ const EventList = props => {
 
 EventList.propTypes = {
   edges: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  showDate: PropTypes.bool,
+  listener: PropTypes.func
 };
 
 export default EventList;

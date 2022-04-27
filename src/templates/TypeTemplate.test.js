@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import TypeTemplate from "./TypeTemplate";
 
@@ -68,10 +68,12 @@ describe("TypeTemplate", () => {
     node: {
       fields: {
         slug: "/slug1/",
-        prefix: "2020-10-10"
+        prefix: "2020-10-10",
+        shortDate: "10-10"
       },
       frontmatter: {
-        title: "title1"
+        title: "title1",
+        event: "QuackCon"
       }
     }
   };
@@ -79,7 +81,8 @@ describe("TypeTemplate", () => {
     node: {
       fields: {
         slug: "pub2",
-        prefix: "2003-03-06"
+        prefix: "2003-03-06",
+        shortDate: "03-06"
       },
       frontmatter: {
         title: "another title",
@@ -336,8 +339,30 @@ describe("TypeTemplate", () => {
     });
 
     it("renders lists with event names", () => {
-      // Coupling to the internals of List, but we need some way to make sure the right one is included
       expect(screen.getByText("DuckCon")).toBeTruthy();
+    });
+
+    it("replaces event names with dates on hover over", async () => {
+      expect(screen.queryByText("03-06")).toBeFalsy();
+      fireEvent.mouseOver(screen.getByText("DuckCon"));
+
+      await waitFor(() => screen.getByText("03-06"));
+      expect(screen.getByText("03-06")).toBeInTheDocument();
+
+      // It should also convert the other event names to dates
+      expect(screen.getByText("10-10")).toBeInTheDocument();
+      expect(screen.queryByText("DuckCon")).toBeFalsy();
+      expect(screen.queryByText("QuackCon")).toBeFalsy();
+
+      // ... and then it should convert back
+
+      fireEvent.mouseOut(screen.getByText("03-06"));
+
+      await waitFor(() => screen.getByText("DuckCon"));
+      expect(screen.getByText("DuckCon")).toBeInTheDocument();
+
+      // It should also convert the other dates back to event names
+      expect(screen.getByText("QuackCon")).toBeInTheDocument();
     });
 
     it("renders the years", async () => {

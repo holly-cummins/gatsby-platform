@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import Seo from "../components/Seo";
 import { ThemeContext } from "../layouts";
@@ -12,6 +12,8 @@ import { plural, icon } from "../utils/type";
 import { filterOutDrafts } from "../utils/filters";
 
 const TypeTemplate = props => {
+  const [showEventName, setShowEventName] = useState(true);
+
   const {
     pageContext: { type },
     data: {
@@ -70,6 +72,33 @@ const TypeTemplate = props => {
   const Icon = icon(type);
   const useShortDate = yearList.length > 1;
 
+  const flipHeadings = event => {
+    if (event.type === "mouseover") {
+      setShowEventName(false);
+    } else if (event.type === "mouseout") {
+      setShowEventName(true);
+    }
+  };
+
+  const listEntry = (item, type, theme, year, useShortDate) => {
+    if (type === "media" || type === "book") {
+      return <LogoList edges={item} theme={theme} key={year} />;
+    } else if (type === "talk") {
+      return (
+        <EventList
+          edges={item}
+          theme={theme}
+          key={year}
+          showDate={!showEventName}
+          listener={flipHeadings}
+        />
+      );
+    } else {
+      return (
+        <List edges={item} theme={theme} key={year} showIcon={false} useShortDate={useShortDate} />
+      );
+    }
+  };
   return (
     <React.Fragment>
       <ThemeContext.Consumer>
@@ -96,18 +125,6 @@ const TypeTemplate = props => {
       <Seo />
     </React.Fragment>
   );
-};
-
-const listEntry = (item, type, theme, year, useShortDate) => {
-  if (type === "media" || type === "book") {
-    return <LogoList edges={item} theme={theme} key={year} />;
-  } else if (type === "talk") {
-    return <EventList edges={item} theme={theme} key={year} />;
-  } else {
-    return (
-      <List edges={item} theme={theme} key={year} showIcon={false} useShortDate={useShortDate} />
-    );
-  }
 };
 
 TypeTemplate.propTypes = {
