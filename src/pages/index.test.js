@@ -141,6 +141,7 @@ describe("IndexPage", () => {
     const pub1 = {
       node: {
         fields: {
+          slug: "slug1",
           url: "http://somewhere"
         },
         frontmatter: {
@@ -152,6 +153,7 @@ describe("IndexPage", () => {
     const pub2 = {
       node: {
         fields: {
+          slug: "slug2",
           url: "http://somewhere.else"
         },
         frontmatter: {
