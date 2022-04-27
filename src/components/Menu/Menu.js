@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 require("core-js/fn/array/from");
 
 import { Home20 as Home } from "@carbon/icons-react";
@@ -26,7 +27,7 @@ class Menu extends React.Component {
     this.items = [
       { to: "/", label: "Home", icon: Home },
       { to: "/type/blog", label: "Blogs", icon: icon("blog") },
-      { to: "https://noti.st/holly-cummins/presentations", label: "Talks", icon: icon("talk") },
+      { to: "/type/talk", label: "Talks", icon: icon("talk") },
       { to: "/type/media", label: "Media", icon: icon("media") },
       { to: "/type/podcast", label: "Podcasts", icon: icon("podcast") },
       { to: "/type/book", label: "Books", icon: icon("book") },
