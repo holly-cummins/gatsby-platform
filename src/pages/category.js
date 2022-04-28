@@ -31,8 +31,6 @@ const CategoryPage = props => {
       }
     } = edge;
 
-    category = category ? category.toLowerCase() : null;
-
     if (category && category != null) {
       if (!categories[category]) {
         categories[category] = [];
@@ -43,7 +41,7 @@ const CategoryPage = props => {
 
   const categoryList = [];
 
-  for (var key in categories) {
+  for (const key in categories) {
     categoryList.push([key, categories[key]]);
   }
 
@@ -98,7 +96,7 @@ export default CategoryPage;
 // It'd be nice to embed a filter, but everything has to be static - see https://github.com/gatsbyjs/gatsby/issues/5069
 // ... so filter the list in code after the query
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const query = graphql`
   query PostsQuery {
     posts: allMarkdownRemark(

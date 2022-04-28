@@ -90,9 +90,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           } = edge;
 
-          category = category ? category.toLowerCase() : null;
-
-          if (category && category !== null) {
+          if (category) {
             categorySet.add(category);
           }
         });
@@ -118,7 +116,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           } = edge;
 
-          if (type && type !== null) {
+          if (type) {
             typeSet.add(type);
           }
         });

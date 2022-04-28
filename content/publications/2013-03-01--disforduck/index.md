@@ -3,7 +3,7 @@ title: "D is For Duck"
 url: https://www.manning.com/books/d-is-for-duck
 cover: d-is-for-duck-abc-1923.png
 author: ducky devine
-category: quacking
+category: Intense Quacking
 type: book
 ---
 

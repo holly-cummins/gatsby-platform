@@ -1,5 +1,6 @@
 require("dotenv").config();
-const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
+const fs = require("fs");
+const contentDir = fs.existsSync("../content") ? "../content" : "./content";
 
 const config = require(`${contentDir}/meta/config`);
 const transformer = require("./src/utils/algolia");
@@ -132,6 +133,7 @@ module.exports = {
           },
           `gatsby-plugin-sharp`,
           "gatsby-remark-date-format",
+          "gatsby-remark-category-normalize",
           {
             resolve: `gatsby-remark-images`,
             options: {
