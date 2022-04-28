@@ -53,6 +53,7 @@ const Meta = props => {
             fill: ${theme.icon.color};
             margin: ${theme.space.inline.xs};
           }
+
           span {
             align-items: center;
             display: flex;
@@ -60,6 +61,7 @@ const Meta = props => {
             margin: ${theme.space.xs} ${theme.space.s} ${theme.space.xs} 0;
           }
         }
+
         @from-width tablet {
           .meta {
             margin: ${`calc(${theme.space.m} * 1.5) 0 ${theme.space.m}`};
@@ -74,6 +76,7 @@ Meta.propTypes = {
   prefix: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   event: PropTypes.string,
+  keynote: PropTypes.bool,
   category: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired
 };
