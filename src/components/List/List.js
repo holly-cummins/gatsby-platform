@@ -20,19 +20,23 @@ const List = props => {
           const Icon = showIcon ? icon(type) : null;
           const formattedDate = useShortDate ? shortDate : prefix;
 
-          return (
-            <li key={slug} className="post-list">
+          const divs = (
+            <div className="row">
               {Icon && <Icon />}
               <div className="date">{formattedDate}</div>
-              <div className="title">
-                {url ? (
-                  <a href={url} className="link">
-                    {title}
-                  </a>
-                ) : (
-                  <Link to={slug}>{title}</Link>
-                )}
-              </div>
+              <div className="title">{title}</div>
+            </div>
+          );
+
+          return (
+            <li key={slug} className="post-list">
+              {url ? (
+                <a href={url} className="link">
+                  {divs}
+                </a>
+              ) : (
+                <Link to={slug}>{divs}</Link>
+              )}
             </li>
           );
         })}
@@ -49,6 +53,9 @@ const List = props => {
         li {
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
+        }
+
+        .row {
           display: flex;
           justify-content: flex-start;
           align-items: flex-start;

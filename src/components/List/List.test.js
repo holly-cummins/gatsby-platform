@@ -70,7 +70,7 @@ describe("List", () => {
 
   describe("for an external post", () => {
     const title = "another post";
-    const slug = "unused";
+    const slug = "unused-slug";
     const url = "http://elsewhere.com";
     const node = {
       node: {

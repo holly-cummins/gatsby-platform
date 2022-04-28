@@ -17,16 +17,22 @@ const LogoList = props => {
             }
           } = edge;
 
+          const divs = (
+            <div className="row">
+              <Logo site={url} theme={theme} />
+              <div>{title}</div>
+            </div>
+          );
+
           return (
             <li key={slug} className="logo-list">
-              <Logo site={url} theme={theme} />
               <div>
                 {url ? (
                   <a href={url} className="link">
-                    {title}
+                    {divs}
                   </a>
                 ) : (
-                  <Link to={slug}>{title}</Link>
+                  <Link to={slug}>{divs}</Link>
                 )}
               </div>
             </li>
@@ -41,9 +47,13 @@ const LogoList = props => {
           padding: ${theme.space.m};
           list-style: none;
         }
+
         li {
           font-size: ${theme.font.size.s};
           line-height: ${theme.font.lineHeight.l};
+        }
+
+        .row {
           display: flex;
           align-items: center;
         }

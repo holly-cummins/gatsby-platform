@@ -264,7 +264,7 @@ describe("TypeTemplate", () => {
 
       it("renders the correct link", () => {
         const links = screen.getAllByRole("link");
-        const foundLink = links.find(link => link.text === title);
+        const foundLink = links.find(link => link.text.includes(title));
         expect(foundLink).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
         expect(foundLink.href).toBe("http://localhost/" + slug);
