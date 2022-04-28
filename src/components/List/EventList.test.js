@@ -1,17 +1,20 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, cleanup } from "@testing-library/react";
 
 import EventList from "./EventList";
 
 import theme from "../../theme/theme.yaml";
 
 describe("EventList", () => {
+  let container;
   const title = "some post";
   const slug = "sluggaroo";
+  const fields = { source: "some-source", slug, shortDate: "05-08" };
+
   const node = {
     node: {
       frontmatter: { category: "test-stuff", title, event: "QuackCon" },
-      fields: { source: "some-source", slug, shortDate: "05-08" }
+      fields
     }
   };
   const edges = [node];
@@ -20,7 +23,9 @@ describe("EventList", () => {
   describe("in default config", () => {
     beforeEach(() => {
       listener = jest.fn();
-      render(<EventList edges={edges} theme={theme} listener={listener} />);
+      const rendered = render(<EventList edges={edges} theme={theme} listener={listener} />);
+
+      container = rendered.container;
     });
 
     it("renders the title", () => {
@@ -31,7 +36,7 @@ describe("EventList", () => {
       expect(screen.getByText("QuackCon")).toBeTruthy();
     });
 
-    it("renders the date if the property is set", () => {
+    it("renders the event name if the property is set", () => {
       expect(screen.getByText("QuackCon")).toBeTruthy();
     });
 
@@ -40,6 +45,10 @@ describe("EventList", () => {
       expect(link).toBeTruthy();
       // Hardcoding the host is a bit risky but this should always be true in  test environment
       expect(link.href).toBe("http://localhost/" + slug);
+    });
+
+    it("does not render the keynote icon", () => {
+      expect(container.querySelector("svg")).toBeFalsy();
     });
 
     it("calls a listener on hover", () => {
@@ -58,7 +67,45 @@ describe("EventList", () => {
       fireEvent.mouseOut(eventText);
       expect(listener).toHaveBeenCalledTimes(2);
     });
+
+    describe("for a keynote", () => {
+      let container;
+      const keynoteNode = {
+        node: {
+          frontmatter: { category: "fluffy-stuff", title, event: "VIPCon", keynote: true },
+          fields
+        }
+      };
+
+      beforeEach(() => {
+        cleanup();
+        const rendered = render(
+          <EventList edges={[keynoteNode]} theme={theme} listener={listener} />
+        );
+        container = rendered.container;
+      });
+
+      it("renders the title", () => {
+        expect(screen.getByText(title)).toBeTruthy();
+      });
+
+      it("renders the event name", () => {
+        expect(screen.getByText("VIPCon")).toBeTruthy();
+      });
+
+      it("renders the keynote icon", () => {
+        expect(container.querySelector("svg")).toBeTruthy();
+      });
+
+      it("renders the correct link", () => {
+        const link = screen.getByRole("link");
+        expect(link).toBeTruthy();
+        // Hardcoding the host is a bit risky but this should always be true in  test environment
+        expect(link.href).toBe("http://localhost/" + slug);
+      });
+    });
   });
+
   describe("when show date is set", () => {
     beforeEach(() => {
       listener = jest.fn();

@@ -160,6 +160,7 @@ export const typeQuery = graphql`
             title
             type
             event
+            keynote
           }
         }
       }

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import { Badge20 as Star } from "@carbon/icons-react";
 
 const EventList = props => {
   const { edges, theme, showDate, listener } = props;
@@ -11,13 +12,14 @@ const EventList = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title, url, event },
+              frontmatter: { title, url, event, keynote },
               fields: { slug, shortDate }
             }
           } = edge;
 
           const divs = (
             <div className="row">
+              <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
               <div className="event" onMouseOver={listener} onMouseOut={listener}>
                 {showDate ? shortDate : event}
               </div>
@@ -58,6 +60,10 @@ const EventList = props => {
           align-items: flex-start;
           gap: 10px;
           padding-bottom: 20px;
+        }
+
+        .keynoteIndicator {
+          width: 20px;
         }
 
         .event {
