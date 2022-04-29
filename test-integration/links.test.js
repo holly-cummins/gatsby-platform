@@ -50,13 +50,11 @@ describe("site links", () => {
       "https://ducky-devine.medium.com", // known 404, DO NOT SEARCH AND REPLACE
       "https://www.manning.com/books/enterprise-osgi-in-action",
       "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
-      "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html",
-      "http://www.element14.com/community/thread/26532/l/quick-start-of-pcduino-without-a-hdmi-monitor-and-serial-debug-cable?displayFullThread=true"
+      "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html"
     ]; // We know these links are good and we want to not hit the rate limiters since they appear everywhere
     // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
     // NOTE: The Manning, Medium, and github D is For Duck is fictitious by design, so exclude them
     // DO NOT search and replace these with your own name
-    // The element14 link causes a hang
 
     // Go ahead and start the scan! As events occur, we will see them above.
     return await checker.check({
