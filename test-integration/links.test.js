@@ -1,4 +1,4 @@
-jest.setTimeout(10 * 60 * 1000);
+jest.setTimeout(5 * 60 * 1000);
 
 const link = require("linkinator");
 const { curly } = require("node-libcurl");
@@ -55,19 +55,20 @@ describe("site links", () => {
       "http://www.element14.com/community/thread/26532/l/quick-start-of-pcduino-without-a-hdmi-monitor-and-serial-debug-cable?displayFullThread=true"
     ]; // We know these links are good and we want to not hit the rate limiters since they appear everywhere
     // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
-    // NOTE: The Manning, Medium, and gitgub D is For Duck is fictitious by design, so exclude them
+    // NOTE: The Manning, Medium, and github D is For Duck is fictitious by design, so exclude them
     // DO NOT search and replace these with your own name
     // The element14 link causes a hang
 
     // Go ahead and start the scan! As events occur, we will see them above.
-    await checker.check({
+    return await checker.check({
       path,
       recurse: true,
       linksToSkip,
       urlRewriteSearch: /http:\/\/duckydevine.com/,
       urlRewriteReplace: "http://localhost:9000",
       urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"], // Not working; see https://github.com/JustinBeckwith/linkinator/issues/390
-      concurrency: 100 // The twitter URLs seem to work better with a high concurrency, counter-intuitively
+      concurrency: 100, // The twitter URLs seem to work better with a high concurrency, counter-intuitively
+      timeout: 30 * 1000
     });
   });
 
