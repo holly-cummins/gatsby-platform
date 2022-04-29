@@ -20,7 +20,6 @@ describe("site links", () => {
         let retryWorked;
 
         if (result.url.includes("twitter")) {
-          console.log("Retrying ", result.url);
           // Twitter gives 404s, I think if it feels bombarded, so let's try a retry
           retryWorked = await retryUrl(result.url);
         }
@@ -85,7 +84,6 @@ const retryUrl = async url => {
   const hitUrl = async retry => {
     const { statusCode } = await curly.get(url);
 
-    console.log(statusCode);
     if (statusCode != 200) {
       return retry(statusCode);
     }
