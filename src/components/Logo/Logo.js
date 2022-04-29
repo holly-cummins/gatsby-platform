@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // I could tell you how this regex worked, but then I'd have to kill you.
 // Only the strong survive, when using regexes.
-const sourceFinder = /https?:\/\/(?:.*\.)?([^\.]*)(.com|.io)\/.*/;
+const sourceFinder = /https?:\/\/(?:.*\.)?([^\.]*)(.com|.io|.net)\/.*/;
 
 function useFallbackImg(img, text, fallback, fallbackalt) {
   const [src, setImg] = useState(img);

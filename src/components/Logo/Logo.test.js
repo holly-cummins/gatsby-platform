@@ -37,6 +37,20 @@ describe("Logo", () => {
     });
   });
 
+  describe("for a known source with a .net extension", () => {
+    const url = "https://www.raconteur.net/technology/software-tools-programmers/";
+
+    beforeEach(() => {
+      render(<Logo site={url} theme={theme} />);
+    });
+
+    it("renders the appropriate logo", () => {
+      const image = screen.getByAltText("raconteur logo");
+      expect(image).toBeTruthy();
+      expect(image.getAttribute("src")).toEqual("/logos/raconteur.png");
+    });
+  });
+
   describe("for an unknown source", () => {
     const url = "http://elsewhere.com";
 
