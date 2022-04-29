@@ -2,7 +2,7 @@
 // browser code light, so do some date manipulation at build time
 const dayjs = require("dayjs");
 
-exports.mutateSource = async ({ markdownNode }, options) => {
+exports.mutateSource = ({ markdownNode }, options) => {
   const { fields } = markdownNode;
   const { prefix } = fields;
 
