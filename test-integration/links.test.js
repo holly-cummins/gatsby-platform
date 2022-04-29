@@ -1,6 +1,7 @@
 jest.setTimeout(5 * 60 * 1000);
 
 const link = require("linkinator");
+const status = require("http-status");
 const { curly } = require("node-libcurl");
 const promiseRetry = require("promise-retry");
 
@@ -17,13 +18,15 @@ describe("site links", () => {
     // After a page is scanned, check out the results!
     checker.on("link", async result => {
       if (result.state === "BROKEN") {
-        let retryWorked;
+        // Don't stress about 403s from vimeo because humans can get past the paywall fairly easily and we want to have the link
+        const isPaywalled = result.status === status.FORBIDDEN && result.url.includes("vimeo");
 
+        let retryWorked;
         if (result.url.includes("twitter")) {
           // Twitter gives 404s, I think if it feels bombarded, so let's try a retry
           retryWorked = await retryUrl(result.url);
         }
-        if (!retryWorked) {
+        if (!retryWorked && !isPaywalled) {
           const errorText = result.failureDetails[0].statusText || result.failureDetails[0].code;
           const description = `${result.url} => ${result.status} (${errorText}) on ${result.parent}`;
           if (result.url.includes(path)) {
@@ -51,9 +54,9 @@ describe("site links", () => {
       "https://www.manning.com/books/enterprise-osgi-in-action",
       "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
       "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html"
-    ]; // We know these links are good and we want to not hit the rate limiters since they appear everywhere
+    ]; // We know these links are good, and we want to not hit the rate limiters since they appear everywhere
     // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
-    // NOTE: The Manning, Medium, and github D is For Duck is fictitious by design, so exclude them
+    // NOTE: The Manning, Medium, and GitHub D is For Duck is fictitious by design, so exclude them
     // DO NOT search and replace these with your own name
 
     // Go ahead and start the scan! As events occur, we will see them above.
@@ -80,9 +83,10 @@ describe("site links", () => {
 
 const retryUrl = async url => {
   const hitUrl = async retry => {
+    // Use a different client, which seems less affected by the 404s from twitter
     const { statusCode } = await curly.get(url);
 
-    if (statusCode != 200) {
+    if (status[`${statusCode}_CLASS`] !== status.classes.SUCCESSFUL) {
       return retry(statusCode);
     }
   };
