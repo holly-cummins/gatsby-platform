@@ -1,4 +1,5 @@
 const nodegeocoder = require("node-geocoder");
+const flags = require("country-flag-icons/string/3x2");
 
 const options = {
   provider: "openstreetmap"
@@ -18,8 +19,15 @@ exports.mutateSource = async ({ markdownNode }) => {
     if (results && results.length > 0) {
       // Assume it puts the most likely first
       const res = results[0];
-      frontmatter.country = res.country;
-      frontmatter.countryCode = res.countryCode;
+      const geography = {};
+      geography.country = res.country;
+      geography.countryCode = res.countryCode;
+      const flag = flags[res.countryCode];
+      if (flag) {
+        const buff = Buffer.from(flag);
+        geography.flag = buff.toString("base64");
+      }
+      frontmatter.geography = geography;
     }
   }
 };

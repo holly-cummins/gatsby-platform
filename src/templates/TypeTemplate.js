@@ -161,6 +161,10 @@ export const typeQuery = graphql`
             type
             event
             keynote
+            geography {
+              flag
+              country
+            }
           }
         }
       }

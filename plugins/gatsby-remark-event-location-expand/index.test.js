@@ -19,7 +19,7 @@ describe("the preprocessor", () => {
 
     afterAll(() => {});
 
-    it("normalises the case", async () => {
+    it("changes nothing", async () => {
       expect(page.markdownNode.frontmatter).toEqual({});
     });
   });
@@ -43,11 +43,18 @@ describe("the preprocessor", () => {
     afterAll(() => {});
 
     it("fills in a country name", async () => {
-      expect(page.markdownNode.frontmatter.country).toEqual("United Kingdom");
+      expect(page.markdownNode.frontmatter.geography.country).toEqual("United Kingdom");
     });
 
     it("fills in a country code", async () => {
-      expect(page.markdownNode.frontmatter.countryCode).toEqual("GB");
+      expect(page.markdownNode.frontmatter.geography.countryCode).toEqual("GB");
+    });
+
+    it("adds a flag", async () => {
+      const base64Flag = page.markdownNode.frontmatter.geography.flag;
+      expect(base64Flag).toMatch(/(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/);
+      const flag = atob(base64Flag);
+      expect(flag).toMatch(/<svg.*\/>/);
     });
   });
 
@@ -70,11 +77,11 @@ describe("the preprocessor", () => {
     afterAll(() => {});
 
     it("fills in a country name", async () => {
-      expect(page.markdownNode.frontmatter.country).toEqual("Canada");
+      expect(page.markdownNode.frontmatter.geography.country).toEqual("Canada");
     });
 
     it("fills in a country code", async () => {
-      expect(page.markdownNode.frontmatter.countryCode).toEqual("CA");
+      expect(page.markdownNode.frontmatter.geography.countryCode).toEqual("CA");
     });
   });
 });

@@ -12,17 +12,27 @@ const EventList = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title, url, event, keynote },
+              frontmatter: { title, url, event, keynote, geography },
               fields: { slug, shortDate }
             }
           } = edge;
 
           const divs = (
             <div className="row">
-              <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
+              <div className={"flag"}>
+                {geography && geography.flag ? (
+                  <img
+                    src={`data:image/svg+xml;base64,${geography.flag}`}
+                    alt={`the flag of ${geography.country}`}
+                  />
+                ) : (
+                  <></>
+                )}
+              </div>
               <div className="event" onMouseOver={listener} onMouseOut={listener}>
                 {showDate ? shortDate : event}
               </div>
+              <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
               <div className={"talkTitle"}>{title}</div>
             </div>
           );
@@ -64,6 +74,11 @@ const EventList = props => {
 
         .keynoteIndicator {
           width: 20px;
+        }
+
+        .flag {
+          width: 20px;
+          opacity: 80%;
         }
 
         .event {

@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@carbon/icons-react": "^10.24.0",
+    "country-flag-icons": "^1.4.26",
     "curly": "^0.6.2",
     "dayjs": "^1.11.1",
     "fontfaceobserver": "^2.0.13",

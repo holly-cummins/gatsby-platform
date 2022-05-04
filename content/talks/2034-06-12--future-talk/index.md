@@ -5,6 +5,7 @@ cover: placeholder.png
 author: ducky devine
 type: talk
 event: QuackCon
+location: Toronto
 keynote: true
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design

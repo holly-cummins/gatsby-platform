@@ -206,10 +206,15 @@ exports.createSchemaCustomization = ({ actions }) => {
     title: String
     html: String
   }
+  type Geography implements Node {
+    flag: String
+    country: String
+  }
   type Frontmatter {
     video: OEmbed
     slides: OEmbed
     displayCategory: String
+    geography: Geography
   }
   type Fields {
     shortDate: String
