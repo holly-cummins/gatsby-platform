@@ -75,6 +75,7 @@ export const categoryQuery = graphql`
             url
             title
             category
+            type
           }
         }
       }
