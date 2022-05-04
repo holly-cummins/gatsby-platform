@@ -20,6 +20,10 @@ const CategoryTemplate = props => {
   const filteredEntries = filterOutDrafts(edges);
   const totalCount = filteredEntries.length;
 
+  // The display category may vary within the category so just grab it off the first entry
+  const displayCategory =
+    filteredEntries.length > 0 ? filteredEntries[0].node.frontmatter.displayCategory : category;
+
   return (
     <React.Fragment>
       <ThemeContext.Consumer>
@@ -28,7 +32,7 @@ const CategoryTemplate = props => {
             <header>
               <Headline theme={theme}>
                 <span>Posts in category</span> <FaTag />
-                {category}
+                {displayCategory}
               </Headline>
               <p className="meta">
                 There {totalCount > 1 ? "are" : "is"} <strong>{totalCount}</strong> post
@@ -75,6 +79,7 @@ export const categoryQuery = graphql`
             url
             title
             category
+            displayCategory
             type
           }
         }

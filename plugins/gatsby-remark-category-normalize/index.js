@@ -8,6 +8,7 @@ exports.mutateSource = async ({ markdownNode }) => {
   // Save the original category in case something wants it
   frontmatter.displayCategory = category;
   if (category) {
+    // Make sure changes here are synced to gatsby-node which has to do its own normalisation
     frontmatter.category = category.toLowerCase();
   }
 };

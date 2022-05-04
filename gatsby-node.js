@@ -91,6 +91,8 @@ exports.createPages = ({ graphql, actions }) => {
           } = edge;
 
           if (category) {
+            // We need to re-normalise the category here because this code runs before the category normalising plugin (sadly)
+            category = category.toLowerCase();
             categorySet.add(category);
           }
         });
@@ -207,6 +209,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   type Frontmatter {
     video: OEmbed
     slides: OEmbed
+    displayCategory: String
   }
   type Fields {
     shortDate: String
