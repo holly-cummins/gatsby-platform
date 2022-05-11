@@ -73,7 +73,6 @@ export const categoryQuery = graphql`
             slug
             prefix
           }
-          excerpt
           timeToRead
           frontmatter {
             url
