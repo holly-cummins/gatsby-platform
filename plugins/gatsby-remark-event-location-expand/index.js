@@ -29,5 +29,7 @@ exports.mutateSource = async ({ markdownNode }) => {
       }
       frontmatter.geography = geography;
     }
+    // return the promise so we don't finish too early
+    return results;
   }
 };
