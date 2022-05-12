@@ -133,7 +133,7 @@ module.exports = {
           },
           `gatsby-plugin-sharp`,
           "gatsby-remark-date-format",
-          "gatsby-remark-event-location-expand",
+          // "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
           {
             resolve: `gatsby-remark-images`,
