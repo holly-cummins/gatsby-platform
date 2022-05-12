@@ -27,7 +27,7 @@ exports.mutateSource = async ({ markdownNode }) => {
         const buff = Buffer.from(flag);
         geography.flag = buff.toString("base64");
       }
-      frontmatter.geography = geography;
+      // frontmatter.geography = geography;
     }
   }
 };
