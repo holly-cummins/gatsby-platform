@@ -7,6 +7,7 @@ const path = require("path");
 const metadataParser = require("markdown-yaml-metadata-parser");
 const { hasProvider, extract } = require("../plugins/gatsby-remark-oembed/extended-oembed-parser");
 const nodeUrl = require("url");
+const urlMetadata = require("url-metadata");
 
 const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
 const dir = `${contentDir}/talks`;
@@ -79,7 +80,16 @@ const enrich = async (oembedObject, downloadDir) => {
     const oembedData = await extract(url, params);
     thingsWeAreWaitingFor.push(oembedData);
     if (oembedData) {
-      const imageUrl = oembedData.thumbnail_url;
+      let imageUrl = oembedData.thumbnail_url;
+      if (!imageUrl) {
+        // We might get a 403 here, so be chill
+        try {
+          const metadata = await urlMetadata(url);
+          imageUrl = metadata["og:image"];
+        } catch (e) {
+          console.debug(e);
+        }
+      }
       if (imageUrl) {
         // Wait for the download to make sure we don't end up with half-files
         const download = await downloadThumbnail(imageUrl, downloadDir);
