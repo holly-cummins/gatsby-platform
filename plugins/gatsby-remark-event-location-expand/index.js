@@ -15,7 +15,7 @@ exports.mutateSource = async ({ markdownNode }) => {
   const { location } = frontmatter;
 
   if (location) {
-    const results = await geocoder.geocode(location);
+    const results = null; // await geocoder.geocode(location);
     if (results && results.length > 0) {
       // Assume it puts the most likely first
       const res = results[0];
