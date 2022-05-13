@@ -8,14 +8,13 @@ const options = {
   //  fetch: customFetchImplementation,
 };
 
-const geocoder = nodegeocoder(options);
-
 exports.mutateSource = async ({ markdownNode }) => {
   const { frontmatter } = markdownNode;
   const { location } = frontmatter;
 
   if (location) {
     try {
+      const geocoder = nodegeocoder(options);
       const results = await geocoder.geocode(location);
       if (results && results.length > 0) {
         // Assume it puts the most likely first
