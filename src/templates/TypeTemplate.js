@@ -153,8 +153,6 @@ export const typeQuery = graphql`
             prefix
             shortDate
           }
-          excerpt
-          timeToRead
           frontmatter {
             url
             title
