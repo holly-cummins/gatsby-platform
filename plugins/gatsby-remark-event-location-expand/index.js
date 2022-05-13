@@ -1,11 +1,10 @@
-const nodegeocoder = require("node-geocoder");
+const nodeGeocoder = require("node-geocoder");
+const ourFetch = require("node-fetch");
 const flags = require("country-flag-icons/string/3x2");
 
 const options = {
-  provider: "openstreetmap"
-
-  // Optional depending on the providers
-  //  fetch: customFetchImplementation,
+  provider: "openstreetmap",
+  fetch: ourFetch // Specify a fetch to try and resolve some apparent concurrency issues
 };
 
 exports.mutateSource = async ({ markdownNode }) => {
@@ -14,7 +13,7 @@ exports.mutateSource = async ({ markdownNode }) => {
 
   if (location) {
     try {
-      const geocoder = nodegeocoder(options);
+      const geocoder = nodeGeocoder(options);
       const results = await geocoder.geocode(location);
       if (results && results.length > 0) {
         // Assume it puts the most likely first
