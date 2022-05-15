@@ -35,7 +35,7 @@ const EventList = props => {
               </div>
               <div className="event" onMouseOver={listener} onMouseOut={listener}>
                 {/* We can't use the theme here because scaletext needs pixels, not em */}
-                <ScaleText maxFontSize="18" minFontSize="6">
+                <ScaleText maxFontSize={18} minFontSize={6}>
                   {showDate ? cleanDate : event}
                 </ScaleText>
               </div>
