@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ScaleText from "react-scale-text";
 import { Link } from "gatsby";
 import { Badge20 as Star } from "@carbon/icons-react";
 
@@ -16,6 +17,9 @@ const EventList = props => {
               fields: { slug, shortDate }
             }
           } = edge;
+          // Make sure we don't have a null hanging around in the date
+          // since scaledtext does not like nulls
+          const cleanDate = shortDate ? shortDate : "..";
 
           const divs = (
             <div className="row">
@@ -30,7 +34,10 @@ const EventList = props => {
                 )}
               </div>
               <div className="event" onMouseOver={listener} onMouseOut={listener}>
-                {showDate ? shortDate : event}
+                {/* We can't use the theme here because scaletext needs pixels, not em */}
+                <ScaleText maxFontSize="18" minFontSize="6">
+                  {showDate ? cleanDate : event}
+                </ScaleText>
               </div>
               <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
               <div className={"talkTitle"}>{title}</div>
@@ -84,6 +91,7 @@ const EventList = props => {
         .event {
           color: ${theme.color.brand.light};
           width: 170px;
+          height: 40px;
           flex: 25%;
         }
 
