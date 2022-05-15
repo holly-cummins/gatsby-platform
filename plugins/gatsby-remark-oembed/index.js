@@ -18,13 +18,13 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   }
 
   if (frontmatter.slides) {
-    const answer = await enrich(frontmatter.slides, markdownFile, maxWidth);
+    const answer = await enrich(frontmatter.slides, markdownFile, maxWidth, enrichPromises);
     // If the main document doesn't have a title, fill one in from the slides
     if (!frontmatter.title) {
       frontmatter.title = answer.title;
     }
 
-    if (frontmatter.cover === "placeholder.png") {
+    if (frontmatter.cover === "placeholder.png" && answer.thumbnail) {
       frontmatter.cover = answer.thumbnail;
     }
     // Make sure to wait
@@ -32,14 +32,14 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   }
 
   if (frontmatter.video) {
-    const answer = await enrich(frontmatter.video, markdownFile, maxWidth);
+    const answer = await enrich(frontmatter.video, markdownFile, maxWidth, enrichPromises);
 
     // If the main document still doesn't have a title after doing the slides, fill one in from the video
 
     if (!frontmatter.title) {
       frontmatter.title = answer.title;
     }
-    if (!frontmatter.cover || frontmatter.cover === "placeholder.png") {
+    if (frontmatter.cover === "placeholder.png" && answer.thumbnail) {
       frontmatter.cover = answer.thumbnail;
     }
 
@@ -50,8 +50,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
   return Promise.all(enrichPromises);
 };
 
-const enrich = async (oembedObject, post, maxwidth) => {
-  const thingsWeAreWaitingFor = [];
+const enrich = async (oembedObject, post, maxwidth, thingsWeAreWaitingFor) => {
   const url = oembedObject.url;
   // Allow the height to be as big as the width and let youtube shrink it down;
   // Otherwise we get a small default so don't get the width
