@@ -2,13 +2,17 @@
 // browser code light, so do some date manipulation at build time
 const dayjs = require("dayjs");
 
-exports.mutateSource = ({ markdownNode }, options) => {
+exports.mutateSource = ({ markdownNode }) => {
   const { fields } = markdownNode;
   const { prefix } = fields;
 
-  const date = dayjs(prefix);
-  const shortDate = date.format("MM-DD");
-  if (date.isValid()) {
-    fields.shortDate = shortDate;
+  try {
+    const date = dayjs(prefix);
+    const shortDate = date.format("MM-DD");
+    if (date.isValid()) {
+      fields.shortDate = shortDate;
+    }
+  } catch (e) {
+    console.error("Could not shorten date", prefix, e);
   }
 };
