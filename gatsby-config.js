@@ -136,6 +136,12 @@ module.exports = {
           "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
           {
+            resolve: "gatsby-remark-normalize-paths",
+            options: {
+              pathFields: ["image", "cover"]
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,

@@ -12,8 +12,6 @@ const urlMetadata = require("url-metadata");
 const contentDir = require("fs").existsSync("../content") ? "../content" : "./content";
 const dir = `${contentDir}/talks`;
 
-const placeholderPath = path.join(__dirname, "placeholder.png");
-
 // Make an async function that gets executed immediately
 const processDirectory = async () => {
   // Our starting point
@@ -35,29 +33,12 @@ const processDirectory = async () => {
         const source = await readFile(markdownPath);
         const frontmatter = metadataParser(source).metadata;
 
-        let slideDownload;
-        let videoDownload;
-
         if (frontmatter.slides) {
-          slideDownload = await enrich(frontmatter.slides, path.join(dir, talk), enrichPromises);
+          await enrich(frontmatter.slides, path.join(dir, talk), enrichPromises);
         }
 
         if (frontmatter.video) {
-          videoDownload = await enrich(frontmatter.video, path.join(dir, talk), enrichPromises);
-        }
-
-        if (!slideDownload && !videoDownload) {
-          // Copy in a placeholder
-          const newPlaceholderPath = path.join(dir, talk, "placeholder.png");
-          const promise = copyFile(placeholderPath, newPlaceholderPath);
-          enrichPromises.push(promise);
-
-          const gitignorePath = path.join(dir, talk, ".gitignore");
-
-          // Add in a .gitignore, too, so we don't clutter up the git status when running locally
-          if (!fs.existsSync(gitignorePath)) {
-            writeFile(gitignorePath, "placeholder.png");
-          }
+          await enrich(frontmatter.video, path.join(dir, talk), enrichPromises);
         }
       }
     } // End for...of

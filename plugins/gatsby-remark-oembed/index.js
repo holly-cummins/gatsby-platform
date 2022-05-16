@@ -5,6 +5,8 @@ const request = require("request");
 
 const { extract, hasProvider } = require("./extended-oembed-parser");
 
+const PLACEHOLDER = "/content/images/placeholder.png";
+
 exports.mutateSource = async ({ markdownNode }, options) => {
   const { frontmatter } = markdownNode;
   const markdownFile = markdownNode.fileAbsolutePath;
@@ -12,9 +14,9 @@ exports.mutateSource = async ({ markdownNode }, options) => {
 
   const enrichPromises = [];
 
-  // Make sure nothing comes through that doesn't have a cover (the preprocess script will have copied in the placeholders)
+  // Make sure nothing comes through that doesn't have a cover
   if (!frontmatter.cover) {
-    frontmatter.cover = "placeholder.png";
+    frontmatter.cover = PLACEHOLDER;
   }
 
   if (frontmatter.slides) {
@@ -24,7 +26,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
       frontmatter.title = answer.title;
     }
 
-    if (frontmatter.cover === "placeholder.png" && answer.thumbnail) {
+    if (frontmatter.cover === PLACEHOLDER && answer.thumbnail) {
       frontmatter.cover = answer.thumbnail;
     }
     // Make sure to wait
@@ -39,7 +41,7 @@ exports.mutateSource = async ({ markdownNode }, options) => {
     if (!frontmatter.title) {
       frontmatter.title = answer.title;
     }
-    if (frontmatter.cover === "placeholder.png" && answer.thumbnail) {
+    if (frontmatter.cover === PLACEHOLDER && answer.thumbnail) {
       frontmatter.cover = answer.thumbnail;
     }
 
