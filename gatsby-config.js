@@ -2,6 +2,7 @@ require("dotenv").config();
 const fs = require("fs");
 const contentDir = fs.existsSync("../content") ? "../content" : "./content";
 
+// eslint-disable-next-line import/no-dynamic-require
 const config = require(`${contentDir}/meta/config`);
 const transformer = require("./src/utils/algolia");
 
