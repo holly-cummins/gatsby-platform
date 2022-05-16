@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
+import { getSrc } from "gatsby-plugin-image";
 import config from "../../utils/configger";
 
 const Seo = props => {
@@ -9,7 +10,7 @@ const Seo = props => {
   // The cover path usually is buried in a childImageSharp structure, but don't assume it always will be
   let postCover;
   if ((((data || {}).frontmatter || {}).cover || {}).childImageSharp) {
-    postCover = (data.frontmatter.cover.childImageSharp.resize || {}).src;
+    postCover = (data.frontmatter.cover.childImageSharp.gatsbyImageData || {}).images.fallback.src;
   } else {
     postCover = ((data || {}).frontmatter || {}).cover;
   }

@@ -3,7 +3,7 @@ import { Calendar20 as Calendar } from "@carbon/icons-react";
 import { Tag20 as Tag } from "@carbon/icons-react";
 import { User20 as User } from "@carbon/icons-react";
 
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
@@ -23,7 +23,7 @@ const Item = props => {
         type,
         author,
         cover: {
-          children: [{ fluid }]
+          children: [{ gatsbyImageData }]
         }
       }
     }
@@ -33,7 +33,7 @@ const Item = props => {
   const linkContent = (
     <>
       <div className="gatsby-image-outer-wrapper">
-        <Img fluid={fluid} />
+        <GatsbyImage image={gatsbyImageData} />
       </div>
       <h1>
         {title} <ArrowRight className="arrow" />
@@ -87,6 +87,7 @@ const Item = props => {
             fill: ${theme.icon.color};
             margin: ${theme.space.inline.xs};
           }
+
           span {
             align-items: center;
             display: flex;
@@ -107,9 +108,11 @@ const Item = props => {
             padding: ${`calc(${theme.space.default} * 1.5) ${theme.space.default} 0`};
             transition: all 0.5s;
           }
+
           .meta {
             padding: ${`calc(${theme.space.m} * 1.5) ${theme.space.m}`};
           }
+
           p {
             padding: 0 ${theme.space.default};
           }
@@ -118,20 +121,25 @@ const Item = props => {
           :global(.blogItemLink:first-child) > li::before {
             top: ${`calc(${theme.space.default} * -2.75)`};
           }
+
           h1 {
             font-size: 2.5em;
             padding: ${`calc(${theme.space.default} * 1.2) calc(${theme.space.default} * 2) 0`};
           }
+
           .meta {
             padding: ${`calc(${theme.space.default} * 1.5) calc(${theme.space.default} * 2)
               calc(${theme.space.default} * 0.5)`};
           }
+
           p {
             padding: ${`0 calc(${theme.space.default} * 2)`};
           }
+
           :global(.gatsby-image-wrapper) {
             transition: all ${theme.time.duration.default};
           }
+
           :global(.arrow) {
             display: inline-block;
             fill: ${theme.color.special.attention};
@@ -178,6 +186,7 @@ const Item = props => {
             border: 1px solid ${theme.line.color};
             overflow: hidden;
           }
+
           :global(.gatsby-image-outer-wrapper img) {
             z-index: -1;
           }
@@ -253,12 +262,15 @@ const Item = props => {
               &:after {
                 bottom: ${`calc(${theme.space.default} * -2.5)`};
               }
+
               :global(.gatsby-image-wrapper) {
                 transform: scale(1.1);
               }
+
               h1 {
                 color: ${theme.blog.h1.hoverColor};
               }
+
               :global(.arrow) {
                 opacity: 1;
                 stroke: ${theme.color.special.attention};

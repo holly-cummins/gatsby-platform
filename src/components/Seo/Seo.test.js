@@ -65,7 +65,11 @@ describe("Seo component", () => {
     const data = {
       frontmatter: {
         title: postTitle,
-        cover: { childImageSharp: { resize: { src: postImage } } }
+        cover: {
+          childImageSharp: {
+            gatsbyImageData: { images: { fallback: { src: postImage } } }
+          }
+        }
       },
       fields: { slug },
       excerpt: postDescription

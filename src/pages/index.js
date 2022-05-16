@@ -95,9 +95,7 @@ export const query = graphql`
             cover {
               children {
                 ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+                  gatsbyImageData(width: 800, height: 360, layout: CONSTRAINED)
                 }
               }
             }
