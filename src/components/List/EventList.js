@@ -11,7 +11,6 @@ const EventList = props => {
     <React.Fragment>
       <ul data-testid="event-list-wrapper">
         {edges.map(edge => {
-          console.log("Edge is", edge);
           const {
             node: {
               frontmatter: { title, url, event, keynote, geography },
