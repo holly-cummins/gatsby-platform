@@ -33,6 +33,7 @@ const Talk = props => {
     theme
   } = props;
 
+  console.log("Post is", post);
   return (
     <React.Fragment>
       <header>
