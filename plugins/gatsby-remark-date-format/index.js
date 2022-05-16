@@ -8,8 +8,10 @@ exports.mutateSource = ({ markdownNode }) => {
 
   try {
     const date = dayjs(prefix);
-    const shortDate = date.format("MM-DD");
+    console.log("Date is", date);
     if (date.isValid()) {
+      const shortDate = date.format("MM-DD");
+      console.log("So short is", shortDate);
       fields.shortDate = shortDate;
     }
   } catch (e) {
