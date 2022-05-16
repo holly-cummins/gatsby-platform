@@ -10,7 +10,13 @@ const Seo = props => {
   // The cover path usually is buried in a childImageSharp structure, but don't assume it always will be
   let postCover;
   if ((((data || {}).frontmatter || {}).cover || {}).childImageSharp) {
-    postCover = (data.frontmatter.cover.childImageSharp.gatsbyImageData || {}).images.fallback.src;
+    const childImageSharp = data.frontmatter.cover.childImageSharp;
+    // Support both gatsby-image and gatsby-plugin-image
+    if (childImageSharp.gatsbyImageData) {
+      postCover = data.frontmatter.cover.childImageSharp.gatsbyImageData.images.fallback.src;
+    } else {
+      postCover = data.frontmatter.cover.childImageSharp.resize.src;
+    }
   } else {
     postCover = ((data || {}).frontmatter || {}).cover;
   }
