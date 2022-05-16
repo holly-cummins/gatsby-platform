@@ -64,16 +64,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
-        apiKey: process.env.ALGOLIA_ADMIN_API_KEY ? process.env.ALGOLIA_ADMIN_API_KEY : "",
-        indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : "",
-        queries,
-        chunkSize: 10000 // default: 1000
-      }
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `template-images`,
@@ -126,13 +116,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          {
-            resolve: `gatsby-remark-oembed`,
-            options: {
-              maxWidth: 800
-            }
-          },
-          `gatsby-plugin-sharp`,
           "gatsby-remark-date-format",
           "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
@@ -142,6 +125,13 @@ module.exports = {
               pathFields: ["image", "cover"]
             }
           },
+          {
+            resolve: `gatsby-remark-oembed`,
+            options: {
+              maxWidth: 800
+            }
+          },
+          `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -305,6 +295,16 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         include: /svg-icons/
+      }
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
+        apiKey: process.env.ALGOLIA_ADMIN_API_KEY ? process.env.ALGOLIA_ADMIN_API_KEY : "",
+        indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : "",
+        queries,
+        chunkSize: 10000 // default: 1000
       }
     }
   ]
