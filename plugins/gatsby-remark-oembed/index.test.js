@@ -105,7 +105,7 @@ describe("the preprocessor", () => {
       });
 
       it("adds a cover", async () => {
-        expect(page.markdownNode.frontmatter.cover).toEqual("placeholder.png");
+        expect(page.markdownNode.frontmatter.cover).toEqual("/content/images/placeholder.png");
       });
 
       it("does not attempt to resolve oembed links", async () => {
