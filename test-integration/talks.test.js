@@ -16,8 +16,8 @@ describe("main site", () => {
     });
 
     it("should bring up a talks page", async () => {
-      const link = await page.waitForXPath('//a[text()="Talks"]');
-      link.evaluate(link => link.click());
+      const talksLink = await page.waitForXPath('//a[text()="Talks"]');
+      talksLink.evaluate(link => link.click());
 
       // Now it should be the talks page
       await expect(page.waitForXPath('//h1[contains(text(), "talks")]')).resolves.toBeTruthy();
@@ -64,6 +64,7 @@ describe("main site", () => {
             '//div[contains(@class,"event")]//*[contains(text(), "[0-9][0-9]-[0-9][0-9]")][last()]',
             { timeout: 5 * 1000 }
           );
+          expect(date).toBeTruthy();
         } catch (e) {
           const main = await page.$("main");
           // Annoyingly this does not have any formatting but I cannot find a more useful output because outerHtml is too busy
