@@ -64,7 +64,10 @@ export const postQuery = graphql`
         type
         event
         keynote
-        geography
+        geography {
+          flag
+          country
+        }
         video {
           title
           html
