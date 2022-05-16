@@ -24,7 +24,7 @@ const PostTemplate = props => {
       <ThemeContext.Consumer>
         {theme => (
           <Article theme={theme}>
-            {post.frontmatter.type == "talk" ? (
+            {post.frontmatter.type === "talk" ? (
               <Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
             ) : (
               <Post post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
@@ -45,7 +45,7 @@ PostTemplate.propTypes = {
 
 export default PostTemplate;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const postQuery = graphql`
   query PostBySlug($slug: String!) {
     post: markdownRemark(fields: { slug: { eq: $slug } }) {
