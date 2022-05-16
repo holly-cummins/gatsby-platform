@@ -5,7 +5,7 @@ You can see the skeleton code running at [gatsby-platform.hollycummins.com](http
 
 ## Initial setup
 
-This codebase [needs to run](https://github.com/greglobinski/gatsby-starter-hero-blog/issues/67) with Node v12, and a back-level gatsby cli.
+This codebase should run with Node v14, and a back-level gatsby cli.
 
 ```
 nvm use 12
