@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { getSrc } from "gatsby-plugin-image";
 import config from "../../utils/configger";
 
 const Seo = props => {
