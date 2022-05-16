@@ -8,6 +8,8 @@ import { ThemeContext } from "../layouts";
 import theme from "../theme/theme.yaml";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
+jest.mock("react-scale-text");
+
 // @see https://testing-library.com/docs/react-testing-library/setup#custom-render
 const renderWithTheme = ui => {
   return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
