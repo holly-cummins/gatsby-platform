@@ -72,7 +72,7 @@ describe("Meta", () => {
           author={author}
           category={category}
           event={event}
-          keynote="true"
+          keynote={true}
           theme={theme}
         />
       );
