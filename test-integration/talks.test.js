@@ -62,10 +62,9 @@ describe("main site", () => {
         try {
           // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
           // So assume at least one of the dates must contain a 0
-          const date = await page.waitForXPath(
-            '//div[contains(@class,"event")]//*[contains(text(), "0")]',
-            { timeout: 5 * 1000 }
-          );
+          await page.waitForXPath('//div[contains(@class,"event")]//*[contains(text(), "0")]', {
+            timeout: 5 * 1000
+          });
         } catch (e) {
           const main = await page.$("main");
           // Annoyingly this does not have any formatting but I cannot find a more useful output because outerHtml is too busy
