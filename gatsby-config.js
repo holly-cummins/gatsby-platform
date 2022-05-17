@@ -116,7 +116,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          "gatsby-remark-date-format",
           "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
           {
@@ -299,6 +298,7 @@ module.exports = {
         include: /svg-icons/
       }
     },
+    "gatsby-remark-date-format",
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
