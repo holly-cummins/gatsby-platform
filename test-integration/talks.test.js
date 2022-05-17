@@ -54,23 +54,33 @@ describe("main site", () => {
       it("should switch event names for short dates", async () => {
         // We don't know the content, but it's a reasonable guess some content matches SomethingCon
         const oldestCon = await page.waitForXPath(
-          '//div[contains(@class,"event")]//*[contains(text(), "Con")][last()]'
+          '//div[contains(@class,"event")]//*[contains(text(), "Con")]'
         );
         oldestCon.hover();
-        // We don't care about the exact position here, apart from noting that later elements are more likely to have a date
         // Every element should switch to a date
+
         try {
+          // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
+          // So assume at least one of the dates must contain a 0
           const date = await page.waitForXPath(
-            '//div[contains(@class,"event")]//*[contains(text(), "[0-9][0-9]-[0-9][0-9]")][last()]',
+            '//div[contains(@class,"event")]//*[contains(text(), "0")]',
             { timeout: 5 * 1000 }
           );
-          expect(date).toBeTruthy();
         } catch (e) {
           const main = await page.$("main");
           // Annoyingly this does not have any formatting but I cannot find a more useful output because outerHtml is too busy
           let content = await main.evaluate(el => el.textContent);
           throw new Error("Could not find a short form date. Page content is \n" + content);
         }
+
+        // Now do a deeper validation of the date text; we could check every node, but one is probably sufficient
+        const date = await page.waitForXPath(
+          '//div[contains(@class,"event")]//*[contains(text(), "0")]',
+          { timeout: 5 * 1000 }
+        );
+        expect(date).toBeTruthy();
+        const text = await date.evaluate(el => el.textContent);
+        expect(text).toMatch(/[0-9][0-9]-[0-9][0-9]/);
       });
     });
   });
