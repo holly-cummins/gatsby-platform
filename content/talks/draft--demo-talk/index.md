@@ -1,7 +1,6 @@
 ---
 title: Ducky – the live show
 category: "nonsense"
-cover: placeholder.png
 author: ducky devine
 type: talk
 event: DuckCon

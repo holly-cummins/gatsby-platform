@@ -1,7 +1,6 @@
 ---
 title: Ducky – the past
 category: "cats"
-cover: placeholder.png
 author: ducky devine
 type: talk
 event: QuackCon
