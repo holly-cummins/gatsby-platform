@@ -12,8 +12,8 @@ const List = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title, url, type },
-              fields: { slug, prefix, shortDate }
+              frontmatter: { url, type },
+              fields: { title, slug, prefix, shortDate }
             }
           } = edge;
 

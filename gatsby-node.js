@@ -177,7 +177,7 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({ stage, actions }, options) => {
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
   switch (stage) {
     case `build-javascript`:
       actions.setWebpackConfig({
@@ -201,18 +201,11 @@ exports.createSchemaCustomization = ({ actions }) => {
     frontmatter: Frontmatter
     fields: Fields
   }
-  type OEmbed implements Node {
-    url: String
-    title: String
-    html: String
-  }
   type Geography implements Node {
     flag: String
     country: String
   }
   type Frontmatter {
-    video: OEmbed
-    slides: OEmbed
     displayCategory: String
     geography: Geography
   }

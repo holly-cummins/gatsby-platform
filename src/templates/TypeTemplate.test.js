@@ -26,55 +26,80 @@ describe("TypeTemplate", () => {
 
   const node = {
     node: {
-      frontmatter: { type: "dance-off", title },
-      fields: { source: "some-source", slug, prefix: nodeDate, shortDate }
+      frontmatter: { type: "dance-off" },
+      fields: { title, source: "some-source", slug, prefix: nodeDate, shortDate }
     }
   };
 
   const draftNode = {
     node: {
-      frontmatter: { type: "bake-off", title: draftTitle },
-      fields: { source: "another-source", slug: "half-baked-slug", prefix: "draft" }
+      frontmatter: { type: "bake-off" },
+      fields: {
+        title: draftTitle,
+        source: "another-source",
+        slug: "half-baked-slug",
+        prefix: "draft"
+      }
     }
   };
 
   const futureNode = {
     node: {
-      frontmatter: { type: "bake-off", title: "a future title" },
-      fields: { source: "another-source", slug: "psychic-slug", prefix: "2056-07-02" }
+      frontmatter: { type: "bake-off" },
+      fields: {
+        title: "a future title",
+        source: "another-source",
+        slug: "psychic-slug",
+        prefix: "2056-07-02"
+      }
     }
   };
 
   const marchFutureNode = {
     node: {
-      frontmatter: { type: "bake-off", title: "a march future" },
-      fields: { source: "another-source", slug: "march-psychic-slug", prefix: "2054-03-02" }
+      frontmatter: { type: "bake-off" },
+      fields: {
+        title: "a march future",
+        source: "another-source",
+        slug: "march-psychic-slug",
+        prefix: "2054-03-02"
+      }
     }
   };
 
   const octoberFutureNode = {
     node: {
-      frontmatter: { type: "bake-off", title: "a october future" },
-      fields: { source: "another-source", slug: "oct-psychic-slug", prefix: "2058-10-02" }
+      frontmatter: { type: "bake-off" },
+      fields: {
+        title: "a october future",
+        source: "another-source",
+        slug: "oct-psychic-slug",
+        prefix: "2058-10-02"
+      }
     }
   };
 
   const juneFutureNode = {
     node: {
-      frontmatter: { type: "bake-off", title: "a june future" },
-      fields: { source: "another-source", slug: "psychic-june-slug", prefix: "2057-06-02" }
+      frontmatter: { type: "bake-off" },
+      fields: {
+        title: "a june future",
+        source: "another-source",
+        slug: "psychic-june-slug",
+        prefix: "2057-06-02"
+      }
     }
   };
 
   const post1 = {
     node: {
       fields: {
+        title: "title1",
         slug: "/slug1/",
         prefix: "2020-10-10",
         shortDate: "10-10"
       },
       frontmatter: {
-        title: "title1",
         event: "QuackCon"
       }
     }
@@ -82,12 +107,12 @@ describe("TypeTemplate", () => {
   const post2 = {
     node: {
       fields: {
+        title: "another title",
         slug: "pub2",
         prefix: "2003-03-06",
         shortDate: "03-06"
       },
       frontmatter: {
-        title: "another title",
         event: "DuckCon"
       }
     }
@@ -95,35 +120,32 @@ describe("TypeTemplate", () => {
   const post3 = {
     node: {
       fields: {
+        title: "a june title",
         slug: "pub",
         prefix: "2011-06-08"
       },
-      frontmatter: {
-        title: "a june title"
-      }
+      frontmatter: {}
     }
   };
 
   const post4 = {
     node: {
       fields: {
+        title: "a october title",
         slug: "pub4",
         prefix: "2011-10-07"
       },
-      frontmatter: {
-        title: "a october title"
-      }
+      frontmatter: {}
     }
   };
   const post5 = {
     node: {
       fields: {
+        title: "a march title",
         slug: "pub2",
         prefix: "2011-03-07"
       },
-      frontmatter: {
-        title: "a march title"
-      }
+      frontmatter: {}
     }
   };
 

@@ -149,13 +149,13 @@ export const typeQuery = graphql`
       edges {
         node {
           fields {
+            title
             slug
             prefix
             shortDate
           }
           frontmatter {
             url
-            title
             type
             event
             keynote

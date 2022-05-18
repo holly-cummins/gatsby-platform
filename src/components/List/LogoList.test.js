@@ -11,8 +11,8 @@ describe("LogoList", () => {
     const slug = "sluggaroo";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug }
+        frontmatter: { category: "test-stuff" },
+        fields: { title, source: "some-source", slug }
       }
     };
     const edges = [node];
@@ -39,8 +39,8 @@ describe("LogoList", () => {
     const url = "http://forbes.com/something/something.html";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title, url },
-        fields: { source: "some-source", slug }
+        frontmatter: { category: "test-stuff", url },
+        fields: { title, source: "some-source", slug }
       }
     };
     const edges = [node];

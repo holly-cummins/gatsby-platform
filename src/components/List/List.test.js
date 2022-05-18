@@ -13,8 +13,8 @@ describe("List", () => {
     const prefix = "2020-06-09";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug, prefix, shortDate }
+        frontmatter: { category: "test-stuff" },
+        fields: { title, source: "some-source", slug, prefix, shortDate }
       }
     };
     const edges = [node];
@@ -51,8 +51,8 @@ describe("List", () => {
       const prefix = "2020-05-09";
       const node = {
         node: {
-          frontmatter: { category: "test-stuff", title },
-          fields: { source: "some-source", slug, prefix, shortDate }
+          frontmatter: { category: "test-stuff" },
+          fields: { title, source: "some-source", slug, prefix, shortDate }
         }
       };
       const edges = [node];
@@ -74,8 +74,8 @@ describe("List", () => {
     const url = "http://elsewhere.com";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title, url },
-        fields: { source: "some-source", slug }
+        frontmatter: { category: "test-stuff", url },
+        fields: { title, source: "some-source", slug }
       }
     };
     const edges = [node];
@@ -100,8 +100,8 @@ describe("List", () => {
     const slug = "sluggaroo";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug }
+        frontmatter: { category: "test-stuff" },
+        fields: { title, source: "some-source", slug }
       }
     };
     const edges = [node];

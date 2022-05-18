@@ -9,11 +9,11 @@ describe("EventList", () => {
   let container;
   const title = "some post";
   const slug = "sluggaroo";
-  const fields = { source: "some-source", slug, shortDate: "05-08" };
+  const fields = { title, source: "some-source", slug, shortDate: "05-08" };
 
   const node = {
     node: {
-      frontmatter: { category: "test-stuff", title, event: "QuackCon" },
+      frontmatter: { category: "test-stuff", event: "QuackCon" },
       fields
     }
   };
@@ -72,7 +72,7 @@ describe("EventList", () => {
       let container;
       const keynoteNode = {
         node: {
-          frontmatter: { category: "fluffy-stuff", title, event: "VIPCon", keynote: true },
+          frontmatter: { category: "fluffy-stuff", event: "VIPCon", keynote: true },
           fields
         }
       };

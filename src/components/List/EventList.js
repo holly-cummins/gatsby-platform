@@ -13,8 +13,8 @@ const EventList = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title, url, event, keynote, geography },
-              fields: { slug, shortDate }
+              frontmatter: { url, event, keynote, geography },
+              fields: { slug, shortDate, title }
             }
           } = edge;
           // Make sure we don't have a null hanging around in the date
@@ -40,7 +40,7 @@ const EventList = props => {
                 </ScaleText>
               </div>
               <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
-              <div className={"talkTitle"}>{title}</div>
+              <div className="talkTitle">{title}</div>
             </div>
           );
 

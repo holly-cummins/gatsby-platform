@@ -124,12 +124,6 @@ module.exports = {
               pathFields: ["image", "cover"]
             }
           },
-          {
-            resolve: `gatsby-remark-oembed`,
-            options: {
-              maxWidth: 800
-            }
-          },
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,
@@ -168,6 +162,12 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: `gatsby-remark-oembed`,
+      options: {
+        maxWidth: 800
       }
     },
     `gatsby-plugin-image`,

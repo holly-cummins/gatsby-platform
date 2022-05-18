@@ -8,18 +8,18 @@ const Seo = props => {
 
   // The cover path usually is buried in a childImageSharp structure, but don't assume it always will be
   let postCover;
-  if ((((data || {}).frontmatter || {}).cover || {}).childImageSharp) {
-    const childImageSharp = data.frontmatter.cover.childImageSharp;
+  if ((((data || {}).fields || {}).cover || {}).childImageSharp) {
+    const childImageSharp = data.fields.cover.childImageSharp;
     // Support both gatsby-image and gatsby-plugin-image
     if (childImageSharp.gatsbyImageData) {
-      postCover = data.frontmatter.cover.childImageSharp.gatsbyImageData.images.fallback.src;
+      postCover = data.fields.cover.childImageSharp.gatsbyImageData.images.fallback.src;
     } else {
-      postCover = data.frontmatter.cover.childImageSharp.resize.src;
+      postCover = data.fields.cover.childImageSharp.resize.src;
     }
   } else {
-    postCover = ((data || {}).frontmatter || {}).cover;
+    postCover = ((data || {}).fields || {}).cover;
   }
-  const postTitle = ((data || {}).frontmatter || {}).title;
+  const postTitle = ((data || {}).fields || {}).title;
   const postDescription = (data || {}).excerpt || ((data || {}).frontmatter || {}).description;
   const postSlug = ((data || {}).fields || {}).slug || "";
 

@@ -31,7 +31,7 @@ const CategoryPage = props => {
       }
     } = edge;
 
-    if (category && category != null) {
+    if (category) {
       if (!categories[category]) {
         categories[category] = [];
       }
@@ -109,13 +109,7 @@ export const query = graphql`
           fields {
             slug
             prefix
-          }
-          frontmatter {
             title
-            category
-            author
-            type
-            url
             cover {
               children {
                 ... on ImageSharp {
@@ -123,6 +117,12 @@ export const query = graphql`
                 }
               }
             }
+          }
+          frontmatter {
+            category
+            author
+            type
+            url
           }
         }
       }

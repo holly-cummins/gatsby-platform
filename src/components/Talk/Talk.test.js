@@ -15,32 +15,32 @@ describe("Talk", () => {
     const post = {
       frontmatter: {
         category: "test-stuff",
-        title,
         type: "talk",
-        author: "bob",
+        author: "bob"
+      },
+      fields: {
+        prefix: "prefixeroo",
+        slug: "sluggeroo",
+        title,
         video: {
           url: "http://somewhere",
           title: "an amazing video",
           html: "<p>an embedded video</p>"
         }
       },
-      fields: { prefix: "prefixeroo", slug: "sluggeroo" }
+      html: "<p>hello</p>"
     };
     const next = { c: "c" };
     const prev = { a: "a" };
     const authorNote = "<p>an amazing author</a>";
 
     it("renders the title", () => {
-      const tree = render(
-        <Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
-      );
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
       expect(screen.getByText(title)).toBeTruthy();
     });
 
     it("embeds the video", () => {
-      const tree = render(
-        <Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
-      );
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
       expect(screen.getByText("an embedded video")).toBeTruthy();
     });
   });
@@ -49,20 +49,22 @@ describe("Talk", () => {
     const post = {
       frontmatter: {
         category: "test-stuff",
-        title,
         type: "talk",
         author: "bob"
       },
-      fields: { prefix: "prefixeroo", slug: "sluggeroo" }
+      fields: {
+        title,
+        prefix: "prefixeroo",
+        slug: "sluggeroo"
+      },
+      html: "<p>hello</p>"
     };
     const next = { c: "c" };
     const prev = { a: "a" };
     const authorNote = "<p>an amazing author</a>";
 
     it("handles the missing fields gracefully", () => {
-      const tree = render(
-        <Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />
-      );
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
       expect(screen.getByText(title)).toBeTruthy();
     });
   });

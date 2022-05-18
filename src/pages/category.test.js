@@ -50,11 +50,11 @@ describe("CategoryPage", () => {
       node: {
         fields: {
           slug: "/slug1/",
-          prefix: "2020-10-10"
+          prefix: "2020-10-10",
+          title: title1,
+          cover
         },
         frontmatter: {
-          title: title1,
-          cover,
           category
         }
       }
@@ -64,11 +64,11 @@ describe("CategoryPage", () => {
         fields: {
           slug: "pub2",
           url: "http://somewhere.else",
-          prefix: "draft"
+          prefix: "draft",
+          title: draftTitle,
+          cover
         },
         frontmatter: {
-          title: draftTitle,
-          cover,
           category
         }
       }

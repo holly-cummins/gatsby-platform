@@ -53,21 +53,10 @@ export const postQuery = graphql`
       html
       excerpt
       fields {
+        title
         slug
         prefix
         shortDate
-      }
-      frontmatter {
-        title
-        author
-        category
-        type
-        event
-        keynote
-        geography {
-          flag
-          country
-        }
         video {
           title
           html
@@ -82,6 +71,17 @@ export const postQuery = graphql`
               src
             }
           }
+        }
+      }
+      frontmatter {
+        author
+        category
+        type
+        event
+        keynote
+        geography {
+          flag
+          country
         }
       }
     }

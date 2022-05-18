@@ -3,6 +3,14 @@ const path = require("path");
 const parser = require("./extended-oembed-parser");
 const fs = require("fs-extra");
 
+const createNodeField = jest.fn(({ node, name, value }) => {
+  node.fields[name] = value;
+});
+
+const actions = { createNodeField };
+
+const internal = { type: "MarkdownRemark" };
+
 const oembedResponse = {
   title: "How to while away hours on the internet",
   author_name: "Duckeroo",
@@ -30,12 +38,12 @@ jest.mock("./extended-oembed-parser", () => ({
 }));
 jest.spyOn(parser, "extract");
 
-const { mutateSource } = require("./index");
+const { onCreateNode } = require("./gatsby-node");
 
 const postPath = path.join(os.tmpdir(), "somepost");
 const fileAbsolutePath = path.join(postPath, "index.md");
 
-describe("the preprocessor", () => {
+describe("the oembed preprocessor", () => {
   const oembedTitle = oembedResponse.title;
   const oembedHtml = oembedResponse.html;
 
@@ -52,24 +60,26 @@ describe("the preprocessor", () => {
         type: "book"
       };
 
-      const page = {
-        markdownNode: {
-          frontmatter,
-          fileAbsolutePath
-        }
+      const fields = {};
+
+      const node = {
+        frontmatter,
+        fields,
+        fileAbsolutePath,
+        internal
       };
 
       beforeAll(async () => {
         await fs.ensureDir(postPath);
-        await mutateSource(page);
+        await onCreateNode({ node, actions });
       });
 
       afterAll(() => {
         jest.clearAllMocks();
       });
 
-      it("changes nothing", async () => {
-        expect(page).toEqual(page);
+      it("propagates the title upwards", async () => {
+        expect(node.fields.title).toEqual(originalTitle);
       });
 
       it("does not attempt to resolve oembed links", async () => {
@@ -88,16 +98,18 @@ describe("the preprocessor", () => {
         type: "book"
       };
 
-      const page = {
-        markdownNode: {
-          frontmatter,
-          fileAbsolutePath
-        }
+      const fields = {};
+
+      const node = {
+        frontmatter,
+        fields,
+        fileAbsolutePath,
+        internal
       };
 
       beforeAll(async () => {
         await fs.ensureDir(postPath);
-        await mutateSource(page);
+        await onCreateNode({ node, actions });
       });
 
       afterAll(() => {
@@ -105,7 +117,7 @@ describe("the preprocessor", () => {
       });
 
       it("adds a cover", async () => {
-        expect(page.markdownNode.frontmatter.cover).toEqual("/content/images/placeholder.png");
+        expect(node.fields.cover).toEqual("/content/images/placeholder.png");
       });
 
       it("does not attempt to resolve oembed links", async () => {
@@ -118,6 +130,8 @@ describe("the preprocessor", () => {
     const url = "https://www.youtube.com/watch?v=8jPQjjsBbIc";
     const originalTitle = "Q is For Croak";
 
+    const fields = {};
+
     const frontmatter = {
       title: originalTitle,
       url: "https://www.manning.com/books/q-is-for-croak",
@@ -128,16 +142,16 @@ describe("the preprocessor", () => {
       video: { url }
     };
 
-    const page = {
-      markdownNode: {
-        frontmatter,
-        fileAbsolutePath
-      }
+    const node = {
+      frontmatter,
+      fields,
+      fileAbsolutePath,
+      internal
     };
 
     beforeAll(async () => {
       await fs.ensureDir(postPath);
-      await mutateSource(page);
+      await onCreateNode({ node, actions });
     });
 
     afterAll(() => {
@@ -149,15 +163,15 @@ describe("the preprocessor", () => {
     });
 
     it("extracts oembed metadata", async () => {
-      expect(frontmatter.video.title).toEqual(oembedTitle);
+      expect(fields.video.title).toEqual(oembedTitle);
     });
 
     it("extracts oembed link", async () => {
-      expect(frontmatter.video.html).toEqual(oembedHtml);
+      expect(fields.video.html).toEqual(oembedHtml);
     });
 
     it("does not override the document title", async () => {
-      expect(frontmatter.title).toEqual(originalTitle);
+      expect(fields.title).toEqual(originalTitle);
     });
   });
 
@@ -172,17 +186,18 @@ describe("the preprocessor", () => {
       type: "book",
       video: { url }
     };
+    const fields = {};
 
-    const page = {
-      markdownNode: {
-        frontmatter,
-        fileAbsolutePath
-      }
+    const node = {
+      frontmatter,
+      fields,
+      fileAbsolutePath,
+      internal
     };
 
     beforeAll(async () => {
       await fs.ensureDir(postPath);
-      await mutateSource(page);
+      await onCreateNode({ node, actions });
     });
 
     afterAll(() => {
@@ -190,21 +205,23 @@ describe("the preprocessor", () => {
     });
 
     it("extracts oembed metadata", async () => {
-      expect(frontmatter.video.title).toEqual(oembedTitle);
+      expect(fields.video.title).toEqual(oembedTitle);
     });
 
     it("extracts oembed link", async () => {
-      expect(frontmatter.video.html).toEqual(oembedHtml);
+      expect(fields.video.html).toEqual(oembedHtml);
     });
 
     it("sets a document title", async () => {
-      expect(frontmatter.title).toEqual(oembedTitle);
+      expect(fields.title).toEqual(oembedTitle);
     });
   });
 
   describe("for a page with slide oembed links", () => {
     const url = "https://speakerdeck.com/tanoku/ruby-is-unlike-a-banana";
     const originalTitle = "D is For Duck";
+
+    const fields = {};
 
     const frontmatter = {
       title: originalTitle,
@@ -216,16 +233,16 @@ describe("the preprocessor", () => {
       slides: { url }
     };
 
-    const page = {
-      markdownNode: {
-        frontmatter,
-        fileAbsolutePath
-      }
+    const node = {
+      frontmatter,
+      fields,
+      fileAbsolutePath,
+      internal
     };
 
     beforeAll(async () => {
       await fs.ensureDir(postPath);
-      await mutateSource(page);
+      await onCreateNode({ node, actions });
     });
 
     afterAll(() => {
@@ -245,7 +262,7 @@ describe("the preprocessor", () => {
     });
 
     it("does not override the document title", async () => {
-      expect(frontmatter.title).toEqual(originalTitle);
+      expect(fields.title).toEqual(originalTitle);
     });
   });
 });

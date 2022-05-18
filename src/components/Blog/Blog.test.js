@@ -13,12 +13,15 @@ const makeNode = () => {
   return {
     node: {
       excerpt: "this is a lovely test…",
-      fields: { slug: "sluggy" + uuid(), prefix: "2020-01-06" },
-      frontmatter: {
+      fields: {
         title,
-        category: "dull-stuff",
-        author: "tdd-er",
+        slug: "sluggy" + uuid(),
+        prefix: "2020-01-06",
         cover
+      },
+      frontmatter: {
+        category: "dull-stuff",
+        author: "tdd-er"
       }
     }
   };

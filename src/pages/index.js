@@ -72,7 +72,7 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
     entries: allMarkdownRemark(
@@ -85,13 +85,7 @@ export const query = graphql`
           fields {
             slug
             prefix
-          }
-          frontmatter {
             title
-            url
-            category
-            type
-            author
             cover {
               children {
                 ... on ImageSharp {
@@ -99,6 +93,12 @@ export const query = graphql`
                 }
               }
             }
+          }
+          frontmatter {
+            url
+            category
+            type
+            author
           }
         }
       }

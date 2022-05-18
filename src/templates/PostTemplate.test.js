@@ -22,8 +22,8 @@ describe("PostTemplate", () => {
     const title = "some post";
     const body = "post-content";
     const post = {
-      frontmatter: { category: "test-stuff", title, author: "bob" },
-      fields: { prefix: "prefixeroo", slug },
+      frontmatter: { category: "test-stuff", author: "bob" },
+      fields: { title, prefix: "prefixeroo", slug },
       html: `<p>${body}</p>`
     };
     const data = {
@@ -52,8 +52,10 @@ describe("PostTemplate", () => {
     const type = "talk";
     const event = "brilliant conference";
     const post = {
-      frontmatter: { category: "test-stuff", title, type, event, author: "bob" },
-      fields: { prefix: "prefixeroo", slug }
+      frontmatter: { category: "test-stuff", type, event, author: "bob" },
+      fields: { title, prefix: "prefixeroo", slug },
+      html: `<p>a talk abstract</p>`
+
       // No html field for a talk
     };
     const data = {

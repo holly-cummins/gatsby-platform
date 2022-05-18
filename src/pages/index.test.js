@@ -49,11 +49,12 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug1/",
-          prefix: "2021-12-17"
+          prefix: "2021-12-17",
+          cover,
+          title: title1
         },
         frontmatter: {
-          title: title1,
-          cover
+          title: "wrong one"
         }
       }
     };
@@ -61,11 +62,12 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug2/",
-          prefix: "2022-04-07"
-        },
-        frontmatter: {
+          prefix: "2022-04-07",
           title: title2,
           cover
+        },
+        frontmatter: {
+          title: "still the wrong one"
         }
       }
     };
@@ -74,11 +76,12 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug3/",
-          prefix: "draft"
-        },
-        frontmatter: {
+          prefix: "draft",
           title: draftTitle,
           cover
+        },
+        frontmatter: {
+          title: "not this one either"
         }
       }
     };
@@ -142,24 +145,22 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "slug1",
-          url: "http://somewhere"
-        },
-        frontmatter: {
+          url: "http://somewhere",
           title: title1,
           cover
-        }
+        },
+        frontmatter: {}
       }
     };
     const pub2 = {
       node: {
         fields: {
           slug: "slug2",
-          url: "http://somewhere.else"
-        },
-        frontmatter: {
+          url: "http://somewhere.else",
           title: title2,
           cover
-        }
+        },
+        frontmatter: {}
       }
     };
     const data = {

@@ -17,13 +17,11 @@ describe("Item", () => {
     beforeEach(() => {
       const post = {
         excerpt,
-        fields: { slug, prefix: "2020-01-06" },
+        fields: { title, cover, slug, prefix: "2020-01-06" },
         frontmatter: {
-          title,
           category: "dull-stuff",
           type: "blog",
-          author: "tdd-er",
-          cover
+          author: "tdd-er"
         }
       };
 
@@ -66,13 +64,12 @@ describe("Item", () => {
     beforeEach(() => {
       const post = {
         excerpt,
-        fields: { slug: "should-not-use", prefix: "2020-01-06" },
+        fields: { title, cover, slug: "should-not-use", prefix: "2020-01-06" },
         frontmatter: {
           url,
-          title,
+
           category: "dull-stuff",
-          author: "tdd-er",
-          cover
+          author: "tdd-er"
         }
       };
 

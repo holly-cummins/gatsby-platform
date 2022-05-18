@@ -24,8 +24,8 @@ const Talk = props => {
     post,
     post: {
       html,
-      fields: { prefix },
-      frontmatter: { title, author, category, event, keynote, video, slides }
+      fields: { prefix, title, video, slides },
+      frontmatter: { author, category, event, keynote }
     },
     authornote,
     next: nextPost,
@@ -33,7 +33,6 @@ const Talk = props => {
     theme
   } = props;
 
-  console.log("Post is", post);
   return (
     <React.Fragment>
       <header>

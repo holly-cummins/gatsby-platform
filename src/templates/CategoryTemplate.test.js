@@ -21,15 +21,20 @@ describe("CategoryTemplate", () => {
     const slug = "sluggaroo";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff", title },
-        fields: { source: "some-source", slug, prefix: "2021-12-17" }
+        frontmatter: { category: "test-stuff" },
+        fields: { title, source: "some-source", slug, prefix: "2021-12-17" }
       }
     };
 
     const draftNode = {
       node: {
-        frontmatter: { category: "bake-off", title: draftTitle },
-        fields: { source: "another-source", slug: "half-baked-slug", prefix: "draft" }
+        frontmatter: { category: "bake-off" },
+        fields: {
+          title: draftTitle,
+          source: "another-source",
+          slug: "half-baked-slug",
+          prefix: "draft"
+        }
       }
     };
     const edges = [draftNode, node];
@@ -38,7 +43,7 @@ describe("CategoryTemplate", () => {
     };
 
     beforeEach(() => {
-      const tree = renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);
+      renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the total count", () => {

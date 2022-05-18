@@ -15,17 +15,15 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: { slug, prefix },
-      frontmatter: {
+      fields: {
+        slug,
+        prefix,
         title,
-        url,
-        category,
-        type,
-        author,
         cover: {
           children: [{ gatsbyImageData }]
         }
-      }
+      },
+      frontmatter: { url, category, type, author }
     }
   } = props;
 

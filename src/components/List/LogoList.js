@@ -12,8 +12,8 @@ const LogoList = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { title, url },
-              fields: { slug }
+              frontmatter: { url },
+              fields: { title, slug }
             }
           } = edge;
 
