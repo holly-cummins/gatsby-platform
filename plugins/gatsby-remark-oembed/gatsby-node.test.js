@@ -117,7 +117,7 @@ describe("the oembed preprocessor", () => {
       });
 
       it("adds a cover", async () => {
-        expect(node.fields.cover).toEqual("/content/images/placeholder.png");
+        expect(node.fields.cover).toEqual("../../images/placeholder.png");
       });
 
       it("does not attempt to resolve oembed links", async () => {

@@ -6,7 +6,10 @@ const request = require("request");
 const { extract, hasProvider } = require("./extended-oembed-parser");
 
 const defaultOptions = {
-  placeholder: "/content/images/placeholder.png",
+  // This path is relative to the markdown file, so it does add a bit of fragility
+  // because it assumes the level of nesting. For the moment, it's ok.
+  // If it causes problems we can look at the paths.
+  placeholder: "../../images/placeholder.png",
   nodeType: "MarkdownRemark",
   maxWidth: 700
 };

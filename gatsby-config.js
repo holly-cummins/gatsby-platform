@@ -118,12 +118,6 @@ module.exports = {
         plugins: [
           "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
-          {
-            resolve: "gatsby-remark-normalize-paths",
-            options: {
-              pathFields: ["image", "cover"]
-            }
-          },
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,
