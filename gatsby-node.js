@@ -209,9 +209,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     displayCategory: String
     geography: Geography
   }
-  type Fields {
-    shortDate: String
-  }
   `;
   createTypes(typeDefs);
 };
