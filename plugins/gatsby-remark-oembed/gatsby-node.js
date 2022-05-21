@@ -2,6 +2,7 @@ const path = require("path");
 const nodeUrl = require("url");
 const fs = require("fs");
 const request = require("request");
+const urlMetadata = require("url-metadata");
 
 const { extract, hasProvider } = require("./extended-oembed-parser");
 
@@ -51,6 +52,7 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
   let cover = frontmatter.cover ? frontmatter.cover : options.placeholder;
   let title = frontmatter.title;
 
+  // We are mutating the slides object which plugins should not do, so we may need to fix this at some point
   if (frontmatter.slides) {
     const answer = await enrich(frontmatter.slides, markdownFile, maxWidth, enrichPromises);
     // If the main document doesn't have a title, fill one in from the slides
@@ -112,6 +114,52 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
 };
 
 // This should probably be a source plugin which puts things into the cache,
+async function extractAndDownloadImages(url, params, thingsWeAreWaitingFor, oembedObject, post) {
+  const oembedData = await extract(url, params);
+  thingsWeAreWaitingFor.push(oembedData);
+
+  if (oembedData) {
+    Object.assign(oembedObject, {
+      link: url,
+      title: oembedData.title,
+      html: oembedData.html
+    });
+
+    if (!oembedObject.html) {
+      oembedObject.html = "<></>";
+    }
+
+    let imageUrl = oembedData.thumbnail_url;
+
+    if (!imageUrl) {
+      // Some oembed providers don't provide a thumbnail, but we can get a thumbnail from the
+      // metadata
+      // We might get a 403 here, so be chill
+      try {
+        const metadata = await urlMetadata(url);
+        if (metadata["og:image"]) {
+          imageUrl = metadata["og:image"];
+        }
+      } catch (e) {
+        console.debug(e);
+      }
+    }
+    if (imageUrl) {
+      const remotePath = nodeUrl.parse(imageUrl).pathname;
+      const thumbnail = path.parse(remotePath).base;
+
+      // Wait for the download to make sure we don't end up with half-files
+      const download = await downloadThumbnail(imageUrl, post);
+      thingsWeAreWaitingFor.push(download);
+      oembedObject.thumbnail = thumbnail;
+    }
+  } else {
+    // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
+
+    console.error(extract, `Got no oembed data for `, url);
+  }
+}
+
 // but for the moment this will do
 const enrich = async (oembedObject, post, maxwidth, thingsWeAreWaitingFor) => {
   const url = oembedObject.url;
@@ -122,33 +170,7 @@ const enrich = async (oembedObject, post, maxwidth, thingsWeAreWaitingFor) => {
 
   const shouldExtract = hasProvider(url, params);
   if (shouldExtract) {
-    const oembedData = await extract(url, params);
-    thingsWeAreWaitingFor.push(oembedData);
-    if (oembedData) {
-      Object.assign(oembedObject, {
-        link: url,
-        title: oembedData.title,
-        html: oembedData.html
-      });
-      if (!oembedObject.html) {
-        console.log("Filling in html for ", url);
-        oembedObject.html = "<></>";
-      }
-
-      const imageUrl = oembedData.thumbnail_url;
-      if (imageUrl) {
-        const remotePath = nodeUrl.parse(imageUrl).pathname;
-        const thumbnail = path.parse(remotePath).base;
-
-        // Wait for the download to make sure we don't end up with half-files
-        const download = await downloadThumbnail(imageUrl, post);
-        thingsWeAreWaitingFor.push(download);
-        oembedObject.thumbnail = thumbnail;
-      }
-    } else {
-      // What should we do if we have an oembed provider and it returns nothing? Cry in the corner?
-      console.error(`Got no oembed data for `, url);
-    }
+    await extractAndDownloadImages(url, params, thingsWeAreWaitingFor, oembedObject, post);
   } else {
     // Schema validation gets upset if we don't do this
     Object.assign(oembedObject, {
