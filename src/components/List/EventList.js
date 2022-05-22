@@ -13,8 +13,8 @@ const EventList = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { url, event, keynote, geography },
-              fields: { slug, shortDate, title }
+              frontmatter: { url, event, keynote },
+              fields: { slug, shortDate, title, geography }
             }
           } = edge;
           // Make sure we don't have a null hanging around in the date

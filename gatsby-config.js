@@ -116,7 +116,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          "gatsby-remark-event-location-expand",
           "gatsby-remark-category-normalize",
           `gatsby-plugin-sharp`,
           {
@@ -166,6 +165,7 @@ module.exports = {
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    "gatsby-remark-event-location-expand",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,

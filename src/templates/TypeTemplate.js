@@ -153,16 +153,16 @@ export const typeQuery = graphql`
             slug
             prefix
             shortDate
+            geography {
+              flag
+              country
+            }
           }
           frontmatter {
             url
             type
             event
             keynote
-            geography {
-              flag
-              country
-            }
           }
         }
       }

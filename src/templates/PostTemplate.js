@@ -57,6 +57,10 @@ export const postQuery = graphql`
         slug
         prefix
         shortDate
+        geography {
+          flag
+          country
+        }
         video {
           title
           html
@@ -79,10 +83,6 @@ export const postQuery = graphql`
         type
         event
         keynote
-        geography {
-          flag
-          country
-        }
       }
     }
     authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {

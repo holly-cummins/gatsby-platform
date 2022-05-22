@@ -7,16 +7,6 @@ const defaultOptions = {
   nodeType: "MarkdownRemark"
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
-  const typeDefs = `
-  type Fields {
-    shortDate: String
-  }
-  `;
-  createTypes(typeDefs);
-};
-
 exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
   const { createNodeField } = actions;
 

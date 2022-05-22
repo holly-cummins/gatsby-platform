@@ -201,13 +201,16 @@ exports.createSchemaCustomization = ({ actions }) => {
     frontmatter: Frontmatter
     fields: Fields
   }
-  type Geography implements Node {
-    flag: String
-    country: String
+
+  type Fields {
+    geography: Geography
+    slides: OEmbed
+    video: OEmbed
+    shortDate: String
   }
+
   type Frontmatter {
     displayCategory: String
-    geography: Geography
   }
   `;
   createTypes(typeDefs);
