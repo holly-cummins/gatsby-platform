@@ -22,7 +22,7 @@ const CategoryTemplate = props => {
 
   // The display category may vary within the category so just grab it off the first entry
   const displayCategory =
-    filteredEntries.length > 0 ? filteredEntries[0].node.frontmatter.displayCategory : category;
+    filteredEntries.length > 0 ? filteredEntries[0].node.fields.displayCategory : category;
 
   return (
     <React.Fragment>
@@ -65,19 +65,19 @@ export const categoryQuery = graphql`
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [fields___prefix], order: DESC }
-      filter: { fields: { slug: { ne: "" } }, frontmatter: { category: { eq: $category } } }
+      filter: { fields: { slug: { ne: "" }, category: { eq: $category } } }
     ) {
       edges {
         node {
           fields {
             slug
             prefix
+            category
+            displayCategory
           }
           frontmatter {
             url
             title
-            category
-            displayCategory
             type
           }
         }

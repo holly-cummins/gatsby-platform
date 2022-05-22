@@ -112,11 +112,11 @@ module.exports = {
         path: `${__dirname}/${contentDir}/parts/`
       }
     },
+    "gatsby-remark-category-normalize",
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          "gatsby-remark-category-normalize",
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,

@@ -21,15 +21,16 @@ describe("CategoryTemplate", () => {
     const slug = "sluggaroo";
     const node = {
       node: {
-        frontmatter: { category: "test-stuff" },
-        fields: { title, source: "some-source", slug, prefix: "2021-12-17" }
+        frontmatter: {},
+        fields: { category: "test-stuff", title, source: "some-source", slug, prefix: "2021-12-17" }
       }
     };
 
     const draftNode = {
       node: {
-        frontmatter: { category: "bake-off" },
+        frontmatter: {},
         fields: {
+          category: "bake-off",
           title: draftTitle,
           source: "another-source",
           slug: "half-baked-slug",

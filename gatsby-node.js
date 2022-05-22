@@ -61,10 +61,10 @@ exports.createPages = ({ graphql, actions }) => {
                     slug
                     prefix
                     source
+                    category
                   }
                   frontmatter {
                     title
-                    category
                     type
                   }
                 }
@@ -86,13 +86,11 @@ exports.createPages = ({ graphql, actions }) => {
         items.forEach(edge => {
           let {
             node: {
-              frontmatter: { category }
+              fields: { category }
             }
           } = edge;
 
           if (category) {
-            // We need to re-normalise the category here because this code runs before the category normalising plugin (sadly)
-            category = category.toLowerCase();
             categorySet.add(category);
           }
         });
@@ -100,6 +98,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create category pages
         const categoryList = Array.from(categorySet);
         categoryList.forEach(category => {
+          console.log("HOLLY making page", category);
           createPage({
             path: `/category/${_.kebabCase(category)}/`,
             component: categoryTemplate,
@@ -198,7 +197,6 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
   type MarkdownRemark implements Node {
-    frontmatter: Frontmatter
     fields: Fields
   }
 
@@ -207,11 +205,10 @@ exports.createSchemaCustomization = ({ actions }) => {
     slides: OEmbed
     video: OEmbed
     shortDate: String
+    displayCategory: String
+    category: String
   }
 
-  type Frontmatter {
-    displayCategory: String
-  }
   `;
   createTypes(typeDefs);
 };

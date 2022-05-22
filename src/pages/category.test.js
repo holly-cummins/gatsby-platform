@@ -52,11 +52,10 @@ describe("CategoryPage", () => {
           slug: "/slug1/",
           prefix: "2020-10-10",
           title: title1,
-          cover
-        },
-        frontmatter: {
+          cover,
           category
-        }
+        },
+        frontmatter: {}
       }
     };
     const draftPub = {
@@ -66,11 +65,10 @@ describe("CategoryPage", () => {
           url: "http://somewhere.else",
           prefix: "draft",
           title: draftTitle,
-          cover
-        },
-        frontmatter: {
+          cover,
           category
-        }
+        },
+        frontmatter: {}
       }
     };
     const data = {

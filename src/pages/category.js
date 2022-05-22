@@ -27,7 +27,7 @@ const CategoryPage = props => {
   posts.forEach(edge => {
     let {
       node: {
-        frontmatter: { category }
+        fields: { category }
       }
     } = edge;
 
@@ -110,6 +110,7 @@ export const query = graphql`
             slug
             prefix
             title
+            category
             cover {
               children {
                 ... on ImageSharp {
@@ -119,7 +120,6 @@ export const query = graphql`
             }
           }
           frontmatter {
-            category
             author
             type
             url

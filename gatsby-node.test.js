@@ -3,7 +3,7 @@ import gn from "./gatsby-node";
 describe("the main gatsby thing", () => {
   it("aggregates categories which are the same", async () => {
     const node = {
-      node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } }
+      node: { frontmatter: {}, fields: { category: "test-stuff", source: "some-source" } }
     };
     const graphql = jest.fn().mockResolvedValue({
       data: {
@@ -24,10 +24,10 @@ describe("the main gatsby thing", () => {
 
   it("makes pages for each category", async () => {
     const node = {
-      node: { frontmatter: { category: "test-stuff" }, fields: { source: "some-source" } }
+      node: { frontmatter: {}, fields: { category: "test-stuff", source: "some-source" } }
     };
     const otherNode = {
-      node: { frontmatter: { category: "other-stuff" }, fields: { source: "some-source" } }
+      node: { frontmatter: {}, fields: { category: "other-stuff", source: "some-source" } }
     };
     const graphql = jest.fn().mockResolvedValue({
       data: {
@@ -94,8 +94,8 @@ describe("the main gatsby thing", () => {
 
     const node = {
       node: {
-        frontmatter: { category: "test-stuff" },
-        fields: { source: "posts", slug, prefix: "a-proper-date" }
+        frontmatter: {},
+        fields: { category: "test-stuff", source: "posts", slug, prefix: "a-proper-date" }
       }
     };
     const edges = [node, node];
@@ -121,8 +121,8 @@ describe("the main gatsby thing", () => {
 
     const node = {
       node: {
-        frontmatter: { category: "test-stuff" },
-        fields: { source: "talks", slug, prefix: "a-proper-date" }
+        frontmatter: {},
+        fields: { category: "test-stuff", source: "talks", slug, prefix: "a-proper-date" }
       }
     };
     const edges = [node, node];
@@ -147,8 +147,8 @@ describe("the main gatsby thing", () => {
     const url = "http://myfamous.story";
     const node = {
       node: {
-        frontmatter: { category: "pub-stuff", url },
-        fields: { source: "publications" }
+        frontmatter: { url },
+        fields: { category: "pub-stuff", source: "publications" }
       }
     };
     const edges = [node, node];
@@ -173,8 +173,8 @@ describe("the main gatsby thing", () => {
 
     const node = {
       node: {
-        frontmatter: { category: "test-stuff" },
-        fields: { source: "pages", slug }
+        frontmatter: {},
+        fields: { category: "test-stuff", source: "pages", slug }
       }
     };
     const edges = [node, node, node];
