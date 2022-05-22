@@ -39,7 +39,7 @@ describe("main site", () => {
     });
 
     it("should have flags", async () => {
-      const numberOfFlags = (await page.$$("div.flag > svg")).length;
+      const numberOfFlags = (await page.$$("div.flag > img")).length;
       expect(numberOfFlags).toBeGreaterThan(0);
     });
 
