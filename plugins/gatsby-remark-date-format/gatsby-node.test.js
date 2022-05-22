@@ -18,7 +18,7 @@ describe("the preprocessor", () => {
 
     const node = {
       fields,
-      internal: { type: "MarkdownNode" }
+      internal: { type: "MarkdownRemark" }
     };
 
     const original = cloneDeep(node);
