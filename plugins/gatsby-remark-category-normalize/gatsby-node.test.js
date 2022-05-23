@@ -1,5 +1,4 @@
 const { onCreateNode } = require("./gatsby-node");
-const { cloneDeep } = require("lodash");
 
 const createNodeField = jest.fn(({ node, name, value }) => {
   node.fields[name] = value;
