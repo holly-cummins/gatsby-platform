@@ -74,10 +74,10 @@ export const categoryQuery = graphql`
             prefix
             category
             displayCategory
+            title
           }
           frontmatter {
             url
-            title
             type
           }
         }
