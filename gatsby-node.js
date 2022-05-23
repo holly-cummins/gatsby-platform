@@ -98,7 +98,6 @@ exports.createPages = ({ graphql, actions }) => {
         // Create category pages
         const categoryList = Array.from(categorySet);
         categoryList.forEach(category => {
-          console.log("HOLLY making page", category);
           createPage({
             path: `/category/${_.kebabCase(category)}/`,
             component: categoryTemplate,
