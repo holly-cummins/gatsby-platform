@@ -122,4 +122,4 @@ export const query = graphql`
   }
 `;
 
-//hero-background
+// hero-background
