@@ -36,4 +36,33 @@ describe("the preprocessor", () => {
       expect(fields.displayCategory).toEqual(category);
     });
   });
+
+  describe("for a topic with spaces", () => {
+    const category = "with some Spaces";
+
+    const fields = {};
+    const frontmatter = {
+      category
+    };
+
+    const node = {
+      fields,
+      frontmatter,
+      internal: { type: "MarkdownRemark" }
+    };
+
+    beforeAll(async () => {
+      await onCreateNode({ node, actions });
+    });
+
+    afterAll(() => {});
+
+    it("normalises the case", async () => {
+      expect(fields.category).toEqual("with-some-spaces");
+    });
+
+    it("stashes away the original", async () => {
+      expect(fields.displayCategory).toEqual(category);
+    });
+  });
 });

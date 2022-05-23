@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
 
-const _ = require("lodash");
-
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article/";
 import Headline from "../components/Article/Headline";
@@ -24,10 +22,11 @@ const CategoryPage = props => {
 
   // Create category list
   const categories = {};
+  const displayCategories = {};
   posts.forEach(edge => {
     let {
       node: {
-        fields: { category }
+        fields: { category, displayCategory }
       }
     } = edge;
 
@@ -36,14 +35,10 @@ const CategoryPage = props => {
         categories[category] = [];
       }
       categories[category].push(edge);
+      // There may be variation in display categories, so just take the first one
+      displayCategories[category] = displayCategory;
     }
   });
-
-  const categoryList = [];
-
-  for (const key in categories) {
-    categoryList.push([key, categories[key]]);
-  }
 
   return (
     <React.Fragment>
@@ -53,15 +48,15 @@ const CategoryPage = props => {
             <header>
               <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
             </header>
-            {categoryList.map(item => (
-              <section key={item[0]}>
+            {Object.keys(categories).map(category => (
+              <section key={category}>
                 <h2>
-                  <a href={`/category/${_.kebabCase(item[0])}`}>
+                  <a href={`/category/${category}`}>
                     <Tag />
-                    {item[0]}
+                    {displayCategories[category]}
                   </a>
                 </h2>
-                <List edges={item[1]} theme={theme} />
+                <List edges={categories[category]} theme={theme} />
               </section>
             ))}
             {/* --- STYLES --- */}
@@ -111,6 +106,7 @@ export const query = graphql`
             prefix
             title
             category
+            displayCategory
             cover {
               children {
                 ... on ImageSharp {

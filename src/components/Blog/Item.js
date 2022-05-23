@@ -19,11 +19,12 @@ const Item = props => {
         slug,
         prefix,
         title,
+        displayCategory,
         cover: {
           children: [{ gatsbyImageData }]
         }
       },
-      frontmatter: { url, category, type, author }
+      frontmatter: { url, type, author }
     }
   } = props;
 
@@ -48,9 +49,9 @@ const Item = props => {
         <span>
           <User /> {author}
         </span>
-        {category && (
+        {displayCategory && (
           <span>
-            <Tag /> {category}
+            <Tag /> {displayCategory}
           </span>
         )}
       </p>

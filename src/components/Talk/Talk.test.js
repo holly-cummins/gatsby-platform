@@ -10,11 +10,12 @@ jest.mock("../Post/Author.js", () => () => <></>);
 
 describe("Talk", () => {
   const title = "an amazing presentation";
+  const category = "test-stuff";
+  const displayCategory = "TeSt-StUfF";
 
   describe("with successful pre-processing", () => {
     const post = {
       frontmatter: {
-        category: "test-stuff",
         type: "talk",
         author: "bob"
       },
@@ -22,6 +23,8 @@ describe("Talk", () => {
         prefix: "prefixeroo",
         slug: "sluggeroo",
         title,
+        category,
+        displayCategory,
         video: {
           url: "http://somewhere",
           title: "an amazing video",
@@ -34,26 +37,38 @@ describe("Talk", () => {
     const prev = { a: "a" };
     const authorNote = "<p>an amazing author</a>";
 
-    it("renders the title", () => {
+    beforeEach(() => {
       render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+    });
+
+    it("renders the title", () => {
       expect(screen.getByText(title)).toBeTruthy();
     });
 
     it("embeds the video", () => {
-      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
       expect(screen.getByText("an embedded video")).toBeTruthy();
+    });
+
+    it("renders the category", () => {
+      expect(screen.getByText(displayCategory)).toBeTruthy();
+    });
+
+    it("uses the normalised category for the link", () => {
+      const categoryElement = screen.getByText(displayCategory);
+      expect(categoryElement.getAttribute("href")).toMatch(new RegExp(".*/" + category + "$"));
     });
   });
 
   describe("with missing oembed data", () => {
     const post = {
       frontmatter: {
-        category: "test-stuff",
         type: "talk",
         author: "bob"
       },
       fields: {
         title,
+        category: "test-stuff",
+        displayCategory: "test-stuff",
         prefix: "prefixeroo",
         slug: "sluggeroo"
       },

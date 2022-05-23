@@ -1,6 +1,6 @@
 ---
 title: Half-baked ramblings
-category: "cats"
+category: "CaTS"
 cover: hairball.png
 author: ducky devine
 type: blog

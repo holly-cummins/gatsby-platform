@@ -24,8 +24,8 @@ const Talk = props => {
     post,
     post: {
       html,
-      fields: { prefix, title, video, slides },
-      frontmatter: { author, category, event, keynote }
+      fields: { prefix, title, video, slides, category, displayCategory },
+      frontmatter: { author, event, keynote }
     },
     authornote,
     next: nextPost,
@@ -42,6 +42,7 @@ const Talk = props => {
           event={event}
           author={author}
           category={category}
+          displayCategory={displayCategory}
           keynote={keynote}
           theme={theme}
         />

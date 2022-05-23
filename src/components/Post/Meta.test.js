@@ -7,11 +7,21 @@ import theme from "../../theme/theme.yaml";
 describe("Meta", () => {
   describe("with no event", () => {
     const category = "stuff";
+    const displayCategory = "sTUff";
+
     const prefix = "2022-02-22";
     const author = "snacky devine";
 
     beforeEach(() => {
-      render(<Meta prefix={prefix} author={author} category={category} theme={theme} />);
+      render(
+        <Meta
+          prefix={prefix}
+          author={author}
+          category={category}
+          displayCategory={displayCategory}
+          theme={theme}
+        />
+      );
     });
 
     it("renders the author", () => {
@@ -23,19 +33,32 @@ describe("Meta", () => {
     });
 
     it("renders the category", () => {
-      expect(screen.getByText(category)).toBeTruthy();
+      expect(screen.getByText(displayCategory)).toBeTruthy();
+    });
+
+    it("uses the normalised category for the link", () => {
+      const categoryElement = screen.getByText(displayCategory);
+      expect(categoryElement.getAttribute("href")).toMatch(new RegExp(".*/" + category + "$"));
     });
   });
 
   describe("with an event", () => {
     const category = "things";
+    const displayCategory = "things and sausages";
     const prefix = "2021-03-22";
     const author = "snacky malone";
     const event = "DuckCon";
 
     beforeEach(() => {
       render(
-        <Meta prefix={prefix} author={author} category={category} event={event} theme={theme} />
+        <Meta
+          prefix={prefix}
+          author={author}
+          category={category}
+          displayCategory={displayCategory}
+          event={event}
+          theme={theme}
+        />
       );
     });
     it("renders the author", () => {
@@ -47,7 +70,7 @@ describe("Meta", () => {
     });
 
     it("renders the category", () => {
-      expect(screen.getByText(category)).toBeTruthy();
+      expect(screen.getByText(displayCategory)).toBeTruthy();
     });
 
     it("renders the event", () => {
@@ -61,6 +84,7 @@ describe("Meta", () => {
 
   describe("with a keynote talk", () => {
     const category = "things";
+    const displayCategory = "pancakes and sausages";
     const prefix = "2021-03-22";
     const author = "snacky malone";
     const event = "DuckCon";
@@ -71,6 +95,7 @@ describe("Meta", () => {
           prefix={prefix}
           author={author}
           category={category}
+          displayCategory={displayCategory}
           event={event}
           keynote={true}
           theme={theme}
@@ -86,7 +111,7 @@ describe("Meta", () => {
     });
 
     it("renders the category", () => {
-      expect(screen.getByText(category)).toBeTruthy();
+      expect(screen.getByText(displayCategory)).toBeTruthy();
     });
 
     it("renders the event", () => {

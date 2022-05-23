@@ -17,9 +17,14 @@ describe("Item", () => {
     beforeEach(() => {
       const post = {
         excerpt,
-        fields: { title, cover, slug, prefix: "2020-01-06" },
+        fields: {
+          title,
+          cover,
+          slug,
+          prefix: "2020-01-06",
+          displayCategory: "dull-stuff"
+        },
         frontmatter: {
-          category: "dull-stuff",
           type: "blog",
           author: "tdd-er"
         }
@@ -56,6 +61,10 @@ describe("Item", () => {
     it("renders the type", () => {
       expect(screen.getByText("blog")).toBeTruthy();
     });
+
+    it("renders the category", () => {
+      expect(screen.getByText("dull-stuff")).toBeTruthy();
+    });
   });
 
   describe("for an external publication", () => {
@@ -64,11 +73,16 @@ describe("Item", () => {
     beforeEach(() => {
       const post = {
         excerpt,
-        fields: { title, cover, slug: "should-not-use", prefix: "2020-01-06" },
+        fields: {
+          title,
+          cover,
+          slug: "should-not-use",
+          prefix: "2020-01-06",
+          category: "dull-stuff"
+        },
         frontmatter: {
           url,
 
-          category: "dull-stuff",
           author: "tdd-er"
         }
       };

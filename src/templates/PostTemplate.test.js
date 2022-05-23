@@ -16,14 +16,24 @@ const renderWithTheme = ui => {
 };
 
 describe("PostTemplate", () => {
+  const category = "test-stuff";
+  const displayCategory = "TeSt-StUfF";
+
   describe("for a generic post", () => {
     const authorNote = "author-note";
     const slug = "sluggeroo";
     const title = "some post";
     const body = "post-content";
+
     const post = {
-      frontmatter: { category: "test-stuff", author: "bob" },
-      fields: { title, prefix: "prefixeroo", slug },
+      frontmatter: { author: "bob" },
+      fields: {
+        title,
+        prefix: "prefixeroo",
+        slug,
+        category,
+        displayCategory
+      },
       html: `<p>${body}</p>`
     };
     const data = {
@@ -43,6 +53,10 @@ describe("PostTemplate", () => {
     it("renders the title", () => {
       expect(screen.getByText(title)).toBeTruthy();
     });
+
+    it("renders the category", () => {
+      expect(screen.getByText(displayCategory)).toBeTruthy();
+    });
   });
 
   describe("for a talk", () => {
@@ -52,8 +66,14 @@ describe("PostTemplate", () => {
     const type = "talk";
     const event = "brilliant conference";
     const post = {
-      frontmatter: { category: "test-stuff", type, event, author: "bob" },
-      fields: { title, prefix: "prefixeroo", slug },
+      frontmatter: { type, event, author: "bob" },
+      fields: {
+        title,
+        prefix: "prefixeroo",
+        slug,
+        category,
+        displayCategory
+      },
       html: `<p>a talk abstract</p>`
 
       // No html field for a talk
@@ -75,6 +95,10 @@ describe("PostTemplate", () => {
     // We test this mostly to make sure the right component was rendered
     it("renders the event name", () => {
       expect(screen.getByText(event)).toBeTruthy();
+    });
+
+    it("renders the category", () => {
+      expect(screen.getByText(displayCategory)).toBeTruthy();
     });
   });
 });

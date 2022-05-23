@@ -57,6 +57,8 @@ export const postQuery = graphql`
         slug
         prefix
         shortDate
+        category
+        displayCategory
         geography {
           flag
           country
@@ -79,7 +81,6 @@ export const postQuery = graphql`
       }
       frontmatter {
         author
-        category
         type
         event
         keynote

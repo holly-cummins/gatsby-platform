@@ -42,7 +42,8 @@ describe("CategoryPage", () => {
   });
 
   describe("with some posts and publications", () => {
-    const category = "sock stories";
+    const category = "sock-stories";
+    const displayCategory = "SOck sTOry with a deliberate DIFFERENCE";
     const title1 = "the first title";
     const draftTitle = "the second title";
 
@@ -66,7 +67,8 @@ describe("CategoryPage", () => {
           prefix: "draft",
           title: draftTitle,
           cover,
-          category
+          category,
+          displayCategory
         },
         frontmatter: {}
       }
@@ -81,7 +83,12 @@ describe("CategoryPage", () => {
     });
 
     it("renders the category name", async () => {
-      expect(screen.getByText(category)).toBeTruthy();
+      expect(screen.getByText(displayCategory)).toBeTruthy();
+    });
+
+    it("uses the normalised category for the link", () => {
+      const categoryElement = screen.getByText(displayCategory);
+      expect(categoryElement.getAttribute("href")).toMatch(new RegExp(".*/" + category + "$"));
     });
 
     it("renders a list of posts", async () => {
@@ -89,7 +96,7 @@ describe("CategoryPage", () => {
     });
 
     it("includes a link to just that category", async () => {
-      const link = screen.getByRole("link", { name: category });
+      const link = screen.getByRole("link", { name: displayCategory });
 
       // Note replacement of space with a dash
       expect(link).toHaveAttribute("href", "/category/sock-stories");

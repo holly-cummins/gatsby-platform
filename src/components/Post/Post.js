@@ -22,8 +22,8 @@ const Post = props => {
     post,
     post: {
       html,
-      fields: { title, prefix, slug },
-      frontmatter: { author, category }
+      fields: { title, prefix, slug, category, displayCategory },
+      frontmatter: { author }
     },
     authornote,
     next: nextPost,
@@ -35,7 +35,13 @@ const Post = props => {
     <React.Fragment>
       <header>
         <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} author={author} category={category} theme={theme} />
+        <Meta
+          prefix={prefix}
+          author={author}
+          category={category}
+          displayCategory={displayCategory}
+          theme={theme}
+        />
       </header>
       <Bodytext html={html} theme={theme} />
       <footer>

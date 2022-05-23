@@ -86,6 +86,8 @@ export const query = graphql`
             slug
             prefix
             title
+            category
+            displayCategory
             cover {
               children {
                 ... on ImageSharp {
@@ -96,7 +98,6 @@ export const query = graphql`
           }
           frontmatter {
             url
-            category
             type
             author
           }

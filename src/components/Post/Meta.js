@@ -9,7 +9,7 @@ import { PresentationFile20 as Talk } from "@carbon/icons-react";
 import { Badge20 as Star } from "@carbon/icons-react";
 
 const Meta = props => {
-  const { prefix, author: authorName, category, event, keynote, theme } = props;
+  const { prefix, author: authorName, category, displayCategory, event, keynote, theme } = props;
 
   return (
     <p className="meta">
@@ -36,7 +36,7 @@ const Meta = props => {
       {category && (
         <span>
           <Tag />
-          <Link to={`/category/${category.split(" ").join("-")}`}>{category}</Link>
+          <Link to={`/category/${category}`}>{displayCategory}</Link>
         </span>
       )}
 
@@ -78,6 +78,7 @@ Meta.propTypes = {
   event: PropTypes.string,
   keynote: PropTypes.bool,
   category: PropTypes.string.isRequired,
+  displayCategory: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired
 };
 
