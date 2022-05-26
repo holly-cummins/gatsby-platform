@@ -1,11 +1,5 @@
-const nodeGeocoder = require("node-geocoder");
-const ourFetch = require("node-fetch");
+const geocoder = require("./caching-geocoder");
 const flags = require("country-flag-icons/string/3x2");
-
-const geoCodeOptions = {
-  provider: "openstreetmap",
-  fetch: ourFetch // Specify a fetch to try and resolve some apparent concurrency issues
-};
 
 const defaultOptions = {
   nodeType: "MarkdownRemark"
@@ -38,7 +32,6 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
 
 const makeGeographyDetails = async location => {
   try {
-    const geocoder = nodeGeocoder(geoCodeOptions);
     const results = await geocoder.geocode(location);
     if (results && results.length > 0) {
       // Assume it puts the most likely first
