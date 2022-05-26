@@ -59,18 +59,19 @@ const List = props => {
           display: flex;
           justify-content: flex-start;
           align-items: flex-start;
-          gap: 20px;
+          gap: 10px;
           padding-bottom: 20px;
         }
 
         .date {
           color: ${theme.color.brand.light};
-          flex: ${useShortDate ? "7%" : "15%"};
+          flex: ${useShortDate ? "15%" : "20%"};
+          margin-right: 25px;
         }
 
         .title {
           text-align: left;
-          flex: ${useShortDate ? "93%" : "85%"};
+          flex: ${useShortDate ? "85%" : "80%"};
         }
 
         li :global(svg) {
