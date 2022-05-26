@@ -185,8 +185,12 @@ describe("the oembed preprocessor", () => {
       expect(fields.video.title).toEqual(oembedTitle);
     });
 
-    it("extracts oembed link", async () => {
+    it("extracts oembed content", async () => {
       expect(fields.video.html).toEqual(oembedHtml);
+    });
+
+    it("preserves the url", async () => {
+      expect(fields.video.url).toEqual(url);
     });
 
     it("does not override the document title", async () => {

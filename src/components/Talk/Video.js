@@ -10,7 +10,9 @@ const Meta = props => {
       <React.Fragment>
         <div className="separator"></div>
         <EmbedContainer markup={video.html}>
-          <h2>{video.title}</h2>
+          <a href={video.url}>
+            <h2>{video.title}</h2>
+          </a>
           <div className="video" dangerouslySetInnerHTML={{ __html: video.html }} />
         </EmbedContainer>
 
@@ -28,6 +30,7 @@ const Meta = props => {
             margin-left: auto;
             margin-right: auto;
             margin-bottom: ${theme.space.default};
+            margin-top: ${theme.space.default};
           }
 
           .video {
@@ -41,6 +44,7 @@ const Meta = props => {
               fill: ${theme.icon.color};
               margin: ${theme.space.inline.xs};
             }
+
             span {
               align-items: center;
               display: flex;
@@ -48,6 +52,7 @@ const Meta = props => {
               margin: ${theme.space.xs} ${theme.space.s} ${theme.space.xs} 0;
             }
           }
+
           @from-width tablet {
             .meta {
               margin: ${`calc(${theme.space.m} * 1.5) 0 ${theme.space.m}`};

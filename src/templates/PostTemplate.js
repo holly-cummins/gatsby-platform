@@ -66,10 +66,12 @@ export const postQuery = graphql`
         video {
           title
           html
+          url
         }
         slides {
           title
           html
+          url
         }
         cover {
           childImageSharp {
