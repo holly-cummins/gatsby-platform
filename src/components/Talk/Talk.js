@@ -10,6 +10,7 @@ import Author from "../Post/Author";
 import NextPrev from "../Post/NextPrev";
 import Slides from "./Slides";
 import Video from "./Video";
+import Code from "./Code";
 
 const Share = asyncComponent(() =>
   import("../Post/Share")
@@ -25,7 +26,7 @@ const Talk = props => {
     post: {
       html,
       fields: { prefix, title, video, slides, category, displayCategory },
-      frontmatter: { author, event, keynote }
+      frontmatter: { author, event, keynote, code }
     },
     authornote,
     next: nextPost,
@@ -50,6 +51,7 @@ const Talk = props => {
       <Bodytext html={html} theme={theme} />
       <Slides slides={slides} theme={theme} />
       <Video video={video} theme={theme} />
+      <Code code={code} theme={theme} />
       <footer>
         <Share post={post} theme={theme} />
         <Author note={authornote} theme={theme} />

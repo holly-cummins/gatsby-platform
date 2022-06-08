@@ -17,7 +17,10 @@ describe("Talk", () => {
     const post = {
       frontmatter: {
         type: "talk",
-        author: "bob"
+        author: "bob",
+        code: {
+          url: "http://somegitrepo.com"
+        }
       },
       fields: {
         prefix: "prefixeroo",
@@ -47,6 +50,14 @@ describe("Talk", () => {
 
     it("embeds the video", () => {
       expect(screen.getByText("an embedded video")).toBeTruthy();
+    });
+
+    it("includes a code section", () => {
+      expect(screen.getByText("Code")).toBeTruthy();
+    });
+
+    it("includes a code link", () => {
+      expect(screen.getByText("http://somegitrepo.com")).toBeTruthy();
     });
 
     it("renders the category", () => {

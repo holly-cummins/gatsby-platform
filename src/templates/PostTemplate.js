@@ -86,6 +86,10 @@ export const postQuery = graphql`
         type
         event
         keynote
+        code {
+          title
+          url
+        }
       }
     }
     authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {

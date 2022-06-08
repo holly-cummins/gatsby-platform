@@ -6,7 +6,6 @@ const Meta = props => {
   const { slides, theme } = props;
 
   if (slides && slides.html) {
-    console.log("slides is", slides);
     return (
       <React.Fragment>
         <div className="separator"></div>
