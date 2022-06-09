@@ -4,7 +4,7 @@ import Code from "./Code";
 
 import theme from "../../theme/theme.yaml";
 
-describe("", () => {
+describe("Talk page", () => {
   describe("with populated content", () => {
     const title = "content";
     const code = { url: "somecode", title };
@@ -14,7 +14,7 @@ describe("", () => {
     });
 
     it("renders the title", () => {
-      expect(screen.getByText(title)).toBeTruthy();
+      expect(screen.getByText(title + ":")).toBeTruthy();
     });
 
     it("renders the code", () => {
@@ -28,6 +28,7 @@ describe("", () => {
     });
 
     // Dummy test to force rendering
+    // eslint-disable-next-line jest/expect-expect
     it("renders something", () => {});
   });
 });
