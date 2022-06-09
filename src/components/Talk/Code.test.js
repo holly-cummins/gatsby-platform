@@ -4,7 +4,7 @@ import Code from "./Code";
 
 import theme from "../../theme/theme.yaml";
 
-describe("Talk page", () => {
+describe("A Code section", () => {
   describe("with populated content", () => {
     const title = "content";
     const code = { url: "somecode", title };
