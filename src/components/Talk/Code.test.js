@@ -7,7 +7,7 @@ import theme from "../../theme/theme.yaml";
 describe("A Code section", () => {
   describe("with populated content", () => {
     const title = "content";
-    const code = { url: "somecode", title };
+    const code = [{ url: "somecode", title }];
 
     beforeEach(() => {
       render(<Code code={code} theme={theme} />);

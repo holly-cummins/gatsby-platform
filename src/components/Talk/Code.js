@@ -6,20 +6,25 @@ import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
 const Meta = props => {
   const { code, theme } = props;
 
-  if (code && code.url) {
-    const title = code.title ? code.title + ": " : "";
-    const icon = code.url.includes("github") ? <GitHubIcon /> : <></>;
-
+  if (code && code.length > 0) {
     return (
       <React.Fragment>
         <div className="separator"></div>
         <h2>Code</h2>
-        <div className="code">
-          <div className="icon">{icon}</div>
-          <div>
-            {title}
-            <a href={code.url}>{code.url}</a>
-          </div>
+        <div>
+          {code.map((el, pos) => {
+            const title = el.title ? el.title + ": " : "";
+            const icon = el.url.includes("github") ? <GitHubIcon /> : <></>;
+            return (
+              <div key={pos} className="code">
+                <div className="icon">{icon}</div>
+                <div>
+                  {title}
+                  <a href={el.url}>{el.url}</a>
+                </div>
+              </div>
+            );
+          })}
         </div>
         {/* --- STYLES --- */}
         <style jsx>{`

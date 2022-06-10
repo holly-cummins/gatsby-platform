@@ -18,9 +18,7 @@ describe("Talk", () => {
       frontmatter: {
         type: "talk",
         author: "bob",
-        code: {
-          url: "http://somegitrepo.com"
-        }
+        code: [{ url: "http://somegitrepo.com" }]
       },
       fields: {
         prefix: "prefixeroo",

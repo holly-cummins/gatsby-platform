@@ -6,8 +6,10 @@ type: talk
 event: QuackCon
 location: Amsterdam
 code:
-  title: Source Code for this website
-  url: 'https://github.com/holly-cummins/gatsby-platform'
+  - title: Source Code for this website
+    url: 'https://github.com/holly-cummins/gatsby-platform'
+  - title: Another source code link
+    url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design
 video:
