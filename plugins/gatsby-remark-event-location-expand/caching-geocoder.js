@@ -40,14 +40,13 @@ function resolveCacheFile() {
   if (!fss.existsSync(contentMetaDir)) {
     contentMetaDir = "./content/meta";
   }
-  const cacheFile = path.resolve(contentMetaDir, "location-cache.json");
+  const file = path.resolve(contentMetaDir, "location-cache.json");
 
-  let locationCache;
-  if (!fss.existsSync(cacheFile)) {
-    fss.writeFileSync(cacheFile, "{}");
+  if (!fss.existsSync(file)) {
+    fss.writeFileSync(file, "{}");
   }
 
-  return path.resolve(cacheFile);
+  return path.resolve(file);
 }
 
 module.exports = { geocode, persistCache, resolveCacheFile };

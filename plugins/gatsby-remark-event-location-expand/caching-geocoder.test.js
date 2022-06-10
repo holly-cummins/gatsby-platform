@@ -40,7 +40,7 @@ describe("the parser", () => {
   it("reads the cache from disk", async () => {
     const answer = await geocoder.geocode("Lima");
     expect(answer).toBeTruthy();
-    //Distinctive answer which must have come from the mock
+    // Distinctive answer which must have come from the mock
     expect(answer[0].country).toEqual("NotPeru");
   });
 
