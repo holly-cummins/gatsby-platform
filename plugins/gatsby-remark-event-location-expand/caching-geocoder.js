@@ -1,14 +1,16 @@
 const nodeGeocoder = require("node-geocoder");
-const ourFetch = require("node-fetch");
+const fs = require("fs/promises");
+const fss = require("fs");
+const path = require("path");
+
+const cacheFile = resolveCacheFile();
+const locationCache = require(path.relative(__dirname, cacheFile));
 
 const geoCodeOptions = {
-  provider: "openstreetmap",
-  fetch: ourFetch // Specify a fetch to try and resolve some apparent concurrency issues
+  provider: "openstreetmap"
 };
 
-const locationCache = {};
-
-exports.geocode = async location => {
+const geocode = async location => {
   if (locationCache[location]) {
     return locationCache[location];
   } else {
@@ -25,3 +27,27 @@ exports.geocode = async location => {
     }
   }
 };
+
+const persistCache = async () => {
+  return fs.writeFile(cacheFile, JSON.stringify(locationCache, null, " "));
+};
+
+// We need to be a bit elaborate here, because we don't want to dump site-specific cache content into the
+// generic source, so use the site-specific content directory to hold things
+function resolveCacheFile() {
+  // Use the cache in the external content directory if we have one
+  let contentMetaDir = "../content/meta";
+  if (!fss.existsSync(contentMetaDir)) {
+    contentMetaDir = "./content/meta";
+  }
+  const cacheFile = path.resolve(contentMetaDir, "location-cache.json");
+
+  let locationCache;
+  if (!fss.existsSync(cacheFile)) {
+    fss.writeFileSync(cacheFile, "{}");
+  }
+
+  return path.resolve(cacheFile);
+}
+
+module.exports = { geocode, persistCache, resolveCacheFile };

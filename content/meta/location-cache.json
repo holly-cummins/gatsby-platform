@@ -1,0 +1,230 @@
+{
+ "Toronto": [
+  {
+   "latitude": 43.6534817,
+   "longitude": -79.3839347,
+   "formattedAddress": "Old Toronto, Toronto, Golden Horseshoe, Ontario, Canada",
+   "country": "Canada",
+   "city": "Old Toronto",
+   "state": "Ontario",
+   "countryCode": "CA",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 43.6534817,
+   "longitude": -79.3839347,
+   "formattedAddress": "Toronto, Golden Horseshoe, Ontario, Canada",
+   "country": "Canada",
+   "city": "Toronto",
+   "state": "Ontario",
+   "countryCode": "CA",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 41.9050213,
+   "longitude": -90.8640346,
+   "formattedAddress": "Toronto, Clinton County, Iowa, United States",
+   "country": "United States",
+   "city": "Toronto",
+   "state": "Iowa",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 37.7989253,
+   "longitude": -95.9491562,
+   "formattedAddress": "Toronto, Woodson County, Kansas, United States",
+   "country": "United States",
+   "city": "Toronto",
+   "state": "Kansas",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 46.4524682,
+   "longitude": -63.3799629,
+   "formattedAddress": "Toronto, Queens County, Prince Edward Island, Canada",
+   "country": "Canada",
+   "city": "Toronto",
+   "state": "Prince Edward Island",
+   "countryCode": "CA",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 40.4598575,
+   "longitude": -80.6056733075159,
+   "formattedAddress": "Toronto, Jefferson County, Ohio, United States",
+   "country": "United States",
+   "city": "Toronto",
+   "state": "Ohio",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": -33.013441,
+   "longitude": 151.5942043,
+   "formattedAddress": "Toronto, Newcastle-Maitland, Lake Macquarie City Council, New South Wales, 2283, Australia",
+   "country": "Australia",
+   "city": "Newcastle-Maitland",
+   "state": "New South Wales",
+   "zipcode": "2283",
+   "countryCode": "AU",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 44.57302,
+   "longitude": -96.642554,
+   "formattedAddress": "Toronto, Deuel County, South Dakota, United States",
+   "country": "United States",
+   "city": "Toronto",
+   "state": "South Dakota",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 43.65238435,
+   "longitude": -79.38356765,
+   "formattedAddress": "TORONTO, PATH, Financial District, Spadina—Fort York, Old Toronto, Toronto, Golden Horseshoe, Ontario, M5H 2N2, Canada",
+   "country": "Canada",
+   "city": "Old Toronto",
+   "state": "Ontario",
+   "zipcode": "M5H 2N2",
+   "streetName": "PATH",
+   "countryCode": "CA",
+   "neighbourhood": "Financial District",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 40.4653962,
+   "longitude": -80.6009547,
+   "formattedAddress": "Toronto, Jefferson County, Ohio, 26047, United States",
+   "country": "United States",
+   "city": "Toronto",
+   "state": "Ohio",
+   "zipcode": "26047",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  }
+ ],
+ "Amsterdam": [
+  {
+   "latitude": 52.3727598,
+   "longitude": 4.8936041,
+   "formattedAddress": "Amsterdam, Noord-Holland, Nederland",
+   "country": "Nederland",
+   "city": "Amsterdam",
+   "state": "Noord-Holland",
+   "countryCode": "NL",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": -37.8364908,
+   "longitude": 77.5541729591024,
+   "formattedAddress": "Île Amsterdam, Îles Saint-Paul et Nouvelle-Amsterdam, Terres australes et antarctiques françaises, France",
+   "country": "France",
+   "countryCode": "FR",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 52.37454030000001,
+   "longitude": 4.897975505617977,
+   "formattedAddress": "Amsterdam, Noord-Holland, Nederland",
+   "country": "Nederland",
+   "state": "Noord-Holland",
+   "countryCode": "NL",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 42.943367,
+   "longitude": -74.1850436,
+   "formattedAddress": "City of Amsterdam, Montgomery County, New York, 12010, United States",
+   "country": "United States",
+   "city": "City of Amsterdam",
+   "state": "New York",
+   "zipcode": "12010",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 52.37197895,
+   "longitude": 4.884726800042784,
+   "formattedAddress": "Grachtengordel van Amsterdam, Amsterdam, Noord-Holland, Nederland",
+   "country": "Nederland",
+   "city": "Amsterdam",
+   "state": "Noord-Holland",
+   "countryCode": "NL",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 38.3497423,
+   "longitude": -94.5891216,
+   "formattedAddress": "Amsterdam, Bates County, Missouri, United States",
+   "country": "United States",
+   "city": "Amsterdam",
+   "state": "Missouri",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 40.4736758,
+   "longitude": -80.9228671,
+   "formattedAddress": "Amsterdam, Jefferson County, Ohio, United States",
+   "country": "United States",
+   "city": "Amsterdam",
+   "state": "Ohio",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 37.4302157,
+   "longitude": -120.5421392,
+   "formattedAddress": "Amsterdam, Merced County, California, United States",
+   "country": "United States",
+   "city": "Amsterdam",
+   "state": "California",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 40.5876009,
+   "longitude": -75.1585076,
+   "formattedAddress": "Amsterdam, Holland Township, Hunterdon County, New Jersey, United States",
+   "country": "United States",
+   "city": "Amsterdam",
+   "state": "New Jersey",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 52.37233395,
+   "longitude": 4.914231749531422,
+   "formattedAddress": "\"Amsterdam\", Prins Hendrikkade, Oostelijke Eilanden, Centrum, Amsterdam, Noord-Holland, Nederland, 1018AA, Nederland",
+   "country": "Nederland",
+   "city": "Amsterdam",
+   "state": "Noord-Holland",
+   "zipcode": "1018AA",
+   "streetName": "Prins Hendrikkade",
+   "countryCode": "NL",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  }
+ ]
+}

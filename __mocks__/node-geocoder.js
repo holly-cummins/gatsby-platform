@@ -89,8 +89,10 @@ const londonResults = [
   }
 ];
 
-// Trivial implementation, which we have validated against the real API for these two cases
-const results = { Toronto: torontoResults, "London, UK": londonResults };
+const milanResults = [{ country: "Italy" }];
+
+// Trivial implementation, which we have validated against the real API for the first two cases
+const results = { Toronto: torontoResults, "London, UK": londonResults, Milan: milanResults };
 
 // We want to track invocations, so don't recreate the mocks every time the constructor is called
 const oneConstantMock = { geocode: jest.fn().mockImplementation(city => results[city]) };

@@ -64,3 +64,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   `;
   createTypes(typeDefs);
 };
+
+exports.onPostBootstrap = async () => {
+  return geocoder.persistCache();
+};
