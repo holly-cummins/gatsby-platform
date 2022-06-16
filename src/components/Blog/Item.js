@@ -19,12 +19,13 @@ const Item = props => {
         slug,
         prefix,
         title,
+        author,
         displayCategory,
         cover: {
           children: [{ gatsbyImageData }]
         }
       },
-      frontmatter: { url, type, author }
+      frontmatter: { url, type }
     }
   } = props;
 

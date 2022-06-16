@@ -17,12 +17,12 @@ describe("Talk", () => {
     const post = {
       frontmatter: {
         type: "talk",
-        author: "bob",
         code: [{ url: "http://somegitrepo.com" }]
       },
       fields: {
         prefix: "prefixeroo",
         slug: "sluggeroo",
+        author: "bob",
         title,
         category,
         displayCategory,
@@ -62,6 +62,10 @@ describe("Talk", () => {
       expect(screen.getByText(displayCategory)).toBeTruthy();
     });
 
+    it("renders the author", () => {
+      expect(screen.getByText("bob")).toBeTruthy();
+    });
+
     it("uses the normalised category for the link", () => {
       const categoryElement = screen.getByText(displayCategory);
       expect(categoryElement.getAttribute("href")).toMatch(new RegExp(".*/" + category + "$"));
@@ -71,11 +75,11 @@ describe("Talk", () => {
   describe("with missing oembed data", () => {
     const post = {
       frontmatter: {
-        type: "talk",
-        author: "bob"
+        type: "talk"
       },
       fields: {
         title,
+        author: "bob",
         category: "test-stuff",
         displayCategory: "test-stuff",
         prefix: "prefixeroo",

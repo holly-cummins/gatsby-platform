@@ -14,7 +14,7 @@ const Share = asyncComponent(() =>
     .then(module => {
       return module.default;
     })
-    .catch(error => {})
+    .catch(() => {})
 );
 
 const Post = props => {
@@ -22,8 +22,7 @@ const Post = props => {
     post,
     post: {
       html,
-      fields: { title, prefix, slug, category, displayCategory },
-      frontmatter: { author }
+      fields: { title, prefix, author, category, displayCategory }
     },
     authornote,
     next: nextPost,

@@ -17,11 +17,11 @@ const makeNode = () => {
         title,
         slug: "sluggy" + uuid(),
         prefix: "2020-01-06",
-        cover
+        cover,
+        author: "tdd-er"
       },
       frontmatter: {
-        category: "dull-stuff",
-        author: "tdd-er"
+        category: "dull-stuff"
       }
     }
   };

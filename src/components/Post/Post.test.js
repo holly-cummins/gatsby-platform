@@ -15,13 +15,13 @@ describe("Post", () => {
 
   const post = {
     frontmatter: {
-      type: "Post",
-      author: "bob"
+      type: "Post"
     },
     fields: {
       prefix: "prefixeroo",
       slug: "sluggeroo",
       title,
+      author: "bob",
       category,
       displayCategory
     },
@@ -41,6 +41,10 @@ describe("Post", () => {
 
   it("renders the category", () => {
     expect(screen.getByText(displayCategory)).toBeTruthy();
+  });
+
+  it("renders the author", () => {
+    expect(screen.getByText("bob")).toBeTruthy();
   });
 
   it("uses the normalised category for the link", () => {

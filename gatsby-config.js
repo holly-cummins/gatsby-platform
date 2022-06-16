@@ -166,6 +166,8 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     "gatsby-remark-event-location-expand",
+    // This should go after the oembed
+    "gatsby-author-defaults",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,

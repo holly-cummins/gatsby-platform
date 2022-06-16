@@ -20,13 +20,13 @@ describe("Item", () => {
         fields: {
           title,
           cover,
+          author,
           slug,
           prefix: "2020-01-06",
           displayCategory: "dull-stuff"
         },
         frontmatter: {
-          type: "blog",
-          author: "tdd-er"
+          type: "blog"
         }
       };
 
@@ -78,12 +78,11 @@ describe("Item", () => {
           cover,
           slug: "should-not-use",
           prefix: "2020-01-06",
-          category: "dull-stuff"
+          category: "dull-stuff",
+          author: "tdd-er"
         },
         frontmatter: {
-          url,
-
-          author: "tdd-er"
+          url
         }
       };
 
