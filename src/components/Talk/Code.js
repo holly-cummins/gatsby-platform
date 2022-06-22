@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
+import Separator from "./Separator";
 
 const Code = props => {
   const { code, theme } = props;
@@ -9,7 +10,8 @@ const Code = props => {
   if (code && code.length > 0) {
     return (
       <React.Fragment>
-        <div className="separator"></div>
+        <Separator theme={theme} />
+
         <h2>Code</h2>
         <div>
           {code.map((el, pos) => {
@@ -54,17 +56,6 @@ const Code = props => {
 
           .icon :global(svg) {
             height: 40px;
-          }
-
-          .separator {
-            border-top: 1px solid ${theme.line.color};
-            content: "";
-            transition: all ${theme.time.duration.default};
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: ${theme.space.default};
-            margin-top: ${theme.space.default};
           }
 
           @from-width tablet {

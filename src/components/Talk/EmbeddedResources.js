@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
+import Separator from "./Separator";
 
 const EmbeddedResource = props => {
   const { oembeds, theme } = props;
@@ -8,7 +9,7 @@ const EmbeddedResource = props => {
   if (oembeds) {
     return (
       <React.Fragment>
-        <div className="separator"></div>
+        <Separator theme={theme} />
         <h2>Other resources</h2>
         {oembeds.map((embed, i) => {
           if (embed.html) {
@@ -36,16 +37,6 @@ const EmbeddedResource = props => {
           h2 {
             padding-top: 20px;
             padding-bottom: 20px;
-          }
-
-          .separator {
-            border-top: 1px solid ${theme.line.color};
-            content: "";
-            transition: all ${theme.time.duration.default};
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: ${theme.space.default};
           }
 
           .embed {

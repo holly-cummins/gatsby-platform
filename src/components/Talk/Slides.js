@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
+import Separator from "./Separator";
 
 const Slides = props => {
   const { slides, theme } = props;
@@ -8,7 +9,8 @@ const Slides = props => {
   if (slides && slides.html) {
     return (
       <React.Fragment>
-        <div className="separator"></div>
+        <Separator theme={theme} />
+
         <EmbedContainer markup={slides.html}>
           <a href={slides.url}>
             <h2>{slides.title}</h2>
@@ -24,16 +26,6 @@ const Slides = props => {
           :global(iframe) {
             border-radius: ${theme.size.radius.default};
             width: 100%;
-          }
-
-          .separator {
-            border-top: 1px solid ${theme.line.color};
-            content: "";
-            transition: all ${theme.time.duration.default};
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: ${theme.space.default};
           }
 
           .slides {
