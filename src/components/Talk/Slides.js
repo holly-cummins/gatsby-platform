@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
 
-const Meta = props => {
+const Slides = props => {
   const { slides, theme } = props;
 
   if (slides && slides.html) {
@@ -58,9 +58,9 @@ const Meta = props => {
   }
 };
 
-Meta.propTypes = {
+Slides.propTypes = {
   slides: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 
-export default Meta;
+export default Slides;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
 
-const Meta = props => {
+const Code = props => {
   const { code, theme } = props;
 
   if (code && code.length > 0) {
@@ -35,6 +35,11 @@ const Meta = props => {
           :global(svg) {
             fill: ${theme.icon.color};
             margin: ${theme.space.inline.xs};
+          }
+
+          h2 {
+            padding-top: 20px;
+            padding-bottom: 20px;
           }
 
           .code {
@@ -75,9 +80,9 @@ const Meta = props => {
   }
 };
 
-Meta.propTypes = {
+Code.propTypes = {
   video: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 
-export default Meta;
+export default Code;
