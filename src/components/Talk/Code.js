@@ -68,7 +68,7 @@ const Code = props => {
           }
 
           @from-width tablet {
-            .meta {
+            .Code {
               margin: ${`calc(${theme.space.m} * 1.5) 0 ${theme.space.m}`};
             }
           }

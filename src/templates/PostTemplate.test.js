@@ -26,8 +26,9 @@ describe("PostTemplate", () => {
     const body = "post-content";
 
     const post = {
-      frontmatter: { author: "bob" },
+      frontmatter: {},
       fields: {
+        author: "bob",
         title,
         prefix: "prefixeroo",
         slug,
@@ -66,8 +67,9 @@ describe("PostTemplate", () => {
     const type = "talk";
     const event = "brilliant conference";
     const post = {
-      frontmatter: { type, event, author: "bob" },
+      frontmatter: { type, event },
       fields: {
+        author: "bob",
         title,
         prefix: "prefixeroo",
         slug,

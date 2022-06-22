@@ -11,6 +11,7 @@ import NextPrev from "../Post/NextPrev";
 import Slides from "./Slides";
 import Video from "./Video";
 import Code from "./Code";
+import EmbeddedResources from "./EmbeddedResources";
 
 const Share = asyncComponent(() =>
   import("../Post/Share")
@@ -25,7 +26,7 @@ const Talk = props => {
     post,
     post: {
       html,
-      fields: { prefix, title, video, slides, author, category, displayCategory },
+      fields: { prefix, title, video, slides, oembeds, author, category, displayCategory },
       frontmatter: { event, keynote, code }
     },
     authornote,
@@ -35,7 +36,7 @@ const Talk = props => {
   } = props;
 
   return (
-    <React.Fragment>
+    <div>
       <header>
         <Headline title={title} theme={theme} />
         <Meta
@@ -52,12 +53,14 @@ const Talk = props => {
       <Slides slides={slides} theme={theme} />
       <Video video={video} theme={theme} />
       <Code code={code} theme={theme} />
+      <EmbeddedResources oembeds={oembeds} theme={theme} />
+
       <footer>
         <Share post={post} theme={theme} />
         <Author note={authornote} theme={theme} />
         <NextPrev next={nextPost} prev={prevPost} theme={theme} />
       </footer>
-    </React.Fragment>
+    </div>
   );
 };
 

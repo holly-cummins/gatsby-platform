@@ -96,6 +96,22 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
     enrichPromises.push(new Promise(resolve => resolve(answer)));
   }
 
+  if (frontmatter.oembeds) {
+    const arrayOfPromises = frontmatter.oembeds.map(async oembed => {
+      const enriched = enrich(oembed, markdownFile, maxWidth, enrichPromises);
+      // Make sure to wait
+      enrichPromises.push(new Promise(resolve => resolve(enriched)));
+      return enriched;
+    });
+    const answer = await Promise.all(arrayOfPromises);
+
+    createNodeField({
+      node,
+      name: "oembeds",
+      value: answer
+    });
+  }
+
   // We can't update the frontmatter except in a plugin to remark-transformer,
   // so our new unified title and cover live in the fields object
   createNodeField({
@@ -169,6 +185,7 @@ const enrich = async (oembedObject, post, maxwidth, thingsWeAreWaitingFor) => {
   const params = { maxwidth, maxheight: maxwidth };
 
   const shouldExtract = hasProvider(url, params);
+
   if (shouldExtract) {
     await extractAndDownloadImages(url, params, thingsWeAreWaitingFor, oembedObject, post);
   } else {

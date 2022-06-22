@@ -376,4 +376,57 @@ describe("the oembed preprocessor", () => {
       });
     });
   });
+
+  describe("for a page with an oembed array", () => {
+    const url = "https://youtu.be/somevideo";
+    const title = "an extra resource";
+
+    describe("with an existing cover", () => {
+      const fields = {};
+      const frontmatter = {
+        url: "https://www.manning.com/books/q-is-for-croak",
+        cover: "q-is-for-croak-abc-1923.png",
+        author: "lucia laryngitis",
+        category: "croaking",
+        type: "book",
+        oembeds: [{ url, title }]
+      };
+
+      const node = {
+        frontmatter,
+        fields,
+        fileAbsolutePath,
+        internal
+      };
+
+      beforeAll(async () => {
+        await fs.ensureDir(postPath);
+        await onCreateNode({ node, actions });
+      });
+
+      afterAll(() => {
+        jest.clearAllMocks();
+      });
+
+      it("resolves oembed links", async () => {
+        expect(parser.extract.mock.calls.length).toBe(1);
+      });
+
+      it("does not set a document title", async () => {
+        expect(fields.title).toEqual(undefined);
+      });
+
+      it("leaves the original cover image", async () => {
+        expect(fields.cover).toEqual("q-is-for-croak-abc-1923.png");
+      });
+
+      it("puts the resolved oembeds in fields", async () => {
+        expect(fields.oembeds).toHaveLength(1);
+      });
+
+      it("fills in html for the oembed", async () => {
+        expect(fields.oembeds[0].html).toMatch(/<.*>/);
+      });
+    });
+  });
 });

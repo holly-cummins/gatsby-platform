@@ -14,6 +14,9 @@ slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design
 video:
   url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
+oembeds:
+ - url: https://youtu.be/rGGvP88uBUg
+   title: A video of a demo (beyond the main talk video)
 ---
 
 In this talk, Ducky quacks, waddles, and generally looks foolish.

@@ -74,6 +74,11 @@ export const postQuery = graphql`
           html
           url
         }
+        oembeds {
+          title
+          html
+          url
+        }
         cover {
           childImageSharp {
             resize(width: 300) {

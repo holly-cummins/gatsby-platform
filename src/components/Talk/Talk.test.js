@@ -96,4 +96,65 @@ describe("Talk", () => {
       expect(screen.getByText(title)).toBeTruthy();
     });
   });
+
+  describe("with extra oembed resources", () => {
+    const post = {
+      frontmatter: {
+        type: "talk",
+        code: [{ url: "http://somegitrepo.com" }]
+      },
+      fields: {
+        prefix: "prefixeroo",
+        slug: "sluggeroo",
+        author: "bob",
+        title,
+        category,
+        displayCategory,
+        oembeds: [
+          {
+            url: "http://somewhere",
+            title: "an amazing video",
+            html: "<p>an embedded video</p>"
+          }
+        ]
+      },
+      html: "<p>hello</p>"
+    };
+    const next = { c: "c" };
+    const prev = { a: "a" };
+    const authorNote = "<p>an amazing author</a>";
+
+    beforeEach(() => {
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+    });
+
+    it("renders the title", () => {
+      expect(screen.getByText(title)).toBeTruthy();
+    });
+
+    it("embeds the video", () => {
+      expect(screen.getByText("an embedded video")).toBeTruthy();
+    });
+
+    it("includes a code section", () => {
+      expect(screen.getByText("Code")).toBeTruthy();
+    });
+
+    it("includes a code link", () => {
+      expect(screen.getByText("http://somegitrepo.com")).toBeTruthy();
+    });
+
+    it("renders the category", () => {
+      expect(screen.getByText(displayCategory)).toBeTruthy();
+    });
+
+    it("renders the author", () => {
+      expect(screen.getByText("bob")).toBeTruthy();
+    });
+
+    it("uses the normalised category for the link", () => {
+      const categoryElement = screen.getByText(displayCategory);
+      expect(categoryElement.getAttribute("href")).toMatch(new RegExp(".*/" + category + "$"));
+    });
+  });
 });
