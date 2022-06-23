@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-require("core-js/fn/array/from");
-
 import { Home20 as Home } from "@carbon/icons-react";
 import { Search20 as Search } from "@carbon/icons-react";
 import { Email20 as Envelope } from "@carbon/icons-react";

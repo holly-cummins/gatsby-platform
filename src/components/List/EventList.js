@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ScaleText from "react-scale-text";
+import TextFit from "react-textfit";
 import { Link } from "gatsby";
 import { Badge20 as Star } from "@carbon/icons-react";
 
@@ -35,9 +35,9 @@ const EventList = props => {
               </div>
               <div className="event" onMouseOver={listener} onMouseOut={listener}>
                 {/* We can't use the theme here because scaletext needs pixels, not em */}
-                <ScaleText maxFontSize={18} minFontSize={6}>
+                <TextFit max={18} min={8}>
                   {showDate ? cleanDate : event}
-                </ScaleText>
+                </TextFit>
               </div>
               <div className="keynoteIndicator">{keynote ? <Star /> : <></>}</div>
               <div className="talkTitle">{title}</div>

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
-require("core-js/fn/array/find");
 
 import Article from "../components/Article";
 import Search from "../components/Search";
@@ -42,6 +41,7 @@ const SearchPage = props => {
           justify-content: flex-end;
           margin-bottom: 20px;
         }
+
         .icon :global(svg) {
           height: 30px;
         }
@@ -56,7 +56,7 @@ SearchPage.propTypes = {
 
 export default SearchPage;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const query = graphql`
   query SearchQuery {
     site {

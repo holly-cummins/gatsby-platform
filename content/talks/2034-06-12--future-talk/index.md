@@ -3,7 +3,7 @@ title: Ducky – the future
 category: "nonsense"
 author: ducky devine
 type: talk
-event: QuackCon
+event: QuackCon The Really Long Named Edition
 location: Toronto
 keynote: true
 slides:
