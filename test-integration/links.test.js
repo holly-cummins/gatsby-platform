@@ -52,6 +52,7 @@ describe("site links", () => {
       "https://github.com/ducky-devine", // known 404, DO NOT SEARCH AND REPLACE
       "https://ducky-devine.medium.com", // known 404, DO NOT SEARCH AND REPLACE
       "https://www.manning.com/books/enterprise-osgi-in-action",
+      "https://www.digit.fyi/comment-why-i-never-want-to-build-another-mvp/", // fine locally, often 401 from github actions
       "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
       "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html"
     ]; // We know these links are good, and we want to not hit the rate limiters since they appear everywhere
