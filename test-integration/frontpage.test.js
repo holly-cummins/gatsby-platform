@@ -14,6 +14,12 @@ describe("main site", () => {
     await expect(page.waitForXPath(`//*[text()="${authorName}"]`)).resolves.toBeTruthy();
   });
 
+  it("should have the author name on it attached to the metadata for an entry", async () => {
+    await expect(
+      page.waitForXPath(`//p[contains(@class, "meta")]/*[text()="${authorName}"]`)
+    ).resolves.toBeTruthy();
+  });
+
   describe("header navigation bar", () => {
     it("should have a Search option", async () => {
       await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();

@@ -11,7 +11,7 @@ import { filterOutDrafts } from "../utils/filters";
 class IndexPage extends React.Component {
   separator = React.createRef();
 
-  scrollToContent = e => {
+  scrollToContent = () => {
     this.separator.current.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
@@ -85,6 +85,7 @@ export const query = graphql`
           fields {
             slug
             prefix
+            author
             title
             category
             displayCategory
@@ -99,7 +100,6 @@ export const query = graphql`
           frontmatter {
             url
             type
-            author
           }
         }
       }

@@ -43,6 +43,8 @@ describe("IndexPage", () => {
   describe("with some posts", () => {
     const title1 = "the first title";
     const title2 = "the second title";
+    const author1 = "ducky devine";
+    const author2 = "fran fabby";
     const draftTitle = "the title of an incomplete article";
 
     const post1 = {
@@ -50,6 +52,7 @@ describe("IndexPage", () => {
         fields: {
           slug: "/slug1/",
           prefix: "2021-12-17",
+          author: author1,
           cover,
           title: title1
         },
@@ -63,6 +66,7 @@ describe("IndexPage", () => {
         fields: {
           slug: "/slug2/",
           prefix: "2022-04-07",
+          author: author2,
           title: title2,
           cover
         },
@@ -109,6 +113,14 @@ describe("IndexPage", () => {
 
     it("renders the second post title", async () => {
       expect(screen.getByText(title2)).toBeTruthy();
+    });
+
+    it("includes the first author name", async () => {
+      expect(screen.getByText(author1)).toBeTruthy();
+    });
+
+    it("includes the second author name", async () => {
+      expect(screen.getByText(author2)).toBeTruthy();
     });
 
     it("includes all drafts", async () => {
