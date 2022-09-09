@@ -65,9 +65,12 @@ describe("site links", () => {
       path,
       recurse: true,
       linksToSkip,
-      urlRewriteSearch: /http:\/\/duckydevine.com/,
-      urlRewriteReplace: "http://localhost:9000",
-      urlRewriteExpressions: [/http:\/\/duckydevine.com/, "http://localhost:9000"], // Not working; see https://github.com/JustinBeckwith/linkinator/issues/390
+      urlRewriteExpressions: [
+        {
+          pattern: /http:\/\/gatsby-platform.hollycummins.com/,
+          replacement: "http://localhost:9000"
+        }
+      ],
       concurrency: 100, // The twitter URLs seem to work better with a high concurrency, counter-intuitively
       timeout: 30 * 1000
     });
