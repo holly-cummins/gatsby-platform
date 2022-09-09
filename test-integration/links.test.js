@@ -5,6 +5,8 @@ const status = require("http-status");
 const { curly } = require("node-libcurl");
 const promiseRetry = require("promise-retry");
 
+const configger = require("../src/utils/configger");
+
 describe("site links", () => {
   const deadExternalLinks = [];
   const deadInternalLinks = [];
@@ -67,7 +69,7 @@ describe("site links", () => {
       linksToSkip,
       urlRewriteExpressions: [
         {
-          pattern: /http:\/\/gatsby-platform.hollycummins.com/,
+          pattern: configger.siteUrl,
           replacement: "http://localhost:9000"
         }
       ],
