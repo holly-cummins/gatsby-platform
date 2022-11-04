@@ -48,6 +48,7 @@ describe("site links", () => {
 
     const linksToSkip = [
       "https://twitter.com/ducky_devine",
+      "https://mastodon.social/ducky_devine",
       "https://www.linkedin.com/in/ducky-devine/",
       "https://www.linkedin.com/in/holly-k-cummins/",
       "https://www.manning.com/books/d-is-for-duck", // known 404, DO NOT SEARCH AND REPLACE
