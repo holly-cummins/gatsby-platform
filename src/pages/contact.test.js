@@ -34,6 +34,6 @@ describe("ContactPage", () => {
   });
 
   it("includes multiple social links", async () => {
-    expect(screen.getAllByRole("link")).toHaveLength(4); // This is a bit coupled to our content, but it's easy enough to maintain
+    expect(screen.getAllByRole("link")).toHaveLength(5); // This is a bit coupled to our content, but it's easy enough to maintain
   });
 });
