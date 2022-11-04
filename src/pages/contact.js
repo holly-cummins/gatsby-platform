@@ -6,12 +6,14 @@ import Seo from "../components/Seo";
 import config from "../utils/configger";
 
 import LinkedInIcon from "!svg-react-loader!../images/svg-icons/linkedin.svg";
+import MastodonIcon from "!svg-react-loader!../images/svg-icons/mastodon.svg";
 import TwitterIcon from "!svg-react-loader!../images/svg-icons/twitter.svg";
 import GitHubIcon from "!svg-react-loader!../images/svg-icons/github.svg";
 import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg"; // This is a slighty old logo, but has the advantage of being recognisable (for now) and SVG
 
 const icons = {
   linkedin: <LinkedInIcon />,
+  mastodon: <MastodonIcon />,
   twitter: <TwitterIcon />,
   github: <GitHubIcon />,
   medium: <MediumIcon />
@@ -47,19 +49,23 @@ const ContactPage = props => {
                   padding: ${theme.space.m};
                   list-style: none;
                 }
+
                 li {
                   padding: ${theme.space.xs} 0;
                   font-size: ${theme.font.size.m};
                   line-height: ${theme.font.lineHeight.l};
                 }
+
                 div {
                   display: flex;
                   justify-content: flex-begin;
                   align-items: center;
                 }
+
                 .icon {
                   padding: ${theme.space.m};
                 }
+
                 .icon :global(svg) {
                   height: 40px;
                 }

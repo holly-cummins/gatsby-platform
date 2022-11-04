@@ -35,6 +35,7 @@ module.exports = {
   // social
   authorSocialLinks: [
     { name: "twitter", url: "https://twitter.com/ducky_devine", display: "@ducky_devine" },
+    { name: "mastodon", url: "https://mastodon.social/ducky_devine", display: "@ducky_devine@mastodon.social" },
     {
       name: "linkedin",
       url: "https://www.linkedin.com/in/ducky-devine/",
