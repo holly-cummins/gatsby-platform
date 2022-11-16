@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import config from "./utils/configger";
+
+const platforms = config.authorSocialLinks;
 
 export default class HTML extends React.Component {
   render() {
@@ -25,6 +28,10 @@ export default class HTML extends React.Component {
           <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png" />
+
+          {platforms.map(platform => (
+            <link rel="me" href={platform.url} key={platform.name} />
+          ))}
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}

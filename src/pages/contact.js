@@ -36,7 +36,9 @@ const ContactPage = props => {
                 <li key={platform.name}>
                   <div>
                     <div className="icon">{icons[platform.name]}</div>
-                    <a href={platform.url}>{platform.display}</a>
+                    <a rel="me" href={platform.url}>
+                      {platform.display}
+                    </a>
                   </div>
                 </li>
               ))}
