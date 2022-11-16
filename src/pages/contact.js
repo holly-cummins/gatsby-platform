@@ -19,7 +19,7 @@ const icons = {
   medium: <MediumIcon />
 };
 
-const ContactPage = props => {
+const ContactPage = () => {
   const platforms = config.authorSocialLinks;
 
   return (
