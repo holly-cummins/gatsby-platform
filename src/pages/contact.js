@@ -60,7 +60,7 @@ const ContactPage = props => {
 
                 div {
                   display: flex;
-                  justify-content: flex-begin;
+                  justify-content: flex-start;
                   align-items: center;
                 }
 
