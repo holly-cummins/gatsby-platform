@@ -295,6 +295,7 @@ module.exports = {
       }
     },
     "gatsby-remark-date-format",
+    "gatsby-remark-tweet-processor",
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
