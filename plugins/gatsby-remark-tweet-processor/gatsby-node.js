@@ -3,6 +3,7 @@ const { Client } = require("twitter-api-sdk");
 const fs = require("fs/promises");
 const fss = require("fs");
 const path = require("path");
+const promiseRetry = require("promise-retry");
 
 const defaultOptions = {
   nodeType: "MarkdownRemark"
@@ -11,7 +12,7 @@ const defaultOptions = {
 const cacheDir = resolveCacheDir();
 const twitterClient = new Client(process.env.BEARER_TOKEN);
 
-exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
+exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
   const { createNodeField } = actions;
 
   const options = {
@@ -24,8 +25,9 @@ exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
   }
 
   if (node.frontmatter.tweets) {
-    const enrichedTweets = processTweets(node.frontmatter.tweets);
-    createNodeField({
+    const enrichedTweets = await processTweets(node.frontmatter.tweets);
+
+    return createNodeField({
       node,
       name: "tweets",
       value: enrichedTweets
@@ -35,38 +37,40 @@ exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
 
 const processTweets = async tweets => {
   const enrichedTweets = tweets.map(async tweetUrl => {
-    try {
-      const parsed = url.parse(tweetUrl);
-      const id = parsed.pathname.split("/").pop();
+    const parsed = url.parse(tweetUrl);
+    const id = parsed.pathname.split("/").pop();
 
-      await cacheTweet(id);
-
-      return { url: tweetUrl, id };
-    } catch (e) {
-      console.error("Could not process tweet url", tweetUrl, e);
-    }
+    return cacheTweet(id)
+      .then(() => {
+        return { url: tweetUrl, id };
+      })
+      .catch(e => {
+        console.error("Could not process tweet url", tweetUrl, e);
+        return { url: tweetUrl, id };
+      });
   });
-  return enrichedTweets;
+  return Promise.all(enrichedTweets);
 };
 
 const cacheTweet = async id => {
-  if (!fss.existsSync(getTweetPath())) {
-    const stuff = await twitterClient.tweets.findTweetById(
-      // Tweet ID
-      id,
-      {
-        // Optional parameters
-        expansions: ["author_id"],
-        "user.fields": ["created_at", "description", "name"]
-      }
-    );
+  if (!fss.existsSync(getTweetPath(id))) {
+    const fetchTweet = () =>
+      twitterClient.tweets.findTweetById(
+        // Tweet ID
+        id,
+        {
+          // Optional parameters
+          expansions: ["author_id"],
+          "user.fields": ["created_at", "description", "name"]
+        }
+      );
 
-    const tweet = stuff.data;
-    const author = stuff.includes.users.find(user => (user.id = tweet.author_id));
-    tweet.author = author;
+    const fetchedTweet = await promiseRetry(fetchTweet, { retries: 4, secTimeout: 10 * 1000 });
 
-    await persistCache(tweet);
-    return tweet;
+    const tweet = fetchedTweet.data;
+    tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
+
+    return persistCache(tweet).then(() => tweet);
   }
 };
 
