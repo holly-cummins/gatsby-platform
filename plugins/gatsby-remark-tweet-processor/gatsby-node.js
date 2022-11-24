@@ -63,15 +63,20 @@ const cacheTweet = async (id, cacheDir) => {
         {
           // Optional parameters
           expansions: ["author_id", "attachments.media_keys"],
-          "user.fields": ["created_at", "description", "name"],
+          "user.fields": ["created_at", "description", "name", "profile_image_url"],
           "media.fields": ["preview_image_url", "url"]
         }
       );
 
-    const fetchedTweet = await promiseRetry(fetchTweet, { retries: 4, secTimeout: 10 * 1000 });
+    const fetchedTweet = await promiseRetry(fetchTweet, {
+      retries: 4,
+      minTimeout: 10 * 1000,
+      factor: 4
+    });
 
     const tweet = fetchedTweet.data;
     tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
+    console.log("HOLLY author", tweet.author);
 
     const images = fetchedTweet?.includes?.media.map(
       async media =>
@@ -84,6 +89,16 @@ const cacheTweet = async (id, cacheDir) => {
         )
     );
 
+    if (tweet.author.profile_image_url) {
+      tweet.author.imagePath = await promiseRetry(
+        async () => {
+          const imageUrl = tweet.author.profile_image_url;
+          return await downloadImage(imageUrl, cacheDir);
+        },
+        { retries: 4, secTimeout: 10 * 1000 }
+      );
+    }
+
     return Promise.all(images)
       .then(resolvedImages => (tweet.images = resolvedImages))
       .then(() => persistCache(tweet, cacheDir));
@@ -94,16 +109,24 @@ const downloadImage = async (imageUrl, cacheDir) => {
   const basename = imageUrl.split("/").pop();
   const file = path.resolve(cacheDir, basename);
 
-  const response = await axios.get(imageUrl, {
-    responseType: "stream"
-  });
+  return promiseRetry(
+    async () => {
+      const response = await axios.get(imageUrl, {
+        responseType: "stream"
+      });
 
-  return new Promise(resolve => {
-    const w = response?.data?.pipe(fss.createWriteStream(file));
-    w?.on("finish", () => {
-      resolve(basename);
-    });
-  });
+      return new Promise(resolve => {
+        const w = response?.data?.pipe(fss.createWriteStream(file));
+        w?.on("finish", () => {
+          resolve(basename);
+        });
+      });
+    },
+    {
+      retries: 4,
+      secTimeout: 10 * 1000
+    }
+  );
 };
 
 const getTweetPath = (id, cacheDir) => {

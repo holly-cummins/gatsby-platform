@@ -54,7 +54,7 @@ const tweet1234 = {
     text: "And now @ducky_devine talks http://t.co/shqyY82xr"
   },
   includes: {
-    users: [{ author: { id: "6" } }],
+    users: [{ id: "6", profile_image_url: "https://pbs.twimg.com/media/author.jpg" }],
     media: [
       {
         media_key: "3_1463553799478517762",
@@ -199,6 +199,20 @@ describe("the tweet preprocessor", () => {
       expect(fs.writeFile).toHaveBeenCalledWith(
         "/some/tweets/678.json",
         expect.stringMatching("FE-WbSeXIAI54tY.jpg")
+        // We can't use object containing because this is stringified json
+      );
+    });
+
+    it("downloads author images", () => {
+      expect(axios.get).toHaveBeenCalledWith("https://pbs.twimg.com/media/author.jpg", {
+        responseType: "stream"
+      });
+    });
+
+    it("makes a note of the author image", () => {
+      expect(fs.writeFile).toHaveBeenCalledWith(
+        "/some/tweets/678.json",
+        expect.stringMatching("author.jpg")
         // We can't use object containing because this is stringified json
       );
     });
