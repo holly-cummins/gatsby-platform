@@ -15,8 +15,10 @@ slides:
 video:
   url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
 oembeds:
- - url: https://youtu.be/rGGvP88uBUg
-   title: A video of a demo (beyond the main talk video)
+  - url: https://youtu.be/rGGvP88uBUg
+    title: A video of a demo (beyond the main talk video)
+tweets:
+  - https://twitter.com/holly_cummins/status/1463554177200795657?s=20&t=e7RitQgCxLVuM-q0EzjoiQ
 ---
 
 In this talk, Ducky quacks, waddles, and generally looks foolish.

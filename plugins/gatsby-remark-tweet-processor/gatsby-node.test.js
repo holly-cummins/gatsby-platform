@@ -1,10 +1,49 @@
 const twitter = require("twitter-api-sdk");
 const fss = require("fs");
 const fs = require("fs/promises");
+const axios = require("axios");
 
 jest.mock("twitter-api-sdk");
 jest.mock("fs");
 jest.mock("fs/promises");
+jest.mock("axios");
+
+const mockStream = {
+  on: jest.fn().mockImplementation((event, handler) => handler())
+};
+
+axios.get.mockResolvedValue({
+  data: {
+    pipe: jest.fn().mockReturnValue(mockStream)
+  }
+});
+
+const { Writable } = require("stream");
+
+class WriteMemory extends Writable {
+  constructor() {
+    super();
+    this.buffer = "";
+  }
+
+  _write(chunk, _, next) {
+    this.buffer += chunk;
+    next();
+  }
+
+  reset() {
+    this.buffer = "";
+  }
+}
+
+const MockWriteStream = new WriteMemory();
+
+const mockCreateWriteStream = jest.fn().mockImplementation(() => {
+  MockWriteStream.reset();
+  return MockWriteStream;
+});
+
+fss.createWriteStream = mockCreateWriteStream;
 
 // For this test, the return needs to be syntactically ok but otherwise content does not matter
 const tweet1234 = {
@@ -12,9 +51,18 @@ const tweet1234 = {
     author_id: "20",
     edit_history_tweet_ids: ["678"],
     id: "678",
-    text: "on way to work"
+    text: "And now @ducky_devine talks http://t.co/shqyY82xr"
   },
-  includes: { users: [{ author: { id: "6" } }] }
+  includes: {
+    users: [{ author: { id: "6" } }],
+    media: [
+      {
+        media_key: "3_1463553799478517762",
+        type: "photo",
+        url: "https://pbs.twimg.com/media/FE-WbSeXIAI54tY.jpg"
+      }
+    ]
+  }
 };
 
 const tweetsApi = {
@@ -69,7 +117,8 @@ describe("the tweet preprocessor", () => {
     const node = {
       fields,
       frontmatter: { tweets },
-      internal: { type: "MarkdownRemark" }
+      internal: { type: "MarkdownRemark" },
+      fileAbsolutePath: "/some/where"
     };
 
     beforeAll(async () => {
@@ -114,7 +163,8 @@ describe("the tweet preprocessor", () => {
     const node = {
       fields,
       frontmatter: { tweets },
-      internal: { type: "MarkdownRemark" }
+      internal: { type: "MarkdownRemark" },
+      fileAbsolutePath: "/some/where"
     };
 
     beforeAll(async () => {
@@ -137,6 +187,28 @@ describe("the tweet preprocessor", () => {
 
     it("processes tweets", () => {
       expect(fields.tweets).toHaveLength(2);
+    });
+
+    it("downloads images", () => {
+      expect(axios.get).toHaveBeenCalledWith("https://pbs.twimg.com/media/FE-WbSeXIAI54tY.jpg", {
+        responseType: "stream"
+      });
+    });
+
+    it("makes a note of the image name", () => {
+      expect(fs.writeFile).toHaveBeenCalledWith(
+        "/some/tweets/678.json",
+        expect.stringMatching("FE-WbSeXIAI54tY.jpg")
+        // We can't use object containing because this is stringified json
+      );
+    });
+
+    it("makes a note of the tweet text", () => {
+      expect(fs.writeFile).toHaveBeenCalledWith(
+        "/some/tweets/678.json",
+        expect.stringMatching(tweet1234.data.text)
+        // We can't use object containing because this is stringified json
+      );
     });
 
     it("extracts the id for a simple url", () => {

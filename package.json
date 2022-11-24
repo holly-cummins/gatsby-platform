@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@carbon/icons-react": "^10.24.0",
+    "axios": "^0.21.4",
     "core-js": "^3.23.2",
     "country-flag-icons": "^1.4.26",
     "curly": "^0.6.2",
