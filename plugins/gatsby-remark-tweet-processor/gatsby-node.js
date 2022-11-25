@@ -92,7 +92,9 @@ const cacheTweet = async (id, cacheDir) => {
       tweet.author.imagePath = await promiseRetry(
         async () => {
           const imageUrl = tweet.author.profile_image_url;
-          return await downloadImage(imageUrl, cacheDir);
+          if (imageUrl) {
+            return await downloadImage(imageUrl, cacheDir);
+          }
         },
         { retries: 4, secTimeout: 10 * 1000 }
       );
