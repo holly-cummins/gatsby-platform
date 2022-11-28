@@ -47,8 +47,12 @@ const processTweets = async (tweets, cacheDir) => {
         return { url: tweetUrl, id };
       })
       .catch(e => {
-        console.error("Could not process tweet url", tweetUrl, e);
-        return { url: tweetUrl, id };
+        if (e.status == 429) {
+          console.error("Hit rate limiter for ", url);
+        } else {
+          console.error("Could not process tweet url", tweetUrl, e);
+        }
+        return {};
       });
   });
   return Promise.all(enrichedTweets);
@@ -70,64 +74,70 @@ const cacheTweet = async (id, cacheDir) => {
 
     const fetchedTweet = await promiseRetry(fetchTweet, {
       retries: 4,
-      minTimeout: 10 * 1000,
-      factor: 4
+      minTimeout: 20 * 1000,
+      factor: 8
     });
 
     const tweet = fetchedTweet.data;
-    tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
+    if (tweet) {
+      tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
 
-    const images = fetchedTweet?.includes?.media?.map(
-      async media =>
-        await promiseRetry(
+      const images = fetchedTweet?.includes?.media
+        ? fetchedTweet.includes.media.map(
+            async media =>
+              await promiseRetry(
+                async () => {
+                  const imageUrl = media.url;
+                  return await downloadImage(imageUrl, cacheDir);
+                },
+                { retries: 4, secTimeout: 20 * 1000 }
+              )
+          )
+        : [];
+
+      if (tweet.author.profile_image_url) {
+        tweet.author.imagePath = await promiseRetry(
           async () => {
-            const imageUrl = media.url;
+            const imageUrl = tweet.author.profile_image_url;
             return await downloadImage(imageUrl, cacheDir);
           },
           { retries: 4, secTimeout: 10 * 1000 }
-        )
-    );
+        );
+      }
 
-    if (tweet.author.profile_image_url) {
-      tweet.author.imagePath = await promiseRetry(
-        async () => {
-          const imageUrl = tweet.author.profile_image_url;
-          if (imageUrl) {
-            return await downloadImage(imageUrl, cacheDir);
-          }
-        },
-        { retries: 4, secTimeout: 10 * 1000 }
-      );
+      return Promise.all(images)
+        .then(resolvedImages => (tweet.images = resolvedImages))
+        .then(() => persistCache(tweet, cacheDir));
     }
-
-    return Promise.all(images)
-      .then(resolvedImages => (tweet.images = resolvedImages))
-      .then(() => persistCache(tweet, cacheDir));
+  } else {
+    throw "Could not fetch " + id + ". Has the tweet been deleted?";
   }
 };
 
 const downloadImage = async (imageUrl, cacheDir) => {
-  const basename = imageUrl.split("/").pop();
-  const file = path.resolve(cacheDir, basename);
+  if (imageUrl) {
+    const basename = imageUrl.split("/").pop();
+    const file = path.resolve(cacheDir, basename);
 
-  return promiseRetry(
-    async () => {
-      const response = await axios.get(imageUrl, {
-        responseType: "stream"
-      });
-
-      return new Promise(resolve => {
-        const w = response?.data?.pipe(fss.createWriteStream(file));
-        w?.on("finish", () => {
-          resolve(basename);
+    return promiseRetry(
+      async () => {
+        const response = await axios.get(imageUrl, {
+          responseType: "stream"
         });
-      });
-    },
-    {
-      retries: 4,
-      secTimeout: 10 * 1000
-    }
-  );
+
+        return new Promise(resolve => {
+          const w = response?.data?.pipe(fss.createWriteStream(file));
+          w?.on("finish", () => {
+            resolve(basename);
+          });
+        });
+      },
+      {
+        retries: 4,
+        secTimeout: 10 * 1000
+      }
+    );
+  }
 };
 
 const getTweetPath = (id, cacheDir) => {
