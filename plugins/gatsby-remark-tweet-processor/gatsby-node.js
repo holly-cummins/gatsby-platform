@@ -59,7 +59,9 @@ const processTweets = async (tweets, cacheDir) => {
 };
 
 const cacheTweet = async (id, cacheDir) => {
-  if (!fss.existsSync(getTweetPath(id, cacheDir))) {
+  const tweetPath = getTweetPath(id, cacheDir);
+  if (!fss.existsSync(tweetPath)) {
+    console.log("Could not find tweet locally, so downloading. Looked for ", tweetPath);
     const fetchTweet = () =>
       twitterClient.tweets.findTweetById(
         // Tweet ID
@@ -78,39 +80,45 @@ const cacheTweet = async (id, cacheDir) => {
       factor: 8
     });
 
-    const tweet = fetchedTweet.data;
-    if (tweet) {
-      tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
+    // We have a weakness where if we have cached the tweet json, we assume all images were also successfully downloaded
+    // We can catch that later on and fail then
+    return downloadAllImages(id, fetchedTweet, cacheDir);
+  }
+};
 
-      const images = fetchedTweet?.includes?.media
-        ? fetchedTweet.includes.media.map(
-            async media =>
-              await promiseRetry(
-                async () => {
-                  const imageUrl = media.url;
-                  return await downloadImage(imageUrl, cacheDir);
-                },
-                { retries: 4, secTimeout: 20 * 1000 }
-              )
-          )
-        : [];
+const downloadAllImages = async (id, fetchedTweet, cacheDir) => {
+  const tweet = fetchedTweet.data;
+  if (tweet) {
+    tweet.author = fetchedTweet?.includes?.users.find(user => (user.id = tweet.author_id));
 
-      if (tweet.author.profile_image_url) {
-        tweet.author.imagePath = await promiseRetry(
-          async () => {
-            const imageUrl = tweet.author.profile_image_url;
-            return await downloadImage(imageUrl, cacheDir);
-          },
-          { retries: 4, secTimeout: 10 * 1000 }
-        );
-      }
+    const images = fetchedTweet?.includes?.media
+      ? fetchedTweet.includes.media.map(
+          async media =>
+            await promiseRetry(
+              async () => {
+                const imageUrl = media.url;
+                return await downloadImage(imageUrl, cacheDir);
+              },
+              { retries: 4, secTimeout: 20 * 1000 }
+            )
+        )
+      : [];
 
-      return Promise.all(images)
-        .then(resolvedImages => (tweet.images = resolvedImages))
-        .then(() => persistCache(tweet, cacheDir));
-    } else {
-      throw new Error("Could not fetch " + id + ". Has the tweet been deleted?");
+    if (tweet.author.profile_image_url) {
+      tweet.author.imagePath = await promiseRetry(
+        async () => {
+          const imageUrl = tweet.author.profile_image_url;
+          return await downloadImage(imageUrl, cacheDir);
+        },
+        { retries: 4, secTimeout: 10 * 1000 }
+      );
     }
+
+    return Promise.all(images)
+      .then(resolvedImages => (tweet.images = resolvedImages))
+      .then(() => persistCache(tweet, cacheDir));
+  } else {
+    throw new Error("Could not fetch " + id + ". Has the tweet been deleted?");
   }
 };
 
