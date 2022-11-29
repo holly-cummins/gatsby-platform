@@ -47,7 +47,7 @@ const processTweets = async (tweets, cacheDir) => {
         return { url: tweetUrl, id };
       })
       .catch(e => {
-        if (e.status == 429) {
+        if (e.status === 429) {
           console.error("Hit rate limiter for ", url);
         } else {
           console.error("Could not process tweet url", tweetUrl, e);
@@ -108,9 +108,9 @@ const cacheTweet = async (id, cacheDir) => {
       return Promise.all(images)
         .then(resolvedImages => (tweet.images = resolvedImages))
         .then(() => persistCache(tweet, cacheDir));
+    } else {
+      throw new Error("Could not fetch " + id + ". Has the tweet been deleted?");
     }
-  } else {
-    throw "Could not fetch " + id + ". Has the tweet been deleted?";
   }
 };
 
