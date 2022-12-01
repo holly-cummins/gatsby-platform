@@ -106,6 +106,30 @@ describe("the tweet preprocessor", () => {
     });
   });
 
+  describe("for a malformed page with null tweets", () => {
+    const fields = {};
+    const tweets = [null, undefined];
+
+    const node = {
+      fields,
+      frontmatter: { tweets },
+      internal: { type: "MarkdownRemark" },
+      fileAbsolutePath: "/some/where"
+    };
+
+    beforeAll(async () => {
+      await onCreateNode({ node, actions });
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it("handles the empty data gracefully", async () => {
+      expect(fields).toBeTruthy();
+    });
+  });
+
   describe("for a page with tweets that have already been cached", () => {
     const fields = {};
 

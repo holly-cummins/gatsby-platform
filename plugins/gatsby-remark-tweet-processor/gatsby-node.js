@@ -39,21 +39,23 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
 
 const processTweets = async (tweets, cacheDir) => {
   const enrichedTweets = tweets.map(async tweetUrl => {
-    const parsed = url.parse(tweetUrl);
-    const id = parsed.pathname.split("/").pop();
+    if (tweetUrl) {
+      const parsed = url.parse(tweetUrl);
+      const id = parsed.pathname.split("/").pop();
 
-    return cacheTweet(id, cacheDir)
-      .then(() => {
-        return { url: tweetUrl, id };
-      })
-      .catch(e => {
-        if (e.status === 429) {
-          console.error("Hit rate limiter for ", url);
-        } else {
-          console.error("Could not process tweet url", tweetUrl, e);
-        }
-        return {};
-      });
+      return cacheTweet(id, cacheDir)
+        .then(() => {
+          return { url: tweetUrl, id };
+        })
+        .catch(e => {
+          if (e.status === 429) {
+            console.error("Hit rate limiter for ", url);
+          } else {
+            console.error("Could not process tweet url", tweetUrl, e);
+          }
+          return {};
+        });
+    }
   });
   return Promise.all(enrichedTweets);
 };
