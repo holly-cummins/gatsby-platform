@@ -54,12 +54,14 @@ describe("site links", () => {
       "https://www.manning.com/books/d-is-for-duck", // known 404, DO NOT SEARCH AND REPLACE
       "https://github.com/ducky-devine", // known 404, DO NOT SEARCH AND REPLACE
       "https://ducky-devine.medium.com", // known 404, DO NOT SEARCH AND REPLACE
-      "https://www.manning.com/books/enterprise-osgi-in-action",
+      "https://www.manning.com/books/enterprise-osgi-in-action", // Manning seem to have a bot-blocker
       "https://www.digit.fyi/comment-why-i-never-want-to-build-another-mvp/", // fine locally, often 401 from github actions
-      "https://www.klarkteknik.com/product.html?modelCode=P0DPA",
-      "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html"
+      "https://www.klarkteknik.com/product.html?modelCode=P0DPA", // KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
+      "https://www.cnbc.com/2016/05/03/this-blind-man-is-running-a-155-mile-ultra-marathon-with-the-help-of-an-ibm-app.html",
+      "https://owlcation.com/humanities/Novels-Inspired-by-Dreams", // Seems to have a trigger-happy rate limiter
+      "https://trishagee.com/", //  (CERT_HAS_EXPIRED)
+      "https://trishagee.com/2014/03/20/atom-to-hugo/" // (CERT_HAS_EXPIRED)
     ]; // We know these links are good, and we want to not hit the rate limiters since they appear everywhere
-    // Manning and KlarkTeknik seem to have a bot-blocker, which is annoying, since the link seems likely to break
     // NOTE: The Manning, Medium, and GitHub D is For Duck is fictitious by design, so exclude them
     // DO NOT search and replace these with your own name
 
