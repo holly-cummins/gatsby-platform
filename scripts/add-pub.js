@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// example usage:
+// scripts/add-pub "http://youtube.com/something"
+// Don't forget the quotation marks on the URL :)
+
 const fs = require("fs");
 const urlMetadata = require("url-metadata");
 const request = require("request");
