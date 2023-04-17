@@ -40,6 +40,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve("./src/templates/PostTemplate.js");
+    const qrTemplate = path.resolve("./src/templates/QrCodeTemplate.js");
     const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
     const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
@@ -151,6 +152,14 @@ exports.createPages = ({ graphql, actions }) => {
               prev,
               next,
               source
+            }
+          });
+
+          createPage({
+            path: `${slug}/qr`.replace("//", "/"),
+            component: qrTemplate,
+            context: {
+              slug
             }
           });
         });

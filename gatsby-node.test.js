@@ -109,11 +109,16 @@ describe("the main gatsby thing", () => {
     await gn.createPages({ graphql, actions });
     // One call for the category, then a second for the post
     const calls = actions.createPage.mock.calls;
-    // One post for each node plus one for the category
-    expect(calls.length).toBe(edges.length + 1);
+    // One post for each node, plus one for each QR code, plus one for the category
+    expect(calls.length).toBe(2 * edges.length + 1);
     // The first argument to the second call ...
     expect(calls[1][0].path).toEqual(slug);
     expect(calls[1][0].component).toContain("PostTemplate.js");
+
+    // The first argument to the third call ...
+    expect(calls[2][0].path).toContain(slug);
+    expect(calls[2][0].path).toContain("qr");
+    expect(calls[2][0].component).toContain("QrCodeTemplate.js");
   });
 
   it("makes pages for talks", async () => {
@@ -136,11 +141,14 @@ describe("the main gatsby thing", () => {
     await gn.createPages({ graphql, actions });
     // One call for the category, then a second for the post
     const calls = actions.createPage.mock.calls;
-    // One post for each node plus one for the category
-    expect(calls.length).toBe(edges.length + 1);
+    // One post for each node, one qr code for each node, plus one for the category
+    expect(calls.length).toBe(2 * edges.length + 1);
     // The first argument to the second call ...
     expect(calls[1][0].path).toEqual(slug);
     expect(calls[1][0].component).toContain("PostTemplate.js");
+    expect(calls[2][0].path).toContain(slug);
+    expect(calls[2][0].path).toContain("qr");
+    expect(calls[2][0].component).toContain("QrCodeTemplate.js");
   });
 
   it("does not makes pages for publications (but does make a category)", async () => {
