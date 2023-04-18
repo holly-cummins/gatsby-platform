@@ -22,7 +22,6 @@ const QrCodeTemplate = props => {
     pageContext: { slug }
   } = props;
 
-  console.log("HOLLY got props", props);
   const url = `${siteUrl}${slug}`;
 
   const ref = createRef(null);
