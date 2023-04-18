@@ -8,7 +8,7 @@ You can see the skeleton code running at [gatsby-platform.hollycummins.com](http
 This codebase should run with Node v14, and a back-level gatsby cli.
 
 ```
-nvm use 12
+nvm use 14
 npm install -g gatsby-cli@2
 npm install
 ./scripts/preprocess-publications.js
