@@ -56,7 +56,7 @@ const QrCodeTemplate = props => {
             >
               {url}
               <div ref={ref}>
-                <QRCode value="{url}" />
+                <QRCode value={url} />
               </div>
               <button style={button} onClick={downloadScreenshot}>
                 Download
