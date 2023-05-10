@@ -302,7 +302,8 @@ module.exports = {
         indexName: process.env.ALGOLIA_INDEX_NAME,
         queries,
         chunkSize: 10000, // default: 1000
-        dryRun: process.env.ALGOLIA_APP_ID == undefined || process.env.ALGOLIA_APP_ID == null
+        dryRun: process.env.ALGOLIA_APP_ID === undefined,
+        continueOnFailure: process.env.ALGOLIA_APP_ID === undefined
       }
     }
   ]
