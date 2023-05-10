@@ -44,7 +44,7 @@ module.exports = {
       appId: process.env.ALGOLIA_APP_ID || "none",
       searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY || "none",
       indexName: process.env.ALGOLIA_INDEX_NAME || "none",
-      dryRun: !process.env.ALGOLIA_APP_ID
+      dryRun: process.env.ALGOLIA_APP_ID !== undefined && process.env.ALGOLIA_APP_ID !== null
     }
   },
   plugins: [
