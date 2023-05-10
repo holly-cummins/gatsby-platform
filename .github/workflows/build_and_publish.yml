@@ -4,6 +4,9 @@ on:
   push:
     branches:
       [ main ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+  workflow_dispatch:
 
 jobs:
   unit-test:
@@ -31,6 +34,7 @@ jobs:
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: pages
+          skip-publish: ${{ ! (github.ref == 'refs/heads/main' && github.event_name != 'pull_request') }}
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_ONLY_API_KEY: ${{ secrets.ALGOLIA_SEARCH_ONLY_API_KEY }}
