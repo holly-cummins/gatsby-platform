@@ -303,7 +303,7 @@ module.exports = {
         queries,
         chunkSize: 10000, // default: 1000
         dryRun: process.env.ALGOLIA_APP_ID === undefined,
-        continueOnFailure: process.env.ALGOLIA_APP_ID === undefined
+        continueOnFailure: true
       }
     }
   ]
