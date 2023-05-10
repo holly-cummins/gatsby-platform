@@ -49,7 +49,7 @@ describe("main site", () => {
       // Click, which should scroll
       await scrollButton.evaluate(scrollButton => scrollButton.click());
       // Nasty hack; wait for some scrolling to happen
-      await page.waitFor(1000);
+      await page.waitFor(2000);
       // Now the button should be out of view
       await expect(scrollButton.isIntersectingViewport()).resolves.toBeFalsy();
 
