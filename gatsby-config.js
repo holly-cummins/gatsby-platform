@@ -9,8 +9,6 @@ const transformer = require("./src/utils/algolia");
 const algoliaMissing =
   process.env.ALGOLIA_APP_ID === undefined || process.env.ALGOLIA_APP_ID === "";
 
-console.log("HOLLY SO ", algoliaMissing, process.env.ALGOLIA_APP_ID, "---");
-
 const query = `{
   allMarkdownRemark( filter: { fields: { slug: { ne: null } } }) {
     edges {
