@@ -6,6 +6,10 @@ const contentDir = fs.existsSync("../content") ? "../content" : "./content";
 const config = require(`${contentDir}/meta/config`);
 const transformer = require("./src/utils/algolia");
 
+const algoliaMissing = process.env.ALGOLIA_APP_ID === undefined;
+
+console.log("HOLLY SO ", algoliaMissing, process.env.ALGOLIA_APP_ID, "---");
+
 const query = `{
   allMarkdownRemark( filter: { fields: { slug: { ne: null } } }) {
     edges {
@@ -302,8 +306,8 @@ module.exports = {
         indexName: process.env.ALGOLIA_INDEX_NAME,
         queries,
         chunkSize: 10000, // default: 1000
-        dryRun: process.env.ALGOLIA_APP_ID === undefined,
-        continueOnFailure: true
+        dryRun: algoliaMissing,
+        continueOnFailure: algoliaMissing
       }
     }
   ]
