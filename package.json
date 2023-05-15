@@ -80,7 +80,7 @@
     "react-scale-text": "^1.2.2",
     "react-share": "^2.2.0",
     "react-textfit": "^1.1.1",
-    "react-visibility-sensor": "^4.1.0",
+    "react-visibility-sensor": "^5.1.1",
     "rehype-react": "^7.0.3",
     "request": "^2.88.2",
     "styled-jsx": "^4.0.1",
