@@ -13,7 +13,8 @@ const typeIcons = {
   media: UserSpeaker,
   book: Notebook,
   podcast: Microphone,
-  webinar: EventsAlt
+  webinar: EventsAlt,
+  livestream: EventsAlt
 };
 
 export function plural(type) {
