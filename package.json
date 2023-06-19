@@ -33,7 +33,7 @@
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-algolia": "^0.23.1",
     "gatsby-plugin-catch-links": "^4.14.0",
-    "gatsby-plugin-feed": "^4.14.0",
+    "gatsby-plugin-feed": "^4.25.0",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-layout": "^3.14.0",
     "gatsby-plugin-load-script": "^1.1.0",
