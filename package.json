@@ -141,7 +141,7 @@
     "prettier": "^1.13.7",
     "promise-retry": "^2.0.1",
     "puppeteer": "^5.5.0",
-    "serve": "^9.2.0",
+    "serve": "^14.2.0",
     "sharp-cli": "^4.1.1",
     "stylelint": "^15.10.1",
     "stylelint-config-css-modules": "^1.3.0",
