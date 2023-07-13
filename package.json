@@ -122,7 +122,7 @@
     "jest": "^26.6.3",
     "jest-puppeteer": "^4.4.0",
     "json-loader": "^0.5.7",
-    "linkinator": "^2.16.2",
+    "linkinator": "^5.0.1",
     "markdown-yaml-metadata-parser": "^3.0.0",
     "postcss": "^8.3.11",
     "postcss-cli": "^5.0.1",
