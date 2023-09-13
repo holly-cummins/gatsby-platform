@@ -44,16 +44,17 @@ module.exports = {
     description: config.siteDescription,
     siteUrl: config.siteUrl,
     algolia: {
-      appId: process.env.ALGOLIA_APP_ID,
-      searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
-      indexName: process.env.ALGOLIA_INDEX_NAME
+      appId: process.env.ALGOLIA_APP_ID || "none",
+      searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY || "none",
+      indexName: process.env.ALGOLIA_INDEX_NAME || "none",
+      available: !algoliaMissing
     }
   },
   plugins: [
     {
       resolve: `gatsby-plugin-beam-analytics`,
       options: {
-        dataToken: process.env.BEAM_ID
+        dataToken: process.env.BEAM_ID || "none"
       }
     },
     `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files

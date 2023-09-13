@@ -5,6 +5,9 @@ const { authorName } = require("../src/utils/configger");
 
 const siteRoot = `http://localhost:${port}`;
 
+// eslint-disable-next-line jest/expect-expect,jest/valid-title,jest/no-disabled-tests
+const itSometimes = (condition, ...args) => (condition ? test(...args) : test.skip(...args));
+
 describe("main site", () => {
   beforeAll(async () => {
     await page.goto(siteRoot);
@@ -21,9 +24,15 @@ describe("main site", () => {
   });
 
   describe("header navigation bar", () => {
-    it("should have a Search option", async () => {
-      await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
-    });
+    itSometimes(
+      process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_APP_ID !== "none",
+      "should have a Search option",
+      async () => {
+        // We should only have a search bar if we have algolia configured
+        // eslint-disable-next-line jest/no-standalone-expect
+        await expect(page.waitForXPath('//*[text()="Search"]')).resolves.toBeTruthy();
+      }
+    );
 
     it("should have a Contact option", async () => {
       await expect(page.waitForXPath('//*[text()="Contact"]')).resolves.toBeTruthy();
@@ -47,7 +56,7 @@ describe("main site", () => {
       await expect(scrollButton.isIntersectingViewport()).resolves.toBeTruthy();
 
       // Click, which should scroll
-      await scrollButton.evaluate(scrollButton => scrollButton.click());
+      await scrollButton.evaluate(but => but.click());
       // Nasty hack; wait for some scrolling to happen
       await page.waitFor(2000);
       // Now the button should be out of view

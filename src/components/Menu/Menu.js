@@ -30,10 +30,10 @@ class Menu extends React.Component {
       { to: "/type/podcast", label: "Podcasts", icon: icon("podcast") },
       { to: "/type/book", label: "Books", icon: icon("book") },
       { to: "/category/", label: "Topics", icon: Tag },
-      { to: "/search/", label: "Search", icon: Search },
+      this.props.searchAvailable && { to: "/search/", label: "Search", icon: Search },
       ...pages,
       { to: "/contact/", label: "Contact", icon: Envelope }
-    ];
+    ].filter(item => item); // Lazily filter out undefined items
 
     this.renderedItems = []; // will contain references to rendered DOM elements of menu
   }

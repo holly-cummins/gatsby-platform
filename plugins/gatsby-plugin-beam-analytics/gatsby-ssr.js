@@ -1,7 +1,11 @@
 const React = require("react");
 
 exports.onRenderBody = ({ setHeadComponents }, pluginOptions) => {
-  if (pluginOptions.dataToken && process.env.NODE_ENV === "production") {
+  if (
+    pluginOptions.dataToken &&
+    pluginOptions.dataToken !== "none" &&
+    process.env.NODE_ENV === "production"
+  ) {
     setHeadComponents([
       <script
         key="beam"

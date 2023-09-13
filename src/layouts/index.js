@@ -101,13 +101,25 @@ class Layout extends React.Component {
               id
               htmlAst
             }
+            site {
+              siteMetadata {
+                algolia {
+                  available
+                }
+              }
+            }
           }
         `}
         render={data => {
           const { children } = this.props;
           const {
             footnote: { htmlAst: footnoteHTMLAst, html: footnoteHTML },
-            pages: { edges: pages }
+            pages: { edges: pages },
+            site: {
+              siteMetadata: {
+                algolia: { available: searchAvailable }
+              }
+            }
           } = data;
 
           return (
@@ -119,6 +131,7 @@ class Layout extends React.Component {
                       path={this.props.location.pathname}
                       pages={pages}
                       theme={this.state.theme}
+                      searchAvailable={searchAvailable}
                     />
                     <main>{children}</main>
                     <Footer
@@ -137,6 +150,7 @@ class Layout extends React.Component {
                       html {
                         box-sizing: border-box;
                       }
+
                       *,
                       *:after,
                       *:before {
@@ -144,11 +158,13 @@ class Layout extends React.Component {
                         margin: 0;
                         padding: 0;
                       }
+
                       body {
                         font-family: ${this.state.font400loaded
                           ? "'Open Sans', sans-serif;"
                           : "Arial, sans-serif;"};
                       }
+
                       h1,
                       h2,
                       h3 {
@@ -157,19 +173,24 @@ class Layout extends React.Component {
                         letter-spacing: -0.03em;
                         margin: 0;
                       }
+
                       h1 {
                         letter-spacing: -0.04em;
                       }
+
                       p {
                         margin: 0;
                       }
+
                       strong {
                         font-weight: ${this.state.font600loaded ? 600 : 400};
                       }
+
                       a {
                         text-decoration: none;
                         color: #666;
                       }
+
                       main {
                         width: auto;
                         display: block;

@@ -21,11 +21,12 @@ describe("Menu", () => {
         fontLoaded={loaded}
         pages={pages}
         theme={theme}
+        searchAvailable={true}
       />
     );
   });
 
   it("includes a search item", () => {
-    expect(screen.getByText("Search")).toBeTruthy();
+    expect(screen.queryByText("Search")).toBeTruthy();
   });
 });

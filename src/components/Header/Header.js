@@ -64,6 +64,7 @@ export class PureHeader extends React.Component {
                     fontLoaded={loaded}
                     pages={pages}
                     theme={theme}
+                    searchAvailable={this.props.searchAvailable}
                   />
                 )}
               </ScreenWidthContext.Consumer>
