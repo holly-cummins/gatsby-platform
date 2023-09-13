@@ -86,3 +86,7 @@ The [platform code](https://github.com/holly-cummins/gatsby-platform/) for this 
 Most of the personalisation is in the `content` folder, but there are a few bits and pieces elsewhere, like `avatar.jpg` and `src/images/jpg`.
 
 The content itself is not open source.
+
+## Updates
+
+Since writing this blog, I've swapped out Microanalytics for Beam Analytics (Microanalytics got rid of their free tier, and a paid solution like Mamoto was overkill).

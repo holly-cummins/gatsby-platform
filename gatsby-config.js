@@ -51,9 +51,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "microanalytics",
+      resolve: `gatsby-plugin-beam-analytics`,
       options: {
-        id: process.env.MICROANALYTICS_ID
+        dataToken: process.env.BEAM_ID
       }
     },
     `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files
