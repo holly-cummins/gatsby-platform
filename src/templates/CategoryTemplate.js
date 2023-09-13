@@ -77,7 +77,6 @@ export const categoryQuery = graphql`
             title
           }
           frontmatter {
-            url
             type
           }
         }

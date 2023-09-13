@@ -12,7 +12,7 @@ const List = props => {
         {edges.map(edge => {
           const {
             node: {
-              frontmatter: { url, type },
+              frontmatter: { type },
               fields: { title, slug, prefix, shortDate }
             }
           } = edge;
@@ -30,13 +30,7 @@ const List = props => {
 
           return (
             <li key={slug} className="post-list">
-              {url ? (
-                <a href={url} className="link">
-                  {divs}
-                </a>
-              ) : (
-                <Link to={slug}>{divs}</Link>
-              )}
+              <Link to={slug}>{divs}</Link>
             </li>
           );
         })}

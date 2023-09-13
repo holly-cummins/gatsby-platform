@@ -70,7 +70,7 @@ describe("List", () => {
 
   describe("for an external post", () => {
     const title = "another post";
-    const slug = "unused-slug";
+    const slug = "actually-used-slug";
     const url = "http://elsewhere.com";
     const node = {
       node: {
@@ -91,7 +91,7 @@ describe("List", () => {
     it("renders the correct link", () => {
       const link = screen.getByRole("link");
       expect(link).toBeTruthy();
-      expect(link.href).toBe(url + "/");
+      expect(link.href).toBe("http://localhost/" + slug);
     });
   });
 

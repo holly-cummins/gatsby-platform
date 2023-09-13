@@ -56,11 +56,12 @@ describe("LogoList", () => {
     it("renders the correct link", () => {
       const link = screen.getByRole("link");
       expect(link).toBeTruthy();
-      expect(link.href).toBe(url);
+      expect(link.href).toBe("http://localhost/" + slug);
     });
 
     it("includes a logo", () => {
       const logo = screen.getByAltText("forbes logo");
+      expect(logo).toBeTruthy();
     });
   });
 });

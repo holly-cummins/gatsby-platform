@@ -69,6 +69,7 @@ describe("Item", () => {
 
   describe("for an external publication", () => {
     const url = "http://somewhere.else";
+    const slug = "should-still-use";
 
     beforeEach(() => {
       const post = {
@@ -76,7 +77,7 @@ describe("Item", () => {
         fields: {
           title,
           cover,
-          slug: "should-not-use",
+          slug,
           prefix: "2020-01-06",
           category: "dull-stuff",
           author: "tdd-er"
@@ -104,7 +105,7 @@ describe("Item", () => {
     it("renders the correct link", () => {
       const link = screen.getByRole("link");
       expect(link).toBeTruthy();
-      expect(link.href).toBe(url + "/");
+      expect(link.href).toBe("http://localhost/" + slug);
     });
 
     it("has some styling on it", () => {

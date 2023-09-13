@@ -26,15 +26,7 @@ const LogoList = props => {
 
           return (
             <li key={slug} className="logo-list">
-              <div>
-                {url ? (
-                  <a href={url} className="link">
-                    {divs}
-                  </a>
-                ) : (
-                  <Link to={slug}>{divs}</Link>
-                )}
-              </div>
+              <Link to={slug}>{divs}</Link>
             </li>
           );
         })}

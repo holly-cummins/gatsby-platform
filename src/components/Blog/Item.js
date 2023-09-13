@@ -25,7 +25,7 @@ const Item = props => {
           children: [{ gatsbyImageData }]
         }
       },
-      frontmatter: { url, type }
+      frontmatter: { type }
     }
   } = props;
 
@@ -155,11 +155,7 @@ const Item = props => {
     </>
   );
 
-  const link = url ? (
-    <a href={url} className="link">
-      {linkContent}
-    </a>
-  ) : (
+  const link = (
     <Link to={slug} key={slug} className="link">
       {linkContent}
     </Link>

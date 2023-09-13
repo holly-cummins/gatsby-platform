@@ -151,15 +151,17 @@ describe("the main gatsby thing", () => {
     expect(calls[2][0].component).toContain("QrCodeTemplate.js");
   });
 
-  it("does not makes pages for publications (but does make a category)", async () => {
+  it("makes pages for publications (and also makes a category)", async () => {
     const url = "http://myfamous.story";
+    const slug = "slug-path";
+
     const node = {
       node: {
         frontmatter: { url },
-        fields: { category: "pub-stuff", source: "publications" }
+        fields: { category: "pub-stuff", source: "publications", slug }
       }
     };
-    const edges = [node, node];
+    const edges = [node];
 
     const graphql = jest.fn().mockResolvedValue({
       data: {
@@ -170,9 +172,13 @@ describe("the main gatsby thing", () => {
     await gn.createPages({ graphql, actions });
     // One call for the category, then a second for the post
     const calls = actions.createPage.mock.calls;
-    // No posts for the nodes but one for the category
-    expect(calls.length).toBe(1);
+    // One posts for the nodes plus one for the category
+    expect(calls.length).toBe(2);
     // The first argument to the second call ...
+    expect(calls[1][0].context.url).toEqual(url);
+    expect(calls[1][0].path).toEqual(slug);
+
+    // The first argument to the first call ...
     expect(calls[0][0].path).toEqual("/category/pub-stuff/");
   });
 

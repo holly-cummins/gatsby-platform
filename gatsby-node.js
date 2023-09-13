@@ -40,6 +40,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve("./src/templates/PostTemplate.js");
+    const redirectTemplate = path.resolve("./src/templates/RedirectTemplate.js");
     const qrTemplate = path.resolve("./src/templates/QrCodeTemplate.js");
     const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
@@ -66,6 +67,7 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     title
+                    url
                     type
                   }
                 }
@@ -164,7 +166,23 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // and pages.
+        // Create pages and redirects for publications
+        const publications = items.filter(item => item.node.fields.source === "publications");
+        publications.forEach(({ node }, index) => {
+          const slug = node.fields.slug;
+          const url = node.frontmatter.url;
+
+          createPage({
+            path: slug,
+            component: redirectTemplate,
+            context: {
+              slug,
+              url
+            }
+          });
+        });
+
+        // and create pages for pages.
         const pages = items.filter(item => item.node.fields.source === "pages");
         pages.forEach(({ node }) => {
           const slug = node.fields.slug;
