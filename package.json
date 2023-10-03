@@ -124,7 +124,7 @@
     "json-loader": "^0.5.7",
     "linkinator": "^2.16.2",
     "markdown-yaml-metadata-parser": "^3.0.0",
-    "postcss": "^8.3.11",
+    "postcss": "^8.4.31",
     "postcss-cli": "^5.0.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-custom-properties": "^7.0.0",
