@@ -33,20 +33,24 @@ const Bodytext = props => {
             line-height: ${theme.font.lineHeight.xxl};
             margin: 0 0 1.5em;
           }
+
           :global(ul) {
             list-style: circle;
             margin: 0 0 1.5em;
             padding: 0 0 0 1.5em;
           }
+
           :global(li) {
             margin: 0.7em 0;
             line-height: 1.5;
           }
+
           :global(a) {
             font-weight: ${theme.font.weight.bold};
             color: ${theme.color.brand.primary};
             text-decoration: underline;
           }
+
           :global(a.gatsby-resp-image-link) {
             border: 0;
             display: block;
@@ -55,12 +59,21 @@ const Bodytext = props => {
             overflow: hidden;
             border: 1px solid ${theme.line.color};
           }
+
           :global(code.language-text) {
-            background: ${theme.color.neutral.gray.c};
             text-shadow: none;
             color: inherit;
             padding: 0.1em 0.3em 0.2em;
             border-radius: 0.1em;
+          }
+
+          :global(pre) {
+            background: ${theme.background.color.primary};
+            color: ${theme.color.neutral.gray.j};
+          }
+
+          :global(code) {
+            background: ${theme.background.color.primary};
           }
         }
 
