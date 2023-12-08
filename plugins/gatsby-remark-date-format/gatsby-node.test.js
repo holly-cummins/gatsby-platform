@@ -1,5 +1,4 @@
 const { onCreateNode } = require("./gatsby-node");
-const { cloneDeep } = require("lodash");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 jest.mock(`gatsby-source-filesystem`);
@@ -21,8 +20,6 @@ describe("the preprocessor", () => {
       internal: { type: "MarkdownRemark" }
     };
 
-    const original = cloneDeep(node);
-
     beforeAll(async () => {
       createFilePath.mockReturnValue(node.fields.prefix + "--aslug");
 
@@ -31,8 +28,12 @@ describe("the preprocessor", () => {
 
     afterAll(() => {});
 
-    it("changes nothing", async () => {
-      expect(node).toEqual(original);
+    it("does not add a short date", async () => {
+      expect(fields.shortDate).toBeUndefined();
+    });
+
+    it("adds a draft flag", async () => {
+      expect(fields.draft).toBeTruthy();
     });
   });
 
@@ -57,6 +58,10 @@ describe("the preprocessor", () => {
 
     it("adds a short date", async () => {
       expect(fields.shortDate).toEqual("07-08");
+    });
+
+    it("does not add a draft field", async () => {
+      expect(fields.draft).toBeUndefined();
     });
   });
 });

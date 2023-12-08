@@ -1,4 +1,4 @@
-import { generateFilter, filterOutDrafts, DATE_REGEX } from "./filters";
+import { generateFilter, filterOutDrafts } from "./filters";
 
 const OLD_ENV = process.env;
 
@@ -45,13 +45,13 @@ describe("the graphql filter generation", () => {
     // These tests are a bit 'writing the implementation down twice' but it's not worth the effort to get to a higher level of validation
     it("gives a basic filter if there are no other filters", async () => {
       expect(generateFilter()).toEqual({
-        fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } }
+        fields: { slug: { ne: "" }, prefix: { ne: null }, draft: { ne: true } }
       });
     });
 
     it("combines the filters if a filter is passed in", async () => {
       expect(generateFilter({ frontmatter: { type: { eq: "cats" } } })).toEqual({
-        fields: { slug: { ne: "" }, prefix: { regex: DATE_REGEX.toString() } },
+        fields: { slug: { ne: "" }, prefix: { ne: null }, draft: { ne: true } },
         frontmatter: { type: { eq: "cats" } }
       });
     });
@@ -62,14 +62,14 @@ describe("the node filtering", () => {
   const draft = {
     node: {
       frontmatter: { category: "test-stuff" },
-      fields: { source: "posts", slug: "not-yet", prefix: "draft" }
+      fields: { source: "posts", slug: "not-yet", prefix: "draft", draft: true }
     }
   };
 
   const unconventionalDraftPrefix = {
     node: {
       frontmatter: { category: "test-stuff" },
-      fields: { source: "posts", slug: "still-not-yet", prefix: "unready2" }
+      fields: { source: "posts", slug: "still-not-yet", prefix: "unready2", draft: true }
     }
   };
 
@@ -182,10 +182,6 @@ describe("the node filtering", () => {
     it("strips out drafts", async () => {
       expect(filterOutDrafts(edges)).not.toContain(draft);
       expect(filterOutDrafts(edges)).not.toContain(unconventionalDraftPrefix);
-    });
-
-    it("strips out content with no prefix", async () => {
-      expect(filterOutDrafts(edges)).not.toContain(noprefix);
     });
   });
 });

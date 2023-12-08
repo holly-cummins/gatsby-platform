@@ -65,6 +65,7 @@ describe("CategoryPage", () => {
           slug: "pub2",
           url: "http://somewhere.else",
           prefix: "draft",
+          draft: true,
           title: draftTitle,
           cover,
           category,

@@ -81,6 +81,7 @@ describe("IndexPage", () => {
         fields: {
           slug: "/slug3/",
           prefix: "draft",
+          draft: true,
           title: draftTitle,
           cover
         },

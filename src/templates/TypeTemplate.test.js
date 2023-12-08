@@ -38,7 +38,8 @@ describe("TypeTemplate", () => {
         title: draftTitle,
         source: "another-source",
         slug: "half-baked-slug",
-        prefix: "draft"
+        prefix: "draft",
+        draft: true
       }
     }
   };

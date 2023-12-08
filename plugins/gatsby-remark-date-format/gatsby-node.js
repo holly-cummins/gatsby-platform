@@ -36,6 +36,12 @@ exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
           name: "shortDate",
           value: shortDate
         });
+      } else {
+        createNodeField({
+          node,
+          name: "draft",
+          value: true
+        });
       }
     } catch (e) {
       console.error("Could not shorten date", prefix, e);

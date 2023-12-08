@@ -259,6 +259,7 @@ module.exports = {
                   filter: {
                     fields: {
                       prefix: { ne: null },
+                      draft: { ne: true},
                       slug: { ne: null }
                     },
                     frontmatter: {
