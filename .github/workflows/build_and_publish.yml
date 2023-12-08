@@ -32,7 +32,7 @@ jobs:
       - run: ./scripts/preprocess-talks.js
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: x-access-token:${{ secrets.GITHUB_TOKEN }}
           deploy-branch: pages
           skip-publish: ${{ ! (github.ref == 'refs/heads/main' && github.event_name != 'pull_request') }}
         env:
