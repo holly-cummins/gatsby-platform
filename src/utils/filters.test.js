@@ -45,13 +45,13 @@ describe("the graphql filter generation", () => {
     // These tests are a bit 'writing the implementation down twice' but it's not worth the effort to get to a higher level of validation
     it("gives a basic filter if there are no other filters", async () => {
       expect(generateFilter()).toEqual({
-        fields: { slug: { ne: "" }, prefix: { ne: null }, draft: { ne: true } }
+        fields: { slug: { ne: "" }, draft: { ne: true } }
       });
     });
 
     it("combines the filters if a filter is passed in", async () => {
       expect(generateFilter({ frontmatter: { type: { eq: "cats" } } })).toEqual({
-        fields: { slug: { ne: "" }, prefix: { ne: null }, draft: { ne: true } },
+        fields: { slug: { ne: "" }, draft: { ne: true } },
         frontmatter: { type: { eq: "cats" } }
       });
     });
