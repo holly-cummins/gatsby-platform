@@ -32,7 +32,6 @@ exports.filterOutDrafts = (edges, showFuture) => {
       // Exclude anything that looks like a draft in production
 
       if (isProd()) {
-        console.log("HOLLY Draft fulter ", edge.node.frontmatter, edge.node.fields.draft);
         // The prefix should exist and match a date in prod
         // We have to parse a date so we know if it is date-y but we want to use the same regex we use in the graphql filters
         if (edge.node.fields.draft) {
