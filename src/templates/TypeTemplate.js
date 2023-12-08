@@ -152,6 +152,7 @@ export const typeQuery = graphql`
             title
             slug
             prefix
+            draft
             shortDate
             geography {
               flag

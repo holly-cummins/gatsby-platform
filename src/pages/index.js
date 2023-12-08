@@ -85,6 +85,7 @@ export const query = graphql`
           fields {
             slug
             prefix
+            draft
             author
             title
             category

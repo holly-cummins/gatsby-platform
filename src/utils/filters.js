@@ -19,7 +19,7 @@ exports.generateFilter = otherFilter => {
   let draftsFilters = { fields: { slug: { ne: "" } } };
 
   if (isProd()) {
-    draftsFilters = { fields: { slug: { ne: "" }, prefix: { ne: null }, draft: { ne: true } } };
+    draftsFilters = { fields: { slug: { ne: "" }, draft: { ne: true } } };
   }
   return { ...draftsFilters, ...otherFilter };
 };
@@ -32,6 +32,7 @@ exports.filterOutDrafts = (edges, showFuture) => {
       // Exclude anything that looks like a draft in production
 
       if (isProd()) {
+        console.log("HOLLY Draft fulter ", edge.node.frontmatter, edge.node.fields.draft);
         // The prefix should exist and match a date in prod
         // We have to parse a date so we know if it is date-y but we want to use the same regex we use in the graphql filters
         if (edge.node.fields.draft) {

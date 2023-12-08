@@ -72,6 +72,7 @@ export const categoryQuery = graphql`
           fields {
             slug
             prefix
+            draft
             category
             displayCategory
             title

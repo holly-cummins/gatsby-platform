@@ -104,6 +104,7 @@ export const query = graphql`
           fields {
             slug
             prefix
+            draft
             title
             category
             displayCategory

@@ -62,6 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
                   fields {
                     slug
                     prefix
+                    draft
                     source
                     category
                   }
