@@ -10,7 +10,7 @@ const algoliaMissing =
   process.env.ALGOLIA_APP_ID === undefined || process.env.ALGOLIA_APP_ID === "";
 
 const query = `{
-  allMarkdownRemark( filter: { fields: { slug: { ne: null } } }) {
+  allMarkdownRemark( filter: { fields: { slug: { ne: null }, draft: { ne: true } } }) {
     edges {
       node {
         objectID: fileAbsolutePath
