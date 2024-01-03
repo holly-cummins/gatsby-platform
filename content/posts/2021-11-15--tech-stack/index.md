@@ -69,7 +69,7 @@ I've got the TDD habit, so it made me feel a bit itchy that all the gatsby code 
 
 ### Hosting
 
-I use [namecheap.com](https://www.namecheap.com) for my domain. I also have [hollycummins.fun](http://hollycummins.fun) redirecting to this site, although I'm not publicising that awesome URL as much as I hoped I would. (Remember, fun in the workplace is [important](http://hollycummins.com/category/fun/).)
+I use [namecheap.com](https://www.namecheap.com) for my domain. For a while I had hollycummins.fun redirecting to this site, although I never publicised that awesome URL, so I let it lapse. (Remember, fun in the workplace is [important](http://hollycummins.com/category/fun/).)
 
 I use [GitHub Pages](https://pages.github.com) for the hosting and [GitHub Actions](https://github.com/features/actions) for the CI/CD. It's free, and I am a cheapskate.
 
