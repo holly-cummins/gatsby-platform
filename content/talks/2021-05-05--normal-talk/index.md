@@ -10,6 +10,11 @@ code:
     url: 'https://github.com/holly-cummins/gatsby-platform'
   - title: Another source code link
     url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
+resources:
+  - title: Some interesting article
+    url: 'https://github.com/holly-cummins/gatsby-platform'
+  - title: Another arbitratry link
+    url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design
 video:

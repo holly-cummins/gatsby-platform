@@ -12,6 +12,7 @@ import Slides from "./Slides";
 import Video from "./Video";
 import Code from "./Code";
 import EmbeddedResources from "./EmbeddedResources";
+import Resources from "./Resources";
 
 const Share = asyncComponent(() =>
   import("../Post/Share")
@@ -27,7 +28,7 @@ const Talk = props => {
     post: {
       html,
       fields: { prefix, title, video, slides, oembeds, author, category, displayCategory },
-      frontmatter: { event, keynote, code }
+      frontmatter: { event, keynote, code, resources }
     },
     authornote,
     next: nextPost,
@@ -53,6 +54,7 @@ const Talk = props => {
       <Slides slides={slides} theme={theme} />
       <Video video={video} theme={theme} />
       <Code code={code} theme={theme} />
+      <Resources resources={resources} theme={theme} />
       <EmbeddedResources oembeds={oembeds} theme={theme} />
 
       <footer>
