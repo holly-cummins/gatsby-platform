@@ -13,7 +13,7 @@ code:
 resources:
   - title: Some interesting article
     url: 'https://github.com/holly-cummins/gatsby-platform'
-  - title: Another arbitratry link
+  - title: Another arbitrary link
     url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design

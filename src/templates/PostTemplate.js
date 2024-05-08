@@ -95,6 +95,10 @@ export const postQuery = graphql`
           title
           url
         }
+        resources {
+          title
+          url
+        }
       }
     }
     authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
