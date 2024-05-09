@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
 import Separator from "./Separator";
 import { icon } from "../../utils/type";
 
@@ -16,13 +15,18 @@ const Resources = props => {
         <h2>Resources</h2>
         <ul>
           {resources.map((el, pos) => {
+            const isBook = el.type === "book";
             const title = el.title ? el.title : "";
             const Icon = el.type ? icon(el.type) : icon("blog");
             return (
               <li key={pos} className="resources">
                 <Icon />
                 <div>
-                  <a href={el.url}>{title}</a>
+                  {(isBook && (
+                    <i>
+                      <a href={el.url}>{title}</a>
+                    </i>
+                  )) || <a href={el.url}>{title}</a>}
                 </div>
               </li>
             );
