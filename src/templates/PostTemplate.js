@@ -98,6 +98,7 @@ export const postQuery = graphql`
         resources {
           title
           url
+          type
         }
       }
     }

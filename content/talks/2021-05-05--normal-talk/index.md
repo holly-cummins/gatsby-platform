@@ -12,9 +12,10 @@ code:
     url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
 resources:
   - title: Some interesting article
-    url: 'https://github.com/holly-cummins/gatsby-platform'
+    url: 'https://news.bbc.co.uk'
   - title: Another arbitrary link
-    url: 'https://github.com/holly-cummins/quarkus-minecraft-observability-extension'
+    url: https://news.bbc.co.uk
+    type: book
 slides:
   url: https://speakerdeck.com/roundedbygravity/support-driven-design
 video:

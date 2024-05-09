@@ -13,21 +13,25 @@ const Code = props => {
         <Separator theme={theme} />
 
         <h2>Code</h2>
-        <div>
+        <ul>
           {code.map((el, pos) => {
             const title = el.title ? el.title + ": " : "";
-            const icon = el.url.includes("github") ? <GitHubIcon /> : <></>;
+            const icon = el.url.includes("github") ? (
+              <GitHubIcon style={{ height: "1.5rem" }} />
+            ) : (
+              <></>
+            );
             return (
-              <div key={pos} className="code">
+              <li key={pos} className="code">
                 <div className="icon">{icon}</div>
                 <div>
                   {title}
                   <a href={el.url}>{el.url}</a>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
         {/* --- STYLES --- */}
         <style jsx>{`
           :global(iframe) {

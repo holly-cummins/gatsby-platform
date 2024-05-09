@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
 import Separator from "./Separator";
+import { icon } from "../../utils/type";
 
 const Resources = props => {
   const { resources, theme } = props;
@@ -13,20 +14,20 @@ const Resources = props => {
         <Separator theme={theme} />
 
         <h2>Resources</h2>
-        <div>
+        <ul>
           {resources.map((el, pos) => {
             const title = el.title ? el.title : "";
-            const icon = el.url.includes("github") ? <GitHubIcon /> : <></>;
+            const Icon = el.type ? icon(el.type) : icon("blog");
             return (
-              <div key={pos} className="resources">
-                <div className="icon">{icon}</div>
+              <li key={pos} className="resources">
+                <Icon />
                 <div>
                   <a href={el.url}>{title}</a>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
         {/* --- STYLES --- */}
         <style jsx>{`
           :global(iframe) {
