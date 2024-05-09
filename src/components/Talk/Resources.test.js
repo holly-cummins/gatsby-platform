@@ -7,18 +7,20 @@ import theme from "../../theme/theme.yaml";
 describe("A Resources section", () => {
   describe("with populated content", () => {
     const title = "content";
-    const resources = [{ url: "someresources", title }];
+    const url = "http://someresources/";
+    const resources = [{ url, title }];
 
     beforeEach(() => {
       render(<Resources resources={resources} theme={theme} />);
     });
 
     it("renders the title", () => {
-      expect(screen.getByText(title + ":")).toBeTruthy();
+      expect(screen.getByText(title)).toBeTruthy();
     });
 
-    it("renders the resources", () => {
-      expect(screen.getByText("someresources")).toBeTruthy();
+    it("renders the resources as a link", () => {
+      const link = screen.getByText(title);
+      expect(link.href).toBe(url);
     });
   });
 
