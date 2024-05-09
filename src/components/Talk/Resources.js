@@ -15,14 +15,13 @@ const Resources = props => {
         <h2>Resources</h2>
         <div>
           {resources.map((el, pos) => {
-            const title = el.title ? el.title + ": " : "";
+            const title = el.title ? el.title : "";
             const icon = el.url.includes("github") ? <GitHubIcon /> : <></>;
             return (
               <div key={pos} className="resources">
                 <div className="icon">{icon}</div>
                 <div>
-                  {title}
-                  <a href={el.url}>{el.url}</a>
+                  <a href={el.url}>{title}</a>
                 </div>
               </div>
             );
