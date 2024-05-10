@@ -169,7 +169,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create pages and redirects for publications
         const publications = items.filter(item => item.node.fields.source === "publications");
-        publications.forEach(({ node }, index) => {
+        publications.forEach(({ node }) => {
           const slug = node.fields.slug;
           const url = node.frontmatter.url;
 
@@ -204,9 +204,25 @@ exports.createPages = ({ graphql, actions }) => {
 };
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        assert: require.resolve("assert"),
+        "object.assign/polyfill": require.resolve("object-assign")
+      }
+    }
+  });
+
   switch (stage) {
     case `build-javascript`:
       actions.setWebpackConfig({
+        resolve: {
+          fallback: {
+            assert: require.resolve("assert"),
+            "object.assign/polyfill": require.resolve("object-assign")
+          }
+        },
+
         plugins: [
           new BundleAnalyzerPlugin({
             analyzerMode: "static",

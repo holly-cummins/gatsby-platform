@@ -36,7 +36,6 @@
     "gatsby-plugin-feed": "^4.25.0",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-layout": "^3.14.0",
-    "gatsby-plugin-load-script": "^1.1.0",
     "gatsby-plugin-manifest": "^4.14.0",
     "gatsby-plugin-netlify": "^3.14.0",
     "gatsby-plugin-offline": "^5.25.0",
@@ -124,6 +123,7 @@
     "json-loader": "^0.5.7",
     "linkinator": "^2.16.2",
     "markdown-yaml-metadata-parser": "^3.0.0",
+    "object.assign": "^4.1.5",
     "postcss": "^8.4.33",
     "postcss-cli": "^5.0.1",
     "postcss-cssnext": "^3.1.0",
@@ -153,7 +153,7 @@
     "yaml-jest": "^1.0.5"
   },
   "engines": {
-    "node": ">=0.10.0 <0.11",
+    "node": ">=14.0 <=18",
     "npm": ">=6.0.0"
   },
   "description": "This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlog starter](https://gatsby-starter-hero-blog.greglobinski.com/). This code is still a starter, intended to be populated with content. You can see the skeleton code running at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).",
