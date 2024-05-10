@@ -17,7 +17,7 @@ resources:
     url: https://news.bbc.co.uk
     type: book
   - title: Another second book
-    url: https://news.bbc.co.u
+    url: https://news.bbc.co.uk
     type: book
 
 slides:
