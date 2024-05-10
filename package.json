@@ -159,5 +159,8 @@
   "main": "gatsby-browser.js",
   "directories": {
     "doc": "docs"
+  },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "^2.4.1"
   }
 }
