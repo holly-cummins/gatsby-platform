@@ -16,15 +16,19 @@ resources:
   - title: Another arbitrary link
     url: https://news.bbc.co.uk
     type: book
+  - title: Another second book
+    url: https://news.bbc.co.u
+    type: book
+
 slides:
-  url: https://speakerdeck.com/roundedbygravity/support-driven-design
+    url: https://speakerdeck.com/roundedbygravity/support-driven-design
 video:
-  url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
+    url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
 oembeds:
-  - url: https://youtu.be/rGGvP88uBUg
-    title: A video of a demo (beyond the main talk video)
+    - url: https://youtu.be/rGGvP88uBUg
+      title: A video of a demo (beyond the main talk video)
 tweets:
-  - https://twitter.com/holly_cummins/status/1463554177200795657?s=20&t=e7RitQgCxLVuM-q0EzjoiQ
+    - https://twitter.com/holly_cummins/status/1463554177200795657?s=20&t=e7RitQgCxLVuM-q0EzjoiQ
 ---
 
 In this talk, Ducky quacks, waddles, and generally looks foolish.
