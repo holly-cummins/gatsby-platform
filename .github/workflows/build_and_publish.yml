@@ -31,10 +31,6 @@ jobs:
       - run: ./scripts/preprocess-publications.js
       - run: ./scripts/preprocess-talks.js
       - run: npm run build
-        with:
-          access-token: x-access-token:${{ secrets.GITHUB_TOKEN }}
-          deploy-branch: pages
-          skip-publish: ${{ ! (github.ref == 'refs/heads/main' && github.event_name != 'pull_request') }}
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_ONLY_API_KEY: ${{ secrets.ALGOLIA_SEARCH_ONLY_API_KEY }}
