@@ -22,6 +22,7 @@
     "postinstall": "scripts/preprocess-publications.js"
   },
   "dependencies": {
+    "@babel/plugin-transform-spread": "^7.12.1",
     "@carbon/icons-react": "^10.24.0",
     "axios": "^0.28.0",
     "core-js": "^3.23.2",
