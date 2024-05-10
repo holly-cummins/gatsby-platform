@@ -30,7 +30,7 @@ jobs:
       - run: npm ci
       - run: ./scripts/preprocess-publications.js
       - run: ./scripts/preprocess-talks.js
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      - run: npm run build
         with:
           access-token: x-access-token:${{ secrets.GITHUB_TOKEN }}
           deploy-branch: pages
@@ -44,6 +44,11 @@ jobs:
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
           NODE_ENV: production
           GATSBY_ACTIVE_ENV: production
-      - run: npm run test:int
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: . # The folder the action should deploy.
+          branch: pages
+      - run: npm run test:int # run this second, after deploy, so dead links don't block everything
         env:
           CI: true
