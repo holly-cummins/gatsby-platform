@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Feed]]></title><description><![CDATA[This is a demo site, so there's not really any content here but the template code is nice.]]></description><link>http://gatsby-platform.hollycummins.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 May 2024 16:39:16 GMT</lastBuildDate><item><title><![CDATA[Ducky – the future]]></title><description><![CDATA[In this talk, Ducky quacks, waddles, and generally looks foolish.]]></description><link>http://gatsby-platform.hollycummins.com/future-talk/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/future-talk/</guid><pubDate>Mon, 12 Jun 2034 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this talk, Ducky quacks, waddles, and generally looks foolish.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How this site is built]]></title><description><![CDATA[A long time ago, I used to write semi-regularly on Blogger. But then I stopped. What was up? Was it that
+I wasn’t making time to write? Was…]]></description><link>http://gatsby-platform.hollycummins.com/tech-stack/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/tech-stack/</guid><pubDate>Mon, 15 Nov 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A long time ago, I used to write semi-regularly on Blogger. But then I stopped. What was up? Was it that
+I wasn’t making time to write? Was it that I needed to form better habits? No. Clearly, the problem was
+that I needed a newer, &lt;em&gt;shinier&lt;/em&gt; blogging platform.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/aschmelyun/status/1363471281371439104&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 516px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 127.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGbUlEQVRIx42VeVDU9xnGfy2JYEAuD+QQMOziAimC0YAaw30st4rcGJIKqCE0jaURbU3UsYgQAxUhgiCWNEJc0xlvjSFOahIrx3IIu8CKXN4Hh2FZ4sKnw8Z0mI6d6TvzzPu8z7zzfp9/vvMImrEx1MOPUavVDA4OMTIywuDgII8ePUajGWcSmJiYYHJykonJSV1/HqZ2tNoJhPq6f7H7oxx6egdovq7guqIDZaeK3r4+3SPPq6kDuj6NT0xMotVqEe7eu8/VuhbU6jE04z+hGR9HrR5F+/QnNBqNTlePjTH2jE85+eXodPyiCQ8fPqCv9yYKhYLOzg4Gbt2ms3uAto4eVDd66O7uRqFQ0t7ejlKpnOZ6crrl/1Chqfcxn5xTUvx1J8W13Rw630DR0TIKy4uR1f6T2rZ+alu7udik4lxjF9e6+mm6eYtvWru5IFdx+XoP3yn7udTSQ++DYYTzzQNk/K2O7JoGtp1oJ72wBo9gN5b6SsjIO8j+i13sO1lP/sk6Ck7VcfgrOeWXmik8U0/h2XoOf91MxeU2ir+6TuPN+wht/Q+ouKzgdL2Kqu9UZJSeZUHkOizDonkl8W3c16exOGkDS1I24Jacgmvim7jEJpB5oJLLytsc+15J6TdKDtUqkPc8ROjqG+Do+SscOXeFz2vr+UPJMSykYViFRzIvUMpr8UlYBQYxL8APj9S3WLUpnTkBPqz/807O/NBM1YUrVF74geraqzR09SNcaWwlu6Cc7MJKcg7XkLEnn9c2pLJmx4d4v/Mu4ZsydUdtQqR4Z2xm9bZsrEODCM7Ywp6yanLLqiisklFY9QUtHSoE2YVvSdyaT9pHhWza9VdisnZhtyYa27UxLIpPwm/DJsx8fLFdHcnyjWl4bkzDJTke/42/IyuvjC37SnjvL0Wk/SmXy9fkCEera3gjNIKw2ASk0TH4r12He2gIrkHBOPv7szQkBNeAQF4J8MfJzweJrzcSPx98olYTEROHNC4R/6S3WBYeSfWp0wj7iw6gb2bMXBtrzCznY25pgYW1FRaWVtjaL8ReJGKhgxgHkQQHBwkOYgkiRwkLxYuwFzvyspMEkYsL8+zsKKs8gtDSrqT882r+flxG9XEZNbp+gs9qviBsXRwit6U4eXhg47wIWxcx1k5ijC0WMNPQnJmGJsw0nIWx6WzdXHigBGGC51f37QcErUtEvGQZtm7OGNvNZ46DJcbW5rxgaoLeDEOEX+khCAIvvmjAjBkmFBWVItwb/JHmG/dp7LyHXHUPedddFAND7Dt4BBsXN+xcXJhtZ4u+mSkvGBmgZ6zPPOtZzF1owgKxOZYOszC3MWSGgRFlZUcRGtpVnP2+g2+b7lAr7+FSfRe1jSoiktN5ycIGYxsbrOytsJ5vip7RTAzm6GPrMAsbFyPsXc142dUMC9FLOqdFRZ8iVHxWQ2RSOpuzd7F5204yd+wlK6cA3zXrcVzihTQmmddDY5lr44SZlT2Oi8UsXuGCT+DrrFi1ErHEEZGzHabzjKmoLEeokX1JYGgkMUkp/D5rOzt27yfjg92k/jGX9O0FRL39IXOdpAhGzvxa3xFBsGauhYjIqDgWu3nyG3dPvILCWOblzTHZcYRTZy7w27RMPi44yMcFh9ibX8KevGIyt+YjTd6CnbsUAxNHZs8RY2Jih0jkToA0Au/AQF719GT2fEuMLGYzw9SY0opyBNk/TrIrJ4e8ggK279jJwdIKcj85wLvvZxOXksHaxFQiomIJCVtNUGgka9fG8f6WLGLiEvAJCMIrIACJqzOCnkBBUQFCU2szZy7KqJGVc+b0MXLz9pKUkkp0TDLxCckkJCYTH59IeOQaAkLC8Q8MITQ0is3vvEd0XAKeXl74BwfjJHGmuORTBJVKwYkvyzh9qoKtH2whPCIOv4BwgoLCCQ8JRyoNJTAwBM/lq1jquRKPlW+wfKU3y718iU1+k7j1Kazw9mbxq8s4LjuBMDQ8hKq7C9UNFXX1TTTKW7l6rYH6RjnX6hp0qKtvRN7UTHNLK63X22ht+xlTWk9vH8qOThrlTQwNDyNoJyZ5qoWJZ7Ew/edMaVPzU+0k/28JUxl86/YdBodHGHkyqsvlO3fvMfzkR4amaX39/Tx4NMiYZvxZBmt1+G8ujKrVDA0NM6rW6Jan4nJ45ImOq8c0z/oYg0NDjKrHeKrV/s+wn4rRfwM5ZIl3oHJkTAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/5af8c009881606851ea4b4506386e98c/75dcb/rebuild-tweet.png&quot;
+        srcset=&quot;/static/5af8c009881606851ea4b4506386e98c/772e8/rebuild-tweet.png 200w,
+/static/5af8c009881606851ea4b4506386e98c/e17e5/rebuild-tweet.png 400w,
+/static/5af8c009881606851ea4b4506386e98c/75dcb/rebuild-tweet.png 516w&quot;
+        sizes=&quot;(max-width: 516px) 100vw, 516px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I’d been inspired to think about self-hosting by Trisha Gee’s switch from &lt;a href=&quot;https://trishagee.com/2014/03/20/atom-to-hugo/&quot;&gt;Blogger to Hugo&lt;/a&gt;. But of course I couldn’t just create a Hugo site. Instead, I had to investigate lots and lots of various tech stack
+options.
+&lt;a href=&quot;https://twitter.com/vvoyer/status/1087705536714412032&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 518px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 68%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAACF0lEQVQ4y31Ui5aaQAz1w/sb/ZV+QN3uuuJjFQV5CSsKqPhAHgMI3J5kq67b1pyTwzBDbnJvMrTWgQeRZRAihxACcRyjKEo0TYO6blA3N28eeF3XqOoarR/fv0GV2lAMG1NVg24YiKIIZPThV/sMAtzOz1X1ARg6CrJoj7JqkOfF9QPKeMl88UcJOKZp0HLcFXTTgqKqGI9lKOoMmm5gNJYxGL5Bp/VojJmmc2BVVTifzyjL8i9gBrQsC7I8QX8wxGtXwlieoCv1MHwbod8fotPpov30C5PJFJqmQ55MYdsOXjqveF+4KIriCk4sWqo6g9Trw7TmcJdL2I4DdaZhbtswTJMTWNYcq5UHz/P5nM4WC5eTGIaJ0+l0A6TKCND3A+7yMYoQxwniJEGaZtzxSwBRpSk4HI7/1JIpL1yXKU4VhWn2+gOM5Q/9aH8yVfCz/cRazjSN94guVbvdhneNYkACoipN0+Ly6Z0atNvtsQ1DHqEw3DFFou0HAdabDctDMdSkuwqpm5LU4+y0Jl2en19AlYdhCMd5v1L+n92NzeEYIVhvWBd6knt+AD9Ysy/cJcLd/jqTX2/IZ2PAJMshihKZyJHlBUReoijPiFNx9VQUuMQ+vn4NWtvtFsdTjCTNkBcF60XrJBNIM8Ez5nkeiIn4c5MeApL4BBjFCUSeY78/IIpTxEmGU5LyHo3UIToxi+bBj4IAfwNLXCV13RDNAwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/8066421b7617805651078d099bd2a974/6b9fd/developer-blog-tweet.png&quot;
+        srcset=&quot;/static/8066421b7617805651078d099bd2a974/772e8/developer-blog-tweet.png 200w,
+/static/8066421b7617805651078d099bd2a974/e17e5/developer-blog-tweet.png 400w,
+/static/8066421b7617805651078d099bd2a974/6b9fd/developer-blog-tweet.png 518w&quot;
+        sizes=&quot;(max-width: 518px) 100vw, 518px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In my defence, there was a seven year gap between when I read Trisha’s post in 2014 and when I actually took the idea to action. I’m slow. So it wasn’t unreasonable to assume that the static site world might have moved on while I was busy being slow. (It turns even &lt;a href=&quot;https://trishagee.com&quot;&gt;Trisha&lt;/a&gt;’s moved on from Hugo, to Wordpress.) Trisha’s site rebuild notwithstanding, Hugo is still a popular static site framework. But &lt;a href=&quot;https://mtm.dev/static&quot;&gt;not the only one&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://rakhim.org/honestly-undefined/19/&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 800px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABYlAAAWJQFJUiTwAAADyUlEQVQ4y22UCZPaRhCF+f//xDkqics5nNhes2vYZXcx9yVAQkJI4tIt0P0lGrAdu6yqVz0z1XrTr7una6c4Y7U5EwQhpmmy3e3YbndsDBNru8W0KliY1o6Ts6MscooSyrL8CnlekOU5NTfI+PWdh+0GzJcKK22N4zgcjkds28ZxXezjAft4JDmaUOZ89ytLirKkFkURprnjeDjieR5hGBGGIdV5tY7jmDCDIINzAU5c4sUFXlIIG6UlzrkgyUvBW9sdXepPPW5aXbqThZAszRcMRxOmM4mlskKyM5ZOjurlSE6B7BUX6xaofsHMzgnTK2FWlHhJSZSDf04o8vRbLVBmX1AkkCcXK86qFOSURUZRFNTi+ESv3WI67PLQqKNqMmtNRl5MsQyNralj6CobfYWx0XDtA1HksdUVzOuZvlYETlFILUsTVrKEvJTQZIlu+56HVpPH+w+Mh12eH+8FHpq3DHod7MOe+ORxijxu37/l5x9fcFd/x2wyvBCmSSwcsvTE3tKZz8e0Hhp02o88PjRoPz2gKQs8Z4992LLf7vCcI6HnsLMM9luDU+gKjjSNL4Shf+RcyTA0ZpOeIBz2PgrSCtJ0ROjbwmc0WPDUGtPvSvQ6EubGIjl7BN6RJDl/Irw47ywdXZkxlUZCZvfjkyB8/+4fnltNXHvPcb8nClyU5RpV0ZnPVuysLcnZ/3+ENvHJFxGa2pKlumTQazMedBn2O0zHfUaDLrqmYBkWuqaxkJZI0wXycoWm6qiKQhgE3xCaa7F2vAN+YIvWKPOYIo/JkkjkynMOSJMR42GPh+Ydjbs68rjHdNQnCq9FiYKLZNfeYW407hu3/PDTC17/9TvNuzq6PCN0tuTZGd89iHTMZyNGowH2eo6vjsX/nyVHgSNur5xVZSFk9jrPNO7vqN/dsJxPMNYK/U6buTRBmgyp37xlOuigTAe8fPkbr17+wkZff10U+2AxG/VFVXVNZiFN6PbaGJaOulaYTgbMRl10Q6PRvBUdMek/8+bVzzQbtxwP+y+EVYRV6ReTvohoJc+FledTNpqCpsrikrW6FCpMQ0OaDmndvuHDmz/EZeItJ0nMKXREY4o8xKFAcg6u60AUrNp/QrWvirRZr/j79Z+8v3krXluepZenZ6zXKIsFuqqJSL+HKs+h7xAKe1G03xmipSajnnjvWZZQy7IM23FxHBfP9/GDQKCah0EYinUYRaRpSp5lZJ+Rkuc5RZGLiZTn12mTZhmuX/10wg8jPD8Uttrbrofj+sJW4/06zCi/DOkryov9L4f/Apv/z/82OrQ1AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/7ea6ccdf79219c751c3c0645c1578c31/5a190/nixcraft-tweet.png&quot;
+        srcset=&quot;/static/7ea6ccdf79219c751c3c0645c1578c31/772e8/nixcraft-tweet.png 200w,
+/static/7ea6ccdf79219c751c3c0645c1578c31/e17e5/nixcraft-tweet.png 400w,
+/static/7ea6ccdf79219c751c3c0645c1578c31/5a190/nixcraft-tweet.png 800w,
+/static/7ea6ccdf79219c751c3c0645c1578c31/c1b63/nixcraft-tweet.png 1200w,
+/static/7ea6ccdf79219c751c3c0645c1578c31/84f4d/nixcraft-tweet.png 1208w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I’m a coder. &lt;em&gt;Of course&lt;/em&gt; I wasn’t going to use an antiquated, simple setup, even if it was actually very productive. I needed continuous integration! And complex dynamic behaviour! The leading static site generators were Hugo, written in Go, and Gatsby, written in React. I need to improve my Go, and building a Go blog would have been a great way to do that. I resisted temptation and decided to (sort of) prioritise productivity by going for Gatsby.&lt;/p&gt;
+&lt;p&gt;It took me a while to settle on a platform, and then a while to find the right starter, and then I spent several weeks adjusting the starter to support unit tests, and setting up a CI/CD pipeline with integration tests. I didn’t quite get to the point of setting up a Kubernetes cluster to run my static blog, but I wasn’t far off.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/richburroughs/status/1383092015580123136&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 521px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACcUlEQVQ4y5VUW7KaQBBli8lXfrOGbCCVv3xlE1lEluD1dXn4QAFFXgKDCCjy5qSm9RpNpVJJV53qmSn6TE/3aYTAMzH88R37vQdNM+A4LjRNh+cHSE45kuwMFic4phkOcYq6bvAn67oeTdNCWEgjfP30EZuNDlmZQVFmWCxVrNYa1poOdbXGzrLheXu4QQDb8xAEIWG/9+G6LiURhCHatoPQ90BVtzidzvD9AFF0wDFJCGHIEEURyrKkLNr0jCY5oet7dF1H4Bm3bYu+7wkC/mJN2z3t2yglPFpZ1ehvayJUNwG+fP4Gba3C3NnQjS2MrYmtuXu6mQMPgf3N32vY32o4HU/w4d17qtk+YPB9H47jIU2OT2SErrvit/O3S3hjhKKqECUpirJGUgNxDSTN1ff4N3skFY5JipBFcFwPjs9g+xHc8ADNdBCEDGEYwnFdsCiipoWMgbEIjDH4QYA8z99or4Su62EyfcVoNMZg8AJJlDAYDCCJIgVyOewsi4It24Zl2UTKwaWUptnT84XL5YI4PiLLMpIM/4Bnk+cX/K/dZcPT50K1bYcy2JomiXWzNWFsttTxq8At6IaB1WoNTddh7nYwdxaMzYbiuAk8dT4hoiRj8DLEy3AEWVYwHI0pcDafYzyZYqmqVJqluoIym9NakhW8ihJkRUFRFNREgddBFCXM5wuIkgRJlqHrBl3CCdeaRnuexfRVxHKpYjSeYLFc0jequkJd17+efDrnYIcYcZIhO+fk4yRFmp0QRjH9FI7pCWVV3cetqioiaZrr2N3FzgmbtqXx4SjKinxVX3EpSjrLLwXarnvS3L0RD2Sc8CcVX21gFh7xVgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/5ce4ff8904cd255a7fdb355de10a1e27/bb9c5/tdd-tweet.png&quot;
+        srcset=&quot;/static/5ce4ff8904cd255a7fdb355de10a1e27/772e8/tdd-tweet.png 200w,
+/static/5ce4ff8904cd255a7fdb355de10a1e27/e17e5/tdd-tweet.png 400w,
+/static/5ce4ff8904cd255a7fdb355de10a1e27/bb9c5/tdd-tweet.png 521w&quot;
+        sizes=&quot;(max-width: 521px) 100vw, 521px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once I had a unit test skeleton in place I felt able to start adding new capabilities to the platform. A lot of my writing is published elsewhere, and some of my content isn’t even writing, it’s slides and podcasts and external media. (I got profiled in &lt;a href=&quot;https://www.forbes.com/sites/adrianbridgwater/2021/02/18/ibm-developer-lead-what-software-does-next/&quot;&gt;Forbes&lt;/a&gt;! That has to go in somewhere!) So I needed a hybrid between a blog and a portfolio site. I wasn’t just looking for an excuse to code, honest.&lt;/p&gt;
+&lt;h2&gt;The tech black hole&lt;/h2&gt;
+&lt;p&gt;Now that things are up and running, I’m trying to balance time spent on writing and time spent on improvements to
+the base platform. I wasn’t going to be That Developer:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/theolognion/status/1394242709372772352&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 521px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 137.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAcCAYAAABh2p9gAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFU0lEQVRIx52WW2xUVRSGz8x0WkiMlxfQWEiqJhpjYoxK9EFJVHjRGF80kQcTY4wEiZcHojGK0URTkWuBEqBQbCk3BbSlbbiVpAUVkFKmtLRzP9O5z3SuZ87MnJnpZ/ZmBmrFF3eysq/r3/9ae521jlIul0mlUhQKBdlPTydkX6lUmJmZ+U+pzJ1XKggsRSjv3buXSDTG2ISDq7YxJuxO/k+TgIJZJpOhaBjo+QJGqUS5UkHXdSliP5/PUywW5Vj0hmGgaTn06noul5N7gqkSCoWxjY5y9eoIV4aHGRm5xsWLl5icnMTj8WIbvS737HYHExOTOBxOVNUndZxOF6rPx9j4DVwutySlpNMZXG4P4xN2XB4Vp9uLbewGeqEobxRmCP8I5rWm63ny+YJkmNN1aYEQyTAWDTNwspvfB/qwnT+Fa+QP3MND2G1X8LhdqF4vXpebSCiMz6eyctUqFi5sZNHih2lc9BAPNjbRuKiJe+9bwIGDh1FCjlFONH9Iz/cfcKn1MwJ9u/H/1kKkbxfHuvay9LU3WPvDeg4f+5WXXlmOoih3EJPs12/YjOK5eoHjn7/J0HfvceDTFez7cjW7Vr+F2tXMmvdXyIP3LH4Y6/y75dhaNw9LXT0Wy00xm61YrfPk3paWbSh/DZ5h56rXCR1pZrB9A329J1jzxVpWLn2Kswf30H7oKA80NkmFhvq7MJsaMJnqMJnMmEwWKRaLVe5v3rIVpae7m2ebFvLF28v5ZsUyLrau5Xz3YY63beNSz89Mh4K0tXeimBtQFAsW83zMpnoJpCjmOYAtKMe6e1GUBp58/DHWffwOIx3NBPva0IZPozuGiV0+gz5xmU3ffCmVLGZrlaUVxXQHwHHbCPu+/QTXz+uJ923H170NX/8eQv3txAePEjzVSeRkJ2XHFd59f6VUrKurl4A3Tb8NuKVlK0o+4kH7/RCxgZ9Qe3fg628jcGY/0cGjpC50c61jI4e++4yzm7/Cc/0aS5e9KpXrrQ3Vh7FSXz+v+sobUTIBJ1O9O/D3bufGoWacv7Vi/6WF6wc3ERk4gu3IDga6drNhzUf80tHOmXODPPLoE/8KnQUL7mdoaAgl4XNgP7oZ+68tXO78kdHjuxnvaefPjo38caCVrvVfc27XOuJXztHfc4L+0wP09J7ihRdf5plnlrBkyXM8veR5OvZ3oWXSKIWiQTgSxR8IMuUPoPqmCAZDuD0qbq+K0+tD9QfxuN3EolE8XpVYLC4lFA4TCAaZTiRlOhOfp2IYJYKRGFPBCKo/JMUfiuLw+PD4ggRCUQLhKC41gC8QRg2E8U4F5XnRi/Ox6SRZTZffvFIqlQlFp5kKReWhYCROdDqJltNlOsvpeTnOaDly+QKanied1cjmdAki5jMgE0NJ5MNyuYJgKUzPF4qyF/NKNdOUq5mbqtLcJlbEmZpIkxOpjLw1mc7KW5PpDJlsTjJNZTTEpTXA/5LaviIybjar3WImMm9BMC0UpQmapkmTBeidaslckSUgFk9IllpO+CsnGaYyWemzZDJJPJGkaNxOsHOZzV5TaktGqYx4oNlN+LQyS0m8omBbmQUm0r44J/cloIgfw5AxJAqPYGwUi5RLJQrVIiTYCTBZCozSPxgKt9TWZNjYJlxs2tnJtbFJ3B4vE5N2PP4I/uks/niGpFaQ/v3Hy97BZAEmLFREUPaePS+D1uvzMxUI4gpEsfvjOEMJ1FCMWCx26wdgNujcsfRhbVGYnUgmZS3WshmymTSpVJJMOk0ikZS1O5lKSX/NBjDmPJZS843wxdywLVXj77YCt4K+FkLFojHrd2SGvwHH5zSJzY8h0gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/65779d58196f43020c382787e0ee9a15/bb9c5/olognion-tweet.png&quot;
+        srcset=&quot;/static/65779d58196f43020c382787e0ee9a15/772e8/olognion-tweet.png 200w,
+/static/65779d58196f43020c382787e0ee9a15/e17e5/olognion-tweet.png 400w,
+/static/65779d58196f43020c382787e0ee9a15/bb9c5/olognion-tweet.png 521w&quot;
+        sizes=&quot;(max-width: 521px) 100vw, 521px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was also determined that the things I wrote about were going to be things &lt;em&gt;other&lt;/em&gt; than my blog tech setup.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/shunghsiyu/status/1333045772124704771&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 512px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB80lEQVQoz5WRXY+aQBSG+eW92t/UpL1sU7erggqCKIqouFXQ+rHAMAP4bBzXzW7Sm5I8OZM5nHfOeY8hCsE6fkaIkjzPEUJQFAVN03C5XGiaD1ze+OddozF6Zo+HLw84Qw+z72C7I2ZhpMX+57uK1XWNcT6d8T1fd6hUhSgldX1L3qmqCikl9VsXUqkbUuqcUuq9ASNJUnr9AbbjMBy6Otq2gzfy8ccTuqbFyPdxvRGm1cMfj/H9sY7TWchsFuq6LM9vgrv9XieXy5UmCKaMJxPiOCaYTjXzecRiuWQyCZiFcz3J3ctaj9q8e26oqiHdFyRJQpKmvOQFuSgphCQrBC+5ICvKT359WtaHpVzFjWuh64f0BzbBNCQII+bRknj9TBgtWK7WzKMF2+2WdLfjz2ajvbsLf3jmJiirmvVZEh9LdgJWx5KylNro62j3hZRlSamj1N3cBG+id7Rgnmfs0g1FfmYRhRyPey6NolICJQvN9VxV4v1OyoL8tKNShf73ilIFSkmMLDvTfvpFp93C7P7GHdnY/S7tpxbBxGPsD/HcAfbAZOQ57PXjB9LNir7V5rH1Q9cOHYvT6YAhZcnxkHA67dnGIVa3Raf7RM9qY/dNHls/6VkdHNtiFvgc9juyl78omdHtPPL921c812a7WSFEzivQZj2Ew/DLkAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/48685e4113077e8c6e1b0ca031094829/01e7c/gatsby-fan-tweet.png&quot;
+        srcset=&quot;/static/48685e4113077e8c6e1b0ca031094829/772e8/gatsby-fan-tweet.png 200w,
+/static/48685e4113077e8c6e1b0ca031094829/e17e5/gatsby-fan-tweet.png 400w,
+/static/48685e4113077e8c6e1b0ca031094829/01e7c/gatsby-fan-tweet.png 512w&quot;
+        sizes=&quot;(max-width: 512px) 100vw, 512px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;No no, no snake-eating-its-tail blogging for me!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/Naher94/status/1363982984626454534&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 519px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.499999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7UlEQVQY042Qy07DQAxF+/8SO/6Cz2DFCnVHSmgapW0ykzRNmnnkNXPQTAUCVliyLdvXV77edFJgraWua9q2ja6UQmvNaC3WjgzasDqH9x73x0PPx5mLmM3T4wO7t4Qk3ZPsUt73OWnVkYmevFFclUUby3/MBcKX1y2lkGR5wUd2oDgLdoUkPUqSQnKWDe3lQiUEZVXRNBfKsuJ0OiGEoJINqtwyHp8j6SaEcHZ/u7HMM/M84ZYJazRGqVgH2dM0MQyKa9djjIlvGseRQRlM3+BUfScMutf1rv+nhXpZf/e8h3lZY/7GhV3/Nfd8AmBVgP9hDucQAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/05524a24db33e309fd461bb1cb95d222/b23ad/article-about-rebuild-tweet.png&quot;
+        srcset=&quot;/static/05524a24db33e309fd461bb1cb95d222/772e8/article-about-rebuild-tweet.png 200w,
+/static/05524a24db33e309fd461bb1cb95d222/e17e5/article-about-rebuild-tweet.png 400w,
+/static/05524a24db33e309fd461bb1cb95d222/b23ad/article-about-rebuild-tweet.png 519w&quot;
+        sizes=&quot;(max-width: 519px) 100vw, 519px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And I was going to write actual posts about actual things!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/Coding_Career/status/1327326881096421376&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 511px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4ElEQVQ4y31TWXLbMAz1/c+Qo/S3R0g7sWPHkW3tKrVz1+sAIpPKccqZNxBB8mF50M7JEj79gSIv8PzrN16PR7weTzif37HfH3A8npCVNcpGoBYdoxtGiG5AIzqIrgct7z2UNti56if86QmNGJAkCbI8xy1NURQlf6dphuv1hjwvUJQVyrLCy/6AvChQNw2S5ILkcoHWGt4v2C2LB7BgHCd0XQfRtiirismqumYfoa5rNM0f/iYrhEBVVVBKYVkWhvOeCBdOue97FGWJ6+2GLMvRNA37xnHEMAxoA/E8z+j7gX1CtDDGIK4N4TTNnBGVRVl+t5a7vafMnOceWuc+CY110MbDWA9tHKSymGaNthvR9RNaxirGOCtIbSGVYasCJIkSCbVZnWSNcSGA4711/gP/nkes9xwH2BCSMzY4+slS45XSkFJxadEf71CpSj8gNIEwPoj2/H7F6S3B4fAGHUTYEvr/E8bG8yg4x0pqrXjWrDVfgn5LeF8ygUhoVKZpwjTPkFJuyv4ktI8zfDgqgTgS3S/n/FdRSC2KYqz9UI8ir/vVZwPW8+BzLmR3lyH92ASKRqCH0yz5Efu8h1Qas1R85sIgE8lmsH3olTGWBdiWGQUIvaLMjN2IQqrHPb3/C/Mrkcpj8Uc7AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/3bc8db5b4d0d2c0ce519697cb123e495/92e00/writing-tweet.png&quot;
+        srcset=&quot;/static/3bc8db5b4d0d2c0ce519697cb123e495/772e8/writing-tweet.png 200w,
+/static/3bc8db5b4d0d2c0ce519697cb123e495/e17e5/writing-tweet.png 400w,
+/static/3bc8db5b4d0d2c0ce519697cb123e495/92e00/writing-tweet.png 511w&quot;
+        sizes=&quot;(max-width: 511px) 100vw, 511px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If anything, I’ve probably done too good a job of focussing on content in the past year, at the expense of sorting out the platform capabilities. I still need to figure out the right solution for slides. At the moment they’re hosted separately, and I pay for that. They’re not even cross-linked into the main content feed. (I like Notist, but the price of Notist Pro pains me, because I am a cheapskate.) Several people have asked for RSS feeds, so I need to sort that out. And my search is a bit busted for external links, so I need to change what gets fed to the indexer.&lt;/p&gt;
+&lt;p&gt;So if I wasn’t going to write about my tech stack, why have I just written an article about my tech stack? Well, um,
+people asked. And, you know, I worked hard on it and wanted to share.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/holly_cummins/status/1383034689821106181?s=20&quot;&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 800px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA8ElEQVQY03WQSU/DMBCF86c5c++tPwrEKS3KZieQkkUUEjWum43Wy0OelEogYemT3ozHbzzjHTqB9WqNjR+iqmvk+Q67twIfTQshT4TsBwzThNMw4r+jtYFSGl7z2WJ1f4enxwfEjCMIQvibLeKEIeEcQRiB8RT+9hkJ45CuiRDo+wFCHElLKW/GnoUlMc0zwiimx1GcEGmWgTGO9/0ejHMiTTNwnhLuPmGMGnVdtxgaY+AYxhFVVaMoSxRFSeO/vOZo2hbGWKrRWhNKa1yUgrUWSqkld409V6zNMv80f92+/lfP19gZ/2hncD5ffu3yG/J1eGgogDjtAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;tweet&quot;
+        title=&quot;tweet&quot;
+        src=&quot;/static/3b6a4128ed1d03a6fb7d3d06171931ce/5a190/someone-competent.png&quot;
+        srcset=&quot;/static/3b6a4128ed1d03a6fb7d3d06171931ce/772e8/someone-competent.png 200w,
+/static/3b6a4128ed1d03a6fb7d3d06171931ce/e17e5/someone-competent.png 400w,
+/static/3b6a4128ed1d03a6fb7d3d06171931ce/5a190/someone-competent.png 800w,
+/static/3b6a4128ed1d03a6fb7d3d06171931ce/c1b63/someone-competent.png 1200w,
+/static/3b6a4128ed1d03a6fb7d3d06171931ce/bb051/someone-competent.png 1212w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Ok but what is the stack?&lt;/h2&gt;
+&lt;p&gt;The source code for this platform lives at &lt;a href=&quot;https://github.com/holly-cummins/gatsby-platform&quot;&gt;https://github.com/holly-cummins/gatsby-platform&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog is a &lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;GatsbyJS&lt;/a&gt; blog, based on Greg Lobinski’s &lt;a href=&quot;https://gatsby-starter-hero-blog.greglobinski.com/&quot;&gt;HeroBlog starter&lt;/a&gt;. I’ve extended it to make it easy to embed external content and to add
+different forms of content. There are &lt;a href=&quot;http://microanalytics.io&quot;&gt;microanalytics.io&lt;/a&gt; Analytics and Algolia search integrations. The &lt;a href=&quot;https://github.com/holly-cummins/holly-cummins.github.io/tree/platform-source/README.md&quot;&gt;README&lt;/a&gt; has getting started instructions and more technical details.&lt;/p&gt;
+&lt;p&gt;I pull some graphics from &lt;a href=&quot;https://unsplash.com&quot;&gt;unsplash&lt;/a&gt; and draw others. A lot of the visual design is the same as in the starter.&lt;/p&gt;
+&lt;h3&gt;Testing&lt;/h3&gt;
+&lt;p&gt;I’ve got the TDD habit, so it made me feel a bit itchy that all the gatsby code I was looking at was test-free. I added some Jest unit tests, and also some puppeteer integration tests. It would benefit from more tests, but at least it has some now.&lt;/p&gt;
+&lt;h3&gt;Hosting&lt;/h3&gt;
+&lt;p&gt;I use &lt;a href=&quot;https://www.namecheap.com&quot;&gt;namecheap.com&lt;/a&gt; for my domain. For a while I had hollycummins.fun redirecting to this site, although I never publicised that awesome URL, so I let it lapse. (Remember, fun in the workplace is &lt;a href=&quot;http://hollycummins.com/category/fun/&quot;&gt;important&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;I use &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; for the hosting and &lt;a href=&quot;https://github.com/features/actions&quot;&gt;GitHub Actions&lt;/a&gt; for the CI/CD. It’s free, and I am a cheapskate.&lt;/p&gt;
+&lt;h3&gt;Work tracking&lt;/h3&gt;
+&lt;p&gt;I’m using Apple Reminders as my work tracking system, but I should probably switch to GitHub issues.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 800px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1b19153b7f63b34375891816e5b319f2/47f6c/reminders-work-tracking.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABEElEQVQoz42R6W7EIAyE9/3frpWq/t9WqtqQhDNchqnwkmMrdTdIIw7bH4O5AECtFbXyCi5VfCrg2wI/FhAOKC3IOZVzTKjwiQv62T4uO/AWcIHw9qHxcnV4vVq8f3kIk/m81sJysSDmB8Ae2YLeKlg9w8gJzigsy7LJOYdC+QD7B3h0qe2CeZbwPoCoIOeMlBLPLCKU8sThehtVQKgArSQ7WkFHYLuk9PxzQB3hrEXKGaUU/B21f9LaqlPAGDxyps1Vc9hERHfteeAQO9Ak+MUhxtSfSKzcHZ8E3gKtYJIK0zRBSgmlFEtrzXMI4c7lKeA4jgyz1jLIGLOt20cdXZ4GCiEwDAOr7Ruw9fDZk38BNEFh+Uo3FgIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;list of tasks&quot;
+        title=&quot;list of tasks&quot;
+        src=&quot;/static/1b19153b7f63b34375891816e5b319f2/5a190/reminders-work-tracking.png&quot;
+        srcset=&quot;/static/1b19153b7f63b34375891816e5b319f2/772e8/reminders-work-tracking.png 200w,
+/static/1b19153b7f63b34375891816e5b319f2/e17e5/reminders-work-tracking.png 400w,
+/static/1b19153b7f63b34375891816e5b319f2/5a190/reminders-work-tracking.png 800w,
+/static/1b19153b7f63b34375891816e5b319f2/c1b63/reminders-work-tracking.png 1200w,
+/static/1b19153b7f63b34375891816e5b319f2/29007/reminders-work-tracking.png 1600w,
+/static/1b19153b7f63b34375891816e5b319f2/47f6c/reminders-work-tracking.png 2206w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Ok but can I re-use it?&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/holly-cummins/gatsby-platform/&quot;&gt;platform code&lt;/a&gt; for this blog shares the &lt;a href=&quot;https://github.com/holly-cummins/holly-cummins.github.io/blob/platform-source/LICENSE&quot;&gt;MIT license&lt;/a&gt; of the source &lt;a href=&quot;https://gatsby-starter-hero-blog.greglobinski.com/&quot;&gt;starter&lt;/a&gt;. If you use my fork I’d love to know about it. You can see what the starter looks like without my content at &lt;a href=&quot;http://gatsby-platform.hollycummins.com&quot;&gt;gatsby-platform.hollycummins.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Most of the personalisation is in the &lt;code class=&quot;language-text&quot;&gt;content&lt;/code&gt; folder, but there are a few bits and pieces elsewhere, like &lt;code class=&quot;language-text&quot;&gt;avatar.jpg&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;src/images/jpg&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The content itself is not open source.&lt;/p&gt;
+&lt;h2&gt;Updates&lt;/h2&gt;
+&lt;p&gt;Since writing this blog, I’ve swapped out Microanalytics for Beam Analytics (Microanalytics got rid of their free tier, and a paid solution like Mamoto was overkill).&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ducky – the past]]></title><description><![CDATA[In this talk, Ducky quacks, waddles, and generally looks foolish.]]></description><link>http://gatsby-platform.hollycummins.com/normal-talk/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/normal-talk/</guid><pubDate>Wed, 05 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this talk, Ducky quacks, waddles, and generally looks foolish.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Quacking into the void]]></title><description><![CDATA[In which Ducky is noisy, but not very articulate.]]></description><link>http://gatsby-platform.hollycummins.com/quacking-into-the-void/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/quacking-into-the-void/</guid><pubDate>Fri, 07 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In which Ducky is noisy, but not very articulate.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Code n00b: Duck, Duck, Done - The New Stack]]></title><description><![CDATA[Grabbing your rubber ducky and explaining to them what your code should be doing, and what it is in fact not doing, is very often an…]]></description><link>http://gatsby-platform.hollycummins.com/code-n00b-duck-duck-done/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/code-n00b-duck-duck-done/</guid><pubDate>Fri, 23 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Grabbing your rubber ducky and explaining to them what your code should be doing, and what it is in fact not doing, is very often an effective debugging technique. Definitely more so than head banging.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[D is For Duck]]></title><description><![CDATA[D Is For Duck is a gripping exploration of what words you can spell with the letter ‘D’.]]></description><link>http://gatsby-platform.hollycummins.com/disforduck/</link><guid isPermaLink="false">http://gatsby-platform.hollycummins.com/disforduck/</guid><pubDate>Fri, 01 Mar 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;D Is For Duck&lt;/em&gt; is a gripping exploration of what words you can spell with the letter ‘D’.&lt;/p&gt;</content:encoded></item></channel></rss>
