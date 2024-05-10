@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm ci
+      - run: npm install
       - run: ./scripts/preprocess-publications.js
       - run: ./scripts/preprocess-talks.js
       - run: npm run build
