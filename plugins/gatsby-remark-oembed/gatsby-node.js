@@ -131,8 +131,13 @@ exports.onCreateNode = async ({ node, getNode, actions }, pluginOptions) => {
 
 // This should probably be a source plugin which puts things into the cache,
 async function extractAndDownloadImages(url, params, thingsWeAreWaitingFor, oembedObject, post) {
-  const oembedData = await extract(url, params);
-  thingsWeAreWaitingFor.push(oembedData);
+  let oembedData;
+  try {
+    oembedData = await extract(url, params);
+    thingsWeAreWaitingFor.push(oembedData);
+  } catch (e) {
+    console.warn("Could not download", url, "->", e);
+  }
 
   if (oembedData) {
     Object.assign(oembedObject, {

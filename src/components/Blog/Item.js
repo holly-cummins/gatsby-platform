@@ -15,19 +15,17 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: {
-        slug,
-        prefix,
-        title,
-        author,
-        displayCategory,
-        cover: {
-          children: [{ gatsbyImageData }]
-        }
-      },
+      fields: { slug, prefix, title, author, displayCategory, cover },
       frontmatter: { type }
     }
   } = props;
+
+  let gatsbyImageData;
+
+  // Tolerate missing covers. It Should Never Happen, but still does sometime, and we do not want to crash the whole site when it does.
+  if (cover) {
+    gatsbyImageData = cover.children[0].gatsbyImageData;
+  }
 
   const Icon = icon(type);
   const linkContent = (

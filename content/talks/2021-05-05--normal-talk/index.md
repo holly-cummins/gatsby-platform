@@ -21,7 +21,7 @@ resources:
     type: book
 
 slides:
-    url: https://speakerdeck.com/roundedbygravity/support-driven-design
+    url: https://speakerdeck.com/hollycummins/productivity-is-messing-around-and-having-fun
 video:
     url: https://www.youtube.com/watch?v=3DGdQ4gdqT4
 oembeds:
