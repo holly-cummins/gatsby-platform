@@ -1,7 +1,6 @@
-const _ = require("lodash");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const path = require("path");
-const Promise = require("bluebird");
+const kebabCase = require("lodash.kebabcase");
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const { generateFilter } = require("./src/utils/filters");
@@ -103,7 +102,7 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryList = Array.from(categorySet);
         categoryList.forEach(category => {
           createPage({
-            path: `/category/${_.kebabCase(category)}/`,
+            path: `/category/${kebabCase(category)}/`,
             component: categoryTemplate,
             context: {
               category
@@ -129,7 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
         const typeList = Array.from(typeSet);
         typeList.forEach(type => {
           createPage({
-            path: `/type/${_.kebabCase(type)}/`,
+            path: `/type/${kebabCase(type)}/`,
             component: typeTemplate,
             context: {
               type
