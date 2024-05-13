@@ -1,7 +1,7 @@
 module.exports = {
   transform: {
     "^.+\\.jsx?$": `<rootDir>/jest-preprocess.js`,
-    "^.+\\.ya?ml$": "yaml-jest"
+    "\\.yaml$": "jest-transform-yaml"
   },
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "yml", "yaml"],
   moduleNameMapper: {
@@ -10,7 +10,7 @@ module.exports = {
     "typeface-open-sans": "identity-obj-proxy",
     "^gatsby-core-utils/(.*)$": `gatsby-core-utils/dist/$1`, // Workaround for https://github.com/facebook/jest/issues/9771
     "^gatsby-plugin-utils/(.*)$": [`gatsby-plugin-utils/dist/$1`, `gatsby-plugin-utils/$1`], // Workaround for https://github.com/facebook/jest/issues/9771
-    "^gatsby-page-utils/(.*)$": `gatsby-page-utils/dist/$1` // Workaround for https://github.com/facebook/jest/issues/9771}
+    "^uuid$": require.resolve("uuid") // See https://github.com/nestjs/nest/issues/9930
   },
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!(rehype-react|gatsby)/)`],
@@ -19,5 +19,6 @@ module.exports = {
   },
   testURL: `http://localhost`,
   setupFiles: [`<rootDir>/loadershim.js`],
-  setupFilesAfterEnv: ["<rootDir>/jest-setup.js"]
+  setupFilesAfterEnv: ["<rootDir>/jest-setup.js"],
+  testEnvironment: "jsdom"
 };
