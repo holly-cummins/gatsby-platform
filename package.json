@@ -144,7 +144,7 @@
     "precss": "^3.1.2",
     "prettier": "^3.2.5",
     "promise-retry": "^2.0.1",
-    "puppeteer": "^22.8.0",
+    "puppeteer": "^22.8.1",
     "serve": "^14.2.1",
     "sharp-cli": "^4.1.1",
     "stylelint": "^16.5.0",
