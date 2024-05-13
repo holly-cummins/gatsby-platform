@@ -46,5 +46,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: . # The folder the action should deploy.
+          folder: ./public # The folder the action should deploy.
           branch: pages
