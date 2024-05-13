@@ -10,12 +10,7 @@ const Seo = props => {
   let postCover;
   if ((((data || {}).fields || {}).cover || {}).childImageSharp) {
     const childImageSharp = data.fields.cover.childImageSharp;
-    // Support both gatsby-image and gatsby-plugin-image
-    if (childImageSharp.gatsbyImageData) {
-      postCover = data.fields.cover.childImageSharp.gatsbyImageData.images.fallback.src;
-    } else {
-      postCover = data.fields.cover.childImageSharp.resize.src;
-    }
+    postCover = childImageSharp.gatsbyImageData.images.fallback.src;
   } else {
     postCover = ((data || {}).fields || {}).cover;
   }

@@ -3,32 +3,55 @@ import PropTypes from "prop-types";
 
 import { FaArrowDown } from "react-icons/fa/";
 import config from "../../utils/configger";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Hero = props => {
-  const { scrollToContent, backgrounds, theme } = props;
+  const { scrollToContent, isContentOutsideMainSourceStructure, theme } = props;
+
+  // We can't use a property for the source of the static image, but we can dynamically choose what code gets invoked
+
+  const heroImage = isContentOutsideMainSourceStructure ? (
+    <StaticImage
+      className="heroImage"
+      src="../../../../content/images/jpg/hero-background.jpg"
+      loading="eager"
+      objectFit="contain"
+      // should work, does not layout="fullWidth"
+      alt="a hero image"
+    />
+  ) : (
+    <StaticImage
+      src="../../../content/images/jpg/hero-background.jpg"
+      loading="eager"
+      objectFit="contain"
+      // should work, does not layout="fullWidth"
+      alt="a hero image"
+      imgClassName="heroImage"
+    />
+  );
 
   return (
     <React.Fragment>
       <section className="hero">
-        <div className="heroBio">
-          <h1>{config.siteTitle}</h1>
-          <h2>{config.siteDescription}</h2>
+        {heroImage}
+        <div className="heroOverlay">
+          <div className="heroBio">
+            <h1>{config.siteTitle}</h1>
+            <h2>{config.siteDescription}</h2>
+          </div>
+          <div>
+            <button onClick={scrollToContent} aria-label="scroll">
+              <FaArrowDown />
+            </button>
+          </div>
         </div>
-        <div>
-          <button onClick={scrollToContent} aria-label="scroll">
-            <FaArrowDown />
-          </button>
-        </div>
-        <div></div>
       </section>
 
       {/* --- STYLES --- */}
       <style jsx>{`
         .hero {
           align-items: center;
-          background: ${theme.hero.background};
-          background-image: url(${backgrounds.mobile});
-          background-size: cover;
+          position: relative;
           color: ${theme.text.color.primary.inverse};
           display: flex;
           justify-content: flex-start;
@@ -38,6 +61,14 @@ const Hero = props => {
           height: 100px;
           padding: ${theme.space.inset.l};
           padding-top: ${theme.header.height.homepage};
+        }
+
+        .heroOverlay {
+          position: absolute;
+        }
+
+        .heroImage {
+          overflow: hidden;
         }
 
         .heroBio {
@@ -50,7 +81,6 @@ const Hero = props => {
           margin: ${theme.space.stack.l};
           color: ${theme.hero.h1.color};
           line-height: ${theme.hero.h1.lineHeight};
-          text-remove-gap: both 0 "Open Sans";
 
           :global(strong) {
             position: relative;
@@ -62,6 +92,7 @@ const Hero = props => {
               margin: 0 ${theme.space.xs} 0 0;
               text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.k};
             }
+
             &::after {
               content: "‹";
               margin: 0 0 0 ${theme.space.xs};
@@ -75,7 +106,6 @@ const Hero = props => {
           margin: ${theme.space.stack.l};
           color: ${theme.hero.h1.color};
           line-height: ${theme.hero.h1.lineHeight};
-          text-remove-gap: both 0 "Open Sans";
 
           :global(strong) {
             position: relative;
@@ -87,6 +117,7 @@ const Hero = props => {
               margin: 0 ${theme.space.xs} 0 0;
               text-shadow: 0 0 ${theme.space.s} ${theme.color.neutral.gray.k};
             }
+
             &::after {
               content: "‹";
               margin: 0 0 0 ${theme.space.xs};
@@ -133,11 +164,8 @@ const Hero = props => {
           }
         }
 
-        @from-width tablet {
-          .hero {
-            background-image: url(${backgrounds.tablet});
-          }
-
+        /* tablet */
+        @media (min-width: 768px) and (max-width: 1024px) {
           h1 {
             max-width: 90%;
             font-size: ${`calc(${theme.hero.h1.size} * 1.3)`};
@@ -148,11 +176,8 @@ const Hero = props => {
           }
         }
 
-        @from-width desktop {
-          .hero {
-            background-image: url(${backgrounds.desktop});
-          }
-
+        /* desktop */
+        @media (min-width: 1281px) {
           h1 {
             max-width: 80%;
             font-size: ${`calc(${theme.hero.h1.size} * 1.5)`};
@@ -169,7 +194,6 @@ const Hero = props => {
 
 Hero.propTypes = {
   scrollToContent: PropTypes.func.isRequired,
-  backgrounds: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
