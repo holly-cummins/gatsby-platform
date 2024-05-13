@@ -40,11 +40,11 @@ jobs:
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
           NODE_ENV: production
           GATSBY_ACTIVE_ENV: production
+      - run: npm run test:int
+        env:
+          CI: true
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: . # The folder the action should deploy.
           branch: pages
-      - run: npm run test:int # run this second, after deploy, so dead links don't block everything
-        env:
-          CI: true
