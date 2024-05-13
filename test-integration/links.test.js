@@ -79,6 +79,7 @@ describe("site links", () => {
           replacement: "http://localhost:9000"
         }
       ],
+      retry: true, // Retry on 429 (this only 'applies' if there is also a retry-after header)
       concurrency: 100, // The twitter URLs seem to work better with a high concurrency, counter-intuitively
       timeout: 30 * 1000
     });
