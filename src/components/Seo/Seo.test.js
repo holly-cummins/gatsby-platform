@@ -16,7 +16,7 @@ jest.mock("../../utils/configger", () => ({
   shortSiteTitle,
   siteDescription,
   siteUrl,
-  siteImage,
+  siteImage: "hannahbanana.com/banana.png", // For Reasons, this can't reference the out of scope directly, or Jest complains
   pathPrefix,
   authorTwitterAccount
 }));
