@@ -11,16 +11,16 @@ describe("main site", () => {
     });
 
     it("should be possible from the front page", async () => {
-      await expect(page.waitForXPath('//*[text()="Topics"]')).resolves.toBeTruthy();
+      await expect(page.waitForSelector('xpath/ //*[text()="Topics"]')).resolves.toBeTruthy();
     });
 
     it("should bring up a categories page", async () => {
-      const link = await page.waitForXPath('//a[text()="Topics"]');
+      const link = await page.waitForSelector('xpath/ //a[text()="Topics"]');
       link.evaluate(link => link.click());
 
       // Now it should be the categories page
       await expect(
-        page.waitForXPath('//h1[contains(text(), "Thinking About?")]')
+        page.waitForSelector('xpath/ //h1[contains(text(), "Thinking About?")]')
       ).resolves.toBeTruthy();
     });
   });
@@ -32,7 +32,7 @@ describe("main site", () => {
 
     it("should be a categories page", async () => {
       await expect(
-        page.waitForXPath('//h1[contains(text(), "Thinking About?")]')
+        page.waitForSelector('xpath/ //h1[contains(text(), "Thinking About?")]')
       ).resolves.toBeTruthy();
     });
 

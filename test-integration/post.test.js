@@ -8,7 +8,7 @@ const { siteUrl } = require("../src/utils/configger");
 const slug = "tech-stack/";
 const siteRoot = `http://localhost:${port}/${slug}`;
 const liveUrl = siteUrl;
-
+// Shame we have to hardcode this, but ...
 const titleMatcher = /How this site is built/;
 
 describe("a post", () => {
@@ -18,8 +18,8 @@ describe("a post", () => {
     });
 
     it("should have the title on it somewhere", async () => {
-      // Shame we have to hardcode this, but ...
-      await expect(page).toMatch(titleMatcher);
+      const element = await page.waitForSelector('xpath///*[text()="How this site is built"]');
+      expect(element).toBeTruthy();
     });
   });
 
