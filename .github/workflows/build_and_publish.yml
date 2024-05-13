@@ -44,6 +44,8 @@ jobs:
         env:
           CI: true
       - name: Deploy
+        # Only try and deploy on merged code
+        if: github.ref_name == 'main' && (github.event_name == 'push' || github.event_name == 'schedule')"
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./public # The folder the action should deploy.
