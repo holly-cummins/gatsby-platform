@@ -48,3 +48,6 @@ jobs:
         with:
           folder: ./public # The folder the action should deploy.
           branch: pages
+      - run: npm run test:links
+        env:
+          CI: true
