@@ -32,7 +32,7 @@
     "dayjs": "^1.11.1",
     "eslint-config-react-app": "^7.0.1",
     "fontfaceobserver": "^2.0.13",
-    "gatsby": "^4.14.1",
+    "gatsby": "^5.13.4",
     "gatsby-plugin-algolia": "^0.23.1",
     "gatsby-plugin-catch-links": "^4.14.0",
     "gatsby-plugin-feed": "^4.25.0",
