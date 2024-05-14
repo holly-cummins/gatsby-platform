@@ -10,7 +10,11 @@ const Seo = props => {
   let postCover;
   if ((((data || {}).fields || {}).cover || {}).childImageSharp) {
     const childImageSharp = data.fields.cover.childImageSharp;
-    postCover = childImageSharp.gatsbyImageData.images.fallback.src;
+    if (childImageSharp.gatsbyImageData) {
+      postCover = data.fields.cover.childImageSharp.gatsbyImageData.images.fallback.src;
+    } else {
+      postCover = data.fields.cover.childImageSharp.resize.src;
+    }
   } else {
     postCover = ((data || {}).fields || {}).cover;
   }

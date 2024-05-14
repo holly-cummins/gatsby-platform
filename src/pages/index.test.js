@@ -13,23 +13,11 @@ const renderWithTheme = (ui, theme) => {
   return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
 };
 
-const layoutData = {
-  bgDesktop: {
-    resize: { src: "desktop" }
-  },
-  bgTablet: {
-    resize: { src: "tablet" }
-  },
-  bgMobile: {
-    resize: { src: "mobile" }
-  }
-};
-
 describe("IndexPage", () => {
   describe("with no posts or publications", () => {
     const data = {
-      ...layoutData,
-      entries: { edges: [] }
+      entries: { edges: [] },
+      heroes: { edges: [] }
     };
     beforeEach(async () => {
       renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
@@ -91,8 +79,8 @@ describe("IndexPage", () => {
       }
     };
     const data = {
-      ...layoutData,
-      entries: { edges: [post1, post2, draft] }
+      entries: { edges: [post1, post2, draft] },
+      heroes: { edges: [] }
     };
 
     beforeEach(async () => {
@@ -177,8 +165,8 @@ describe("IndexPage", () => {
       }
     };
     const data = {
-      ...layoutData,
-      entries: { edges: [pub1, pub2] }
+      entries: { edges: [pub1, pub2] },
+      heroes: { edges: [] }
     };
 
     beforeEach(async () => {

@@ -23,11 +23,13 @@ class IndexPage extends React.Component {
       }
     } = this.props;
 
-    const heroPath = heroFiles[0].node.dir;
-
-    // Crude hack to work out if the content directory is above the main src structure
-    const isContentOutsideMainSourceStructure =
-      heroPath && !heroPath.includes("gatsby-platform/content");
+    let isContentOutsideMainSourceStructure = false;
+    if (heroFiles?.length > 0) {
+      const heroPath = heroFiles[0].node.dir;
+      // Crude hack to work out if the content directory is above the main src structure
+      isContentOutsideMainSourceStructure =
+        heroPath && !heroPath.includes("gatsby-platform/content");
+    }
 
     const filteredEntries = filterOutDrafts(entries);
 
