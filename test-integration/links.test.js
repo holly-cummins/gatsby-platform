@@ -28,6 +28,13 @@ describe("site links", () => {
           // Twitter gives 404s, I think if it feels bombarded, so let's try a retry
           retryWorked = await retryUrl(result.url);
         }
+
+        // Some APIs give 429s but no retry-after header, and linkinator will not retry in that case
+        // Retry the hard way
+        if (!retryWorked && result.status === status.TOO_MANY_REQUESTS) {
+          retryWorked = await retryUrl(result.url);
+        }
+
         if (!retryWorked && !isPaywalled) {
           const errorText = result.failureDetails[0].statusText || result.failureDetails[0].code;
           const description = `${result.url} => ${result.status} (${errorText}) on ${result.parent}`;
@@ -103,7 +110,7 @@ const retryUrl = async url => {
       return retry(statusCode);
     }
   };
-  return promiseRetry(hitUrl, { retries: 4, minTimeout: 4 * 1000 })
+  return promiseRetry(hitUrl, { retries: 4, minTimeout: 61 * 1000 })
     .then(() => true)
     .catch(() => false);
 };
