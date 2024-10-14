@@ -58,7 +58,7 @@ people asked. And, you know, I worked hard on it and wanted to share.
 
 The source code for this platform lives at https://github.com/holly-cummins/gatsby-platform.
 
-This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on Greg Lobinski's [HeroBlog starter](https://github.com/greglobinski/gatsby-starter-hero-blog?tab=readme-ov-file). I've extended it to make it easy to embed external content and to add
+This blog is a [GatsbyJS](https://www.gatsbyjs.com/) blog, based on Greg Lobinski's [HeroBlog starter](https://github.com/greglobinski/gatsby-starter-hero-blog?tab=readme-ov-file). I've extended it to make it easy to embed external content and to add
 different forms of content. There are [microanalytics.io](http://microanalytics.io) Analytics and Algolia search integrations. The [README](https://github.com/holly-cummins/holly-cummins.github.io/tree/platform-source/README.md) has getting started instructions and more technical details.
 
 I pull some graphics from [unsplash](https://unsplash.com) and draw others. A lot of the visual design is the same as in the starter.

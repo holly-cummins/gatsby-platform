@@ -1,6 +1,6 @@
 # Holly's skeleton blog
 
-This blog is a [GatsbyJS](https://www.gatsbyjs.org/) blog, based on the [HeroBlog starter](https://github.com/greglobinski/gatsby-starter-hero-blog?tab=readme-ov-file). This code is still a starter, intended to be populated with content.
+This blog is a [GatsbyJS](https://www.gatsbyjs.com/) blog, based on the [HeroBlog starter](https://github.com/greglobinski/gatsby-starter-hero-blog?tab=readme-ov-file). This code is still a starter, intended to be populated with content.
 You can see the skeleton code running at [gatsby-platform.hollycummins.com](http://gatsby-platform.hollycummins.com).
 
 ## Initial setup
