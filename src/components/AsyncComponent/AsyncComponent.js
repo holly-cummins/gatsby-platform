@@ -11,12 +11,13 @@ function asyncComponent(getComponent, loadingComponent) {
         });
       }
     }
+
     render() {
       const { component: Comp } = this.state;
       if (Comp) {
         return <Comp {...this.props} />;
       }
-      return loadingComponent ? loadingComponent : <div>Loading...</div>;
+      return loadingComponent ? loadingComponent : <div></div>;
     }
   };
 }
