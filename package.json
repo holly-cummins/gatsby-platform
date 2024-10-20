@@ -25,7 +25,7 @@
   "dependencies": {
     "@babel/plugin-transform-spread": "^7.12.1",
     "@carbon/icons-react": "^10.49.5",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "core-js": "^3.23.2",
     "country-flag-icons": "^1.4.26",
     "curly": "^0.6.2",
