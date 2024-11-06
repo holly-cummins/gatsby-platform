@@ -13,7 +13,7 @@ module.exports = {
     "^uuid$": require.resolve("uuid") // See https://github.com/nestjs/nest/issues/9930
   },
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
-  transformIgnorePatterns: [`<rootDir>/node_modules/(?!(rehype-react|gatsby)/)`],
+  transformIgnorePatterns: [`<rootDir>/node_modules/(?!(rehype-react|hast-util-to-jsx-runtime|estree-util-is-identifier-name|devlop|gatsby)/)`],
   globals: {
     __PATH_PREFIX__: ``
   },

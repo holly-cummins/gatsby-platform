@@ -4,22 +4,20 @@ import { graphql } from "gatsby";
 import Seo from "../components/Seo";
 import Article from "../components/Article";
 import Page from "../components/Page";
-import { ThemeContext } from "../layouts";
+import { useTheme } from "../layouts/theme";
 
 const PageTemplate = props => {
   const {
     data: { page }
   } = props;
 
+  const theme = useTheme();
+
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <Page page={page} theme={theme} />
-          </Article>
-        )}
-      </ThemeContext.Consumer>
+      <Article>
+        <Page page={page} theme={theme} />
+      </Article>
 
       <Seo data={page} />
     </React.Fragment>

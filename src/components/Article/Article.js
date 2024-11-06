@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme } from "../../layouts/theme";
 
 const Article = props => {
-  const { children, theme } = props;
+  const { children } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -14,6 +16,7 @@ const Article = props => {
           padding: ${theme.space.inset.default};
           margin: 0 auto;
         }
+
         @from-width tablet {
           .article {
             padding: ${`calc(${theme.space.default}) calc(${theme.space.default} * 2)`};
@@ -35,7 +38,6 @@ const Article = props => {
 
 Article.propTypes = {
   children: PropTypes.node.isRequired,
-  theme: PropTypes.object.isRequired
 };
 
 export default Article;

@@ -4,35 +4,35 @@ const { port } = require("../jest-puppeteer.config").server;
 
 const siteRoot = `http://localhost:${port}`;
 
-describe("main site", () => {
+describe("categories page", () => {
   describe("navigating to the categories", () => {
     beforeAll(async () => {
       await page.goto(siteRoot);
     });
 
     it("should be possible from the front page", async () => {
-      await expect(page.waitForSelector('xpath/ //*[text()="Topics"]')).resolves.toBeTruthy();
+      await expect(page.waitForSelector("xpath/ //*[text()=\"Topics\"]")).resolves.toBeTruthy();
     });
 
     it("should bring up a categories page", async () => {
-      const link = await page.waitForSelector('xpath/ //a[text()="Topics"]');
+      const link = await page.waitForSelector("xpath/ //a[text()=\"Topics\"]");
       link.evaluate(link => link.click());
 
       // Now it should be the categories page
       await expect(
-        page.waitForSelector('xpath/ //h1[contains(text(), "Thinking About?")]')
+        page.waitForSelector("xpath/ //h1[contains(text(), \"Thinking About?\")]")
       ).resolves.toBeTruthy();
     });
   });
 
   describe("direct visit to the summary page", () => {
     beforeAll(async () => {
-      await page.goto(siteRoot + "/category");
+      await page.goto(siteRoot + "/category/");
     });
 
     it("should be a categories page", async () => {
       await expect(
-        page.waitForSelector('xpath/ //h1[contains(text(), "Thinking About?")]')
+        page.waitForSelector("xpath/ //h1[contains(text(), \"Thinking About?\")]")
       ).resolves.toBeTruthy();
     });
 

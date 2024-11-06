@@ -1,3 +1,9 @@
+/**
+ * Implement Gatsby's Node APIs in this file.
+ *
+ * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
+ */
+
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const path = require("path");
 const kebabCase = require("lodash.kebabcase");
@@ -34,173 +40,172 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-exports.createPages = ({ graphql, actions }) => {
+/**
+ * @type {import("gatsby").GatsbyNode["createPages"]}
+ */
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve("./src/templates/PostTemplate.js");
-    const redirectTemplate = path.resolve("./src/templates/RedirectTemplate.js");
-    const qrTemplate = path.resolve("./src/templates/QrCodeTemplate.js");
-    const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
-    const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
-    const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
+  const postTemplate = path.resolve("./src/templates/PostTemplate.js");
+  const redirectTemplate = path.resolve("./src/templates/RedirectTemplate.js");
+  const qrTemplate = path.resolve("./src/templates/QrCodeTemplate.js");
+  const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
+  const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
+  const typeTemplate = path.resolve("./src/templates/TypeTemplate.js");
 
-    const filters = generateFilter();
-    resolve(
-      graphql(
-        `
+  const filters = generateFilter();
+
+  return graphql(
+    `
           query Posts($filters: MarkdownRemarkFilterInput) {
-            allMarkdownRemark(
-              filter: $filters
-              sort: { fields: [fields___prefix], order: DESC }
-              limit: 1000
-            ) {
-              edges {
-                node {
-                  id
-                  fields {
-                    slug
-                    prefix
-                    draft
-                    source
-                    category
-                  }
-                  frontmatter {
-                    title
-                    url
-                    type
-                  }
-                }
-              }
-            }
-          }
-        `,
-        { filters }
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors);
-          reject(result.errors);
+  allMarkdownRemark(filter: $filters, sort: {fields: {prefix: DESC}}, limit: 1000) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+          prefix
+          draft
+          source
+          category
         }
+        frontmatter {
+          title
+          url
+          type
+        }
+      }
+    }
+  }
+}
+        `,
+    { filters }
+  ).then(result => {
+      if (result.errors) {
+        console.log(result.errors);
+        reject(result.errors);
+      }
 
-        const items = result.data.allMarkdownRemark.edges;
+      const items = result.data.allMarkdownRemark.edges;
 
-        // Create category list
-        const categorySet = new Set();
-        items.forEach(edge => {
-          let {
-            node: {
-              fields: { category }
-            }
-          } = edge;
+      // Create category list
+      const categorySet = new Set();
+      items.forEach(edge => {
+        let {
+          node: {
+            fields: { category }
+          }
+        } = edge;
 
-          if (category) {
-            categorySet.add(category);
+        if (category) {
+          categorySet.add(category);
+        }
+      });
+
+      // Create category pages
+      const categoryList = Array.from(categorySet);
+      categoryList.forEach(category => {
+        createPage({
+          path: `/category/${kebabCase(category)}/`,
+          component: categoryTemplate,
+          context: {
+            category
+          }
+        });
+      });
+
+      // Create type list
+      const typeSet = new Set();
+      items.forEach(edge => {
+        const {
+          node: {
+            frontmatter: { type }
+          }
+        } = edge;
+
+        if (type) {
+          typeSet.add(type);
+        }
+      });
+
+      // Create type pages
+      const typeList = Array.from(typeSet);
+      typeList.forEach(type => {
+        createPage({
+          path: `/type/${kebabCase(type)}/`,
+          component: typeTemplate,
+          context: {
+            type
+          }
+        });
+      });
+
+      // Create posts
+      const posts = items.filter(
+        item => item.node.fields.source === "posts" || item.node.fields.source === "talks"
+      );
+      posts.forEach(({ node }, index) => {
+        const slug = node.fields.slug;
+        const next = index === 0 ? undefined : posts[index - 1].node;
+        const prev = index === posts.length - 1 ? undefined : posts[index + 1].node;
+        const source = node.fields.source;
+
+        createPage({
+          path: slug,
+          component: postTemplate,
+          context: {
+            slug,
+            prev,
+            next,
+            source
           }
         });
 
-        // Create category pages
-        const categoryList = Array.from(categorySet);
-        categoryList.forEach(category => {
-          createPage({
-            path: `/category/${kebabCase(category)}/`,
-            component: categoryTemplate,
-            context: {
-              category
-            }
-          });
-        });
-
-        // Create type list
-        const typeSet = new Set();
-        items.forEach(edge => {
-          const {
-            node: {
-              frontmatter: { type }
-            }
-          } = edge;
-
-          if (type) {
-            typeSet.add(type);
+        createPage({
+          path: `${slug}/qr`.replace("//", "/"),
+          component: qrTemplate,
+          context: {
+            slug
           }
         });
+      });
 
-        // Create type pages
-        const typeList = Array.from(typeSet);
-        typeList.forEach(type => {
-          createPage({
-            path: `/type/${kebabCase(type)}/`,
-            component: typeTemplate,
-            context: {
-              type
-            }
-          });
+      // Create pages and redirects for publications
+      const publications = items.filter(item => item.node.fields.source === "publications");
+      publications.forEach(({ node }) => {
+        const slug = node.fields.slug;
+        const url = node.frontmatter.url;
+
+        createPage({
+          path: slug,
+          component: redirectTemplate,
+          context: {
+            slug,
+            url
+          }
         });
+      });
 
-        // Create posts
-        const posts = items.filter(
-          item => item.node.fields.source === "posts" || item.node.fields.source === "talks"
-        );
-        posts.forEach(({ node }, index) => {
-          const slug = node.fields.slug;
-          const next = index === 0 ? undefined : posts[index - 1].node;
-          const prev = index === posts.length - 1 ? undefined : posts[index + 1].node;
-          const source = node.fields.source;
+      // and create pages for pages.
+      const pages = items.filter(item => item.node.fields.source === "pages");
+      pages.forEach(({ node }) => {
+        const slug = node.fields.slug;
+        const source = node.fields.source;
 
-          createPage({
-            path: slug,
-            component: postTemplate,
-            context: {
-              slug,
-              prev,
-              next,
-              source
-            }
-          });
-
-          createPage({
-            path: `${slug}/qr`.replace("//", "/"),
-            component: qrTemplate,
-            context: {
-              slug
-            }
-          });
+        createPage({
+          path: slug,
+          component: pageTemplate,
+          context: {
+            slug,
+            source
+          }
         });
+      });
+    }
+  );
+}
+;
 
-        // Create pages and redirects for publications
-        const publications = items.filter(item => item.node.fields.source === "publications");
-        publications.forEach(({ node }) => {
-          const slug = node.fields.slug;
-          const url = node.frontmatter.url;
-
-          createPage({
-            path: slug,
-            component: redirectTemplate,
-            context: {
-              slug,
-              url
-            }
-          });
-        });
-
-        // and create pages for pages.
-        const pages = items.filter(item => item.node.fields.source === "pages");
-        pages.forEach(({ node }) => {
-          const slug = node.fields.slug;
-          const source = node.fields.source;
-
-          createPage({
-            path: slug,
-            component: pageTemplate,
-            context: {
-              slug,
-              source
-            }
-          });
-        });
-      })
-    );
-  });
-};
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
@@ -226,7 +231,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           new BundleAnalyzerPlugin({
             analyzerMode: "static",
             reportFilename: "./report/treemap.html",
-            openAnalyzer: true,
+            openAnalyzer: false,
             logLevel: "error",
             defaultSizes: "gzip"
           })

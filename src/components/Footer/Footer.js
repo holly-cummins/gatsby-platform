@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-// At some point we may want to switch to mdx instead of rehype but it's a much more invasive change
-import rehypeReact from "rehype-react";
 import { Rss16 } from "@carbon/icons-react";
+import { Link } from "gatsby";
+import config from "../../utils/configger";
+import { useTheme } from "../../layouts/theme";
 
 // Extend the carbon react icon to add accessibility labels and make it not
 // hidden to screenreaders (the carbon default)
@@ -12,17 +13,26 @@ class Rss extends React.Component {
   }
 }
 
-const Footer = props => {
-  const { htmlAst, theme } = props;
 
-  const renderAst = new rehypeReact({
-    createElement: React.createElement,
-    components: { rss: Rss }
-  }).Compiler;
+const Footer = () => {
+  const theme = useTheme();
 
+  // At some point we may want to switch to mdx instead of hardcoding footer content (which is needed for the rss icon) but it's a more invasive change
+  // noinspection CssInvalidAtRule; postcss-easy-media-query adds new at-rules
   return (
     <React.Fragment>
-      <footer className="footer">{renderAst(htmlAst)}</footer>
+      <footer className="footer">
+        <ul>
+          <li>built by {config.authorName.toLowerCase()}</li>
+          <li>follow {config.authorShortName.toLowerCase()} on <a
+            href={config.authorSocialLinks[0].url}>{config.authorSocialLinks[0].name}</a></li>
+          <li>
+            <Link href="/rss.xml">
+              <Rss></Rss>
+            </Link>
+          </li>
+        </ul>
+      </footer>
 
       {/* --- STYLES --- */}
       <style jsx>{`
@@ -49,6 +59,7 @@ const Footer = props => {
                 position: absolute;
                 right: ${`calc(${theme.space.xs} * -1)`};
               }
+
               &:last-child::after {
                 content: "";
               }
@@ -67,7 +78,6 @@ const Footer = props => {
 };
 
 Footer.propTypes = {
-  htmlAst: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 

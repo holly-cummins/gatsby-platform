@@ -43,31 +43,27 @@ const QrCodeTemplate = props => {
 
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "10px"
-              }}
-            >
-              {url}
-              <div ref={ref}>
-                <QRCode value={url} />
-              </div>
-              <button style={button} onClick={downloadScreenshot}>
-                Download
-              </button>
-            </div>
-            <div style={{ opacity: 0 }}>
-              <img width={"500px"} src={image} alt={"Screenshot"} />
-            </div>
-          </Article>
-        )}
-      </ThemeContext.Consumer>
+      <Article>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px"
+          }}
+        >
+          {url}
+          <div ref={ref}>
+            <QRCode value={url} />
+          </div>
+          <button style={button} onClick={downloadScreenshot}>
+            Download
+          </button>
+        </div>
+        <div style={{ opacity: 0 }}>
+          <img width={"500px"} src={image} alt={"Screenshot"} />
+        </div>
+      </Article>
     </React.Fragment>
   );
 };

@@ -10,14 +10,17 @@ import List from "../components/List";
 import Seo from "../components/Seo";
 import { filterOutDrafts } from "../utils/filters";
 import config from "../utils/configger";
+import { useTheme } from "../layouts/theme";
 
 const CategoryPage = props => {
+
   const {
     data: {
       posts: { edges: edges }
     }
   } = props;
 
+  const theme = useTheme();
   const posts = filterOutDrafts(edges);
 
   // Create category list
@@ -42,40 +45,36 @@ const CategoryPage = props => {
 
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <header>
-              <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
-            </header>
-            {Object.keys(categories).map(category => (
-              <section key={category}>
-                <h2>
-                  <a href={`/category/${category}`}>
-                    <Tag />
-                    {displayCategories[category]}
-                  </a>
-                </h2>
-                <List edges={categories[category]} theme={theme} />
-              </section>
-            ))}
-            {/* --- STYLES --- */}
-            <style jsx>{`
-              h2 {
-                margin: 0 0 0.5em;
-              }
+      <Article>
+        <header>
+          <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
+        </header>
+        {Object.keys(categories).map(category => (
+          <section key={category}>
+            <h2>
+              <a href={`/category/${category}`}>
+                <Tag />
+                {displayCategories[category]}
+              </a>
+            </h2>
+            <List edges={categories[category]} theme={theme} />
+          </section>
+        ))}
+        {/* --- STYLES --- */}
+        <style jsx>{`
+          h2 {
+            margin: 0 0 0.5em;
+          }
 
-              h2 :global(svg) {
-                height: 0.8em;
-                fill: ${theme.color.brand.primary};
-                position: relative;
-                top: 3px;
-                margin-right: 10px;
-              }
-            `}</style>
-          </Article>
-        )}
-      </ThemeContext.Consumer>
+          h2 :global(svg) {
+            height: 0.8em;
+            fill: ${theme.color.brand.primary};
+            position: relative;
+            top: 3px;
+            margin-right: 10px;
+          }
+        `}</style>
+      </Article>
 
       <Seo />
     </React.Fragment>
@@ -96,7 +95,7 @@ export const query = graphql`
   query PostsQuery {
     posts: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//(posts|publications|talks)/.*--/" } }
-      sort: { fields: [fields___prefix], order: DESC }
+      sort: {fields: {prefix: DESC}}
     ) {
       edges {
         node {

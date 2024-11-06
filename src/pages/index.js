@@ -1,115 +1,120 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
-import { ThemeContext } from "../layouts";
 import Blog from "../components/Blog";
 import Hero from "../components/Hero";
 import Seo from "../components/Seo";
 
 import { filterOutDrafts } from "../utils/filters";
+import config from "../utils/configger";
+import { useTheme } from "../layouts/theme";
 
-class IndexPage extends React.Component {
-  separator = React.createRef();
+const platforms = config.authorSocialLinks;
 
-  scrollToContent = () => {
-    this.separator.current.scrollIntoView({ block: "start", behavior: "smooth" });
+export const Head = () => {
+  return (
+    <>
+      {
+        platforms.map(platform => (
+          <link rel="me" href={platform.url} key={platform.name} />
+        ))
+      }</>
+  );
+};
+
+export default function IndexPage({ data }) {
+  const separator = React.createRef();
+
+  const scrollToContent = () => {
+    separator.current.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
-  render() {
-    const {
-      data: {
-        entries: { edges: entries = [] },
-        heroes: { edges: heroFiles = [] }
-      }
-    } = this.props;
+  const theme = useTheme();
 
-    let isContentOutsideMainSourceStructure = false;
-    if (heroFiles?.length > 0) {
-      const heroPath = heroFiles[0].node.dir;
-      // Crude hack to work out if the content directory is above the main src structure
-      isContentOutsideMainSourceStructure =
-        heroPath && !heroPath.includes("gatsby-platform/content");
-    }
+  const {
+    entries: { edges: entries = [] },
+    heroes: { edges: heroFiles = [] }
+  } = data;
 
-    const filteredEntries = filterOutDrafts(entries);
-
-    return (
-      <React.Fragment>
-        <ThemeContext.Consumer>
-          {theme => (
-            <Hero
-              scrollToContent={this.scrollToContent}
-              isContentOutsideMainSourceStructure={isContentOutsideMainSourceStructure}
-              theme={theme}
-            />
-          )}
-        </ThemeContext.Consumer>
-
-        <hr ref={this.separator} />
-
-        <ThemeContext.Consumer>
-          {theme => <Blog posts={filteredEntries} theme={theme} />}
-        </ThemeContext.Consumer>
-
-        <Seo />
-
-        <style jsx>{`
-          hr {
-            margin: 0;
-            border: 0;
-          }
-        `}</style>
-      </React.Fragment>
-    );
+  let isContentOutsideMainSourceStructure = false;
+  if (heroFiles?.length > 0) {
+    const heroPath = heroFiles[0].node.dir;
+    // Crude hack to work out if the content directory is above the main src structure
+    isContentOutsideMainSourceStructure =
+      heroPath && !heroPath.includes("gatsby-platform/content");
   }
+
+  const filteredEntries = filterOutDrafts(entries);
+
+  return (
+    <React.Fragment>
+      <Hero
+        scrollToContent={scrollToContent}
+        isContentOutsideMainSourceStructure={isContentOutsideMainSourceStructure}
+        theme={theme}
+      />
+
+
+      <hr ref={separator} />
+
+      <Blog posts={filteredEntries} theme={theme} />}
+
+      <Seo />
+
+      <style jsx>{`
+        hr {
+          margin: 0;
+          border: 0;
+        }
+      `}</style>
+    </React.Fragment>
+  );
 }
+
 
 IndexPage.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-export default IndexPage;
-
 // eslint-disable-next-line no-undef
 export const query = graphql`
-  query IndexQuery {
-    entries: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//(posts|publications|talks)/.*--/" } }
-      sort: { fields: [fields___prefix], order: DESC }
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            prefix
-            draft
-            author
-            title
-            category
-            displayCategory
-            cover {
-              children {
-                ... on ImageSharp {
-                  gatsbyImageData(width: 800, height: 360, layout: CONSTRAINED)
-                }
+query IndexQuery {
+  entries: allMarkdownRemark(
+    filter: {fileAbsolutePath: {regex: "//(posts|publications|talks)/.*--/"}}
+    sort: {fields: {prefix: DESC}}
+  ) {
+    edges {
+      node {
+        excerpt
+        fields {
+          slug
+          prefix
+          draft
+          author
+          title
+          category
+          displayCategory
+          cover {
+            children {
+              ... on ImageSharp {
+                gatsbyImageData(width: 800, height: 360, layout: CONSTRAINED)
               }
             }
           }
-          frontmatter {
-            url
-            type
-          }
         }
-      }
-    }
-
-    heroes: allFile(filter: { absolutePath: { regex: "/hero-background/" } }) {
-      edges {
-        node {
-          dir
+        frontmatter {
+          url
+          type
         }
       }
     }
   }
+  heroes: allFile(filter: {absolutePath: {regex: "/hero-background/"}}) {
+    edges {
+      node {
+        dir
+      }
+    }
+  }
+}
 `;
