@@ -7,6 +7,7 @@ import config from "../utils/configger";
 
 import LinkedInIcon from "!svg-react-loader!../images/svg-icons/linkedin.svg";
 import MastodonIcon from "!svg-react-loader!../images/svg-icons/mastodon.svg";
+import BlueSkyIcon from "!svg-react-loader!../images/svg-icons/bluesky.svg";
 import TwitterIcon from "!svg-react-loader!../images/svg-icons/twitter.svg";
 import GitHubIcon from "!svg-react-loader!../images/svg-icons/github.svg";
 import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg"; // This is a slighty old logo, but has the advantage of being recognisable (for now) and SVG
@@ -14,6 +15,7 @@ import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg"; // Th
 const icons = {
   linkedin: <LinkedInIcon />,
   mastodon: <MastodonIcon />,
+  bluesky: <BlueSkyIcon />,
   twitter: <TwitterIcon />,
   github: <GitHubIcon />,
   medium: <MediumIcon />
