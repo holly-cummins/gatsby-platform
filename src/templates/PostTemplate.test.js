@@ -3,17 +3,8 @@ import { render, screen } from "@testing-library/react";
 
 import PostTemplate from "./PostTemplate";
 
-import { ThemeContext } from "../layouts";
-
-import themeObjectFromYaml from "../theme/theme.yaml";
-
 // Mock out things with static queries
 jest.mock("../components/Post/Author.js", () => () => <></>);
-
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = ui => {
-  return render(<ThemeContext.Provider value={themeObjectFromYaml}>{ui}</ThemeContext.Provider>);
-};
 
 describe("PostTemplate", () => {
   const category = "test-stuff";
@@ -44,7 +35,7 @@ describe("PostTemplate", () => {
 
     // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
     beforeEach(() => {
-      const tree = renderWithTheme(<PostTemplate data={data} pageContext={{}} />);
+      const tree = render(<PostTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the post body", () => {
@@ -87,7 +78,7 @@ describe("PostTemplate", () => {
 
     // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
     beforeEach(() => {
-      const tree = renderWithTheme(<PostTemplate data={data} pageContext={{}} />);
+      const tree = render(<PostTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the title", () => {

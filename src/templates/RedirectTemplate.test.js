@@ -1,16 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { ThemeContext } from "../layouts";
-
 import theme from "../theme/theme.yaml";
 import RedirectTemplate from "./RedirectTemplate";
 import Helmet from "react-helmet";
-
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = ui => {
-  return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
-};
 
 describe("RedirectTemplate", () => {
   const node = {
@@ -18,7 +11,7 @@ describe("RedirectTemplate", () => {
   };
 
   beforeEach(() => {
-    renderWithTheme(<RedirectTemplate pageContext={{ node }} />);
+    render(<RedirectTemplate pageContext={{ node }} />);
   });
 
   it("should render correct meta data for the front page", () => {

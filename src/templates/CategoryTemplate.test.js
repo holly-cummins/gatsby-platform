@@ -3,15 +3,8 @@ import { render, screen } from "@testing-library/react";
 
 import CategoryTemplate from "./CategoryTemplate";
 
-import { ThemeContext } from "../layouts";
-
-import theme from "../theme/theme.yaml";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = ui => {
-  return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
-};
 
 describe("CategoryTemplate", () => {
   describe("for an internal post", () => {
@@ -45,7 +38,7 @@ describe("CategoryTemplate", () => {
     };
 
     beforeEach(() => {
-      renderWithTheme(<CategoryTemplate data={data} pageContext={{}} />);
+      render(<CategoryTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the total count", () => {

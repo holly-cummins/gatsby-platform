@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { graphql } from "gatsby";
 import Seo from "../components/Seo";
-import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import List from "../components/List/List";
@@ -10,9 +9,11 @@ import LogoList from "../components/List/LogoList";
 import EventList from "../components/List/EventList";
 import { plural, icon } from "../utils/type";
 import { filterOutDrafts } from "../utils/filters";
+import { useTheme } from "../layouts/theme";
 
 const TypeTemplate = props => {
   const [showEventName, setShowEventName] = useState(true);
+  const theme = useTheme();
 
   const {
     pageContext: { type },
@@ -101,26 +102,22 @@ const TypeTemplate = props => {
   };
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <header>
-              <Headline theme={theme}>
-                {Icon && <Icon />}
-                {plural(type)}
-              </Headline>
-              {yearList.length > 1
-                ? yearList.map(item => (
-                    <section key={item[0]}>
-                      <h2>{item[0]}</h2>
-                      {listEntry(item[1], type, theme, item[0], useShortDate)}
-                    </section>
-                  ))
-                : yearList.map(item => listEntry(item[1], type, theme, item[0]))}
-            </header>
-          </Article>
-        )}
-      </ThemeContext.Consumer>
+      <Article>
+        <header>
+          <Headline theme={theme}>
+            {Icon && <Icon />}
+            {plural(type)}
+          </Headline>
+          {yearList.length > 1
+            ? yearList.map(item => (
+              <section key={item[0]}>
+                <h2>{item[0]}</h2>
+                {listEntry(item[1], type, theme, item[0], useShortDate)}
+              </section>
+            ))
+            : yearList.map(item => listEntry(item[1], type, theme, item[0]))}
+        </header>
+      </Article>
 
       <Seo />
     </React.Fragment>
@@ -142,8 +139,8 @@ export const typeQuery = graphql`
   query PostsByType($type: String) {
     allMarkdownRemark(
       limit: 1000
-      sort: { fields: [fields___prefix], order: DESC }
-      filter: { fields: { slug: { ne: "" } }, frontmatter: { type: { eq: $type } } }
+      sort: {fields: {prefix: DESC}}
+      filter: {fields: {slug: {ne: ""}}, frontmatter: {type: {eq: $type}}}
     ) {
       totalCount
       edges {

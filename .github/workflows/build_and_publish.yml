@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - run: npm run test
         env:
           CI: true
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - run: ./scripts/preprocess-publications.js
       - run: ./scripts/preprocess-talks.js
       - run: npm run build

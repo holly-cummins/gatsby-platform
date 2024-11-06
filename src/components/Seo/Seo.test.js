@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Helmet from "react-helmet";
 import Seo from "./Seo";
+import { Helmet } from "react-helmet";
 
 const siteTitle = "sitebla";
 const shortSiteTitle = "short site title";
@@ -22,7 +22,8 @@ jest.mock("../../utils/configger", () => ({
 }));
 
 describe("Seo component", () => {
-  beforeAll(() => {});
+  beforeAll(() => {
+  });
 
   it("should render correct meta data for the front page", () => {
     render(<Seo />);

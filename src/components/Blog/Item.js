@@ -1,4 +1,4 @@
-import { FaArrowRight as ArrowRight } from "react-icons/fa/";
+import { FaArrowRight as ArrowRight } from "react-icons/fa";
 import { Calendar20 as Calendar } from "@carbon/icons-react";
 import { Tag20 as Tag } from "@carbon/icons-react";
 import { User20 as User } from "@carbon/icons-react";

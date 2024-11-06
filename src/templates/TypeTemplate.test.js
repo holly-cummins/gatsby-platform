@@ -3,17 +3,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import TypeTemplate from "./TypeTemplate";
 
-import { ThemeContext } from "../layouts";
-
 import theme from "../theme/theme.yaml";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
 jest.mock("react-scale-text");
-
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = ui => {
-  return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
-};
 
 describe("TypeTemplate", () => {
   const title = "some post";
@@ -158,7 +151,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      render(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("does not render any years", async () => {
@@ -183,7 +176,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      render(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {
@@ -215,7 +208,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      render(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {
@@ -315,7 +308,7 @@ describe("TypeTemplate", () => {
       const mediaType = "media";
 
       beforeEach(() => {
-        renderWithTheme(<TypeTemplate data={data} pageContext={{ type: mediaType }} />);
+        render(<TypeTemplate data={data} pageContext={{ type: mediaType }} />);
       });
 
       it("renders lists with logos", () => {
@@ -347,7 +340,7 @@ describe("TypeTemplate", () => {
     };
 
     beforeEach(() => {
-      renderWithTheme(<TypeTemplate data={data} pageContext={{ type }} />);
+      render(<TypeTemplate data={data} pageContext={{ type }} />);
     });
 
     it("renders the title", () => {

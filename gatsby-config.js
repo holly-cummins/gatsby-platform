@@ -50,6 +50,9 @@ module.exports = {
       available: !algoliaMissing
     }
   },
+  flags: {
+    DEV_SSR: true
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-beam-analytics`,
@@ -57,8 +60,12 @@ module.exports = {
         dataToken: process.env.BEAM_ID || "none"
       }
     },
-    `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files
-    `gatsby-plugin-styled-jsx-postcss`, // as above
+    {
+      resolve: `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files
+      options: {
+        jsxPlugins: ["styled-jsx-plugin-postcss"]
+      }
+    },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -255,7 +262,7 @@ module.exports = {
               {
                 allMarkdownRemark(
                   limit: 1000,
-                  sort: { order: DESC, fields: [fields___prefix] },
+                  sort: {fields: {prefix: DESC}}
                   filter: {
                     fields: {
                       prefix: { ne: null },

@@ -7,30 +7,18 @@ import themeObjectFromYaml from "../../theme/theme.yaml";
 
 describe("Footer", () => {
   it("renders something with a footers role", () => {
-    render(<Footer htmlAst={{ type: "root", children: [] }} theme={themeObjectFromYaml} />);
+    render(<Footer theme={themeObjectFromYaml} />);
     expect(screen.getByRole("contentinfo")).toBeTruthy();
   });
 
-  it("renders the html ast argument", () => {
-    const text = "this is the displayed text";
-    const htmlAst = {
-      type: "root",
-      children: [
-        {
-          type: "element",
-          tagName: "p",
-          properties: {},
-          children: [
-            {
-              type: "text",
-              value: text
-            }
-          ]
-        }
-      ]
-    };
-    render(<Footer htmlAst={htmlAst} theme={themeObjectFromYaml} />);
-    expect(screen.getByText(text)).toBeTruthy();
+  it("renders an author name", () => {
+    render(<Footer theme={themeObjectFromYaml} />);
+    expect(screen.getByText("built by ducky devine")).toBeTruthy();
+  });
+
+  it("renders a social media link", () => {
+    render(<Footer theme={themeObjectFromYaml} />);
+    expect(screen.getByText("twitter")).toBeTruthy();
   });
 
   it("renders an icon", () => {
@@ -44,7 +32,7 @@ describe("Footer", () => {
         }
       ]
     };
-    render(<Footer htmlAst={htmlAst} theme={themeObjectFromYaml} />);
+    render(<Footer theme={themeObjectFromYaml} />);
     expect(screen.getByTitle(type)).toBeTruthy();
   });
 });

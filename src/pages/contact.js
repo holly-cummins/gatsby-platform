@@ -10,7 +10,10 @@ import MastodonIcon from "!svg-react-loader!../images/svg-icons/mastodon.svg";
 import BlueSkyIcon from "!svg-react-loader!../images/svg-icons/bluesky.svg";
 import TwitterIcon from "!svg-react-loader!../images/svg-icons/twitter.svg";
 import GitHubIcon from "!svg-react-loader!../images/svg-icons/github.svg";
-import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg"; // This is a slighty old logo, but has the advantage of being recognisable (for now) and SVG
+import MediumIcon from "!svg-react-loader!../images/svg-icons/medium.svg";
+import { useTheme } from "../layouts/theme";
+
+// This is a slightly old logo, but has the advantage of being recognisable (for now) and SVG
 
 const icons = {
   linkedin: <LinkedInIcon />,
@@ -23,62 +26,59 @@ const icons = {
 
 const ContactPage = () => {
   const platforms = config.authorSocialLinks;
+  const theme = useTheme();
+
 
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <header>
-              <Headline title="Contact" theme={theme} />
-            </header>
-            <p>You can find me on several social platforms. Please feel free to reach out.</p>
-            <ul>
-              {platforms.map(platform => (
-                <li key={platform.name}>
-                  <div>
-                    <div className="icon">{icons[platform.name]}</div>
-                    <a rel="me" href={platform.url}>
-                      {platform.display}
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {/* --- STYLES --- */}
-            <style jsx>
-              {`
-                ul {
-                  margin: ${theme.space.stack.m};
-                  padding: ${theme.space.m};
-                  list-style: none;
-                }
+      <Article>
+        <header>
+          <Headline title="Contact" theme={theme} />
+        </header>
+        <p>You can find me on several social platforms. Please feel free to reach out.</p>
+        <ul>
+          {platforms.map(platform => (
+            <li key={platform.name} className="social-coordinate">
+              <div>
+                <div className="icon">{icons[platform.name]}</div>
+                <a rel="me" href={platform.url}>
+                  {platform.display}
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {/* --- STYLES --- */}
+        <style jsx>
+          {`
+            ul {
+              margin: ${theme.space.stack.m};
+              padding: ${theme.space.m};
+              list-style: none;
+            }
 
-                li {
-                  padding: ${theme.space.xs} 0;
-                  font-size: ${theme.font.size.m};
-                  line-height: ${theme.font.lineHeight.l};
-                }
+            li {
+              padding: ${theme.space.xs} 0;
+              font-size: ${theme.font.size.m};
+              line-height: ${theme.font.lineHeight.l};
+            }
 
-                div {
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                }
+            div {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+            }
 
-                .icon {
-                  padding: ${theme.space.m};
-                }
+            .icon {
+              padding: ${theme.space.m};
+            }
 
-                .icon :global(svg) {
-                  height: 40px;
-                }
-              `}
-            </style>
-          </Article>
-        )}
-      </ThemeContext.Consumer>
-
+            .icon :global(svg) {
+              height: 40px;
+            }
+          `}
+        </style>
+      </Article>
       <Seo />
     </React.Fragment>
   );

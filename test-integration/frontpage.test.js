@@ -24,6 +24,12 @@ describe("main site", () => {
     ).resolves.toBeTruthy();
   });
 
+  it("should have a rel=me metadatadata", async () => {
+    await expect(
+      page.waitForSelector(`xpath/ //link[contains(@rel, "me")]`)
+    ).resolves.toBeTruthy();
+  });
+
   describe("header navigation bar", () => {
     itSometimes(
       process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_APP_ID !== "none",
@@ -31,31 +37,31 @@ describe("main site", () => {
       async () => {
         // We should only have a search bar if we have algolia configured
         // eslint-disable-next-line jest/no-standalone-expect
-        await expect(page.waitForSelector('xpath/ //*[text()="Search"]')).resolves.toBeTruthy();
+        await expect(page.waitForSelector("xpath/ //*[text()=\"Search\"]")).resolves.toBeTruthy();
       }
     );
 
     it("should have a Contact option", async () => {
-      await expect(page.waitForSelector('xpath/ //*[text()="Contact"]')).resolves.toBeTruthy();
+      await expect(page.waitForSelector("xpath/ //*[text()=\"Contact\"]")).resolves.toBeTruthy();
     });
   });
 
   describe("hero mechanism", () => {
     it("should have button to click", async () => {
       await expect(
-        page.waitForSelector('xpath/ //*[contains(@aria-label,"scroll")]')
+        page.waitForSelector("xpath/ //*[contains(@aria-label,\"scroll\")]")
       ).resolves.toBeTruthy();
     });
 
     it("should scroll down when the button is clicked", async () => {
       // Look for a list item which has a class of 'blog-item'
-      const selector = '//li[contains(@class, "blog-item")]';
+      const selector = "//li[contains(@class, \"blog-item\")]";
 
       const tile = await page.waitForSelector("xpath/" + selector);
       // Sense check - make sure the thing is there but not visible (we have to use the viewport, not the css visibility)
       await expect(tile.isIntersectingViewport()).resolves.toBeFalsy();
 
-      const scrollButton = await page.waitForSelector('xpath/ //*[contains(@aria-label,"scroll")]');
+      const scrollButton = await page.waitForSelector("xpath/ //*[contains(@aria-label,\"scroll\")]");
       await expect(scrollButton.isIntersectingViewport()).resolves.toBeTruthy();
 
       // Click, which should scroll

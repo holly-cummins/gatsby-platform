@@ -3,9 +3,6 @@ import { render, screen } from "@testing-library/react";
 
 import QrCodeTemplate from "./QrCodeTemplate";
 
-import { ThemeContext } from "../layouts";
-
-import themeObjectFromYaml from "../theme/theme.yaml";
 
 const { siteUrl } = require("../utils/configger");
 
@@ -13,10 +10,6 @@ const { siteUrl } = require("../utils/configger");
 // eslint-disable-next-line react/display-name
 jest.mock("../components/Post/Author.js", () => () => <></>);
 
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = ui => {
-  return render(<ThemeContext.Provider value={themeObjectFromYaml}>{ui}</ThemeContext.Provider>);
-};
 
 describe("QR Code Template", () => {
   const slug = "/sluggeroo";
@@ -27,7 +20,7 @@ describe("QR Code Template", () => {
 
   // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
   beforeEach(() => {
-    renderWithTheme(<QrCodeTemplate pageContext={postQuery} />);
+    render(<QrCodeTemplate pageContext={postQuery} />);
   });
 
   it("renders the target URL", () => {

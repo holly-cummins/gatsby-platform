@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextFit from "react-textfit";
+import TextFit from "react-textfitfix";
 import { Link } from "gatsby";
 import { Badge20 as Star } from "@carbon/icons-react";
 

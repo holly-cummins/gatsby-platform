@@ -4,12 +4,14 @@ import { graphql } from "gatsby";
 
 import Article from "../components/Article";
 import Search from "../components/Search";
-import { ThemeContext } from "../layouts";
 import Seo from "../components/Seo";
 
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
+import { useTheme } from "../layouts/theme";
 
 const SearchPage = props => {
+  const theme = useTheme();
+
   const {
     data: {
       site: {
@@ -20,17 +22,13 @@ const SearchPage = props => {
 
   return (
     <React.Fragment>
-      <ThemeContext.Consumer>
-        {theme => (
-          <Article theme={theme}>
-            <div className="icon">
-              <AlgoliaIcon />
-            </div>
+      <Article>
+        <div className="icon">
+          <AlgoliaIcon />
+        </div>
 
-            <Search algolia={algolia} theme={theme} />
-          </Article>
-        )}
-      </ThemeContext.Consumer>
+        <Search algolia={algolia} theme={theme} />
+      </Article>
 
       <Seo />
 

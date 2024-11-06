@@ -2,16 +2,11 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import IndexPage from "./index";
 
-import { ThemeContext } from "../layouts";
 import { cover } from "../../__mocks__/site.js";
 
 import themeObjectFromYaml from "../theme/theme.yaml";
 import { setToProd, restoreOldEnvironment } from "../utils/filters.test";
 
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = (ui, theme) => {
-  return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
-};
 
 describe("IndexPage", () => {
   describe("with no posts or publications", () => {
@@ -20,7 +15,7 @@ describe("IndexPage", () => {
       heroes: { edges: [] }
     };
     beforeEach(async () => {
-      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+      render(<IndexPage data={data} />, themeObjectFromYaml);
     });
 
     it("renders the scroll button", async () => {
@@ -84,7 +79,7 @@ describe("IndexPage", () => {
     };
 
     beforeEach(async () => {
-      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+      render(<IndexPage data={data} />, themeObjectFromYaml);
     });
 
     it("renders the scroll button", async () => {
@@ -170,7 +165,7 @@ describe("IndexPage", () => {
     };
 
     beforeEach(async () => {
-      renderWithTheme(<IndexPage data={data} />, themeObjectFromYaml);
+      render(<IndexPage data={data} />, themeObjectFromYaml);
     });
 
     it("renders a list of entries", async () => {

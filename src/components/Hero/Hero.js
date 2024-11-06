@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { FaArrowDown } from "react-icons/fa/";
+import { FaArrowDown } from "react-icons/fa";
 import config from "../../utils/configger";
 import { StaticImage } from "gatsby-plugin-image";
 

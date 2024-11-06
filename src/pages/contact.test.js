@@ -2,16 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import ContactPage from "./contact";
 
-import { ThemeContext } from "../layouts";
-import { cover } from "../../__mocks__/site.js";
 import config from "../utils/configger";
-
-import themeObjectFromYaml from "../theme/theme.yaml";
-
-// @see https://testing-library.com/docs/react-testing-library/setup#custom-render
-const renderWithTheme = (ui, theme) => {
-  return render(<ThemeContext.Provider value={theme}>{ui}</ThemeContext.Provider>);
-};
 
 const layoutData = {
   bgDesktop: {
@@ -27,7 +18,7 @@ const layoutData = {
 
 describe("ContactPage", () => {
   beforeEach(async () => {
-    renderWithTheme(<ContactPage />, themeObjectFromYaml);
+    render(<ContactPage />);
   });
   it("renders without error and includes some social links", async () => {
     expect(screen.getByText("@" + config.authorTwitterAccount)).toBeTruthy();
