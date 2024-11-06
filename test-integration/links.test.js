@@ -20,8 +20,9 @@ describe("site links", () => {
     // After a page is scanned, check out the results!
     checker.on("link", async result => {
       if (result.state === "BROKEN") {
-        // Don't stress about 403s from vimeo because humans can get past the paywall fairly easily and we want to have the link
-        const isPaywalled = result.status === status.FORBIDDEN && result.url.includes("vimeo");
+        // Don't stress about 403s from vimeo and other sites which block scrapers because humans can get past the paywall fairly easily and we want to have the link
+        // If there is a 403, we cannot validate, so move on
+        const isPaywalled = result.status === status.FORBIDDEN;
 
         let retryWorked;
         if (result.url.includes("twitter")) {
@@ -69,10 +70,6 @@ describe("site links", () => {
       "https://community.element14.com/technologies/open-source-hardware/f/forum/21938/quick-start-of-pcduino-without-a-hdmi-monitor-and-serial-debug-cable", // Does not work will with linkinator
       "https://trishagee.com/", // Can return 0 to some hosts
       "https://trishagee.com/2014/03/20/atom-to-hugo/",
-      "https://labs.openai.com/", // Blocks scrapers, ironically
-      "https://substack.com/", // Blocks scrapers
-      "https://duarte.com/", // Blocks scrapers
-      "https://player.vimeo.com/"
     ]; // We know these links are good, and we want to not hit the rate limiters since they appear everywhere
     // NOTE: The Manning, Medium, and GitHub D is For Duck is fictitious by design, so exclude them
     // DO NOT search and replace these with your own name
