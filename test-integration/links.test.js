@@ -22,7 +22,7 @@ describe("site links", () => {
       if (result.state === "BROKEN") {
         // Don't stress about 403s from vimeo and other sites which block scrapers because humans can get past the paywall fairly easily and we want to have the link
         // If there is a 403, we cannot validate, so move on
-        const isPaywalled = result.status === status.FORBIDDEN;
+        const isPaywalled = (result.status === status.FORBIDDEN || result.status === status.UNAUTHORIZED) && result.url.includes("vimeo");
 
         let retryWorked;
         if (result.url.includes("twitter")) {
