@@ -1,4 +1,4 @@
-import { Tag20 as Tag } from "@carbon/icons-react";
+import { Tag } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
@@ -44,7 +44,7 @@ const CategoryPage = props => {
   });
 
   return (
-    <React.Fragment>
+    (<React.Fragment>
       <Article>
         <header>
           <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
@@ -53,7 +53,7 @@ const CategoryPage = props => {
           <section key={category}>
             <h2>
               <a href={`/category/${category}`}>
-                <Tag />
+                <Tag size={20} />
                 {displayCategories[category]}
               </a>
             </h2>
@@ -75,9 +75,8 @@ const CategoryPage = props => {
           }
         `}</style>
       </Article>
-
       <Seo />
-    </React.Fragment>
+    </React.Fragment>)
   );
 };
 

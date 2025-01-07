@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Home20 as Home } from "@carbon/icons-react";
-import { Search20 as Search } from "@carbon/icons-react";
-import { Email20 as Envelope } from "@carbon/icons-react";
-import { Tag20 as Tag } from "@carbon/icons-react";
+import { Home } from "@carbon/icons-react";
+import { Search } from "@carbon/icons-react";
+import { Email as Envelope } from "@carbon/icons-react";
+import { Tag } from "@carbon/icons-react";
 
 import Item from "./Item";
 import Expand from "./Expand";

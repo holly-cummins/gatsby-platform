@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-spread": "^7.12.1",
-    "@carbon/icons-react": "^10.49.5",
+    "@carbon/icons-react": "^11.53.0",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "algoliasearch-helper": "^3.20.0",
     "axios": "^1.7.2",

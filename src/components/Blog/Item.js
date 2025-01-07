@@ -1,7 +1,7 @@
 import { FaArrowRight as ArrowRight } from "react-icons/fa";
-import { Calendar20 as Calendar } from "@carbon/icons-react";
-import { Tag20 as Tag } from "@carbon/icons-react";
-import { User20 as User } from "@carbon/icons-react";
+import { Calendar } from "@carbon/icons-react";
+import { Tag } from "@carbon/icons-react";
+import { User } from "@carbon/icons-react";
 
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
@@ -39,7 +39,7 @@ const Item = props => {
       <p className="meta">
         {type && (
           <span>
-            {Icon && <Icon />} {type}
+            {Icon && <Icon size={20} />} {type}
           </span>
         )}
         <span>

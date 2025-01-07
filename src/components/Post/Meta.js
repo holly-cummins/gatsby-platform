@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import { Calendar20 as Calendar } from "@carbon/icons-react";
-import { Tag20 as Tag } from "@carbon/icons-react";
-import { User20 as User } from "@carbon/icons-react";
-import { PresentationFile20 as Talk } from "@carbon/icons-react";
-import { Badge20 as Star } from "@carbon/icons-react";
+import { Calendar } from "@carbon/icons-react";
+import { Tag } from "@carbon/icons-react";
+import { User } from "@carbon/icons-react";
+import { PresentationFile as Talk } from "@carbon/icons-react";
+import { Badge as Star } from "@carbon/icons-react";
 
 const Meta = props => {
   const { prefix, author: authorName, category, displayCategory, event, keynote, theme } = props;
@@ -14,28 +14,28 @@ const Meta = props => {
   return (
     <p className="meta">
       <span>
-        <Calendar /> {prefix}
+        <Calendar size={20} /> {prefix}
       </span>
       {event ? (
         <span>
-          <Talk /> {event}
+          <Talk size={20} /> {event}
         </span>
       ) : (
         <></>
       )}
       {keynote ? (
         <span>
-          <Star /> keynote
+          <Star size={20} /> keynote
         </span>
       ) : (
         <></>
       )}
       <span>
-        <User /> {authorName}
+        <User size={20} /> {authorName}
       </span>
       {category && (
         <span>
-          <Tag />
+          <Tag size={20} />
           <Link to={`/category/${category}`}>{displayCategory}</Link>
         </span>
       )}

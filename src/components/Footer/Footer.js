@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Rss16 } from "@carbon/icons-react";
+import { Rss as RssIcon } from "@carbon/icons-react";
 import { Link } from "gatsby";
 import config from "../../utils/configger";
 import { useTheme } from "../../layouts/theme";
@@ -9,7 +9,7 @@ import { useTheme } from "../../layouts/theme";
 // hidden to screenreaders (the carbon default)
 class Rss extends React.Component {
   render() {
-    return <Rss16 title="rss" aria-label="rss" />;
+    return <RssIcon title="rss" aria-label="rss" size={20} />;
   }
 }
 
@@ -28,7 +28,7 @@ const Footer = () => {
             href={config.authorSocialLinks[0].url}>{config.authorSocialLinks[0].name}</a></li>
           <li>
             <Link href="/rss.xml">
-              <Rss></Rss>
+              <Rss />
             </Link>
           </li>
         </ul>

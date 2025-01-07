@@ -14,7 +14,7 @@ const Item = props => {
           onClick={onClick}
           data-slug={to}
         >
-          {Icon && <Icon />} {label}
+          {Icon && <Icon size={20} />} {label}
         </Link>
       </li>
 
@@ -85,6 +85,7 @@ const Item = props => {
 
             & :global(a.inHiddenItem) {
               color: ${theme.text.color.primary};
+
               &:hover {
                 color: ${theme.color.brand.primary};
               }

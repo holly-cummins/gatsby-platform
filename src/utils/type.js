@@ -1,10 +1,10 @@
-import { PresentationFile20 as PresentationFile } from "@carbon/icons-react";
-import { UserSpeaker20 as UserSpeaker } from "@carbon/icons-react";
-import { Notebook20 as Notebook } from "@carbon/icons-react";
-import { Document20 as Document } from "@carbon/icons-react";
-import { Microphone20 as Microphone } from "@carbon/icons-react";
-import { EventsAlt20 as EventsAlt } from "@carbon/icons-react";
-import { LicenseGlobal20 as LicenseGlobal } from "@carbon/icons-react";
+import { PresentationFile } from "@carbon/icons-react";
+import { UserSpeaker } from "@carbon/icons-react";
+import { Notebook } from "@carbon/icons-react";
+import { Document } from "@carbon/icons-react";
+import { Microphone } from "@carbon/icons-react";
+import { EventsAlt } from "@carbon/icons-react";
+import { LicenseGlobal } from "@carbon/icons-react";
 import React from "react";
 
 const typeIcons = {
@@ -41,6 +41,6 @@ export class Icon extends React.Component {
     const type = this.props.type;
     const title = typeIcons[type] ? `${type} icon` : "unknown icon";
     const Icon = typeIcons[type] ? typeIcons[type] : LicenseGlobal;
-    return <Icon {...this.props} title={title} />;
+    return <Icon {...this.props} title={title} size={20} />;
   }
 }
