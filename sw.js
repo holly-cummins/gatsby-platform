@@ -46,7 +46,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "874451f4f620f4f9e93c0f2c94674b4b"
+    "revision": "cfc111536a627dcaadfe0430d501cd77"
   },
   {
     "url": "manifest.webmanifest",
@@ -160,7 +160,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-99cbc76a12f32852edfd.js`))) {
+  if (!resources || !(await caches.match(`/app-4f7f4ac60dc556bea2bc.js`))) {
     return await fetch(event.request)
   }
 
