@@ -63,10 +63,11 @@ describe("main site", () => {
         await oldestCon.hover();
         // Every element should switch to a date
 
+        const dateSelector = "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]";
+
         try {
           // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
           // So assume at least one of the dates must contain a 0
-          const dateSelector = "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]";
           await page.waitForSelector(
             dateSelector,
             {
