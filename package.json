@@ -25,6 +25,7 @@
   "dependencies": {
     "@babel/plugin-transform-spread": "^7.12.1",
     "@carbon/icons-react": "^11.53.0",
+    "@fontsource/open-sans": "^5.1.1",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "algoliasearch-helper": "^3.20.0",
     "axios": "^1.7.2",
@@ -33,7 +34,6 @@
     "curly": "^0.6.2",
     "dayjs": "^1.11.1",
     "eslint-config-react-app": "^7.0.1",
-    "fontfaceobserver": "^2.0.13",
     "gatsby": "^5.13.5",
     "gatsby-core-utils": "^4.13.1",
     "gatsby-plugin-algolia": "^1.0.3",
@@ -89,7 +89,6 @@
     "styled-jsx-plugin-stylelint": "^0.1.0",
     "tinycolor2": "^1.4.1",
     "twitter-api-sdk": "^1.2.1",
-    "typeface-open-sans": "^1.1.13",
     "use-react-screenshot": "^4.0.0"
   },
   "keywords": [

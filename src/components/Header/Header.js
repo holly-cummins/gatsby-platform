@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { ScreenWidthContext, FontLoadedContext } from "../../layouts";
+import { ScreenWidthContext } from "../../layouts";
 import config from "../../utils/configger";
 import Menu from "../Menu";
 import { useTheme } from "../../layouts/theme";
@@ -50,23 +50,19 @@ export const PureHeader = (props) => {
             <h2>{config.headerSubTitle}</h2>
           </div>
         </Link>
-        <FontLoadedContext.Consumer>
-          {loaded => (
-            <ScreenWidthContext.Consumer>
-              {width => (
-                <Menu
-                  path={path}
-                  fixed={fixed}
-                  screenWidth={width}
-                  fontLoaded={loaded}
-                  pages={pages}
+        <ScreenWidthContext.Consumer>
+          {width => (
+            <Menu
+              path={path}
+              fixed={fixed}
+              screenWidth={width}
+              pages={pages}
 
-                  searchAvailable={props.searchAvailable}
-                />
-              )}
-            </ScreenWidthContext.Consumer>
+              searchAvailable={props.searchAvailable}
+            />
           )}
-        </FontLoadedContext.Consumer>
+        </ScreenWidthContext.Consumer>
+        )}
       </header>
       <VisibilitySensor onChange={visibilitySensorChange}>
         <div className="sensor" />

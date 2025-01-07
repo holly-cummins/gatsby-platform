@@ -7,7 +7,6 @@ describe("Menu", () => {
   const fixed = true;
   const path = "homepage";
   const width = 10;
-  const loaded = true;
   const pages = [];
 
   beforeEach(() => {
@@ -16,7 +15,6 @@ describe("Menu", () => {
         path={path}
         fixed={fixed}
         screenWidth={width}
-        fontLoaded={loaded}
         pages={pages}
 
         searchAvailable={true}

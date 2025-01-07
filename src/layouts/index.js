@@ -1,11 +1,9 @@
-import "typeface-open-sans";
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import Header from "../components/Header";
 
 export const ScreenWidthContext = React.createContext(0);
-export const FontLoadedContext = React.createContext(false);
 
 import Footer from "../components/Footer";
 import { ThemeProvider } from "./theme";

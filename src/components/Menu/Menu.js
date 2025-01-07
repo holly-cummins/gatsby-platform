@@ -56,7 +56,7 @@ const Menu = (props) => {
 
     hideOverflowedMenuItems();
 
-  }, [props.path, props.fixed, screenWidth, props.fontLoaded]);
+  }, [props.path, props.fixed, screenWidth]);
 
   const getRenderedItems = () => {
     const lis = itemList.current;
@@ -117,9 +117,7 @@ const Menu = (props) => {
     setOpen(!open);
   };
 
-  const closeMenu = e => {
-    //e.preventDefault();
-
+  const closeMenu = () => {
     if (open) {
       setOpen(false);
       if (props.screenWidth < 1024) {
@@ -273,7 +271,6 @@ Menu.propTypes = {
   path: PropTypes.string.isRequired,
   fixed: PropTypes.bool.isRequired,
   screenWidth: PropTypes.number.isRequired,
-  fontLoaded: PropTypes.bool.isRequired,
   pages: PropTypes.array.isRequired
 
 };
