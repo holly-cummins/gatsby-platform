@@ -133,8 +133,6 @@ const Menu = (props) => {
     }
   };
 
-  console.log("Hidden length is ", hiddenItems);
-
   return (
     <React.Fragment>
       <nav className={`menu ${open ? "open" : ""}`} rel="js-menu">
