@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Home } from "@carbon/icons-react";
@@ -47,12 +47,12 @@ const Menu = (props) => {
     setRenderedItems(getRenderedItems());
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     closeMenu();
   }, [props.path]);
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
 
     hideOverflowedMenuItems();
 
