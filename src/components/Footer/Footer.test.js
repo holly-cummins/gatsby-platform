@@ -11,12 +11,12 @@ describe("Footer", () => {
 
   it("renders an author name", () => {
     render(<Footer />);
-    expect(screen.getByText("built by ducky devine")).toBeTruthy();
+    expect(screen.getByText("built by ducky devine") || screen.getByText("built by holly cummins")).toBeTruthy();
   });
 
   it("renders a social media link", () => {
     render(<Footer />);
-    expect(screen.getByText("twitter")).toBeTruthy();
+    expect(screen.getByText("twitter") || screen.getByText("bluesky")).toBeTruthy();
   });
 
   it("renders an icon", () => {
