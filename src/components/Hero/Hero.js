@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 import { FaArrowDown } from "react-icons/fa";
 import config from "../../utils/configger";
 import { StaticImage } from "gatsby-plugin-image";
+import { useTheme } from "../../layouts/theme";
 
 const Hero = props => {
-  const { scrollToContent, isContentOutsideMainSourceStructure, theme } = props;
+  const { scrollToContent, isContentOutsideMainSourceStructure } = props;
+  const theme = useTheme();
 
   // We can't use a property for the source of the static image, but we can dynamically choose what code gets invoked
 
@@ -193,8 +195,8 @@ const Hero = props => {
 };
 
 Hero.propTypes = {
-  scrollToContent: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired
+  scrollToContent: PropTypes.func.isRequired
+
 };
 
 export default Hero;

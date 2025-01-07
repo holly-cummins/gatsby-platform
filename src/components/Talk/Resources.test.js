@@ -2,8 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Resources from "./Resources";
 
-import theme from "../../theme/theme.yaml";
-
 describe("A Resources section", () => {
   describe("with populated content", () => {
     const title = "content";
@@ -11,7 +9,7 @@ describe("A Resources section", () => {
     const resources = [{ url, title }];
 
     beforeEach(() => {
-      render(<Resources resources={resources} theme={theme} />);
+      render(<Resources resources={resources} />);
     });
 
     it("renders the title", () => {
@@ -26,11 +24,12 @@ describe("A Resources section", () => {
 
   describe("with no resources", () => {
     beforeEach(() => {
-      render(<Resources theme={theme} />);
+      render(<Resources />);
     });
 
     // Dummy test to force rendering
     // eslint-disable-next-line jest/expect-expect
-    it("renders something", () => {});
+    it("renders something", () => {
+    });
   });
 });

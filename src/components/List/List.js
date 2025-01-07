@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { icon } from "../../utils/type";
+import { useTheme } from "../../layouts/theme";
 
 const List = props => {
-  const { edges, theme, showIcon, useShortDate } = props;
+  const { edges, showIcon, useShortDate } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -85,7 +87,6 @@ const List = props => {
 
 List.propTypes = {
   edges: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
   useShortDate: PropTypes.bool,
   showIcon: PropTypes.bool
 };

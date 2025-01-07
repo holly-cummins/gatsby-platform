@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 
 import Separator from "./Separator";
 import { icon } from "../../utils/type";
+import { useTheme } from "../../layouts/theme";
 
 const Resources = props => {
-  const { resources, theme } = props;
+  const { resources } = props;
+
+  const theme = useTheme();
 
   if (resources && resources.length > 0) {
     return (
       <React.Fragment>
-        <Separator theme={theme} />
+        <Separator />
 
         <h2>Resources</h2>
         <ul>
@@ -77,7 +80,7 @@ const Resources = props => {
 
 Resources.propTypes = {
   video: PropTypes.object,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Resources;

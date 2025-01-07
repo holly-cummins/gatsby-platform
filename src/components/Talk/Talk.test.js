@@ -2,8 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Talk from ".";
 
-import theme from "../../theme/theme.yaml";
-
 // Mock out things with static queries
 // eslint-disable-next-line react/display-name
 jest.mock("../Post/Author.js", () => () => <></>);
@@ -39,7 +37,7 @@ describe("Talk", () => {
     const authorNote = "<p>an amazing author</a>";
 
     beforeEach(() => {
-      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} />);
     });
 
     it("renders the title", () => {
@@ -92,7 +90,7 @@ describe("Talk", () => {
     const authorNote = "<p>an amazing author</a>";
 
     it("handles the missing fields gracefully", () => {
-      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} />);
       expect(screen.getByText(title)).toBeTruthy();
     });
   });
@@ -125,7 +123,7 @@ describe("Talk", () => {
     const authorNote = "<p>an amazing author</a>";
 
     beforeEach(() => {
-      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+      render(<Talk post={post} next={next} prev={prev} authornote={authorNote} />);
     });
 
     it("renders the title", () => {

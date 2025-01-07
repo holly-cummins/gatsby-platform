@@ -1,8 +1,6 @@
 import React from "react";
-import { graphql, Link, StaticQuery } from "gatsby";
 import { render, screen } from "@testing-library/react";
 import { PureHeader as Header } from "./Header";
-import themeObjectFromYaml from "../../theme/theme.yaml";
 
 const graphqldata = {
   file: {
@@ -14,10 +12,9 @@ describe("Header", () => {
   it("renders the title", () => {
     const title = "Test Instance";
 
-    const tree = render(
+    render(
       <Header
         siteTitle="site title"
-        theme={themeObjectFromYaml}
         pages={[{ node: { frontmatter: { menuTitle: "", title: title }, fields: { slug: "" } } }]}
         path="/"
         data={graphqldata}

@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import TextFit from "react-textfitfix";
 import { Link } from "gatsby";
 import { Badge as Star } from "@carbon/icons-react";
+import { useTheme } from "../../layouts/theme";
 
 const EventList = props => {
-  const { edges, theme, showDate, listener } = props;
+  const { edges, showDate, listener } = props;
+  const theme = useTheme();
 
   return (
     (<React.Fragment>
@@ -105,7 +107,6 @@ const EventList = props => {
 
 EventList.propTypes = {
   edges: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
   showDate: PropTypes.bool,
   listener: PropTypes.func
 };

@@ -4,7 +4,6 @@ import { v4 as uuid } from "uuid";
 
 import Blog from ".";
 
-import themeObjectFromYaml from "../../theme/theme.yaml";
 import { cover } from "../../../__mocks__/site.js";
 
 const makeNode = () => {
@@ -31,7 +30,7 @@ describe("Blog", () => {
   it("renders an item for each post", () => {
     const posts = [makeNode(), makeNode()];
 
-    const tree = render(<Blog theme={themeObjectFromYaml} posts={posts} />);
+    render(<Blog posts={posts} />);
 
     expect(screen.getByRole("list")).toBeTruthy();
     // There should be a list item for each post

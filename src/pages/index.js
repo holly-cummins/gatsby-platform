@@ -7,7 +7,6 @@ import Seo from "../components/Seo";
 
 import { filterOutDrafts } from "../utils/filters";
 import config from "../utils/configger";
-import { useTheme } from "../layouts/theme";
 
 const platforms = config.authorSocialLinks;
 
@@ -29,8 +28,6 @@ export default function IndexPage({ data }) {
     separator.current.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
-  const theme = useTheme();
-
   const {
     entries: { edges: entries = [] },
     heroes: { edges: heroFiles = [] }
@@ -51,13 +48,11 @@ export default function IndexPage({ data }) {
       <Hero
         scrollToContent={scrollToContent}
         isContentOutsideMainSourceStructure={isContentOutsideMainSourceStructure}
-        theme={theme}
       />
-
 
       <hr ref={separator} />
 
-      <Blog posts={filteredEntries} theme={theme} />}
+      <Blog posts={filteredEntries} />
 
       <Seo />
 

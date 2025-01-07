@@ -4,10 +4,10 @@ import { Link } from "gatsby";
 
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { useTheme } from "../../layouts/theme";
 
 const NextPrev = props => {
   const {
-    theme,
     next: {
       fields: { prefix: nextPrefix, slug: nextSlug } = {},
       frontmatter: { title: nextTitle } = {}
@@ -17,6 +17,8 @@ const NextPrev = props => {
       frontmatter: { title: prevTitle } = {}
     } = {}
   } = props;
+
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -114,8 +116,8 @@ const NextPrev = props => {
 
 NextPrev.propTypes = {
   next: PropTypes.object,
-  prev: PropTypes.object,
-  theme: PropTypes.object.isRequired
+  prev: PropTypes.object
+
 };
 
 export default NextPrev;

@@ -30,7 +30,7 @@ describe("Item", () => {
         }
       };
 
-      const tree = render(<Item key="some-key" theme={theme} post={post} />);
+      render(<Item key="some-key" post={post} />);
     });
 
     it("renders the title", () => {
@@ -87,7 +87,7 @@ describe("Item", () => {
         }
       };
 
-      const tree = render(<Item key="some-key" theme={theme} post={post} />);
+      render(<Item key="some-key" post={post} />);
     });
 
     it("renders the title", () => {

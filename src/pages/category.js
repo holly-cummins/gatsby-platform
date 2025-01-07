@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
 
-import { ThemeContext } from "../layouts";
 import Article from "../components/Article/";
 import Headline from "../components/Article/Headline";
 import List from "../components/List";
@@ -47,7 +46,7 @@ const CategoryPage = props => {
     (<React.Fragment>
       <Article>
         <header>
-          <Headline title={`What's ${config.authorShortName} Thinking About?`} theme={theme} />
+          <Headline title={`What's ${config.authorShortName} Thinking About?`} />
         </header>
         {Object.keys(categories).map(category => (
           <section key={category}>
@@ -57,7 +56,7 @@ const CategoryPage = props => {
                 {displayCategories[category]}
               </a>
             </h2>
-            <List edges={categories[category]} theme={theme} />
+            <List edges={categories[category]} />
           </section>
         ))}
         {/* --- STYLES --- */}

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme } from "../../layouts/theme";
 
 const Headline = props => {
-  const { title, children, theme } = props;
+  const { title, children } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -62,7 +64,7 @@ const Headline = props => {
 Headline.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Headline;

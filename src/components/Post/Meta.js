@@ -7,9 +7,11 @@ import { Tag } from "@carbon/icons-react";
 import { User } from "@carbon/icons-react";
 import { PresentationFile as Talk } from "@carbon/icons-react";
 import { Badge as Star } from "@carbon/icons-react";
+import { useTheme } from "../../layouts/theme";
 
 const Meta = props => {
-  const { prefix, author: authorName, category, displayCategory, event, keynote, theme } = props;
+  const { prefix, author: authorName, category, displayCategory, event, keynote } = props;
+  const theme = useTheme();
 
   return (
     <p className="meta">
@@ -79,7 +81,7 @@ Meta.propTypes = {
   keynote: PropTypes.bool,
   category: PropTypes.string.isRequired,
   displayCategory: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Meta;

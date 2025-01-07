@@ -1,5 +1,4 @@
 import React from "react";
-import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import Seo from "../components/Seo";
@@ -33,7 +32,7 @@ const ContactPage = () => {
     <React.Fragment>
       <Article>
         <header>
-          <Headline title="Contact" theme={theme} />
+          <Headline title="Contact" />
         </header>
         <p>You can find me on several social platforms. Please feel free to reach out.</p>
         <ul>

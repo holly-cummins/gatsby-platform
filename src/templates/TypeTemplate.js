@@ -83,12 +83,12 @@ const TypeTemplate = props => {
 
   const listEntry = (item, type, theme, year, useShortDate) => {
     if (type === "media" || type === "book") {
-      return <LogoList edges={item} theme={theme} key={year} />;
+      return <LogoList edges={item} key={year} />;
     } else if (type === "talk") {
       return (
         <EventList
           edges={item}
-          theme={theme}
+
           key={year}
           showDate={!showEventName}
           listener={flipHeadings}
@@ -96,7 +96,7 @@ const TypeTemplate = props => {
       );
     } else {
       return (
-        <List edges={item} theme={theme} key={year} showIcon={false} useShortDate={useShortDate} />
+        <List edges={item} key={year} showIcon={false} useShortDate={useShortDate} />
       );
     }
   };
@@ -104,7 +104,7 @@ const TypeTemplate = props => {
     <React.Fragment>
       <Article>
         <header>
-          <Headline theme={theme}>
+          <Headline>
             {Icon && <Icon />}
             {plural(type)}
           </Headline>

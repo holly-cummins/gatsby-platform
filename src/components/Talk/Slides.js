@@ -2,14 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
 import Separator from "./Separator";
+import { useTheme } from "../../layouts/theme";
 
 const Slides = props => {
-  const { slides, theme } = props;
+  const { slides } = props;
+
+  const theme = useTheme();
 
   if (slides && slides.html) {
     return (
       <React.Fragment>
-        <Separator theme={theme} />
+        <Separator />
 
         <EmbedContainer markup={slides.html}>
           <a href={slides.url}>
@@ -52,7 +55,7 @@ const Slides = props => {
 
 Slides.propTypes = {
   slides: PropTypes.object,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Slides;

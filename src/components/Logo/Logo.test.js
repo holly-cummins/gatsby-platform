@@ -3,8 +3,6 @@ import { render, screen } from "@testing-library/react";
 
 import Logo from "./Logo";
 
-import theme from "../../theme/theme.yaml";
-
 const defaultLogo = "/logos/generic.png";
 const defaultLogoAltText = "generic logo";
 
@@ -13,7 +11,7 @@ describe("Logo", () => {
     const url = "http://forbes.com/site/something";
 
     beforeEach(() => {
-      render(<Logo site={url} theme={theme} />);
+      render(<Logo site={url} />);
     });
 
     it("renders the appropriate logo", () => {
@@ -27,7 +25,7 @@ describe("Logo", () => {
     const url = "https://thenewstack.io/want-to-save-the-world-start-by-cutting-your-cloud-costs/";
 
     beforeEach(() => {
-      render(<Logo site={url} theme={theme} />);
+      render(<Logo site={url} />);
     });
 
     it("renders the appropriate logo", () => {
@@ -41,7 +39,7 @@ describe("Logo", () => {
     const url = "https://www.raconteur.net/technology/software-tools-programmers/";
 
     beforeEach(() => {
-      render(<Logo site={url} theme={theme} />);
+      render(<Logo site={url} />);
     });
 
     it("renders the appropriate logo", () => {
@@ -55,7 +53,7 @@ describe("Logo", () => {
     const url = "http://elsewhere.com";
 
     beforeEach(() => {
-      render(<Logo site={url} theme={theme} />);
+      render(<Logo site={url} />);
     });
 
     it("renders the default image", () => {
@@ -67,7 +65,7 @@ describe("Logo", () => {
 
   describe("when the url is undefined", () => {
     beforeEach(() => {
-      render(<Logo theme={theme} />);
+      render(<Logo />);
     });
 
     it("renders the default image", () => {

@@ -12,7 +12,7 @@ const NotFoundPage = () => {
     <React.Fragment>
       <Article>
         <header>
-          <Headline title="Well, that didn't go well." theme={theme} />
+          <Headline title="Well, that didn't go well." />
         </header>
         <p>Looks like I haven't written that one yet.</p>
         <img src={cat} alt="a cat throwing up a hairball" />
