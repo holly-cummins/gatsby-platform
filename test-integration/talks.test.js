@@ -66,8 +66,9 @@ describe("main site", () => {
         try {
           // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
           // So assume at least one of the dates must contain a 0
+          const dateSelector = "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]";
           await page.waitForSelector(
-            "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]",
+            dateSelector,
             {
               timeout: 5 * 1000
             }
@@ -80,11 +81,11 @@ describe("main site", () => {
         }
 
         // Now do a deeper validation of the date text; we could check every node, but one is probably sufficient
-        const date = await page.waitForSelector(
-          "xpath///div[contains(@class,\"event\")]//*[contains(text(), \"0\")]",
+        const date = await page.waitForSelector(dateSelector,
           { timeout: 5 * 1000 }
         );
         expect(date).toBeTruthy();
+        console.log("Element is", date);
         const text = await date.evaluate(el => el.textContent);
         expect(text).toMatch(/[0-9][0-9]-[0-9][0-9]/);
       });
