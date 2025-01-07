@@ -12,16 +12,16 @@ describe("main site", () => {
     });
 
     it("should be possible from the front page", async () => {
-      await expect(page.waitForSelector('xpath/ //*[text()="Talks"]')).resolves.toBeTruthy();
+      await expect(page.waitForSelector("xpath/ //*[text()=\"Talks\"]")).resolves.toBeTruthy();
     });
 
     it("should bring up a talks page", async () => {
-      const talksLink = await page.waitForSelector('xpath/ //a[text()="Talks"]');
+      const talksLink = await page.waitForSelector("xpath/ //a[text()=\"Talks\"]");
       talksLink.evaluate(link => link.click());
 
       // Now it should be the talks page
       await expect(
-        page.waitForSelector('xpath/ //h1[contains(text(), "talks")]')
+        page.waitForSelector("xpath/ //h1[contains(text(), \"talks\")]")
       ).resolves.toBeTruthy();
     });
   });
@@ -33,7 +33,7 @@ describe("main site", () => {
 
     it("should be a talks page", async () => {
       await expect(
-        page.waitForSelector('xpath/ //h1[contains(text(), "talks")]')
+        page.waitForSelector("xpath/ //h1[contains(text(), \"talks\")]")
       ).resolves.toBeTruthy();
     });
 
@@ -50,7 +50,7 @@ describe("main site", () => {
     it("should have event names", async () => {
       // We don't know the content, but it's a reasonable guess some content matches SomethingCon
       await expect(
-        page.waitForSelector('xpath/ //div[contains(@class,"event")]//*[contains(text(), "Con")]')
+        page.waitForSelector("xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"Con\")]")
       ).resolves.toBeTruthy();
     });
 
@@ -58,16 +58,16 @@ describe("main site", () => {
       it("should switch event names for short dates", async () => {
         // We don't know the content, but it's a reasonable guess some content matches SomethingCon
         const oldestCon = await page.waitForSelector(
-          'xpath///div[contains(@class,"event")]//*[contains(text(), "Con")]'
+          "xpath///div[contains(@class,\"event\")]//*[contains(text(), \"Con\")]"
         );
-        oldestCon.hover();
+        await oldestCon.hover();
         // Every element should switch to a date
 
         try {
           // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
           // So assume at least one of the dates must contain a 0
           await page.waitForSelector(
-            'xpath/ //div[contains(@class,"event")]//*[contains(text(), "0")]',
+            "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]",
             {
               timeout: 5 * 1000
             }
@@ -81,7 +81,7 @@ describe("main site", () => {
 
         // Now do a deeper validation of the date text; we could check every node, but one is probably sufficient
         const date = await page.waitForSelector(
-          'xpath///div[contains(@class,"event")]//*[contains(text(), "0")]',
+          "xpath///div[contains(@class,\"event\")]//*[contains(text(), \"0\")]",
           { timeout: 5 * 1000 }
         );
         expect(date).toBeTruthy();
