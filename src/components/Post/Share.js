@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import {
   LinkedinShareButton,
   TwitterShareButton,
-  LinkedinShareCount,
   TwitterIcon,
   LinkedinIcon
 } from "react-share";
 
 import config from "../../utils/configger";
+import { useTheme } from "../../layouts/theme";
 
 const PostShare = props => {
   const {
@@ -16,14 +16,13 @@ const PostShare = props => {
       fields: { slug },
       frontmatter: { title },
       excerpt
-    },
-    theme
+    }
   } = props;
+  const theme = useTheme();
 
   const url = config.siteUrl + config.pathPrefix + slug;
 
   const iconSize = 36;
-  const filter = count => (count > 0 ? count : "");
 
   return (
     <React.Fragment>
@@ -92,8 +91,8 @@ const PostShare = props => {
 };
 
 PostShare.propTypes = {
-  post: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired
+
 };
 
 export default PostShare;

@@ -3,8 +3,6 @@ import { render, screen } from "@testing-library/react";
 
 import LogoList from "./LogoList";
 
-import theme from "../../theme/theme.yaml";
-
 describe("LogoList", () => {
   describe("for an internal post", () => {
     const title = "some post";
@@ -18,7 +16,7 @@ describe("LogoList", () => {
     const edges = [node];
 
     beforeEach(() => {
-      const tree = render(<LogoList edges={edges} theme={theme} />);
+      render(<LogoList edges={edges} />);
     });
 
     it("renders the title", () => {
@@ -46,7 +44,7 @@ describe("LogoList", () => {
     const edges = [node];
 
     beforeEach(() => {
-      const tree = render(<LogoList edges={edges} theme={theme} />);
+      render(<LogoList edges={edges} />);
     });
 
     it("renders the title", () => {

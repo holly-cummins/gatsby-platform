@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { graphql } from "gatsby";
 import Seo from "../components/Seo";
-import { ThemeContext } from "../layouts";
 import Article from "../components/Article";
 import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import { filterOutDrafts } from "../utils/filters";
-import { useTheme } from "../layouts/theme";
 
 const CategoryTemplate = props => {
   const {
@@ -18,7 +16,6 @@ const CategoryTemplate = props => {
     }
   } = props;
 
-  const theme = useTheme();
 
   const filteredEntries = filterOutDrafts(edges);
   const totalCount = filteredEntries.length;
@@ -30,7 +27,7 @@ const CategoryTemplate = props => {
     <React.Fragment>
       <Article>
         <header>
-          <Headline theme={theme}>
+          <Headline>
             <span>Posts in category</span> <FaTag />
             {displayCategory}
           </Headline>
@@ -39,7 +36,7 @@ const CategoryTemplate = props => {
             {totalCount > 1 ? "s" : ""} in the category.
           </p>
         </header>
-        <List edges={filteredEntries} theme={theme} />
+        <List edges={filteredEntries} />
       </Article>
 
       <Seo />

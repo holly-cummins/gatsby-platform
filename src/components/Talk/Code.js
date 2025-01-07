@@ -3,14 +3,16 @@ import PropTypes from "prop-types";
 
 import GitHubIcon from "!svg-react-loader!../../images/svg-icons/github.svg";
 import Separator from "./Separator";
+import { useTheme } from "../../layouts/theme";
 
 const Code = props => {
-  const { code, theme } = props;
+  const { code } = props;
+  const theme = useTheme();
 
   if (code && code.length > 0) {
     return (
       <React.Fragment>
-        <Separator theme={theme} />
+        <Separator />
 
         <h2>Code</h2>
         <ul>
@@ -77,7 +79,7 @@ const Code = props => {
 
 Code.propTypes = {
   video: PropTypes.object,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Code;

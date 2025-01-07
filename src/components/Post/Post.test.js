@@ -2,8 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Post from ".";
 
-import theme from "../../theme/theme.yaml";
-
 // Mock out things with static queries
 // eslint-disable-next-line react/display-name
 jest.mock("../Post/Author.js", () => () => <></>);
@@ -32,7 +30,7 @@ describe("Post", () => {
   const authorNote = "<p>an amazing author</a>";
 
   beforeEach(() => {
-    render(<Post post={post} next={next} prev={prev} authornote={authorNote} theme={theme} />);
+    render(<Post post={post} next={next} prev={prev} authornote={authorNote} />);
   });
 
   it("renders the title", () => {

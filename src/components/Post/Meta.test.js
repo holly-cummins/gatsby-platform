@@ -2,8 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Meta from "./Meta";
 
-import theme from "../../theme/theme.yaml";
-
 describe("Meta", () => {
   describe("with no event", () => {
     const category = "stuff";
@@ -19,7 +17,7 @@ describe("Meta", () => {
           author={author}
           category={category}
           displayCategory={displayCategory}
-          theme={theme}
+
         />
       );
     });
@@ -57,7 +55,7 @@ describe("Meta", () => {
           category={category}
           displayCategory={displayCategory}
           event={event}
-          theme={theme}
+
         />
       );
     });
@@ -98,7 +96,7 @@ describe("Meta", () => {
           displayCategory={displayCategory}
           event={event}
           keynote={true}
-          theme={theme}
+
         />
       );
     });

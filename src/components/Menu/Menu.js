@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Home } from "@carbon/icons-react";
@@ -9,82 +9,72 @@ import { Tag } from "@carbon/icons-react";
 import Item from "./Item";
 import Expand from "./Expand";
 import { icon } from "../../utils/type";
+import { useTheme } from "../../layouts/theme";
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.itemList = React.createRef();
+const Menu = (props) => {
+  const { screenWidth } = props;
 
-    const pages = props.pages.map(page => ({
-      to: page.node.fields.slug,
-      label: page.node.frontmatter.menuTitle
-        ? page.node.frontmatter.menuTitle
-        : page.node.frontmatter.title
-    }));
+  const [open, setOpen] = useState(false);
+  const [hiddenItems, setHiddenItems] = useState([]);
+  const [renderedItems, setRenderedItems] = useState([]); // will contain references to rendered DOM elements of menu
 
-    this.items = [
-      { to: "/", label: "Home", icon: Home },
-      { to: "/type/blog", label: "Blogs", icon: icon("blog") },
-      { to: "/type/talk", label: "Talks", icon: icon("talk") },
-      { to: "/type/media", label: "Media", icon: icon("media") },
-      { to: "/type/podcast", label: "Podcasts", icon: icon("podcast") },
-      { to: "/type/book", label: "Books", icon: icon("book") },
-      { to: "/category/", label: "Topics", icon: Tag },
-      this.props.searchAvailable && { to: "/search/", label: "Search", icon: Search },
-      ...pages,
-      { to: "/contact/", label: "Contact", icon: Envelope }
-    ].filter(item => item); // Lazily filter out undefined items
+  const theme = useTheme();
 
-    this.renderedItems = []; // will contain references to rendered DOM elements of menu
-  }
+  const itemList = useRef();
 
-  state = {
-    open: false,
-    hiddenItems: []
+  const pages = props.pages.map(page => ({
+    to: page.node.fields.slug,
+    label: page.node.frontmatter.menuTitle
+      ? page.node.frontmatter.menuTitle
+      : page.node.frontmatter.title
+  }));
+
+  const items = [
+    { to: "/", label: "Home", icon: Home },
+    { to: "/type/blog", label: "Blogs", icon: icon("blog") },
+    { to: "/type/talk", label: "Talks", icon: icon("talk") },
+    { to: "/type/media", label: "Media", icon: icon("media") },
+    { to: "/type/podcast", label: "Podcasts", icon: icon("podcast") },
+    { to: "/type/book", label: "Books", icon: icon("book") },
+    { to: "/category/", label: "Topics", icon: Tag },
+    props.searchAvailable && { to: "/search/", label: "Search", icon: Search },
+    ...pages,
+    { to: "/contact/", label: "Contact", icon: Envelope }
+  ].filter(item => item); // Lazily filter out undefined items
+
+
+  useEffect(() => {
+    setRenderedItems(getRenderedItems());
+  }, []);
+
+  useLayoutEffect(() => {
+    closeMenu();
+  }, [props.path]);
+
+
+  useLayoutEffect(() => {
+
+    hideOverflowedMenuItems();
+
+  }, [props.path, props.fixed, screenWidth, props.fontLoaded]);
+
+  const getRenderedItems = () => {
+    const lis = itemList.current;
+    return Array.from(lis.children);
   };
 
-  static propTypes = {
-    path: PropTypes.string.isRequired,
-    fixed: PropTypes.bool.isRequired,
-    screenWidth: PropTypes.number.isRequired,
-    fontLoaded: PropTypes.bool.isRequired,
-    pages: PropTypes.array.isRequired,
-    theme: PropTypes.object.isRequired
-  };
+  const hideOverflowedMenuItems = () => {
 
-  componentDidMount() {
-    this.renderedItems = this.getRenderedItems();
-  }
+    const PADDING_AND_SPACE_FOR_MORELINK = props.screenWidth >= 1024 ? 60 : 0;
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.path !== prevProps.path ||
-      this.props.fixed !== prevProps.fixed ||
-      this.props.screenWidth !== prevProps.screenWidth ||
-      this.props.fontLoaded !== prevProps.fontLoaded
-    ) {
-      if (this.props.path !== prevProps.path) {
-        this.closeMenu();
-      }
-      this.hideOverflowedMenuItems();
-    }
-  }
-
-  getRenderedItems = () => {
-    const itemList = this.itemList.current;
-    return Array.from(itemList.children);
-  };
-
-  hideOverflowedMenuItems = () => {
-    const PADDING_AND_SPACE_FOR_MORELINK = this.props.screenWidth >= 1024 ? 60 : 0;
-
-    const itemsContainer = this.itemList.current;
+    const itemsContainer = itemList.current;
     const maxWidth = itemsContainer.offsetWidth - PADDING_AND_SPACE_FOR_MORELINK;
 
-    this.setState({ hiddenItems: [] }); // clears previous state
+    setHiddenItems([]); // clears previous state
 
-    const menu = this.renderedItems.reduce(
+    const menu = renderedItems.reduce(
       (result, item) => {
+
         item.classList.add("item");
         item.classList.remove("hideItem");
 
@@ -106,16 +96,16 @@ class Menu extends React.Component {
       { visibleItems: [], cumulativeWidth: 0, hiddenItems: [] }
     );
 
-    this.setState(prevState => ({ hiddenItems: menu.hiddenItems }));
+    setHiddenItems(menu.hiddenItems);
   };
 
-  toggleMenu = e => {
+  const toggleMenu = e => {
     e.preventDefault();
 
-    if (this.props.screenWidth < 1024) {
-      this.renderedItems.map(item => {
-        const oldClass = this.state.open ? "showItem" : "hideItem";
-        const newClass = this.state.open ? "hideItem" : "showItem";
+    if (props.screenWidth < 1024) {
+      renderedItems.map(item => {
+        const oldClass = open ? "showItem" : "hideItem";
+        const newClass = open ? "hideItem" : "showItem";
 
         if (item.classList.contains(oldClass)) {
           item.classList.add(newClass);
@@ -124,16 +114,16 @@ class Menu extends React.Component {
       });
     }
 
-    this.setState(prevState => ({ open: !prevState.open }));
+    setOpen(!open);
   };
 
-  closeMenu = e => {
+  const closeMenu = e => {
     //e.preventDefault();
 
-    if (this.state.open) {
-      this.setState({ open: false });
-      if (this.props.screenWidth < 1024) {
-        this.renderedItems.map(item => {
+    if (open) {
+      setOpen(false);
+      if (props.screenWidth < 1024) {
+        renderedItems.map(item => {
           if (item.classList.contains("showItem")) {
             item.classList.add("hideItem");
             item.classList.remove("item");
@@ -143,144 +133,151 @@ class Menu extends React.Component {
     }
   };
 
-  render() {
-    const { screenWidth, theme } = this.props;
-    const { open } = this.state;
+  console.log("Hidden length is ", hiddenItems);
 
-    return (
-      <React.Fragment>
-        <nav className={`menu ${open ? "open" : ""}`} rel="js-menu">
-          <ul className="itemList" ref={this.itemList}>
-            {this.items.map(item => (
-              <Item item={item} key={item.label} icon={item.icon} theme={theme} />
+  return (
+    <React.Fragment>
+      <nav className={`menu ${open ? "open" : ""}`} rel="js-menu">
+        <ul className="itemList" ref={itemList}>
+          {items.map(item => (
+            <Item item={item} key={item.label} icon={item.icon} />
+          ))}
+        </ul>
+        {hiddenItems.length > 0 && <Expand onClick={toggleMenu} />}
+        {open && screenWidth >= 1024 && (
+          <ul className="hiddenItemList">
+            {hiddenItems.map(item => (
+              <Item item={item} key={item.label} hiddenItem />
             ))}
           </ul>
-          {this.state.hiddenItems.length > 0 && <Expand onClick={this.toggleMenu} theme={theme} />}
-          {open && screenWidth >= 1024 && (
-            <ul className="hiddenItemList">
-              {this.state.hiddenItems.map(item => (
-                <Item item={item} key={item.label} hiddenItem theme={theme} />
-              ))}
-            </ul>
-          )}
-        </nav>
+        )}
+      </nav>
 
-        {/* --- STYLES --- */}
-        <style jsx>{`
+      {/* --- STYLES --- */}
+      <style jsx>{`
+        .menu {
+          align-items: center;
+          background: ${theme.color.neutral.white};
+          bottom: 0;
+          display: flex;
+          flex-grow: 1;
+          left: 0;
+          max-height: ${open ? "1000px" : "50px"};
+          padding: 0 ${theme.space.inset.s};
+          position: fixed;
+          width: 100%;
+          z-index: 1;
+          transition: all ${theme.time.duration.default};
+        }
+
+        .itemList {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          width: 100%;
+        }
+
+        @below desktop {
           .menu {
-            align-items: center;
-            background: ${theme.color.neutral.white};
-            bottom: 0;
+            &::after {
+              position: absolute;
+              content: "";
+              left: ${theme.space.m};
+              right: ${theme.space.m};
+              top: 0;
+              height: 1px;
+              background: ${theme.color.brand.primary};
+            }
+
+            &.open {
+              padding: ${theme.space.inset.m};
+            }
+
+            :global(.homepage):not(.fixed) & {
+              bottom: -100px;
+            }
+          }
+        }
+
+        @from-width desktop {
+          .menu {
+            border-top: none;
+            background: transparent;
             display: flex;
-            flex-grow: 1;
-            left: 0;
-            max-height: ${open ? "1000px" : "50px"};
-            padding: 0 ${theme.space.inset.s};
-            position: fixed;
-            width: 100%;
-            z-index: 1;
-            transition: all ${theme.time.duration.default};
+            position: relative;
+            justify-content: flex-end;
+            padding-left: 50px;
+            transition: none;
           }
 
           .itemList {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-end;
+            padding: 0;
+          }
+
+          .hiddenItemList {
             list-style: none;
             margin: 0;
-            padding: 0;
-            position: relative;
-            width: 100%;
-          }
+            position: absolute;
+            background: ${theme.background.color.primary};
+            border: 1px solid ${theme.line.color};
+            top: 48px;
+            right: ${theme.space.s};
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: ${theme.space.m};
+            border-radius: ${theme.size.radius.small};
+            border-top-right-radius: 0;
 
-          @below desktop {
-            .menu {
-              &::after {
-                position: absolute;
-                content: "";
-                left: ${theme.space.m};
-                right: ${theme.space.m};
-                top: 0;
-                height: 1px;
-                background: ${theme.color.brand.primary};
-              }
-
-              &.open {
-                padding: ${theme.space.inset.m};
-              }
-
-              :global(.homepage):not(.fixed) & {
-                bottom: -100px;
-              }
-            }
-          }
-
-          @from-width desktop {
-            .menu {
-              border-top: none;
-              background: transparent;
-              display: flex;
-              position: relative;
-              justify-content: flex-end;
-              padding-left: 50px;
-              transition: none;
-            }
-
-            .itemList {
-              justify-content: flex-end;
-              padding: 0;
-            }
-
-            .hiddenItemList {
-              list-style: none;
-              margin: 0;
-              position: absolute;
+            &:after {
+              content: "";
               background: ${theme.background.color.primary};
-              border: 1px solid ${theme.line.color};
-              top: 48px;
-              right: ${theme.space.s};
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
-              padding: ${theme.space.m};
-              border-radius: ${theme.size.radius.small};
-              border-top-right-radius: 0;
+              z-index: 10;
+              top: -10px;
+              right: -1px;
+              width: 44px;
+              height: 10px;
+              position: absolute;
+              border-left: 1px solid ${theme.line.color};
+              border-right: 1px solid ${theme.line.color};
+            }
+
+            :global(.homepage):not(.fixed) & {
+              border: 1px solid transparent;
+              background: color(white alpha(-10%));
+              top: 50px;
 
               &:after {
-                content: "";
-                background: ${theme.background.color.primary};
-                z-index: 10;
-                top: -10px;
-                right: -1px;
-                width: 44px;
-                height: 10px;
-                position: absolute;
-                border-left: 1px solid ${theme.line.color};
-                border-right: 1px solid ${theme.line.color};
-              }
-
-              :global(.homepage):not(.fixed) & {
-                border: 1px solid transparent;
+                top: -11px;
+                border-left: 1px solid transparent;
+                border-right: 1px solid transparent;
                 background: color(white alpha(-10%));
-                top: 50px;
-
-                &:after {
-                  top: -11px;
-                  border-left: 1px solid transparent;
-                  border-right: 1px solid transparent;
-                  background: color(white alpha(-10%));
-                }
-              }
-
-              :global(.fixed) & {
-                top: 44px;
               }
             }
+
+            :global(.fixed) & {
+              top: 44px;
+            }
           }
-        `}</style>
-      </React.Fragment>
-    );
-  }
-}
+        }
+      `}</style>
+    </React.Fragment>
+  );
+};
+
+
+Menu.propTypes = {
+  path: PropTypes.string.isRequired,
+  fixed: PropTypes.bool.isRequired,
+  screenWidth: PropTypes.number.isRequired,
+  fontLoaded: PropTypes.bool.isRequired,
+  pages: PropTypes.array.isRequired
+
+};
 
 export default Menu;

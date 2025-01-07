@@ -14,7 +14,8 @@ const Share = asyncComponent(() =>
     .then(module => {
       return module.default;
     })
-    .catch(() => {})
+    .catch(() => {
+    })
 );
 
 const Post = props => {
@@ -26,27 +27,26 @@ const Post = props => {
     },
     authornote,
     next: nextPost,
-    prev: prevPost,
-    theme
+    prev: prevPost
   } = props;
 
   return (
     <React.Fragment>
       <header>
-        <Headline title={title} theme={theme} />
+        <Headline title={title} />
         <Meta
           prefix={prefix}
           author={author}
           category={category}
           displayCategory={displayCategory}
-          theme={theme}
+
         />
       </header>
-      <Bodytext html={html} theme={theme} />
+      <Bodytext html={html} />
       <footer>
-        <Share post={post} theme={theme} />
-        <Author note={authornote} theme={theme} />
-        <NextPrev next={nextPost} prev={prevPost} theme={theme} />
+        <Share post={post} />
+        <Author note={authornote} />
+        <NextPrev next={nextPost} prev={prevPost} />
       </footer>
     </React.Fragment>
   );
@@ -56,8 +56,8 @@ Post.propTypes = {
   post: PropTypes.object.isRequired,
   authornote: PropTypes.string.isRequired,
   next: PropTypes.object,
-  prev: PropTypes.object,
-  theme: PropTypes.object.isRequired
+  prev: PropTypes.object
+
 };
 
 export default Post;

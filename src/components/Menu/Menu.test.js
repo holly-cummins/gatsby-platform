@@ -3,8 +3,6 @@ import { render, screen } from "@testing-library/react";
 
 import Menu from "./Menu";
 
-import theme from "../../theme/theme.yaml";
-
 describe("Menu", () => {
   const fixed = true;
   const path = "homepage";
@@ -13,14 +11,14 @@ describe("Menu", () => {
   const pages = [];
 
   beforeEach(() => {
-    const tree = render(
+    render(
       <Menu
         path={path}
         fixed={fixed}
         screenWidth={width}
         fontLoaded={loaded}
         pages={pages}
-        theme={theme}
+
         searchAvailable={true}
       />
     );

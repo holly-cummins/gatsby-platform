@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
 import Separator from "./Separator";
+import { useTheme } from "../../layouts/theme";
 
 const Video = props => {
-  const { video, theme } = props;
+  const { video } = props;
+  const theme = useTheme();
 
   if (video && video.html) {
     return (
       <React.Fragment>
-        <Separator theme={theme} />
+        <Separator />
 
         <EmbedContainer markup={video.html}>
           <a href={video.url}>
@@ -59,7 +61,7 @@ const Video = props => {
 
 Video.propTypes = {
   video: PropTypes.object,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Video;

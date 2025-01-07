@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Code from "./Code";
+import { useTheme } from "../../layouts/theme";
 
-const Separator = props => {
-  const { theme } = props;
+const Separator = () => {
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -25,8 +24,6 @@ const Separator = props => {
   );
 };
 
-Separator.propTypes = {
-  theme: PropTypes.object.isRequired
-};
+Separator.propTypes = {};
 
 export default Separator;

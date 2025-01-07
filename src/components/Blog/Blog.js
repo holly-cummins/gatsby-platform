@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import Item from "./Item";
+import { useTheme } from "../../layouts/theme";
 
 const Blog = props => {
-  const { posts, theme } = props;
+  const { posts } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -17,7 +19,7 @@ const Blog = props => {
                 fields: { slug }
               }
             } = post;
-            return <Item key={slug} post={node} theme={theme} />;
+            return <Item key={slug} post={node} />;
           })}
         </ul>
       </main>
@@ -38,6 +40,7 @@ const Blog = props => {
           .main {
             padding: 0 ${`0 calc(${theme.space.default} * 1.5)`};
           }
+
           ul {
             max-width: ${theme.text.maxWidth.tablet};
           }
@@ -54,7 +57,7 @@ const Blog = props => {
 
 Blog.propTypes = {
   posts: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default Blog;

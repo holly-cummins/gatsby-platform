@@ -5,7 +5,7 @@ import { InstantSearch, SearchBox, Hits, Stats, Pagination } from "react-instant
 import Hit from "./Hit";
 
 const Search = props => {
-  const { algolia, theme } = props;
+  const { algolia } = props;
 
   return (
     <React.Fragment>
@@ -30,18 +30,21 @@ const Search = props => {
         .ais-SearchBox {
           width: 100%;
         }
+
         .ais-SearchBox-form {
           position: relative;
           border-bottom: 1px solid #aaa;
           display: flex;
           justify-content: space-between;
         }
+
         .ais-SearchBox-input {
           border: none;
           padding: 0.2em;
           font-size: 1.4em;
           flex-grow: 1;
         }
+
         .ais-SearchBox-submit,
         .ais-SearchBox-reset {
           background: none;
@@ -49,22 +52,26 @@ const Search = props => {
           fill: #666;
           flex-grow: 0;
         }
+
         .ais-Stats {
           margin: 0.5em 0 2em 0.3em;
           font-size: 0.9em;
           color: #999;
           display: block;
         }
+
         .ais-Hits-list {
           list-style: none;
           padding: 0;
         }
+
         .ais-Pagination-list {
           display: flex;
           list-style: none;
           justify-content: center;
           padding: 0;
         }
+
         .ais-Pagination-item a,
         .ais-Pagination-item span {
           color: #666;
@@ -72,9 +79,11 @@ const Search = props => {
           display: block;
           padding: 0.5em 0.5em 2em;
         }
+
         .ais-Pagination-item a:hover {
           color: red;
         }
+
         .ais-Pagination-item.ais-Pagination-item--firstPage a,
         .ais-Pagination-item.ais-Pagination-item--previousPage a,
         .ais-Pagination-item.ais-Pagination-item--nextPage a {
@@ -86,8 +95,8 @@ const Search = props => {
 };
 
 Search.propTypes = {
-  algolia: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  algolia: PropTypes.object.isRequired
+
 };
 
 export default Search;

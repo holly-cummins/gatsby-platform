@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Logo from "../Logo/Logo.js";
+import { useTheme } from "../../layouts/theme";
 
 const LogoList = props => {
-  const { edges, theme } = props;
+  const { edges } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -19,7 +21,7 @@ const LogoList = props => {
 
           const divs = (
             <div className="row">
-              <Logo site={url} theme={theme} />
+              <Logo site={url} />
               <div>{title}</div>
             </div>
           );
@@ -56,7 +58,7 @@ const LogoList = props => {
 
 LogoList.propTypes = {
   edges: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default LogoList;

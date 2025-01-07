@@ -19,7 +19,8 @@ const Share = asyncComponent(() =>
     .then(module => {
       return module.default;
     })
-    .catch(_ => {})
+    .catch(_ => {
+    })
 );
 
 const Talk = props => {
@@ -32,14 +33,13 @@ const Talk = props => {
     },
     authornote,
     next: nextPost,
-    prev: prevPost,
-    theme
+    prev: prevPost
   } = props;
 
   return (
     <div>
       <header>
-        <Headline title={title} theme={theme} />
+        <Headline title={title} />
         <Meta
           prefix={prefix}
           event={event}
@@ -47,20 +47,20 @@ const Talk = props => {
           category={category}
           displayCategory={displayCategory}
           keynote={keynote}
-          theme={theme}
+
         />
       </header>
-      <Bodytext html={html} theme={theme} />
-      <Slides slides={slides} theme={theme} />
-      <Video video={video} theme={theme} />
-      <Code code={code} theme={theme} />
-      <Resources resources={resources} theme={theme} />
-      <EmbeddedResources oembeds={oembeds} theme={theme} />
+      <Bodytext html={html} />
+      <Slides slides={slides} />
+      <Video video={video} />
+      <Code code={code} />
+      <Resources resources={resources} />
+      <EmbeddedResources oembeds={oembeds} />
 
       <footer>
-        <Share post={post} theme={theme} />
-        <Author note={authornote} theme={theme} />
-        <NextPrev next={nextPost} prev={prevPost} theme={theme} />
+        <Share post={post} />
+        <Author note={authornote} />
+        <NextPrev next={nextPost} prev={prevPost} />
       </footer>
     </div>
   );
@@ -70,8 +70,8 @@ Talk.propTypes = {
   post: PropTypes.object.isRequired,
   authornote: PropTypes.string.isRequired,
   next: PropTypes.object,
-  prev: PropTypes.object,
-  theme: PropTypes.object.isRequired
+  prev: PropTypes.object
+
 };
 
 export default Talk;

@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import EmbedContainer from "react-oembed-container";
 import Separator from "./Separator";
+import { useTheme } from "../../layouts/theme";
 
 const EmbeddedResource = props => {
-  const { oembeds, theme } = props;
+  const { oembeds } = props;
+  const theme = useTheme();
 
   if (oembeds) {
     return (
       <React.Fragment>
-        <Separator theme={theme} />
+        <Separator />
         <h2>Other resources</h2>
         {oembeds.map((embed, i) => {
           if (embed.html) {
@@ -63,7 +65,7 @@ const EmbeddedResource = props => {
 
 EmbeddedResource.propTypes = {
   oembeds: PropTypes.array,
-  theme: PropTypes.object.isRequired
+
 };
 
 export default EmbeddedResource;

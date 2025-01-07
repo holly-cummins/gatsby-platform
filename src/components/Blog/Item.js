@@ -9,16 +9,17 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { icon } from "../../utils/type";
+import { useTheme } from "../../layouts/theme";
 
 const Item = props => {
   const {
-    theme,
     post: {
       excerpt,
       fields: { slug, prefix, title, author, displayCategory, cover },
       frontmatter: { type }
     }
   } = props;
+  const theme = useTheme();
 
   let gatsbyImageData;
 
@@ -31,7 +32,7 @@ const Item = props => {
   const linkContent = (
     <>
       <div className="gatsby-image-outer-wrapper">
-        <GatsbyImage image={gatsbyImageData} />
+        <GatsbyImage alt={title} image={gatsbyImageData} />
       </div>
       <h1>
         {title} <ArrowRight className="arrow" />
@@ -251,7 +252,7 @@ const Item = props => {
           li {
             &:hover {
               border: 1px solid ${theme.line.color};
-              box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.03);
+              box-shadow: 0 3px 2px rgba(0, 0, 0, 0.03);
 
               &:after {
                 bottom: ${`calc(${theme.space.default} * -2.5)`};
@@ -279,8 +280,7 @@ const Item = props => {
 };
 
 Item.propTypes = {
-  post: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired
 };
 
 export default Item;

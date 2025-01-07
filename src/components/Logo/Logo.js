@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "../../layouts/theme";
 
 // I could tell you how this regex worked, but then I'd have to kill you.
 // Only the strong survive, when using regexes.
@@ -23,13 +24,15 @@ function useFallbackImg(img, text, fallback, fallbackalt) {
 /**
  * Usage <Image src='someUrl' fallback='fallbackUrl' alt='something' />
  */
-function Image({ src, alt, fallback, theme, ...rest }) {
+function Image({ src, alt, fallback, ...rest }) {
+  const theme = useTheme();
+
   const imgProps = useFallbackImg(src, alt, fallback, "generic logo");
   // We perhaps should use gatsby-image here? Dynamism would be different
 
   return (
     <React.Fragment>
-      <img {...imgProps} {...rest} />
+      <img alt={alt} {...imgProps} {...rest} />
       {/* --- STYLES --- */}
       <style jsx>{`
         img {
@@ -44,7 +47,7 @@ function Image({ src, alt, fallback, theme, ...rest }) {
 }
 
 const Logo = props => {
-  const { site, theme } = props;
+  const { site } = props;
   const source = sourceFinder.test(site) ? site.match(sourceFinder)[1] : "generic";
 
   return (
@@ -52,7 +55,7 @@ const Logo = props => {
       src={"/logos/" + source + ".png"}
       fallback="/logos/generic.png"
       alt={source + " logo"}
-      theme={theme}
+
     />
   );
 };

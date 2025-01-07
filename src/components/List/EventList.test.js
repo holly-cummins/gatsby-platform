@@ -3,8 +3,6 @@ import { fireEvent, render, screen, cleanup } from "@testing-library/react";
 
 import EventList from "./EventList";
 
-import theme from "../../theme/theme.yaml";
-
 describe("EventList", () => {
   let container;
   const title = "some post";
@@ -23,7 +21,7 @@ describe("EventList", () => {
   describe("in default config", () => {
     beforeEach(() => {
       listener = jest.fn();
-      const rendered = render(<EventList edges={edges} theme={theme} listener={listener} />);
+      const rendered = render(<EventList edges={edges} listener={listener} />);
 
       container = rendered.container;
     });
@@ -80,7 +78,7 @@ describe("EventList", () => {
       beforeEach(() => {
         cleanup();
         const rendered = render(
-          <EventList edges={[keynoteNode]} theme={theme} listener={listener} />
+          <EventList edges={[keynoteNode]} listener={listener} />
         );
         container = rendered.container;
       });
@@ -109,7 +107,7 @@ describe("EventList", () => {
   describe("when show date is set", () => {
     beforeEach(() => {
       listener = jest.fn();
-      render(<EventList edges={edges} theme={theme} listener={listener} showDate={true} />);
+      render(<EventList edges={edges} listener={listener} showDate={true} />);
     });
 
     it("renders the title", () => {

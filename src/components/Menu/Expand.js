@@ -1,9 +1,12 @@
 import { FaAngleDown } from "react-icons/fa";
 import PropTypes from "prop-types";
 import React from "react";
+import { useTheme } from "../../layouts/theme";
 
 const Expand = props => {
-  const { onClick, theme } = props;
+  const { onClick } = props;
+
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -113,8 +116,8 @@ const Expand = props => {
 };
 
 Expand.propTypes = {
-  onClick: PropTypes.func,
-  theme: PropTypes.object.isRequired
+  onClick: PropTypes.func
+
 };
 
 export default Expand;

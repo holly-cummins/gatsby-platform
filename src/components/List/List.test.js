@@ -3,8 +3,6 @@ import { render, screen } from "@testing-library/react";
 
 import List from "./List";
 
-import theme from "../../theme/theme.yaml";
-
 describe("List", () => {
   describe("for an internal post", () => {
     const title = "some post";
@@ -20,7 +18,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      render(<List edges={edges} theme={theme} />);
+      render(<List edges={edges} />);
     });
 
     it("renders the title", () => {
@@ -58,7 +56,7 @@ describe("List", () => {
       const edges = [node];
 
       beforeEach(() => {
-        render(<List edges={edges} theme={theme} useShortDate={true} />);
+        render(<List edges={edges} useShortDate={true} />);
       });
 
       it("renders the date, without a year", async () => {
@@ -81,7 +79,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      render(<List edges={edges} theme={theme} />);
+      render(<List edges={edges} />);
     });
 
     it("renders the title", () => {
@@ -107,7 +105,7 @@ describe("List", () => {
     const edges = [node];
 
     beforeEach(() => {
-      render(<List edges={edges} theme={theme} showIcon={false} />);
+      render(<List edges={edges} showIcon={false} />);
     });
 
     it("renders the title", () => {

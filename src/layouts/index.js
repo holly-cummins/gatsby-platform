@@ -1,5 +1,4 @@
 import "typeface-open-sans";
-import PropTypes from "prop-types";
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -9,7 +8,7 @@ export const ScreenWidthContext = React.createContext(0);
 export const FontLoadedContext = React.createContext(false);
 
 import Footer from "../components/Footer";
-import { ThemeProvider, useTheme } from "./theme";
+import { ThemeProvider } from "./theme";
 
 export default function Layout({ children, location }) {
 
@@ -53,13 +52,10 @@ export default function Layout({ children, location }) {
     }
   } = data;
 
-  const theme = useTheme();
-  
   return (
     <ThemeProvider>
       <React.Fragment>
         <Header
-          theme={theme}
           path={path}
           pages={pages}
           searchAvailable={searchAvailable}

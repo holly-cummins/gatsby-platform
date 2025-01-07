@@ -7,10 +7,8 @@ import Search from "../components/Search";
 import Seo from "../components/Seo";
 
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
-import { useTheme } from "../layouts/theme";
 
 const SearchPage = props => {
-  const theme = useTheme();
 
   const {
     data: {
@@ -27,7 +25,7 @@ const SearchPage = props => {
           <AlgoliaIcon />
         </div>
 
-        <Search algolia={algolia} theme={theme} />
+        <Search algolia={algolia} />
       </Article>
 
       <Seo />

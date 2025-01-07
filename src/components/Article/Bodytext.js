@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme } from "../../layouts/theme";
 
 const Bodytext = props => {
-  const { html, theme } = props;
+  const { html } = props;
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -52,7 +54,6 @@ const Bodytext = props => {
           }
 
           :global(a.gatsby-resp-image-link) {
-            border: 0;
             display: block;
             margin: 2.5em 0;
             border-radius: ${theme.size.radius.default};
@@ -91,8 +92,8 @@ const Bodytext = props => {
 };
 
 Bodytext.propTypes = {
-  html: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+  html: PropTypes.string.isRequired
+
 };
 
 export default Bodytext;
