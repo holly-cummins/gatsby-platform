@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import config from "../../utils/configger";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import { useTheme } from "../../layouts/theme";
 
 export const Author = props => {
@@ -73,18 +73,15 @@ export const Author = props => {
 
 function QueryAuthor(props) {
   // The image could be in ./content or ../content, so use a query
-  return (
-    <StaticQuery
-      query={graphql`
+  const data = useStaticQuery(graphql`
         query AuthorQuery {
           file(base: { eq: "author.jpg" }) {
             publicURL
           }
         }
-      `}
-      render={data => <Author data={data} {...props} />}
-    />
-  );
+      `);
+
+  return (<Author data={data} {...props} />);
 }
 
 Author.propTypes = {

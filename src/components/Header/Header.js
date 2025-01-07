@@ -1,4 +1,4 @@
-import { graphql, Link, StaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
@@ -256,18 +256,15 @@ export const PureHeader = (props) => {
 
 export default function Header(props) {
   // The image could be in ./content or ../content, so use a query
-  return (
-    <StaticQuery
-      query={graphql`
+  const data = useStaticQuery(graphql`
         query HeaderAuthorQuery {
           file(base: { eq: "author.jpg" }) {
             publicURL
           }
         }
-      `}
-      render={data => <PureHeader data={data} {...props} />}
-    />
-  );
+      `);
+
+  return (<PureHeader data={data} {...props} />);
 }
 
 PureHeader.propTypes = {
