@@ -85,8 +85,9 @@ describe("main site", () => {
         const date = await page.waitForSelector(dateSelector,
           { timeout: 5 * 1000 }
         );
+        // Hover again, to try and make sure we're hovered and resolve some test flakiness
+        await date.hover();
         expect(date).toBeTruthy();
-        console.log("Element is", date);
         const text = await date.evaluate(el => el.textContent);
         expect(text).toMatch(/[0-9][0-9]-[0-9][0-9]/);
       });
