@@ -4,18 +4,6 @@ import ContactPage from "./contact";
 
 import config from "../utils/configger";
 
-const layoutData = {
-  bgDesktop: {
-    resize: { src: "desktop" }
-  },
-  bgTablet: {
-    resize: { src: "tablet" }
-  },
-  bgMobile: {
-    resize: { src: "mobile" }
-  }
-};
-
 describe("ContactPage", () => {
   beforeEach(async () => {
     render(<ContactPage />);

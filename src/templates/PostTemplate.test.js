@@ -35,7 +35,7 @@ describe("PostTemplate", () => {
 
     // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
     beforeEach(() => {
-      const tree = render(<PostTemplate data={data} pageContext={{}} />);
+      render(<PostTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the post body", () => {
@@ -78,7 +78,7 @@ describe("PostTemplate", () => {
 
     // Why is this each? See https://stackoverflow.com/questions/67669213/react-testing-library-using-beforeall-to-render-cannot-find-item-on-2nd-test
     beforeEach(() => {
-      const tree = render(<PostTemplate data={data} pageContext={{}} />);
+      render(<PostTemplate data={data} pageContext={{}} />);
     });
 
     it("renders the title", () => {

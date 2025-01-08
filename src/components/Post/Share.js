@@ -32,9 +32,6 @@ const PostShare = props => {
           <TwitterShareButton
             url={url}
             title={title}
-            additionalProps={{
-              "aria-label": "Twitter share"
-            }}
           >
             <TwitterIcon round size={iconSize} />
           </TwitterShareButton>
@@ -42,9 +39,6 @@ const PostShare = props => {
             url={url}
             title={title}
             description={excerpt}
-            additionalProps={{
-              "aria-label": "LinkedIn share"
-            }}
           >
             <LinkedinIcon round size={iconSize} />
           </LinkedinShareButton>

@@ -2,21 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import "prismjs/themes/prism-okaidia.css";
 
-import asyncComponent from "../AsyncComponent";
 import Headline from "../Article/Headline";
 import Bodytext from "../Article/Bodytext";
 import Meta from "./Meta";
 import Author from "./Author";
 import NextPrev from "./NextPrev";
-
-const Share = asyncComponent(() =>
-  import("./Share")
-    .then(module => {
-      return module.default;
-    })
-    .catch(() => {
-    })
-);
+import Share from "./Share";
 
 const Post = props => {
   const {

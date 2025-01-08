@@ -5,7 +5,7 @@ import { icon } from "../../utils/type";
 import { useTheme } from "../../layouts/theme";
 
 const List = props => {
-  const { edges, showIcon, useShortDate } = props;
+  const { edges, showIcon = true, useShortDate } = props;
   const theme = useTheme();
 
   return (
@@ -91,8 +91,5 @@ List.propTypes = {
   showIcon: PropTypes.bool
 };
 
-List.defaultProps = {
-  showIcon: true
-};
 
 export default List;
