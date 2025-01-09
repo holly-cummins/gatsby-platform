@@ -1,9 +1,9 @@
 # OPTIONS
 
 # SPACE
-space :
+space:
   # space options
-  default : 20px
+  default: 20px
   xxs: 2px
   xs: 5px
   s: 10px
@@ -11,20 +11,20 @@ space :
   l: 40px
   xl: 80px
   inset:
-    default : 20px
+    default: 20px
     xs: 5px
     s: 10px
     m: 20px
     l: 40px
   stack:
-    default : 0 0 20px 0
+    default: 0 0 20px 0
     xxs: 0 0 2px 0
     xs: 0 0 5px 0
     s: 0 0 10px 0
     m: 0 0 20px 0
     l: 0 0 40px 0
   inline:
-    default : 0 20px 0 0
+    default: 0 20px 0 0
     xxs: 0 2px 0 0
     xs: 0 5px 0 0
     s: 0 10px 0 0
@@ -35,7 +35,7 @@ size:
   radius:
     default: 10px
     small: 5px
-# COLOR 
+# COLOR
 # see https://www.color-hex.com/color/2f4eae for guidance
 color:
   # color options
@@ -66,10 +66,6 @@ color:
     attention: &color-special-attention '#2f8eae'
 # FONT
 font:
-  # font options
-  family:
-    initial: 'Arial, sans-serif'
-    target: &font-family-target 'Open Sans'
   weight:
     standard: 400
     bold: 600
@@ -104,7 +100,6 @@ background:
     alt: *color-gray-1
     brand: *color-brand-primary
 text:
-  family: *font-family-target
   color:
     primary: *color-gray-10
     primaryInverse: *color-white
@@ -116,7 +111,6 @@ text:
     tablet: 650px
     desktop: 700px
 heading:
-  family: *font-family-target
   size:
     h1: *font-size-xl
     h2: *font-size-l

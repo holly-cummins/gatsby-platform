@@ -80,10 +80,6 @@ export default function Layout({ children, location }) {
             padding: 0;
           }
 
-          body {
-            font-family: 'Open Sans', 'sans-serif'
-          }
-
           h1,
           h2,
           h3 {
