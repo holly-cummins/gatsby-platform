@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   LinkedinShareButton,
-  TwitterShareButton,
-  TwitterIcon,
+  BlueskyShareButton,
+  BlueskyIcon,
   LinkedinIcon
 } from "react-share";
 
@@ -29,12 +29,12 @@ const PostShare = props => {
       <div className="share">
         <span className="label">SHARE</span>
         <div className="links">
-          <TwitterShareButton
+          <BlueskyShareButton
             url={url}
             title={title}
           >
-            <TwitterIcon round size={iconSize} />
-          </TwitterShareButton>
+            <BlueskyIcon round size={iconSize} />
+          </BlueskyShareButton>
           <LinkedinShareButton
             url={url}
             title={title}
