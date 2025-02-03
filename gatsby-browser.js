@@ -9,6 +9,8 @@ import "@fontsource/open-sans/600.css";
 
 import "./src/theme/global.css";
 
+require("prismjs/themes/prism.css");
+
 import ReactDOM from "react-dom/client";
 
 // See https://github.com/gatsbyjs/gatsby/discussions/36232; it would be ideal to get rid of this, but integration tests fail in ci without it

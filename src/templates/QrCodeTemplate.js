@@ -3,9 +3,7 @@ import React, { createRef } from "react";
 import { graphql } from "gatsby";
 
 const { siteUrl } = require("../utils/configger");
-require("prismjs/themes/prism-okaidia.css");
 import Article from "../components/Article";
-import { ThemeContext } from "../layouts";
 import QRCode from "react-qr-code";
 import { useScreenshot, createFileName } from "use-react-screenshot";
 
