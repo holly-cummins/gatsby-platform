@@ -108,7 +108,7 @@
     "babel-preset-gatsby": "^0.8.0",
     "babel-webpack-plugin": "^0.1.1",
     "dotenv": "^6.0.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.20.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
