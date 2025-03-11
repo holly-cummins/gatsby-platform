@@ -68,7 +68,7 @@
     "node-geocoder": "^4.2.0",
     "normalize.css": "^8.0.0",
     "oembed-parser": "^3.0.0-rc5",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.30.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
