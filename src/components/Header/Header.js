@@ -62,7 +62,6 @@ export const PureHeader = (props) => {
             />
           )}
         </ScreenWidthContext.Consumer>
-        )}
       </header>
       <VisibilitySensor onChange={visibilitySensorChange}>
         <div className="sensor" />
