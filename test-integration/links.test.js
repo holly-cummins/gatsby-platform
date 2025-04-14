@@ -31,8 +31,9 @@ describe("site links", () => {
         }
 
         // Some APIs give 429s but no retry-after header, and linkinator will not retry in that case
+        // The LSE blog also gives a 405, but for the same reason
         // Retry the hard way
-        if (!retryWorked && result.status === status.TOO_MANY_REQUESTS) {
+        if (!retryWorked && (result.status === status.TOO_MANY_REQUESTS || result.status === status.METHOD_NOT_ALLOWED)) {
           retryWorked = await retryUrl(result.url);
         }
 
