@@ -1,12 +1,12 @@
 import React from "react";
 import { useTheme } from "../../layouts/theme";
 
-const Separator = () => {
+const Separator = ({ id }) => {
   const theme = useTheme();
 
   return (
     <React.Fragment>
-      <div className="separator" />
+      <div id={id} className="separator" />
 
       <style jsx>{`
         .separator {

@@ -12,7 +12,7 @@ const Slides = props => {
   if (slides && slides.html) {
     return (
       <React.Fragment>
-        <Separator />
+        <Separator id="slides" />
 
         <EmbedContainer markup={slides.html}>
           <a href={slides.url}>
@@ -42,7 +42,14 @@ const Slides = props => {
 
           @from-width tablet {
             .Slides {
-              margin: ${`calc(${theme.space.m} * 1.5) 0 ${theme.space.m}`};
+              margin: ${`calc
+              (
+              ${theme.space.m} *
+
+              1.5
+              )
+              0
+              ${theme.space.m}`};
             }
           }
         `}</style>
@@ -54,7 +61,7 @@ const Slides = props => {
 };
 
 Slides.propTypes = {
-  slides: PropTypes.object,
+  slides: PropTypes.object
 
 };
 

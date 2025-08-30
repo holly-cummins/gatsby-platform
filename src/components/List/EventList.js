@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { Badge as Star } from "@carbon/icons-react";
+import { Video as Video } from "@carbon/icons-react";
+import { PresentationFile as Slide } from "@carbon/icons-react";
 import { useTheme } from "../../layouts/theme";
 import useFitText from "use-fit-text";
 
@@ -14,17 +16,30 @@ const EventList = props => {
     (<React.Fragment>
       <ul data-testid="event-list-wrapper">
         {edges.map(edge => {
+
           const {
             node: {
-              frontmatter: { url, event, keynote },
+              frontmatter: { url, event, keynote, slides, video },
               fields: { slug, shortDate, title, geography }
             }
           } = edge;
           // Make sure we don't have a null hanging around in the date
           const cleanDate = shortDate ? shortDate : "..";
+          const anchor = (divs, id) =>
+            url ?
+              (<a href={url} className="link">
+                  {divs}
+                </a>
+              ) : id ? (
+                <Link to={`${slug}#${id}`}>{divs}</Link>
+              ) : (
+                <Link to={slug}>{divs}</Link>
+              );
 
-          const divs = (
-            <div className="row">
+
+          return (
+            <li key={slug} className="row">
+              <div className="keynoteIndicator">{keynote ? anchor(<Star size={20} />) : <></>}</div>
               <div className={"flag"}>
                 {geography && geography.flag ? (
                   <img
@@ -40,19 +55,11 @@ const EventList = props => {
                    onMouseOut={listener}>
                 {showDate ? cleanDate : event}
               </div>
-              <div className="keynoteIndicator">{keynote ? <Star size={20} /> : <></>}</div>
-              <div className="talkTitle">{title}</div>
-            </div>
-          );
-
-          return (
-            <li key={slug} className="event-list">
-              {url ? (
-                <a href={url} className="link">
-                  {divs}
-                </a>
-              ) : (
-                <Link to={slug}>{divs}</Link>
+              <div className="contentIndicator">{slides ?
+                anchor(<Slide size={20} />, "slides") : <></>}</div>
+              <div className="contentIndicator">{video ? anchor(<Video size={20} />, "video") : <></>}</div>
+              {anchor(
+                <div className="talkTitle">{title}</div>
               )}
             </li>
           );
@@ -81,6 +88,12 @@ const EventList = props => {
 
         .keynoteIndicator {
           width: 20px;
+          padding-left: 30px;
+          padding-right: 20px;
+        }
+
+        .contentIndicator {
+          width: 20px;
         }
 
         .flag {
@@ -92,12 +105,12 @@ const EventList = props => {
           color: ${theme.color.brand.light};
           width: 170px;
           height: 40px;
-          flex: 25%;
         }
 
         .talkTitle {
           text-align: left;
           flex: 75%;
+          padding-left: 25px;
         }
       `}</style>
     </React.Fragment>)

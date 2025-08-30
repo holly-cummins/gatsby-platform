@@ -4,6 +4,7 @@ category: "cats"
 author: ducky devine
 type: talk
 event: QuackCon
+keynote: true
 location: Amsterdam
 code:
   - title: Source Code for this website

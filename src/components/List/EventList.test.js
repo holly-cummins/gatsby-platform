@@ -49,6 +49,10 @@ describe("EventList", () => {
       expect(container.querySelector("svg")).toBeFalsy();
     });
 
+    it("does not render the slides icon", () => {
+      expect(container.querySelector("svg")).toBeFalsy();
+    });
+
     it("calls a listener on hover", () => {
       expect(listener).toHaveBeenCalledTimes(0);
       const eventText = screen.getByText("QuackCon");

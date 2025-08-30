@@ -161,6 +161,8 @@ export const typeQuery = graphql`
             type
             event
             keynote
+            slides {url}
+            video {url}
           }
         }
       }

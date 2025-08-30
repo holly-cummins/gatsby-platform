@@ -11,7 +11,7 @@ const Video = props => {
   if (video && video.html) {
     return (
       <React.Fragment>
-        <Separator />
+        <Separator id={"video"} />
 
         <EmbedContainer markup={video.html}>
           <a href={video.url}>
@@ -48,7 +48,14 @@ const Video = props => {
 
           @from-width tablet {
             .Video {
-              margin: ${`calc(${theme.space.m} * 1.5) 0 ${theme.space.m}`};
+              margin: ${`calc
+              (
+              ${theme.space.m} *
+
+              1.5
+              )
+              0
+              ${theme.space.m}`};
             }
           }
         `}</style>
@@ -60,7 +67,7 @@ const Video = props => {
 };
 
 Video.propTypes = {
-  video: PropTypes.object,
+  video: PropTypes.object
 
 };
 
