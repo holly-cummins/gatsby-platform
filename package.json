@@ -83,7 +83,7 @@
     "react-share": "^5.2.0",
     "react-visibility-sensor": "^5.1.1",
     "request": "^2.88.2",
-    "styled-jsx": "^3.4.7",
+    "styled-jsx": "^5.1.7",
     "styled-jsx-plugin-postcss": "^3.0.2",
     "styled-jsx-plugin-stylelint": "^0.1.0",
     "tinycolor2": "^1.4.1",
