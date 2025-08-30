@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextFit from "react-textfitfix";
 import { Link } from "gatsby";
 import { Badge as Star } from "@carbon/icons-react";
 import { useTheme } from "../../layouts/theme";
+import useFitText from "use-fit-text";
 
 const EventList = props => {
   const { edges, showDate, listener } = props;
   const theme = useTheme();
+  const { fontSize, ref } = useFitText();
 
   return (
     (<React.Fragment>
@@ -20,7 +21,6 @@ const EventList = props => {
             }
           } = edge;
           // Make sure we don't have a null hanging around in the date
-          // since scaledtext does not like nulls
           const cleanDate = shortDate ? shortDate : "..";
 
           const divs = (
@@ -35,11 +35,10 @@ const EventList = props => {
                   <></>
                 )}
               </div>
-              <div className="event" onMouseOver={listener} onMouseOut={listener}>
-                {/* We can't use the theme here because scaletext needs pixels, not em */}
-                <TextFit max={18} min={8}>
-                  {showDate ? cleanDate : event}
-                </TextFit>
+              <div ref={ref} className="event" style={{ fontSize }}
+                   onMouseOver={listener}
+                   onMouseOut={listener}>
+                {showDate ? cleanDate : event}
               </div>
               <div className="keynoteIndicator">{keynote ? <Star size={20} /> : <></>}</div>
               <div className="talkTitle">{title}</div>
