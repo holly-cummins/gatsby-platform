@@ -226,5 +226,30 @@
    "neighbourhood": "",
    "provider": "openstreetmap"
   }
+ ],
+ "Copenhagen": [
+  {
+   "latitude": 55.6867243,
+   "longitude": 12.5700724,
+   "formattedAddress": "København, Københavns Kommune, Region Hovedstaden, 1357, Danmark",
+   "country": "Danmark",
+   "city": "København",
+   "state": "Region Hovedstaden",
+   "zipcode": "1357",
+   "countryCode": "DK",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  },
+  {
+   "latitude": 43.893439,
+   "longitude": -75.673828,
+   "formattedAddress": "Village of Copenhagen, Town of Denmark, Lewis County, New York, United States",
+   "country": "United States",
+   "city": "Town of Denmark",
+   "state": "New York",
+   "countryCode": "US",
+   "neighbourhood": "",
+   "provider": "openstreetmap"
+  }
  ]
 }
