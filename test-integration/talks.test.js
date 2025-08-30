@@ -38,7 +38,7 @@ describe("main site", () => {
     });
 
     it("should list at least one item", async () => {
-      const numberOfPosts = (await page.$$("li.event-list")).length;
+      const numberOfPosts = (await page.$$("li.row")).length;
       expect(numberOfPosts).toBeGreaterThan(1);
     });
 
