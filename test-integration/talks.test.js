@@ -50,7 +50,7 @@ describe("main site", () => {
     it("should have event names", async () => {
       // We don't know the content, but it's a reasonable guess some content matches SomethingCon
       await expect(
-        page.waitForSelector("xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"Con\")]")
+        page.waitForSelector("xpath/ //div[contains(@class,\"event\") and contains(text(), \"Con\")]")
       ).resolves.toBeTruthy();
     });
 
@@ -58,12 +58,12 @@ describe("main site", () => {
       it("should switch event names for short dates", async () => {
         // We don't know the content, but it's a reasonable guess some content matches SomethingCon
         const oldestCon = await page.waitForSelector(
-          "xpath///div[contains(@class,\"event\")]//*[contains(text(), \"Con\")]"
+          "xpath///div[contains(@class,\"event\") and contains(text(), \"Con\")]"
         );
         await oldestCon.hover();
         // Every element should switch to a date
 
-        const dateSelector = "xpath/ //div[contains(@class,\"event\")]//*[contains(text(), \"0\")]";
+        const dateSelector = "xpath/ //div[contains(@class,\"event\") and contains(text(), \"0\")]";
 
         try {
           // Sadly, we cannot use regex selectors in xpath 1, and selecting for text with css is hard
