@@ -6,11 +6,11 @@ import { Video as Video } from "@carbon/icons-react";
 import { PresentationFile as Slide } from "@carbon/icons-react";
 import { useTheme } from "../../layouts/theme";
 import useFitText from "use-fit-text";
+import EventTitle from "./EventTitle";
 
 const EventList = props => {
   const { edges, showDate, listener } = props;
   const theme = useTheme();
-  const { fontSize, ref } = useFitText();
 
   return (
     (<React.Fragment>
@@ -23,17 +23,15 @@ const EventList = props => {
               fields: { slug, shortDate, title, geography }
             }
           } = edge;
-          // Make sure we don't have a null hanging around in the date
-          const cleanDate = shortDate ? shortDate : "..";
-          const anchor = (divs, id) =>
+          const anchor = (content, id) =>
             url ?
-              (<a href={url} className="link">
-                  {divs}
+              (<a href={url}>
+                  {content}
                 </a>
               ) : id ? (
-                <Link to={`${slug}#${id}`}>{divs}</Link>
+                <Link to={`${slug}#${id}`}>{content}</Link>
               ) : (
-                <Link to={slug}>{divs}</Link>
+                <Link to={slug}>{content}</Link>
               );
 
 
@@ -50,17 +48,12 @@ const EventList = props => {
                   <></>
                 )}
               </div>
-              <div ref={ref} className="event" style={{ fontSize }}
-                   onMouseOver={listener}
-                   onMouseOut={listener}>
-                {showDate ? cleanDate : event}
-              </div>
+              <EventTitle showDate={showDate} date={shortDate} event={event} listener={listener} />
               <div className="contentIndicator">{slides ?
                 anchor(<Slide size={20} />, "slides") : <></>}</div>
               <div className="contentIndicator">{video ? anchor(<Video size={20} />, "video") : <></>}</div>
-              {anchor(
-                <div className="talkTitle">{title}</div>
-              )}
+              {<div className="talkTitle">{anchor(title)}</div>
+              }
             </li>
           );
         })}
@@ -87,24 +80,21 @@ const EventList = props => {
         }
 
         .keynoteIndicator {
-          width: 20px;
+          min-width: 20px;
+          max-width: 20px;
           padding-left: 30px;
           padding-right: 20px;
         }
 
         .contentIndicator {
-          width: 20px;
+          min-width: 20px;
+          max-width: 20px;
         }
 
         .flag {
-          width: 20px;
+          min-width: 20px;
+          max-width: 20px;
           opacity: 80%;
-        }
-
-        .event {
-          color: ${theme.color.brand.light};
-          width: 170px;
-          height: 40px;
         }
 
         .talkTitle {
