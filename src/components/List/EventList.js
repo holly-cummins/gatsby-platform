@@ -49,11 +49,9 @@ const EventList = props => {
                 )}
               </div>
               <EventTitle showDate={showDate} date={shortDate} event={event} listener={listener} />
-              <div className="contentIndicator">{slides ?
-                anchor(<Slide size={20} />, "slides") : <></>}</div>
+              <div className="contentIndicator">{slides ? anchor(<Slide size={20} />, "slides") : <></>}</div>
               <div className="contentIndicator">{video ? anchor(<Video size={20} />, "video") : <></>}</div>
-              {<div className="talkTitle">{anchor(title)}</div>
-              }
+              <div className="talkTitle">{anchor(title)}</div>
             </li>
           );
         })}
