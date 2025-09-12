@@ -28,7 +28,7 @@
     "@fontsource/open-sans": "^5.1.1",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "algoliasearch-helper": "^3.24.3",
-    "axios": "^1.8.2",
+    "axios": "^1.12.1",
     "core-js": "^3.23.2",
     "country-flag-icons": "^1.4.26",
     "curly": "^0.6.2",
