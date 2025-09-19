@@ -34,7 +34,7 @@
     "curly": "^0.6.2",
     "dayjs": "^1.11.1",
     "eslint-config-react-app": "^7.0.1",
-    "gatsby": "^5.13.5",
+    "gatsby": "^5.15.0",
     "gatsby-core-utils": "^4.13.1",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.13.1",
@@ -152,7 +152,7 @@
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-standard": "^36.0.0",
     "url-loader": "1.0",
-    "url-metadata": "^2.5.0",
+    "url-metadata": "^5.2.2",
     "uuid": "^8.3.2",
     "webpack": "^5.101.3",
     "webpack-bundle-analyzer": "^4.10.2"
