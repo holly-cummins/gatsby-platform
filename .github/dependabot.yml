@@ -20,3 +20,7 @@ updates:
           - "@gatsby/*"
           - gatsby
           - gatsby-*
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
