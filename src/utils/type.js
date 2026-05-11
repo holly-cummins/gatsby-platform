@@ -14,6 +14,7 @@ const typeIcons = {
   book: Notebook,
   podcast: Microphone,
   webinar: EventsAlt,
+  panel: EventsAlt,
   livestream: EventsAlt
 };
 
