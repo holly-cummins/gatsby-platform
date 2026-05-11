@@ -129,7 +129,7 @@
     "markdown-yaml-metadata-parser": "^3.0.0",
     "node-libcurl": "^4.0.0",
     "object.assign": "^4.1.5",
-    "postcss": "^8.4.33",
+    "postcss": "^8.5.14",
     "postcss-cli": "^5.0.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-custom-properties": "^7.0.0",
