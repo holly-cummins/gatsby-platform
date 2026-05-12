@@ -19,8 +19,8 @@ describe("TypeTemplate", () => {
   const node = {
     node: {
       frontmatter: { type: "dance-off" },
-      fields: { title, source: "some-source", slug, date: nodeDate, shortDate }
-    }
+      fields: { title, source: "some-source", slug, date: nodeDate, shortDate },
+    },
   };
 
   const draftNode = {
@@ -30,22 +30,22 @@ describe("TypeTemplate", () => {
         title: draftTitle,
         source: "another-source",
         slug: "half-baked-slug",
-        draft: true
-      }
-    }
+        draft: true,
+      },
+    },
   };
 
   const draftNodeWithNullDate = {
     node: {
       frontmatter: { type: "bake-off" },
       fields: {
-        title: draftTitle,
+        title: draftTitle + " with null date",
         date: null, // null and undefined are not the same, and processing can give null dates
         source: "another-source",
-        slug: "half-baked-slug",
-        draft: true
-      }
-    }
+        slug: "second-half-baked-slug",
+        draft: true,
+      },
+    },
   };
 
   const futureNode = {
@@ -55,9 +55,9 @@ describe("TypeTemplate", () => {
         title: "a future title",
         source: "another-source",
         slug: "psychic-slug",
-        date: "2056-07-02"
-      }
-    }
+        date: "2056-07-02",
+      },
+    },
   };
 
   const marchFutureNode = {
@@ -67,9 +67,9 @@ describe("TypeTemplate", () => {
         title: "a march future",
         source: "another-source",
         slug: "march-psychic-slug",
-        date: "2054-03-02"
-      }
-    }
+        date: "2054-03-02",
+      },
+    },
   };
 
   const octoberFutureNode = {
@@ -79,9 +79,9 @@ describe("TypeTemplate", () => {
         title: "a october future",
         source: "another-source",
         slug: "oct-psychic-slug",
-        date: "2058-10-02"
-      }
-    }
+        date: "2058-10-02",
+      },
+    },
   };
 
   const juneFutureNode = {
@@ -91,9 +91,9 @@ describe("TypeTemplate", () => {
         title: "a june future",
         source: "another-source",
         slug: "psychic-june-slug",
-        date: "2057-06-02"
-      }
-    }
+        date: "2057-06-02",
+      },
+    },
   };
 
   const post1 = {
@@ -102,12 +102,12 @@ describe("TypeTemplate", () => {
         title: "title1",
         slug: "/slug1/",
         date: "2020-10-10",
-        shortDate: "10-10"
+        shortDate: "10-10",
       },
       frontmatter: {
-        event: "QuackCon"
-      }
-    }
+        event: "QuackCon",
+      },
+    },
   };
   const post2 = {
     node: {
@@ -115,22 +115,22 @@ describe("TypeTemplate", () => {
         title: "another title",
         slug: "pub2",
         date: "2003-03-06",
-        shortDate: "03-06"
+        shortDate: "03-06",
       },
       frontmatter: {
-        event: "DuckCon"
-      }
-    }
+        event: "DuckCon",
+      },
+    },
   };
   const post3 = {
     node: {
       fields: {
         title: "a june title",
         slug: "pub",
-        date: "2011-06-08"
+        date: "2011-06-08",
       },
-      frontmatter: {}
-    }
+      frontmatter: {},
+    },
   };
 
   const post4 = {
@@ -138,27 +138,27 @@ describe("TypeTemplate", () => {
       fields: {
         title: "a october title",
         slug: "pub4",
-        date: "2011-10-07"
+        date: "2011-10-07",
       },
-      frontmatter: {}
-    }
+      frontmatter: {},
+    },
   };
   const post5 = {
     node: {
       fields: {
         title: "a march title",
         slug: "pub2",
-        date: "2011-03-07"
+        date: "2011-03-07",
       },
-      frontmatter: {}
-    }
+      frontmatter: {},
+    },
   };
 
   describe("for a collection with no elements", () => {
     const type = "podcast";
     const edges = [];
     const data = {
-      allMarkdownRemark: { totalCount, edges }
+      allMarkdownRemark: { totalCount, edges },
     };
 
     beforeEach(() => {
@@ -183,7 +183,7 @@ describe("TypeTemplate", () => {
     const type = "podcast";
     const edges = [node];
     const data = {
-      allMarkdownRemark: { totalCount, edges }
+      allMarkdownRemark: { totalCount, edges },
     };
 
     beforeEach(() => {
@@ -213,9 +213,19 @@ describe("TypeTemplate", () => {
 
   describe("for a collection with multiple elements", () => {
     const type = "podcast";
-    const edges = [draftNode, futureNode, draftNodeWithNullDate, node, post1, post2, post3, post4, post5];
+    const edges = [
+      draftNode,
+      futureNode,
+      draftNodeWithNullDate,
+      node,
+      post1,
+      post2,
+      post3,
+      post4,
+      post5,
+    ];
     const data = {
-      allMarkdownRemark: { totalCount, edges }
+      allMarkdownRemark: { totalCount, edges },
     };
 
     beforeEach(() => {
@@ -243,13 +253,13 @@ describe("TypeTemplate", () => {
     it("renders the years in the right order", async () => {
       const expectedOrder = ["unpublished", "2020", "2019", "2011", "2003"];
       const elements = screen.getAllByRole("heading", { level: 2 });
-      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
     });
 
     it("renders the elements within a year in the right order", async () => {
       const expectedOrder = ["a october title", "a june title", "a march title"];
       const elements = screen.getAllByText(/a .* title/);
-      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
     });
 
     it("renders the short date", async () => {
@@ -297,7 +307,7 @@ describe("TypeTemplate", () => {
 
       it("renders the correct link", () => {
         const links = screen.getAllByRole("link");
-        const foundLink = links.find(link => link.text.includes(title));
+        const foundLink = links.find((link) => link.text.includes(title));
         expect(foundLink).toBeTruthy();
         // Hardcoding the host is a bit risky but this should always be true in  test environment
         expect(foundLink.href).toBe("http://localhost/" + slug);
@@ -315,7 +325,7 @@ describe("TypeTemplate", () => {
       it("renders the years in the right order", async () => {
         const expectedOrder = ["2020", "2019", "2011", "2003"];
         const elements = screen.getAllByRole("heading", { level: 2 });
-        expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+        expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
       });
     });
 
@@ -348,10 +358,10 @@ describe("TypeTemplate", () => {
       post2,
       post3,
       post4,
-      post5
+      post5,
     ];
     const data = {
-      allMarkdownRemark: { totalCount, edges }
+      allMarkdownRemark: { totalCount, edges },
     };
 
     beforeEach(() => {
@@ -406,13 +416,13 @@ describe("TypeTemplate", () => {
     it("renders the years in the right order", async () => {
       const expectedOrder = ["upcoming", "unpublished", "2020", "2019", "2011", "2003"];
       const elements = screen.getAllByRole("heading", { level: 2 });
-      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
     });
 
     it("renders the elements within a year in the right order", async () => {
       const expectedOrder = ["a future title", "a october title", "a june title", "a march title"];
       const elements = screen.getAllByText(/a .* title/);
-      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
     });
 
     it("renders the elements within the future in the right order", async () => {
@@ -420,10 +430,10 @@ describe("TypeTemplate", () => {
         "a october future",
         "a june future",
         "a future title",
-        "a march future"
+        "a march future",
       ];
       const elements = screen.getAllByText(/.*future.*/);
-      expect(Array.from(elements).map(el => el.textContent)).toMatchObject(expectedOrder);
+      expect(Array.from(elements).map((el) => el.textContent)).toMatchObject(expectedOrder);
     });
 
     it("does not show list years in the future", async () => {
