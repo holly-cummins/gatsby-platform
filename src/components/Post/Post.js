@@ -13,7 +13,7 @@ const Post = props => {
     post,
     post: {
       html,
-      fields: { title, prefix, author, category, displayCategory }
+      fields: { title, date, author, category, displayCategory }
     },
     authornote,
     next: nextPost,
@@ -25,7 +25,7 @@ const Post = props => {
       <header>
         <Headline title={title} />
         <Meta
-          prefix={prefix}
+          date={date}
           author={author}
           category={category}
           displayCategory={displayCategory}

@@ -251,7 +251,7 @@ module.exports = {
               return allMarkdownRemark.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
-                  date: edge.node.fields.prefix,
+                  date: edge.node.fields.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   custom_elements: [{ "content:encoded": edge.node.html }]
@@ -262,10 +262,10 @@ module.exports = {
               {
                 allMarkdownRemark(
                   limit: 1000,
-                  sort: {fields: {prefix: DESC}}
+                  sort: {fields: {date: DESC}}
                   filter: {
                     fields: {
-                      prefix: { ne: null },
+                      date: { ne: null },
                       draft: { ne: true},
                       slug: { ne: null }
                     },
@@ -280,7 +280,7 @@ module.exports = {
                       html
                       fields {
                         slug
-                        prefix
+                        date
                       }
                       frontmatter {
                         title

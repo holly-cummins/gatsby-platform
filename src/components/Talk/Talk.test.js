@@ -18,7 +18,7 @@ describe("Talk", () => {
         code: [{ url: "http://somegitrepo.com" }]
       },
       fields: {
-        prefix: "prefixeroo",
+        date: "prefixeroo",
         slug: "sluggeroo",
         author: "bob",
         title,
@@ -80,7 +80,7 @@ describe("Talk", () => {
         author: "bob",
         category: "test-stuff",
         displayCategory: "test-stuff",
-        prefix: "prefixeroo",
+        date: "prefixeroo",
         slug: "sluggeroo"
       },
       html: "<p>hello</p>"
@@ -102,7 +102,7 @@ describe("Talk", () => {
         code: [{ url: "http://somegitrepo.com" }]
       },
       fields: {
-        prefix: "prefixeroo",
+        date: "prefixeroo",
         slug: "sluggeroo",
         author: "bob",
         title,

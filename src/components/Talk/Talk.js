@@ -27,7 +27,7 @@ const Talk = props => {
     post,
     post: {
       html,
-      fields: { prefix, title, video, slides, oembeds, author, category, displayCategory },
+      fields: { date, title, video, slides, oembeds, author, category, displayCategory },
       frontmatter: { event, keynote, code, resources }
     },
     authornote,
@@ -40,7 +40,7 @@ const Talk = props => {
       <header>
         <Headline title={title} />
         <Meta
-          prefix={prefix}
+          date={date}
           event={event}
           author={author}
           category={category}

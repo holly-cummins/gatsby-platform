@@ -33,21 +33,23 @@ const TypeTemplate = props => {
   filteredEntries.forEach(edge => {
     const {
       node: {
-        fields: { prefix }
+        fields: { date }
       }
     } = edge;
 
-    const date = new Date(prefix);
-
-    const isInTheFuture = date.getTime() > now;
     let year;
-    year = date.getFullYear();
+
+    if (date) {
+      const parsedDate = new Date(date);
+      year = parsedDate.getFullYear();
+      const isInTheFuture = parsedDate.getTime() > now;
+      if (isInTheFuture) {
+        year = "upcoming";
+      }
+    }
 
     if (!year) {
       year = "unpublished";
-    }
-    if (isInTheFuture) {
-      year = "upcoming";
     }
 
     if (year) {
@@ -63,7 +65,7 @@ const TypeTemplate = props => {
   yearList = yearList.map(entry => [
     entry[0],
     entry[1]
-      .sort((a, b) => new Date(a.node.fields.prefix) - new Date(b.node.fields.prefix))
+      .sort((a, b) => new Date(a.node.fields.date) - new Date(b.node.fields.date))
       .reverse()
   ]);
 
@@ -139,7 +141,7 @@ export const typeQuery = graphql`
   query PostsByType($type: String) {
     allMarkdownRemark(
       limit: 1000
-      sort: {fields: {prefix: DESC}}
+      sort: {fields: {date: DESC}}
       filter: {fields: {slug: {ne: ""}}, frontmatter: {type: {eq: $type}}}
     ) {
       totalCount
@@ -148,7 +150,7 @@ export const typeQuery = graphql`
           fields {
             title
             slug
-            prefix
+            date
             draft
             shortDate
             geography {

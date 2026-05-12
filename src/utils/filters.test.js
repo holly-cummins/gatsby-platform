@@ -62,14 +62,14 @@ describe("the node filtering", () => {
   const draft = {
     node: {
       frontmatter: { category: "test-stuff" },
-      fields: { source: "posts", slug: "not-yet", prefix: "draft", draft: true }
+      fields: { source: "posts", slug: "not-yet", date: "draft", draft: true }
     }
   };
 
   const unconventionalDraftPrefix = {
     node: {
       frontmatter: { category: "test-stuff" },
-      fields: { source: "posts", slug: "still-not-yet", prefix: "unready2", draft: true }
+      fields: { source: "posts", slug: "still-not-yet", date: "unready2", draft: true }
     }
   };
 
@@ -83,28 +83,28 @@ describe("the node filtering", () => {
   const dated = {
     node: {
       frontmatter: { category: "final-stuff" },
-      fields: { source: "posts", slug: "done-now", prefix: "2022-01-17" }
+      fields: { source: "posts", slug: "done-now", date: "2022-01-17" }
     }
   };
 
   const anotherDated = {
     node: {
       frontmatter: { category: "cat-stuff" },
-      fields: { source: "posts", slug: "perfect", prefix: "1978-10-04" }
+      fields: { source: "posts", slug: "perfect", date: "1978-10-04" }
     }
   };
 
   const future = {
     node: {
       frontmatter: { category: "final-stuff" },
-      fields: { source: "posts", slug: "done-now", prefix: "2052-01-17" }
+      fields: { source: "posts", slug: "done-now", date: "2052-01-17" }
     }
   };
 
   const page = {
     node: {
       frontmatter: { category: "site-furniture" },
-      fields: { source: "pages", slug: "about", prefix: "1" }
+      fields: { source: "pages", slug: "about", date: "1" }
     }
   };
 

@@ -15,7 +15,7 @@ const Item = props => {
   const {
     post: {
       excerpt,
-      fields: { slug, prefix, title, author, displayCategory, cover },
+      fields: { slug, date, title, author, displayCategory, cover },
       frontmatter: { type }
     }
   } = props;
@@ -44,7 +44,7 @@ const Item = props => {
           </span>
         )}
         <span>
-          <Calendar /> {prefix}
+          <Calendar /> {date}
         </span>
         <span>
           <User /> {author}
@@ -103,13 +103,35 @@ const Item = props => {
 
         @from-width tablet {
           h1 {
-            font-size: ${`calc(${theme.blog.h1.size} * 1.2)`};
-            padding: ${`calc(${theme.space.default} * 1.5) ${theme.space.default} 0`};
+            font-size: ${`calc
+
+            (
+            ${theme.blog.h1.size} *
+
+            1.2
+            )`};
+            padding: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            1.5
+            )
+            ${theme.space.default}
+
+            0`};
             transition: all 0.5s;
           }
 
           .meta {
-            padding: ${`calc(${theme.space.m} * 1.5) ${theme.space.m}`};
+            padding: ${`calc
+
+            (
+            ${theme.space.m} *
+
+            1.5
+            )
+            ${theme.space.m}`};
           }
 
           p {
@@ -118,21 +140,68 @@ const Item = props => {
         }
         @from-width desktop {
           :global(.blogItemLink:first-child) > li::before {
-            top: ${`calc(${theme.space.default} * -2.75)`};
+            top: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            -
+            2.75
+            )`};
           }
 
           h1 {
             font-size: 2.5em;
-            padding: ${`calc(${theme.space.default} * 1.2) calc(${theme.space.default} * 2) 0`};
+            padding: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            1.2
+            )
+            calc
+
+            (
+            ${theme.space.default} *
+
+            2
+            )
+            0`};
           }
 
           .meta {
-            padding: ${`calc(${theme.space.default} * 1.5) calc(${theme.space.default} * 2)
-              calc(${theme.space.default} * 0.5)`};
+            padding: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            1.5
+            )
+            calc
+
+            (
+            ${theme.space.default} *
+
+            2
+            )
+            calc
+
+            (
+            ${theme.space.default} *
+
+            0.5
+            )`};
           }
 
           p {
-            padding: ${`0 calc(${theme.space.default} * 2)`};
+            padding: ${`0
+            calc
+
+            (
+            ${theme.space.default} *
+
+            2
+            )`};
           }
 
           :global(.gatsby-image-wrapper) {
@@ -170,7 +239,21 @@ const Item = props => {
         li {
           border: 1px solid transparent;
           border-radius: ${theme.size.radius.default};
-          margin: ${`calc(${theme.space.default} * 2) 0 calc(${theme.space.default} * 3)`};
+          margin: ${`calc
+
+          (
+          ${theme.space.default} *
+
+          2
+          )
+          0
+          calc
+
+          (
+          ${theme.space.default} *
+
+          3
+          )`};
           padding: ${theme.space.inset.s};
           position: relative;
           transition: all ${theme.time.duration.default};
@@ -191,7 +274,14 @@ const Item = props => {
             content: "";
             height: 0;
             position: absolute;
-            bottom: ${`calc(${theme.space.default} * -1.5)`};
+            bottom: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            -
+            1.5
+            )`};
             left: 50%;
             transform: translateX(-50%);
             transition: all ${theme.time.duration.default};
@@ -204,7 +294,14 @@ const Item = props => {
               content: "";
               height: 0;
               position: absolute;
-              top: ${`calc(${theme.space.default} * -1.5)`};
+              top: ${`calc
+
+              (
+              ${theme.space.default} *
+
+              -
+              1.5
+              )`};
               left: 50%;
               transform: translateX(-50%);
               transition: all ${theme.time.duration.default};
@@ -215,38 +312,107 @@ const Item = props => {
 
         @from-width tablet {
           li {
-            margin: ${`calc(${theme.space.default} * 3) 0 calc(${theme.space.default} * 4)`};
+            margin: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            3
+            )
+            0
+            calc
+
+            (
+            ${theme.space.default} *
+
+            4
+            )`};
             padding: ${theme.space.default};
 
             &::after {
-              bottom: ${`calc(${theme.space.default} * -2)`};
+              bottom: ${`calc
+
+              (
+              ${theme.space.default} *
+
+              -
+              2
+              )`};
             }
 
             &:first-child {
               &::before {
-                top: ${`calc(${theme.space.default} * -1.75)`};
+                top: ${`calc
+
+                (
+                ${theme.space.default} *
+
+                -
+                1.75
+                )`};
               }
             }
           }
         }
         @from-width desktop {
           li {
-            margin: ${`calc(${theme.space.default} * 4) 0 calc(${theme.space.default} * 5)`};
-            padding: 0 0 ${`calc(${theme.space.default} * 2)`};
+            margin: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            4
+            )
+            0
+            calc
+
+            (
+            ${theme.space.default} *
+
+            5
+            )`};
+            padding: 0 0 ${`calc
+
+            (
+            ${theme.space.default} *
+
+            2
+            )`};
 
             &::after {
-              bottom: ${`calc(${theme.space.default} * -1.5)`};
+              bottom: ${`calc
+
+              (
+              ${theme.space.default} *
+
+              -
+              1.5
+              )`};
             }
 
             &:first-child {
               &::before {
-                top: ${`calc(${theme.space.default} * -2.75)`};
+                top: ${`calc
+
+                (
+                ${theme.space.default} *
+
+                -
+                2.75
+                )`};
               }
             }
           }
 
           :global(.blogItemLink:first-child) > li::before {
-            top: ${`calc(${theme.space.default} * -2.75)`};
+            top: ${`calc
+
+            (
+            ${theme.space.default} *
+
+            -
+            2.75
+            )`};
           }
 
           li {
@@ -255,7 +421,14 @@ const Item = props => {
               box-shadow: 0 3px 2px rgba(0, 0, 0, 0.03);
 
               &:after {
-                bottom: ${`calc(${theme.space.default} * -2.5)`};
+                bottom: ${`calc
+
+                (
+                ${theme.space.default} *
+
+                -
+                2.5
+                )`};
               }
 
               :global(.gatsby-image-wrapper) {

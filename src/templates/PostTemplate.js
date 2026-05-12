@@ -48,7 +48,7 @@ export const postQuery = graphql`
       fields {
         title
         slug
-        prefix
+        date
         shortDate
         category
         author

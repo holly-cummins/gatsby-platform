@@ -22,7 +22,7 @@ describe("Item", () => {
           cover,
           author,
           slug,
-          prefix: "2020-01-06",
+          date: "2020-01-06",
           displayCategory: "dull-stuff"
         },
         frontmatter: {
@@ -78,7 +78,7 @@ describe("Item", () => {
           title,
           cover,
           slug,
-          prefix: "2020-01-06",
+          date: "2020-01-06",
           category: "dull-stuff",
           author: "tdd-er"
         },

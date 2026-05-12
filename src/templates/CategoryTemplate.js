@@ -59,14 +59,14 @@ export const categoryQuery = graphql`
  query PostsByCategory($category: String) {
   allMarkdownRemark(
     limit: 1000
-    sort: {fields: {prefix: DESC}}
+    sort: {fields: {date: DESC}}
     filter: {fields: {slug: {ne: ""}, category: {eq: $category}}}
   ) {
     edges {
       node {
         fields {
           slug
-          prefix
+          date
           draft
           category
           displayCategory

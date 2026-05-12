@@ -26,7 +26,12 @@ describe("the preprocessor", () => {
       await onCreateNode({ node, actions });
     });
 
-    afterAll(() => {});
+    afterAll(() => {
+    });
+
+    it("does not add a date", async () => {
+      expect(fields.date).toBeUndefined();
+    });
 
     it("does not add a short date", async () => {
       expect(fields.shortDate).toBeUndefined();
@@ -56,6 +61,10 @@ describe("the preprocessor", () => {
       jest.clearAllMocks();
     });
 
+    it("parses the date", async () => {
+      expect(fields.date).toEqual("2020-07-08");
+    });
+
     it("adds a short date", async () => {
       expect(fields.shortDate).toEqual("07-08");
     });
@@ -64,4 +73,101 @@ describe("the preprocessor", () => {
       expect(fields.draft).toBeUndefined();
     });
   });
+
+  describe("for a page with a qualified date prefix and a folder", () => {
+    const fields = {
+      prefix: "2020/2020-07-08"
+    };
+
+    const node = {
+      fields,
+      internal: { type: "MarkdownRemark" }
+    };
+
+    beforeAll(async () => {
+      createFilePath.mockReturnValue(node.fields.prefix + "--a-description");
+      await onCreateNode({ node, actions });
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it("parses the date", async () => {
+      expect(fields.date).toEqual("2020-07-08");
+    });
+
+    it("adds a short date", async () => {
+      expect(fields.shortDate).toEqual("07-08");
+    });
+
+    it("does not add a draft field", async () => {
+      expect(fields.draft).toBeUndefined();
+    });
+  });
+
+  describe("for a page with an unqualified date prefix and a folder", () => {
+    const fields = {
+      prefix: "2020/07-08"
+    };
+
+    const node = {
+      fields,
+      internal: { type: "MarkdownRemark" }
+    };
+
+    beforeAll(async () => {
+      createFilePath.mockReturnValue(node.fields.prefix + "--a-description");
+      await onCreateNode({ node, actions });
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it("parses the date", async () => {
+      expect(fields.date).toEqual("2020-07-08");
+    });
+
+    it("adds a short date", async () => {
+      expect(fields.shortDate).toEqual("07-08");
+    });
+
+    it("does not add a draft field", async () => {
+      expect(fields.draft).toBeUndefined();
+    });
+  });
+
+  describe("for a page with a leading slash and a folder", () => {
+    const fields = {
+      prefix: "/2021/2021-07-08"
+    };
+
+    const node = {
+      fields,
+      internal: { type: "MarkdownRemark" }
+    };
+
+    beforeAll(async () => {
+      createFilePath.mockReturnValue(node.fields.prefix + "--a-description/");
+      await onCreateNode({ node, actions });
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it("parses the date", async () => {
+      expect(fields.date).toEqual("2021-07-08");
+    });
+
+    it("adds a short date", async () => {
+      expect(fields.shortDate).toEqual("07-08");
+    });
+
+    it("does not add a draft field", async () => {
+      expect(fields.draft).toBeUndefined();
+    });
+  });
+
 });

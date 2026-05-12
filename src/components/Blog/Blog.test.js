@@ -15,7 +15,8 @@ const makeNode = () => {
       fields: {
         title,
         slug: "sluggy" + uuid(),
-        prefix: "2020-01-06",
+        prefix: "irrelevant",
+        date: "2020-01-06",
         cover,
         author: "tdd-er"
       },

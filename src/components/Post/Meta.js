@@ -9,14 +9,14 @@ import { PresentationFile as Talk } from "@carbon/icons-react";
 import { Badge as Star } from "@carbon/icons-react";
 import { useTheme } from "../../layouts/theme";
 
-const Meta = props => {
-  const { prefix, author: authorName, category, displayCategory, event, keynote } = props;
+const Meta = (props) => {
+  const { date, author: authorName, category, displayCategory, event, keynote } = props;
   const theme = useTheme();
 
   return (
     <p className="meta">
       <span>
-        <Calendar size={20} /> {prefix}
+        <Calendar size={20} /> {date}
       </span>
       {event ? (
         <span>
@@ -75,13 +75,12 @@ const Meta = props => {
 };
 
 Meta.propTypes = {
-  prefix: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   event: PropTypes.string,
   keynote: PropTypes.bool,
   category: PropTypes.string.isRequired,
   displayCategory: PropTypes.string.isRequired,
-
 };
 
 export default Meta;

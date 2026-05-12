@@ -32,7 +32,7 @@ exports.filterOutDrafts = (edges, showFuture) => {
       // Exclude anything that looks like a draft in production
 
       if (isProd()) {
-        // The prefix should exist and match a date in prod
+        // The date should exist in prod
         // We have to parse a date so we know if it is date-y but we want to use the same regex we use in the graphql filters
         if (edge.node.fields.draft) {
           return false;
@@ -40,14 +40,14 @@ exports.filterOutDrafts = (edges, showFuture) => {
       }
 
       if (!showFuture) {
-        const date = new Date(edge.node.fields.prefix);
+        const date = new Date(edge.node.fields.date);
         const isInTheFuture = date.getTime() > now;
         return !isInTheFuture;
       }
 
       return true;
     }
-    // If there is no prefix at all, let it through (because otherwise tests get bogged down in boilerplate)
+    // If there is no date at all, let it through (because otherwise tests get bogged down in boilerplate)
     return true;
   });
 };

@@ -8,11 +8,11 @@ describe("List", () => {
     const title = "some post";
     const slug = "sluggaroo";
     const shortDate = "06-09";
-    const prefix = "2020-06-09";
+    const date = "2020-06-09";
     const node = {
       node: {
         frontmatter: { category: "test-stuff" },
-        fields: { title, source: "some-source", slug, prefix, shortDate }
+        fields: { title, source: "some-source", slug, date, shortDate }
       }
     };
     const edges = [node];
@@ -39,18 +39,18 @@ describe("List", () => {
     });
 
     it("renders the date, including a year", async () => {
-      expect(screen.getByText(prefix)).toBeTruthy();
+      expect(screen.getByText(date)).toBeTruthy();
     });
 
     describe("with short dates specified", () => {
       const title = "some post";
       const slug = "sluggaroo";
       const shortDate = "05-09";
-      const prefix = "2020-05-09";
+      const date = "2020-05-09";
       const node = {
         node: {
           frontmatter: { category: "test-stuff" },
-          fields: { title, source: "some-source", slug, prefix, shortDate }
+          fields: { title, source: "some-source", slug, date, shortDate }
         }
       };
       const edges = [node];
@@ -60,7 +60,7 @@ describe("List", () => {
       });
 
       it("renders the date, without a year", async () => {
-        expect(screen.queryByText(prefix)).toBeFalsy();
+        expect(screen.queryByText(date)).toBeFalsy();
         expect(screen.getByText(shortDate)).toBeTruthy();
       });
     });

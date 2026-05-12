@@ -15,7 +15,7 @@ describe("CategoryTemplate", () => {
     const node = {
       node: {
         frontmatter: {},
-        fields: { category: "test-stuff", title, source: "some-source", slug, prefix: "2021-12-17" }
+        fields: { category: "test-stuff", title, source: "some-source", slug, date: "2021-12-17" }
       }
     };
 
@@ -27,7 +27,7 @@ describe("CategoryTemplate", () => {
           title: draftTitle,
           source: "another-source",
           slug: "half-baked-slug",
-          prefix: "draft",
+          date: "draft",
           draft: "true"
         }
       }

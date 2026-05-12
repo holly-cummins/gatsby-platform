@@ -17,20 +17,20 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const slug = createFilePath({ node, getNode });
     const fileNode = getNode(node.parent);
     const source = fileNode.sourceInstanceName;
-    const separtorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
-    const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0;
+    const separatorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
+    const shortSlugStart = separatorIndex ? separatorIndex + 2 : 0;
 
     if (source !== "parts") {
       createNodeField({
         node,
         name: `slug`,
-        value: `${separtorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
+        value: `${separatorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
       });
     }
     createNodeField({
       node,
       name: `prefix`,
-      value: separtorIndex ? slug.substring(1, separtorIndex) : ""
+      value: separatorIndex ? slug.substring(1, separatorIndex) : ""
     });
     createNodeField({
       node,
@@ -58,13 +58,14 @@ exports.createPages = async ({ graphql, actions }) => {
   return graphql(
     `
           query Posts($filters: MarkdownRemarkFilterInput) {
-  allMarkdownRemark(filter: $filters, sort: {fields: {prefix: DESC}}, limit: 1000) {
+  allMarkdownRemark(filter: $filters, sort: {fields: {date: DESC}}, limit: 1000) {
     edges {
       node {
         id
         fields {
           slug
           prefix
+          date
           draft
           source
           category

@@ -76,14 +76,14 @@ export const query = graphql`
 query IndexQuery {
   entries: allMarkdownRemark(
     filter: {fileAbsolutePath: {regex: "//(posts|publications|talks)/.*--/"}}
-    sort: {fields: {prefix: DESC}}
+    sort: {fields: {date: DESC}}
   ) {
     edges {
       node {
         excerpt
         fields {
           slug
-          prefix
+          date
           draft
           author
           title

@@ -16,7 +16,7 @@ describe("Post", () => {
       type: "Post"
     },
     fields: {
-      prefix: "prefixeroo",
+      date: "prefixeroo",
       slug: "sluggeroo",
       title,
       author: "bob",

@@ -34,7 +34,7 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug1/",
-          prefix: "2021-12-17",
+          date: "2021-12-17",
           author: author1,
           cover,
           title: title1
@@ -48,7 +48,7 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug2/",
-          prefix: "2022-04-07",
+          date: "2022-04-07",
           author: author2,
           title: title2,
           cover
@@ -63,7 +63,7 @@ describe("IndexPage", () => {
       node: {
         fields: {
           slug: "/slug3/",
-          prefix: "draft",
+          date: "draft",
           draft: true,
           title: draftTitle,
           cover

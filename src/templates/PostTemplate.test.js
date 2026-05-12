@@ -21,7 +21,7 @@ describe("PostTemplate", () => {
       fields: {
         author: "bob",
         title,
-        prefix: "prefixeroo",
+        date: "prefixeroo",
         slug,
         category,
         displayCategory
@@ -62,7 +62,7 @@ describe("PostTemplate", () => {
       fields: {
         author: "bob",
         title,
-        prefix: "prefixeroo",
+        date: "prefixeroo",
         slug,
         category,
         displayCategory

@@ -15,12 +15,12 @@ const List = props => {
           const {
             node: {
               frontmatter: { type },
-              fields: { title, slug, prefix, shortDate }
+              fields: { title, slug, date, shortDate }
             }
           } = edge;
 
           const Icon = showIcon ? icon(type) : null;
-          const formattedDate = useShortDate ? shortDate : prefix;
+          const formattedDate = useShortDate ? shortDate : date;
 
           const divs = (
             <div className="row">

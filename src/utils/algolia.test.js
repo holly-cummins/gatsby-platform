@@ -3,7 +3,7 @@ import algolia from "./algolia";
 describe("the algolia indexing", () => {
   describe("when the data is complete", () => {
     const node = {
-      fields: { slug: "sluggish", prefix: "2020-01-06" },
+      fields: { slug: "sluggish", date: "2020-01-06" },
       frontmatter: {
         title: "an exciting node",
         category: "dull-stuff",
@@ -21,7 +21,7 @@ describe("the algolia indexing", () => {
 
   describe("when the data is very long", () => {
     const node = {
-      fields: { slug: "sluggish", prefix: "2020-01-06" },
+      fields: { slug: "sluggish", date: "2020-01-06" },
       frontmatter: {
         title: "an exciting node",
         category: "dull-stuff",
@@ -39,7 +39,7 @@ describe("the algolia indexing", () => {
 
   describe("when the data is incomplete", () => {
     const node = {
-      fields: { slug: "sluggish", prefix: "2020-01-06" },
+      fields: { slug: "sluggish", date: "2020-01-06" },
       frontmatter: {
         title: "an exciting node",
         category: "dull-stuff",

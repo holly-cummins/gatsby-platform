@@ -16,13 +16,13 @@ export default function Layout({ children, location }) {
           query LayoutQuery {
             pages: allMarkdownRemark(
               filter: { fileAbsolutePath: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
-              sort: {fields: {prefix: ASC}}
+              sort: {fields: {date: ASC}}
             ) {
               edges {
                 node {
                   fields {
                     slug
-                    prefix
+                    date
                   }
                   frontmatter {
                     title

@@ -7,13 +7,13 @@ describe("Meta", () => {
     const category = "stuff";
     const displayCategory = "sTUff";
 
-    const prefix = "2022-02-22";
+    const date = "2022-02-22";
     const author = "snacky devine";
 
     beforeEach(() => {
       render(
         <Meta
-          prefix={prefix}
+          date={date}
           author={author}
           category={category}
           displayCategory={displayCategory}
@@ -27,7 +27,7 @@ describe("Meta", () => {
     });
 
     it("renders the date", () => {
-      expect(screen.getByText(prefix)).toBeTruthy();
+      expect(screen.getByText(date)).toBeTruthy();
     });
 
     it("renders the category", () => {
@@ -43,14 +43,14 @@ describe("Meta", () => {
   describe("with an event", () => {
     const category = "things";
     const displayCategory = "things and sausages";
-    const prefix = "2021-03-22";
+    const date = "2021-03-22";
     const author = "snacky malone";
     const event = "DuckCon";
 
     beforeEach(() => {
       render(
         <Meta
-          prefix={prefix}
+          date={date}
           author={author}
           category={category}
           displayCategory={displayCategory}
@@ -64,7 +64,7 @@ describe("Meta", () => {
     });
 
     it("renders the date", () => {
-      expect(screen.getByText(prefix)).toBeTruthy();
+      expect(screen.getByText(date)).toBeTruthy();
     });
 
     it("renders the category", () => {
@@ -83,14 +83,14 @@ describe("Meta", () => {
   describe("with a keynote talk", () => {
     const category = "things";
     const displayCategory = "pancakes and sausages";
-    const prefix = "2021-03-22";
+    const date = "2021-03-22";
     const author = "snacky malone";
     const event = "DuckCon";
 
     beforeEach(() => {
       render(
         <Meta
-          prefix={prefix}
+          date={date}
           author={author}
           category={category}
           displayCategory={displayCategory}
@@ -105,7 +105,7 @@ describe("Meta", () => {
     });
 
     it("renders the date", () => {
-      expect(screen.getByText(prefix)).toBeTruthy();
+      expect(screen.getByText(date)).toBeTruthy();
     });
 
     it("renders the category", () => {

@@ -95,7 +95,7 @@ describe("the main gatsby thing", () => {
     const node = {
       node: {
         frontmatter: {},
-        fields: { category: "test-stuff", source: "posts", slug, prefix: "a-proper-date" }
+        fields: { category: "test-stuff", source: "posts", slug, date: "a-proper-date" }
       }
     };
     const edges = [node, node];
@@ -127,7 +127,7 @@ describe("the main gatsby thing", () => {
     const node = {
       node: {
         frontmatter: {},
-        fields: { category: "test-stuff", source: "talks", slug, prefix: "a-proper-date" }
+        fields: { category: "test-stuff", source: "talks", slug, date: "a-proper-date" }
       }
     };
     const edges = [node, node];
